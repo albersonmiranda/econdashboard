@@ -15,11 +15,11 @@
 
 ## Dependencies ----
 ## Add one line by package you want to add as dependency
-usethis::use_package("shinydashboardPlus")
+usethis::use_package("shinydashboard")
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module(name = "atividade_economica") # Name of the module
+golem::add_module(name = "atividade_economica_es") # Name of the module
 
 ## Add helper functions ----
 ## Creates ftc_* and utils_*

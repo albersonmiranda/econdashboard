@@ -1,0 +1,54 @@
+/* logo */
+.skin-blue .main-header .logo {
+  background-color: #fff1e0;
+  font-family: "Georgia";
+  font-weight: bold;
+  color: #6D6964;
+}
+
+/* logo when hovered */
+.skin-blue .main-header .logo:hover {
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+/* navbar (rest of the header) */
+.skin-blue .main-header .navbar {
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+/* main sidebar */
+.skin-blue .main-sidebar {
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+/* active selected tab in the sidebarmenu */
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+/* other links in the sidebarmenu */
+.skin-blue .main-sidebar .sidebar .sidebar-menu a{
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+/* other links in the sidebarmenu when hovered */
+.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+/* toggle button when hovered  */
+.skin-blue .main-header .navbar .sidebar-toggle:hover{
+  background-color: #fff1e0;
+  color: #6D6964;
+}
+
+.content-wrapper, .right-side {
+  font-family: "Georgia";
+  background-color: #fff1e0
+}

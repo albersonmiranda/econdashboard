@@ -22,6 +22,9 @@ PIBvarA = BETSget(7327, data.frame = TRUE) # agropecuaria
 PIBvarI = BETSget(7328, data.frame = TRUE) # industria
 PIBvarS = BETSget(7329, data.frame = TRUE) # serviços
 
+# PIB trimestral em índice
+PIBtriobs = BETSget(22099, data.frame = TRUE)
+
 # PIB trimestral dessazonalizado em índice ----
 PIBtri = BETSget(22109, data.frame = TRUE)
 PIBtriA = BETSget(22105, data.frame = TRUE) # agropecuaria
@@ -30,11 +33,13 @@ PIBtriS = BETSget(22107, data.frame = TRUE) # servicos
 PIBtriF = BETSget(22110, data.frame = TRUE) # consumo das famílias
 PIBtriG = BETSget(22111, data.frame = TRUE) # consumo do governo
 
-# IBC-Br trimestral dessazonalizado ----
-IBCBr = BETSget(24364, data.frame = TRUE)
+# IBC-Br trimestral ----
+IBCBr = BETSget(24363, data.frame = TRUE)
+IBCBrs = BETSget(24364, data.frame = TRUE)
 
 # Serviços e Comércio ----
-Varejo = BETSget(28473, data.frame = TRUE) # índice volume de vendas no varejo dessazonalizado
+Varejos = BETSget(28473, data.frame = TRUE) # índice volume de vendas no varejo dessazonalizado
+Varejo = BETSget(1455, data.frame = TRUE) # índice volume de vendas no varejo
 Servicos = BETSget(21637, data.frame = TRUE) # índice receita nominal de serviços
 ICC = BETSget(4393, data.frame = TRUE) # índice confiança do consumidor
 ICE = BETSget(4394, data.frame = TRUE) # índice de condições econômicas atuais
