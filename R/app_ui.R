@@ -29,7 +29,8 @@ app_ui <- function(request) {
           tabItem(tabName = "conjuntura",
                   mod_titulo_ui("titulo_ui_1"),
                   mod_atividade_economica_ui("atividade_economica_ui_1"),
-                  mod_atividade_economica_es_ui("atividade_economica_es_ui_1")
+                  mod_atividade_economica_es_ui("atividade_economica_es_ui_1"),
+                  mod_mercados_ui("mercados_ui_1")
           )
         )
       )
@@ -46,6 +47,8 @@ app_ui <- function(request) {
 #' @import shiny
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
+
+
 golem_add_external_resources <- function(){
   
   add_resource_path(

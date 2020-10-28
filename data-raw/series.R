@@ -83,11 +83,13 @@ PIBES = BETSget(24093, data.frame = TRUE) # PIB corrente a preços de mercado (R
 PIBvarES = BETSget(24094, data.frame = TRUE) # variação anual real
 
 # Índice de Atividade Econômica Regional ----
-IBCRES = BETSget(25399, data.frame = TRUE) # dessazonalizado
+IBCRES = BETSget(25398, data.frame = TRUE) # dessazonalizado
+IBCRESs = BETSget(25399, data.frame = TRUE) # dessazonalizado
 
 # Serviços e Comércio ----
 VarejoES = BETSget(1473, data.frame = TRUE) # índice volume de vendas no varejo
-ServicosES = BETSget(28033, data.frame = TRUE) # índice pesquisa mensal serviços
+ServicosES = BETSget(28134, data.frame = TRUE) # índice pesquisa mensal serviços
+ServicosESs = BETSget(28033, data.frame = TRUE) # índice pesquisa mensal serviços
 ExpES = BETSget(13386, data.frame = TRUE) # exportação de bens em US$ milhares
 
 # Mercado de Trabalho ----

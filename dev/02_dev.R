@@ -19,7 +19,7 @@ usethis::use_package("shinydashboard")
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module(name = "atividade_economica_es") # Name of the module
+golem::add_module(name = "mercados") # Name of the module
 
 ## Add helper functions ----
 ## Creates ftc_* and utils_*
