@@ -61,8 +61,10 @@ RendaPub = BETSget(24386, data.frame = TRUE) # rendimento médio real habitual d
 RendaCP = BETSget(24387, data.frame = TRUE) # rendimento médio real habitual das pessoas ocupadas - conta própia
 
 # Preços ----
-IPCA = BETSget(433, data.frame = TRUE) # Indice nacional de Preços ao consumidor-Amplo IBGE
-IGPM = BETSget(189, data.frame = TRUE) # Indice Geral de Preços do Mercado FGV
+IPCA = BETSget(433, data.frame = TRUE, from = "1995-01-01") # Indice nacional de Preços ao consumidor-Amplo IBGE
+IGPM = BETSget(189, data.frame = TRUE, from = "1995-01-01") # Indice Geral de Preços do Mercado FGV
+IPCBr = BETSget(191, data.frame = TRUE, from = "1995-01-01") # Indice de Precos ao Consumidor-Brasil FGV
+ICV = BETSget(194, data.frame = TRUE, from = "1995-01-01") # Indice Custo de Vida Dieese variação % mensal
 CapInst = BETSget(1344, data.frame = TRUE) # Utilização da capacidade instalada % (FGV) 
 
 # Mercado financeiro ----
