@@ -31,7 +31,8 @@ app_ui <- function(request) {
                   mod_atividade_economica_ui("atividade_economica_ui_1"),
                   mod_atividade_economica_es_ui("atividade_economica_es_ui_1"),
                   mod_mercados_ui("mercados_ui_1"),
-                  mod_inflacao_ui("inflacao_ui_1")
+                  mod_inflacao_ui("inflacao_ui_1"),
+                  mod_consumo_ui("consumo_ui_1")
           )
         )
       )

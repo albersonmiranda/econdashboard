@@ -120,7 +120,7 @@ mod_mercados_ui <- function(id){
         boxPlus(
           title = tags$b("Mercado de Trabalho ES", style = 'font-family: "Georgia"'),
           closable = FALSE, 
-          width = 4,
+          width = 8,
           height = 700,
           status = "primary", 
           solidHeader = TRUE, 
