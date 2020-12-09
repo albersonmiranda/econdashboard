@@ -13,137 +13,179 @@
 
 
 
-mod_mercados_ui <- function(id){
+mod_mercados_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
       fluidRow(
-        
         # Resenha
-        boxPlus(title = tags$b("MERCADOS", style = 'font-family: "Georgia"'),
-                closable = FALSE, 
-                width = 4,
-                height = 700,
-                status = NULL,
-                background = "light-blue",
-                solidHeader = TRUE,
-                h4(style = 'text-align: justify; font-family: "Georgia";',
-                   "Para 2019, é esperado um aumento dos juros, motivado por uma provável recuperação da economia. Na média, os analistas do mercado financeiro esperam que a Selic feche o próximo ano em 7,5%.",
-                   br(),br(),
-                   "No mercado de trabalho, a taxa de desemprego no Brasil recuou para 11,6% no trimestre encerrado em novembro, segundo dados divulgados pelo IBGE, se mantendo praticamente constante — caiu 0,1% em relação ao mês anterior. Não obstante, o sinal é positivo pois foi a oitava queda mensal consecutiva no país."
-                )),
-        
-        # Selic
         boxPlus(
-          title = tags$b("Juros", style = 'font-family: "Georgia"'),
-          closable = FALSE, 
+          title = tags$b("MERCADOS", style = ''),
+          closable = FALSE,
           width = 4,
           height = 700,
-          status = "primary", 
-          solidHeader = TRUE, 
-          tags$b("Taxa básica Selic", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Taxa ao ano, diária, anualizada, base 252", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
-          plotlyOutput(ns("plot1")),
-          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
-          footer = fluidRow(
-            column(
-              width = 12,
-              descriptionBlock(
-                number = paste(round(
-                  tail(series$Selic$value,1)-head(tail(series$Selic$value, 2), 1), 2), "%"), 
-                numberColor = if(tail(series$Selic$value,1)-head(tail(series$Selic$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$Selic$value,1)-head(tail(series$Selic$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$Selic$value,1), "%", tail(months(series$Selic$date),1)), 
-                text = "Selic", 
-                rightBorder = TRUE,
-                marginBottom = FALSE
-              )))),
-        
-        # Dolar
-        boxPlus(
-          title = tags$b("Taxa de Câmbio", style = 'font-family: "Georgia"'),
-          closable = FALSE, 
-          width = 4,
-          height = 700,
-          status = "primary", 
-          solidHeader = TRUE, 
-          tags$b("Dólar", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Preço de compra, cotação diária", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
-          plotlyOutput(ns("plot2")),
-          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
-          footer = fluidRow(
-            column(
-              width = 12,
-              descriptionBlock(
-                number = paste('R$',round(
-                  tail(series$Dolar$value,1)-head(tail(series$Dolar$value, 2), 1), 2), "/US$"), 
-                numberColor = if(tail(series$Dolar$value,1)-head(tail(series$Dolar$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$Dolar$value,1)-head(tail(series$Dolar$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste('R$',round(tail(series$Dolar$value,1),2), "/US$",tail(months(series$Dolar$date),1)), 
-                text = "Dolar", 
-                rightBorder = TRUE,
-                marginBottom = FALSE
-              )))),
-        
+          status = NULL,
+          background = "light-blue",
+          solidHeader = TRUE,
+          h4(
+            style = 'text-align: justify;',
+            "Para 2019, é esperado um aumento dos juros, motivado por uma provável recuperação da economia. Na média, os analistas do mercado financeiro esperam que a Selic feche o próximo ano em 7,5%.",
+            br(), br(),
+            "No mercado de trabalho, a taxa de desemprego no Brasil recuou para 11,6% no trimestre encerrado em novembro, segundo dados divulgados pelo IBGE, se mantendo praticamente constante — caiu 0,1% em relação ao mês anterior. Não obstante, o sinal é positivo pois foi a oitava queda mensal consecutiva no país."
+          )
+        ),
         # Mercado de Trabalho
         boxPlus(
-          title = tags$b("Mercado de Trabalho", style = 'font-family: "Georgia"'),
-          closable = FALSE, 
+          title = tags$b("Mercado de Trabalho", style = ''),
+          closable = FALSE,
           width = 4,
           height = 700,
-          status = "primary", 
-          solidHeader = TRUE, 
+          status = "primary",
+          solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Taxa de desemprego", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Percentual da população economicamente ativa, mensal", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$b("Taxa de desemprego", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Percentual da população economicamente ativa, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
                 number = paste(round(
-                  tail(series$Desemprego$value,1)-head(tail(series$Desemprego$value, 2), 1), 2), "%"), 
-                numberColor = if(tail(series$Desemprego$value,1)-head(tail(series$Desemprego$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$Desemprego$value,1)-head(tail(series$Desemprego$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$Desemprego$value,1), "%", tail(months(series$Desemprego$date),1)), 
-                text = "Desemprego", 
+                  tail(series$Desemprego$value, 1) - head(tail(series$Desemprego$value, 2), 1), 2
+                ), "%"),
+                numberColor = if (tail(series$Desemprego$value, 1) - head(tail(series$Desemprego$value, 2), 1) >= 0) {
+                  "red"
+                } else {
+                  "green"
+                },
+                numberIcon = if (tail(series$Desemprego$value, 1) - head(tail(series$Desemprego$value, 2), 1) >= 0) {
+                  "fas fa-caret-up"
+                } else {
+                  "fas fa-caret-down"
+                },
+                header = paste(tail(series$Desemprego$value, 1), "%", tail(months(series$Desemprego$date), 1)),
+                text = "Desemprego",
                 rightBorder = TRUE,
                 marginBottom = FALSE
               )
             )
           )
         ),
-        
         # Emprego ES
         boxPlus(
-          title = tags$b("Mercado de Trabalho ES", style = 'font-family: "Georgia"'),
-          closable = FALSE, 
-          width = 8,
+          title = tags$b("Mercado de Trabalho ES", style = ''),
+          closable = FALSE,
+          width = 4,
           height = 700,
-          status = "primary", 
-          solidHeader = TRUE, 
+          status = "primary",
+          solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Taxa de Ocupação", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Índice, população economciamente ativa, mensal", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$b("Taxa de Ocupação", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Índice, população economciamente ativa, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot4")),
-          tags$p("Fonte: MTE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+          tags$p("Fonte: MTE", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
                 number = paste(round(
-                  tail(series$EmpregoGES$value,1)-head(tail(series$EmpregoGES$value, 2), 1), 2), "unidades"), 
-                numberColor = if(tail(series$EmpregoGES$value,1)-head(tail(series$EmpregoGES$value, 2), 1) >= 0) {"green"} else {"red"}, 
-                numberIcon = if(tail(series$EmpregoGES$value,1)-head(tail(series$EmpregoGES$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$EmpregoGES$value,1), "unidades", tail(months(series$EmpregoGES$date),1)), 
-                text = "Emprego Formal ES", 
+                  tail(series$EmpregoGES$value, 1) - head(tail(series$EmpregoGES$value, 2), 1), 2
+                ), "unidades"),
+                numberColor = if (tail(series$EmpregoGES$value, 1) - head(tail(series$EmpregoGES$value, 2), 1) >= 0) {
+                  "green"
+                } else {
+                  "red"
+                },
+                numberIcon = if (tail(series$EmpregoGES$value, 1) - head(tail(series$EmpregoGES$value, 2), 1) >= 0) {
+                  "fas fa-caret-up"
+                } else {
+                  "fas fa-caret-down"
+                },
+                header = paste(tail(series$EmpregoGES$value, 1), "unidades", tail(months(series$EmpregoGES$date), 1)),
+                text = "Emprego Formal ES",
                 rightBorder = TRUE,
                 marginBottom = FALSE
-              ))))
-        
+              )
+            )
+          )
+        ),
+        # Selic
+        boxPlus(
+          title = tags$b("Juros", style = ''),
+          closable = FALSE,
+          width = 4,
+          height = 700,
+          status = "primary",
+          solidHeader = TRUE,
+          tags$b("Taxa básica Selic", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Taxa ao ano, diária, anualizada, base 252", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          plotlyOutput(ns("plot1")),
+          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          footer = fluidRow(
+            column(
+              width = 12,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$Selic$value, 1) - head(tail(series$Selic$value, 2), 1), 2
+                ), "%"),
+                numberColor = if (tail(series$Selic$value, 1) - head(tail(series$Selic$value, 2), 1) >= 0) {
+                  "red"
+                } else {
+                  "green"
+                },
+                numberIcon = if (tail(series$Selic$value, 1) - head(tail(series$Selic$value, 2), 1) >= 0) {
+                  "fas fa-caret-up"
+                } else {
+                  "fas fa-caret-down"
+                },
+                header = paste(tail(series$Selic$value, 1), "%", tail(months(series$Selic$date), 1)),
+                text = "Selic",
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        ),
+        # Dolar
+        boxPlus(
+          title = tags$b("Taxa de Câmbio", style = ''),
+          closable = FALSE,
+          width = 8,
+          height = 700,
+          status = "primary",
+          solidHeader = TRUE,
+          tags$b("Dólar", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Preço de compra, cotação diária", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          plotlyOutput(ns("plot2")),
+          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          footer = fluidRow(
+            column(
+              width = 12,
+              descriptionBlock(
+                number = paste("R$", round(
+                  tail(series$Dolar$value, 1) - head(tail(series$Dolar$value, 2), 1), 2
+                ), "/US$"),
+                numberColor = if (tail(series$Dolar$value, 1) - head(tail(series$Dolar$value, 2), 1) >= 0) {
+                  "red"
+                } else {
+                  "green"
+                },
+                numberIcon = if (tail(series$Dolar$value, 1) - head(tail(series$Dolar$value, 2), 1) >= 0) {
+                  "fas fa-caret-up"
+                } else {
+                  "fas fa-caret-down"
+                },
+                header = paste("R$", round(tail(series$Dolar$value, 1), 2), "/US$", tail(months(series$Dolar$date), 1)),
+                text = "Dolar",
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        )
       )
     )
   )

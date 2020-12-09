@@ -21,7 +21,7 @@ mod_inflacao_ui = function(id){
       fluidRow(
         
         # Resenha
-        boxPlus(title = tags$b("INFLAÇÃO", style = 'font-family: "Georgia"'),
+        boxPlus(title = tags$b("INFLAÇÃO", style = ''),
                 closable = FALSE, 
                 width = 4,
                 height = 855,
@@ -30,7 +30,7 @@ mod_inflacao_ui = function(id){
                 solidHeader = TRUE,
                 collapsible = FALSE,
                 enable_dropdown = FALSE,
-                h4(style = 'text-align: justify; font-family: "Georgia";',
+                h4(style = 'text-align: justify;',
                    "O Índice Nacional de Preços ao Consumidor Amplo (IPCA) teve queda de 0,21% em novembro, conforme divulgado pelo IBGE. O resultado foi o menor desde julho de 2017, quando houve queda de 0,23%. Entre os meses de novembro, a queda é a menor desde o início do Plano Real em 1994. Em 12 meses, a inflação acumula 4,05% enquanto a taxa acumulada de 2018 é de 3,59%.",
                    br(),br(),
                    "A comportamento brando dos índices de inflação é essencial para a recuperação do consumo das famílias e do crédito, uma vez que os últimos dados mostram contração da renda média familiar durante o período de recessão.",
@@ -40,16 +40,16 @@ mod_inflacao_ui = function(id){
         
         # Inflação
         boxPlus(
-          title = tags$b("Inflação", style = 'font-family: "Georgia"'),
+          title = tags$b("Inflação", style = ''),
           closable = FALSE, 
           width = 4,
           height = 855,
           status = "danger", 
           solidHeader = TRUE, 
-          tags$b("Índices de preços", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Variação percentual, mensal", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$b("Índices de preços", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Variação percentual, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE, FGV e DIEESE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+          tags$p("Fonte: IBGE, FGV e DIEESE", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 6,
@@ -104,7 +104,7 @@ mod_inflacao_ui = function(id){
         
         # Cesta Básica Vitória
           boxPlus(
-            title = tags$b("Cesta Básica", style = 'font-family: "Georgia"'),
+            title = tags$b("Cesta Básica", style = ''),
             closable = FALSE, 
             width = 4,
             height = 855,
@@ -112,10 +112,10 @@ mod_inflacao_ui = function(id){
             solidHeader = TRUE, 
             collapsible = FALSE,
             enable_dropdown = FALSE,
-            tags$b("Custo da Cesta Básica", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-            tags$p("Vitória-ES, índice, mensal", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+            tags$b("Custo da Cesta Básica", style = 'text-align: left; font-size: 18px; color: #808080;'),
+            tags$p("Vitória-ES, índice, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
             plotlyOutput(ns("plot2")),
-            tags$p("Fonte: DIEESE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+            tags$p("Fonte: DIEESE", style = 'text-align: left; font-size: 12px; color: #808080;'),
             footer = fluidRow(
               column(
                 width = 12,

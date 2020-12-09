@@ -20,7 +20,7 @@ mod_atividade_economica_ui <- function(id){
       fluidRow(
         
         # Resenha
-        boxPlus(title = tags$b("ATIVIDADE ECONÔMICA", style = 'font-family: "Georgia"'),
+        boxPlus(title = tags$b("ATIVIDADE ECONÔMICA", style = ''),
                 closable = FALSE,
                 width = 4,
                 height = 760,
@@ -28,7 +28,7 @@ mod_atividade_economica_ui <- function(id){
                 background = "yellow",
                 solidHeader = TRUE,
                 enable_dropdown = FALSE,
-                h4(style = 'text-align: justify; font-family: "Georgia";',
+                h4(style = 'text-align: justify;',
                    "A previsão do mercado financeiro para a queda da economia brasileira este ano foi ajustada de 5,46% para 5,28%. Para o próximo ano, a expectativa é de crescimento de 3,50%, a mesma previsão há 14 semanas consecutivas. Em 2022 e 2023, o mercado financeiro continua a projetar expansão de 2,50% do PIB.",
                    br(),br(),
                    "O indice de Atividade Economica do Banco Central (IBC-Br) que, com cautela, pode ser utilizado como sinalizador do Produto Interno Bruto (PIB), apresentou avanco de 0,02 por cento em outubro na comparacao com o mes anterior, de acordo com dado dessazonalizado divulgado BC.",
@@ -38,17 +38,17 @@ mod_atividade_economica_ui <- function(id){
         
         # Variação do PIB
         boxPlus(
-          title = tags$b("Produto Interno Bruto", style = 'font-family: "Georgia"'),
+          title = tags$b("Produto Interno Bruto", style = ''),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Crescimento do PIB", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Variação % anual real", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Crescimento do PIB", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Variação % anual real", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
-          tags$p("O resultado positivo de 2017 sinaliza o encerramento do período recessivo e início da retomada da economia.", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080'),
+          tags$p("O resultado positivo de 2017 sinaliza o encerramento do período recessivo e início da retomada da economia.", style = 'text-align: left; font-size: 14px; color: #808080'),
           footer = fluidRow(
             column(
               width = 12,
@@ -64,16 +64,16 @@ mod_atividade_economica_ui <- function(id){
         
         # PIB trimestral
         boxPlus(
-          title = tags$b("Produto Interno Bruto", style = 'font-family: "Georgia"'),
+          title = tags$b("Produto Interno Bruto", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Crescimento do PIB", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Índice trimestral — valores observados a preço de mercado", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Crescimento do PIB", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Índice trimestral — valores observados a preço de mercado", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080'),
           footer = fluidRow(
             column(
               width = 6,
@@ -100,16 +100,16 @@ mod_atividade_economica_ui <- function(id){
         
         # IBC-Br
         boxPlus(
-          title = tags$b("IBC-Br", style = 'font-family: "Georgia"'),
+          title = tags$b("IBC-Br", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Índice de Atividade Econômica", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Índice mensal observado e dessazonalizado", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Índice de Atividade Econômica", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Índice mensal observado e dessazonalizado", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
+          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080'),
           footer = fluidRow(
             column(
               width = 6,
@@ -137,17 +137,17 @@ mod_atividade_economica_ui <- function(id){
       
       # Varejo e Serviços
       boxPlus(
-        title = tags$b("Varejo e Serviços", style = 'font-family: "Georgia"'),
+        title = tags$b("Varejo e Serviços", style = ''),
         closable = FALSE, 
         width = 4,
         height = 760,
         status = "warning", 
         solidHeader = TRUE, 
-        tags$b("Índice mensal de varejo e serviços", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-        tags$p("Volume de vendas no varejo e receita nominal de serviços", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+        tags$b("Índice mensal de varejo e serviços", style = 'text-align: left; font-size: 18px; color: #808080;'),
+        tags$p("Volume de vendas no varejo e receita nominal de serviços", style = 'text-align: left; font-size: 14px; color: #808080'),
         plotlyOutput(ns("plot4")),
-        tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
-        tags$p("", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+        tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080'),
+        tags$p("", style = 'text-align: left; font-size: 14px; color: #808080'),
         footer = fluidRow(
           column(
             width = 6,
@@ -175,16 +175,16 @@ mod_atividade_economica_ui <- function(id){
       
       # Exportações
       boxPlus(
-        title = tags$b("Exportação de Bens", style = 'font-family: "Georgia"'),
+        title = tags$b("Exportação de Bens", style = ''),
         closable = FALSE, 
         width = 4,
         height = 760,
         status = "warning", 
         solidHeader = TRUE, 
-        tags$b("Exportações", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-        tags$p("Em US$ bilhões, balanço de pagamentos, mensal", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+        tags$b("Exportações", style = 'text-align: left; font-size: 18px; color: #808080;'),
+        tags$p("Em US$ bilhões, balanço de pagamentos, mensal", style = 'text-align: left; font-size: 14px; color: #808080'),
         plotlyOutput(ns("plot5")),
-        tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
+        tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080'),
         footer = fluidRow(
           column(
             width = 12,

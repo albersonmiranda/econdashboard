@@ -24,7 +24,7 @@ mod_consumo_ui <- function(id) {
 
         # Resenha
         boxPlus(
-          title = tags$b("CONSUMO", style = 'font-family: "Georgia"'),
+          title = tags$b("CONSUMO", style = ''),
           closable = FALSE,
           width = 4,
           height = 760,
@@ -32,7 +32,7 @@ mod_consumo_ui <- function(id) {
           background = "light-blue",
           solidHeader = TRUE,
           h4(
-            style = 'text-align: justify; font-family: "Georgia";',
+            style = 'text-align: justify;',
             "Um dos principais motores da economia, o consumo das famílias reduziu seu ritmo de crescimento no 2T de 2018, divulgou o IBGE. Apesar da alta de 1,7% no trimestre, se comparado ao mesmo período de 2017, houve crescimento de apenas 0,1% em relção ao semestre anterior. Contribuem para esse cenário o aumento da informalidade no mercado de trabalho e estagnação da renda."
           ),
           br()
@@ -40,16 +40,16 @@ mod_consumo_ui <- function(id) {
 
         # Consumo
         boxPlus(
-          title = tags$b("Consumo das Famílias e Governo", style = 'font-family: "Georgia"'),
+          title = tags$b("Consumo das Famílias e Governo", style = ''),
           closable = FALSE,
           width = 8,
           height = 760,
           status = "primary",
           solidHeader = TRUE,
-          tags$b("Contribuição do consumo no PIB", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Índice, trimestral", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$b("Contribuição do consumo no PIB", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Índice, trimestral", style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 6,
@@ -99,16 +99,16 @@ mod_consumo_ui <- function(id) {
 
         # Renda Média
         boxPlus(
-          title = tags$b("Renda Média", style = 'font-family: "Georgia"'),
+          title = tags$b("Renda Média", style = ''),
           closable = FALSE,
           width = 12,
           height = 760,
           status = "primary",
           solidHeader = TRUE,
-          tags$b("Renda média real das pessoas ocupadas", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Em R$, mensal", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$b("Renda média real das pessoas ocupadas", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Em R$, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 6,

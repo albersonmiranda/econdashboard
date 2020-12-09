@@ -20,7 +20,7 @@ mod_atividade_economica_es_ui <- function(id){
       fluidRow(
         
         # Resenha
-        boxPlus(title = tags$b("ATIVIDADE ECONÔMICA ES", style = 'font-family: "Georgia"'),
+        boxPlus(title = tags$b("ATIVIDADE ECONÔMICA ES", style = ''),
                 closable = FALSE, 
                 width = 4,
                 height = 760,
@@ -28,14 +28,14 @@ mod_atividade_economica_es_ui <- function(id){
                 background = "yellow",
                 solidHeader = TRUE,
                 collapsible = FALSE,
-                h4(style = 'text-align: justify; font-family: "Georgia";',
+                h4(style = 'text-align: justify;',
                    "O Produto Interno Bruto (PIB) do Espírito Santo vem mantendo bom desempenho em 2018. Dados divulgados pelo Instituto Jones dos Santos Neves (IJSN) referentes ao terceiro trimestre de 2018 mostram que o ritmo de crescimento da economia capixaba neste ano avançou 2,3% no acumulado do ano em comparação ao mesmo período do ano anterior. O número representa mais que o dobro do resultado nacional, que ficou em 1,1% na mesma base de comparação."),
                 br()
         ),
         
         # PIB variação anual
         boxPlus(
-          title = tags$b("Produto Interno Bruto ES", style = 'font-family: "Georgia"'),
+          title = tags$b("Produto Interno Bruto ES", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
@@ -43,11 +43,11 @@ mod_atividade_economica_es_ui <- function(id){
           solidHeader = TRUE, 
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Crescimento do PIB ES", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Variação % anual real", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Crescimento do PIB ES", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Variação % anual real", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
-          tags$p("O crescimento de 4.1% indica forte retomada da economia capixaba, que vinha de dois anos de uma recessão pior do que a apresentada em 2009 após a crise do subprime.", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080'),
+          tags$p("O crescimento de 4.1% indica forte retomada da economia capixaba, que vinha de dois anos de uma recessão pior do que a apresentada em 2009 após a crise do subprime.", style = 'text-align: left; font-size: 14px; color: #808080'),
           footer = fluidRow(
             column(
               width = 12,
@@ -63,17 +63,17 @@ mod_atividade_economica_es_ui <- function(id){
         
         # PIB a preços de mercado
         boxPlus(
-          title = tags$b("Produto Interno Bruto ES", style = 'font-family: "Georgia"'),
+          title = tags$b("Produto Interno Bruto ES", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Crescimento do PIB ES", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Em R$, valores observados a preço de mercado", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Crescimento do PIB ES", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Em R$, valores observados a preço de mercado", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
-          tags$p("A economia capixaba fechou 2017 em patamar pré-2012.", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080'),
+          tags$p("A economia capixaba fechou 2017 em patamar pré-2012.", style = 'text-align: left; font-size: 14px; color: #808080'),
           footer = fluidRow(
             column(
               width = 12,
@@ -89,16 +89,16 @@ mod_atividade_economica_es_ui <- function(id){
         
         # IBCR-ES
         boxPlus(
-          title = tags$b("Indice de Atividade Economica Regional ES", style = 'font-family: "Georgia"'),
+          title = tags$b("Indice de Atividade Economica Regional ES", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Índice de Atividade Econômica ES", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Índice mensal observado e dessazonalizado", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Índice de Atividade Econômica ES", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Índice mensal observado e dessazonalizado", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080'),
+          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080'),
           footer = fluidRow(
             column(
               width = 6,
@@ -126,17 +126,17 @@ mod_atividade_economica_es_ui <- function(id){
         
         # Varejo e Serviços
         boxPlus(
-          title = tags$b("Varejo e Serviços ES", style = 'font-family: "Georgia"'),
+          title = tags$b("Varejo e Serviços ES", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Índice mensal de varejo e serviços", style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Volume de vendas no varejo e receita nominal de serviços", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080'),
+          tags$b("Índice mensal de varejo e serviços", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Volume de vendas no varejo e receita nominal de serviços", style = 'text-align: left; font-size: 14px; color: #808080'),
           plotlyOutput(ns("plot4")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
-          tags$p("", style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          tags$p("", style = 'text-align: left; font-size: 14px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 6,
@@ -164,16 +164,16 @@ mod_atividade_economica_es_ui <- function(id){
         
         # Exportações
         boxPlus(
-          title = tags$b("Exportações ES", style = 'font-family: "Georgia"'),
+          title = tags$b("Exportações ES", style = ''),
           closable = FALSE, 
           width = 4,
           height = 760,
           status = "warning", 
           solidHeader = TRUE, 
-          tags$b("Exportações",style = 'text-align: left; font-family: "Georgia"; font-size: 18px; color: #808080;'),
-          tags$p("Em US$ milhões",style = 'text-align: left; font-family: "Georgia"; font-size: 14px; color: #808080;'),
+          tags$b("Exportações",style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Em US$ milhões",style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot5")),
-          tags$p("Fonte: MDIC", style = 'text-align: left; font-family: "Georgia"; font-size: 12px; color: #808080;'),
+          tags$p("Fonte: MDIC", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
             column(
               width = 12,

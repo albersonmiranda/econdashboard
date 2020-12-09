@@ -11,8 +11,8 @@ mod_titulo_ui <- function(id){
   ns <- NS(id)
   tagList(
     list(
-      h1(style = 'text-align: center; font-family: "Georgia"; ', "BR & ES: Índices e indicadores econômicos"),
-      h3(style = 'text-align: center; font-family: "Georgia"; font-size: 20px;', "A visão geral sobre os principais dados e tendências econômicas do ES e do Brasil, incluindo PIB, inflacão, desemprego, indicadores de atividade e consumo, endividamento e inadimplência"),
+      h1(style = 'text-align: center; ', "BR & ES: Índices e indicadores econômicos"),
+      h3(style = 'text-align: center; font-size: 20px;', "A visão geral sobre os principais dados e tendências econômicas do ES e do Brasil, incluindo PIB, inflacão, desemprego, indicadores de atividade e consumo, endividamento e inadimplência"),
       br()
     )
   )

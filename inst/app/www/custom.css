@@ -1,7 +1,6 @@
 /* logo */
 .skin-blue .main-header .logo {
   background-color: #fff1e0;
-  font-family: "Georgia";
   font-weight: bold;
   color: #6D6964;
 }
@@ -49,6 +48,9 @@
 }
 
 .content-wrapper, .right-side {
-  font-family: "Georgia";
-  background-color: #fff1e0
+  background-color: #fff1e0;
+}
+
+h1, h2, h3, h4, h5, h6, b, p, span {
+  font-family: "Century Gothic";
 }
