@@ -14,7 +14,17 @@ jobs:
       - name: Instalar R ${{ matrix.r-version }}
         uses: r-lib/actions/setup-r@v1
 
+      - name: Cache R packages
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-shinydoc
+          restore-keys: |
+            ${{ runner.os }}-
+
       - name: Instalar dependencias
+        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           install.packages(c("BETS", "usethis"))
           remotes::install_deps(dependencies = TRUE)
