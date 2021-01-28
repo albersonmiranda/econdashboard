@@ -9,6 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build
 status](https://github.com/albersonmiranda/econdashboard/workflows/R-CMD-check/badge.svg)](https://github.com/albersonmiranda/econdashboard/actions)
+![update-data](https://github.com/albersonmiranda/econdashboard/workflows/update-data/badge.svg)
 <!-- badges: end -->
 
 A [Shiny app](https://albersonmiranda.shinyapps.io/econdashboard/) for
