@@ -31,8 +31,7 @@ jobs:
       - name: Instalar dependencias
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "remotes"))
-          remotes::install_deps(dependencies = TRUE)
+          install.packages(c("BETS", "usethis"))
         shell: Rscript {0}
       
       - name: Atualizando dados
