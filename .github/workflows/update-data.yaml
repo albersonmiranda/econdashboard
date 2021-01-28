@@ -1,0 +1,36 @@
+on:
+  schedule:
+    - cron: "0 7 * * 1-5"
+
+name: update-data
+
+jobs:
+  R-CMD-check:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        r-version: [4.0.3]
+    steps:
+      - name: Instalar R ${{ matrix.r-version }}
+        uses: r-lib/actions/setup-r@v1
+
+      - name: Instalar dependencias
+        run: |
+          install.packages(c("BETS", "usethis"))
+          remotes::install_deps(dependencies = TRUE)
+        shell: Rscript {0}
+      
+      - name: Atualizando dados
+        run: |
+          source('data-raw/series.R')
+        shell: Rscript {0}
+      
+      - name: Conectando ao ShinyApps
+        env:
+          SHINY_TOKEN: ${{ secrets.SHINY_TOKEN }}
+          SHINY_SECRET: ${{ secrets.SHINY_SECRET }}
+        run: |
+          shiny_token = Sys.getenv("SHINY_TOKEN")
+          shiny_secret = Sys.getenv("SHINY_SECRET")
+          rsconnect::setAccountInfo(name='albersonmiranda', token=shiny_token, secret=shiny_secret)
+        shell: Rscript {0}
