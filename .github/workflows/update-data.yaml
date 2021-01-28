@@ -43,10 +43,10 @@ jobs:
       
       - name: Conectando ao ShinyApps
         env:
-          SHINY_TOKEN: ${{ secrets.SHINY_TOKEN }}
-          SHINY_SECRET: ${{ secrets.SHINY_SECRET }}
+          SHINY_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINY_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
         run: |
-          shiny_token = Sys.getenv("SHINY_TOKEN")
-          shiny_secret = Sys.getenv("SHINY_SECRET")
+          shiny_token = Sys.getenv("SHINYAPPS_TOKEN")
+          shiny_secret = Sys.getenv("SHINYAPPS_SECRET")
           rsconnect::setAccountInfo(name='albersonmiranda', token=shiny_token, secret=shiny_secret)
         shell: Rscript {0}
