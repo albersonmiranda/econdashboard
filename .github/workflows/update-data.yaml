@@ -33,7 +33,7 @@ jobs:
       - name: Instalar dependencias
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "rsconnect"), type = "binary")
+          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboard", "golem", "plotly"), type = "binary")
         shell: Rscript {0}
       
       - name: Atualizando dados
