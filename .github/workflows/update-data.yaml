@@ -10,7 +10,7 @@ on:
 name: update-data
 
 jobs:
-  R-CMD-check:
+  update-data:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -33,7 +33,7 @@ jobs:
       - name: Instalar dependencias
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboard", "golem", "plotly"), type = "binary")
+          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly"), type = "binary")
         shell: Rscript {0}
       
       - name: Atualizando dados
