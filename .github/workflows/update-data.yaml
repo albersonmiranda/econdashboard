@@ -1,11 +1,6 @@
 on:
   schedule:
     - cron: "0 7 * * 1-5"
-  push:
-    branches:
-      - main
-      - master
-    
 
 name: update-data
 
