@@ -38,7 +38,6 @@ jobs:
         shell: Rscript {0}
       
       - name: Instalar bs4Dash do github
-        if: steps.cache.outputs.cache-hit != 'true'
         run: |
           devtools::install_github("RinteRface/bs4Dash")
       
