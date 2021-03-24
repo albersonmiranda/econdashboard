@@ -27,8 +27,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages(c("remotes", "rcmdcheck"))
+          install.packages(c("remotes", "rcmdcheck", "devtools"))
           remotes::install_deps(dependencies = TRUE)
+          devtools::install_github("RinteRface/bs4Dash")
         shell: Rscript {0}
         
       - name: Check
