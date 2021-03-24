@@ -7,7 +7,7 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-#' @import shinydashboardPlus
+#' @import bs4Dash
 #' @import magrittr
 #' @import plotly
 #' @import dplyr
@@ -23,7 +23,7 @@ mod_consumo_ui <- function(id) {
       fluidRow(
 
         # Resenha
-        boxPlus(
+        box(
           title = tags$b("CONSUMO"),
           closable = FALSE,
           width = 4,
@@ -39,10 +39,10 @@ mod_consumo_ui <- function(id) {
         ),
 
         # Consumo
-        boxPlus(
+        box(
           title = tags$b("Consumo das Famílias e Governo"),
           closable = FALSE,
-          width = 8,
+          width = 4,
           height = 760,
           status = "primary",
           solidHeader = TRUE,
@@ -58,14 +58,14 @@ mod_consumo_ui <- function(id) {
                   tail(series$PIBtriF$value, 1) - head(tail(series$PIBtriF$value, 2), 1), 2
                 ), "pts"),
                 numberColor = if (tail(series$PIBtriF$value, 1) - head(tail(series$PIBtriF$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$PIBtriF$value, 1) - head(tail(series$PIBtriF$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$PIBtriF$value, 1), tail(months(series$PIBtriF$date), 1)),
                 text = "Consumo das Famílias",
@@ -79,18 +79,98 @@ mod_consumo_ui <- function(id) {
                   tail(series$PIBtriG$value, 1) - head(tail(series$PIBtriG$value, 2), 1), 2
                 ), "pts"),
                 numberColor = if (tail(series$PIBtriG$value, 1) - head(tail(series$PIBtriG$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$PIBtriG$value, 1) - head(tail(series$PIBtriG$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$PIBtriG$value, 1), tail(months(series$PIBtriG$date), 1)),
                 text = "Consumo do Governo",
+                rightBorder = FALSE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        ),
+
+        # Expectativas do Consumidor
+        box(
+          title = tags$b("Expectativas do Consumidor"),
+          closable = FALSE,
+          width = 4,
+          height = 760,
+          status = "primary",
+          solidHeader = TRUE,
+          tags$b("Percepção do consumidor", style = "text-align: left; font-size: 18px; color: #808080;"),
+          tags$p("Índice, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          plotlyOutput(ns("plot3")),
+          tags$p("Fonte: Fecomercio", style = "text-align: left; font-size: 12px; color: #808080;"),
+          footer = fluidRow(
+            column(
+              width = 4,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$ICC$value, 1) - head(tail(series$ICC$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$ICC$value, 1) - head(tail(series$ICC$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$ICC$value, 1) - head(tail(series$ICC$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste(tail(series$ICC$value, 1), tail(months(series$ICC$date), 1)),
+                text = "ICC",
                 rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 4,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$ICE$value, 1) - head(tail(series$ICE$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$ICE$value, 1) - head(tail(series$ICE$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$ICE$value, 1) - head(tail(series$ICE$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste(tail(series$ICE$value, 1), tail(months(series$ICE$date), 1)),
+                text = "ICE",
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 4,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$IEF$value, 1) - head(tail(series$IEF$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$IEF$value, 1) - head(tail(series$IEF$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$IEF$value, 1) - head(tail(series$IEF$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste(tail(series$IEF$value, 1), tail(months(series$IEF$date), 1)),
+                text = "IEF",
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -98,7 +178,7 @@ mod_consumo_ui <- function(id) {
         ),
 
         # Renda Média
-        boxPlus(
+        box(
           title = tags$b("Renda Média"),
           closable = FALSE,
           width = 12,
@@ -117,14 +197,14 @@ mod_consumo_ui <- function(id) {
                   tail(series$RendaC$value, 1) - head(tail(series$RendaC$value, 2), 1), 2
                 ), "reais"),
                 numberColor = if (tail(series$RendaC$value, 1) - head(tail(series$RendaC$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$RendaC$value, 1) - head(tail(series$RendaC$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste("R$", tail(series$RendaC$value, 1), "em", tail(months(series$RendaC$date), 1)),
                 text = "Formalizado",
@@ -138,18 +218,18 @@ mod_consumo_ui <- function(id) {
                   tail(series$RendaSC$value, 1) - head(tail(series$RendaSC$value, 2), 1), 2
                 ), "reais"),
                 numberColor = if (tail(series$RendaSC$value, 1) - head(tail(series$RendaSC$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$RendaSC$value, 1) - head(tail(series$RendaSC$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste("R$", round(tail(series$RendaSC$value, 1), 2), "em", tail(months(series$RendaSC$date), 1)),
                 text = "Informal",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -162,14 +242,14 @@ mod_consumo_ui <- function(id) {
                   tail(series$RendaPriv$value, 1) - head(tail(series$RendaPriv$value, 2), 1), 2
                 ), "reais"),
                 numberColor = if (tail(series$RendaPriv$value, 1) - head(tail(series$RendaPriv$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$RendaPriv$value, 1) - head(tail(series$RendaPriv$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste("R$", tail(series$RendaPriv$value, 1), "em", tail(months(series$RendaPriv$date), 1)),
                 text = "Setor Privado",
@@ -183,18 +263,18 @@ mod_consumo_ui <- function(id) {
                   tail(series$RendaPub$value, 1) - head(tail(series$RendaPub$value, 2), 1), 2
                 ), "reais"),
                 numberColor = if (tail(series$RendaPub$value, 1) - head(tail(series$RendaPub$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$RendaPub$value, 1) - head(tail(series$RendaPub$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste("R$", round(tail(series$RendaPub$value, 1), 2), "em", tail(months(series$RendaPub$date), 1)),
                 text = "Setor Público",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -225,6 +305,32 @@ mod_consumo_server <- function(input, output, session) {
         title = "",
         xaxis = list(title = ""),
         yaxis = list(title = "Indice (1995=100)"),
+        legend = list(
+          orientation = "h",
+          x = 0.5,
+          xanchor = "center"
+        )
+      )
+  })
+
+  # Expectativas do Consumidor
+  output$plot3 = renderPlotly({
+    plot_ly(
+      data = series$ICC, x = ~date, y = ~value,
+      type = "scatter", mode = "lines", name = "Confiança do Consumidor"
+    ) %>%
+      add_trace(
+        y = series$ICE$value,
+        name = "Condições Econômicas Atuais", mode = "lines"
+      ) %>%
+      add_trace(
+        y = series$IEF$value,
+        name = "Expectativas Futuras", mode = "lines"
+      ) %>%
+      layout(
+        title = "",
+        xaxis = list(title = ""),
+        yaxis = list(title = "Indice (2000=100)"),
         legend = list(
           orientation = "h",
           x = 0.5,

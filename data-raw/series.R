@@ -65,7 +65,7 @@ IPCA = BETSget(433, data.frame = TRUE, from = "1995-01-01") # Indice nacional de
 IGPM = BETSget(189, data.frame = TRUE, from = "1995-01-01") # Indice Geral de Preços do Mercado FGV
 IPCBr = BETSget(191, data.frame = TRUE, from = "1995-01-01") # Indice de Precos ao Consumidor-Brasil FGV
 ICV = BETSget(194, data.frame = TRUE, from = "1995-01-01") # Indice Custo de Vida Dieese variação % mensal
-CapInst = BETSget(1344, data.frame = TRUE) # Utilização da capacidade instalada % (FGV) 
+CapInst = BETSget(1344, data.frame = TRUE) # Utilização da capacidade instalada % (FGV)
 
 # Mercado financeiro ----
 Selic = BETSget(432, data.frame = TRUE) #	Meta definida pelo Copom
@@ -75,6 +75,10 @@ InadBRPF = BETSget(21112, data.frame = TRUE)
 InadBRPJ = BETSget(21086, data.frame = TRUE)
 Endi = BETSget(19882, data.frame = TRUE) # Endividamento das familias com o Sistema Financeiro Nacional em relacao a renda acumulada dos ultimos doze meses
 End = BETSget(20400, data.frame = TRUE) # Endividamento das familias com o Sistema Financeiro Nacional exceto credito habitacional em relacao a renda acumulada dos ultimos doze meses
+PTCC_grandes = BETSget(21397, data.frame = TRUE) # Pesquisa Trimestral de Condições de Crédito - Grandes Empresas - Aprovações observadas
+PTCC_mpme = BETSget(21399, data.frame = TRUE) # Pesquisa Trimestral de Condições de Crédito - Micro, Pequenas e Médias Empresas - Aprovações observadas
+PTCC_consumo = BETSget(21401, data.frame = TRUE) # Pesquisa Trimestral de Condições de Crédito - Crédito para consumo - Aprovações observadas
+PTCC_habitacao = BETSget(21403, data.frame = TRUE) # Pesquisa Trimestral de Condições de Crédito - Crédito habitacional - Aprovações observadas
 
 
 # 2.2 Espírito Santo ---------------------------------------------------------

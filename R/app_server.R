@@ -13,4 +13,5 @@ app_server <- function( input, output, session ) {
   callModule(mod_mercados_server, "mercados_ui_1")
   callModule(mod_inflacao_server, "inflacao_ui_1")
   callModule(mod_consumo_server, "consumo_ui_1")
+  callModule(mod_credito_server, "credito_ui_1")
 }

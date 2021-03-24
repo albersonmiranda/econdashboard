@@ -7,7 +7,7 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-#' @import shinydashboardPlus
+#' @import bs4Dash
 #' @import magrittr
 #' @import plotly
 
@@ -20,7 +20,7 @@ mod_atividade_economica_es_ui <- function(id) {
       fluidRow(
 
         # Resenha
-        boxPlus(
+        box(
           title = tags$b("ATIVIDADE ECONÔMICA ES"),
           closable = FALSE,
           width = 4,
@@ -37,7 +37,7 @@ mod_atividade_economica_es_ui <- function(id) {
         ),
 
         # PIB variação anual
-        boxPlus(
+        box(
           title = tags$b("Produto Interno Bruto ES"),
           closable = FALSE,
           width = 4,
@@ -59,18 +59,18 @@ mod_atividade_economica_es_ui <- function(id) {
                   tail(series$PIBvarES$value, 1), 2
                 ), "%"),
                 numberColor = if (tail(series$PIBvarES$value, 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$PIBvarES$value, 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = NULL,
                 text = "var. % PIB",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -78,7 +78,7 @@ mod_atividade_economica_es_ui <- function(id) {
         ),
 
         # PIB a preços de mercado
-        boxPlus(
+        box(
           title = tags$b("Produto Interno Bruto ES", style = ""),
           closable = FALSE,
           width = 4,
@@ -98,18 +98,18 @@ mod_atividade_economica_es_ui <- function(id) {
                   ((tail(series$PIBES$value, 1) / head(tail(series$PIBES$value, 2), 1)) - 1) * 100, 2
                 ), "%"),
                 numberColor = if (tail(series$PIBES$value, 1) - head(tail(series$PIBES$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$PIBES$value, 1) - head(tail(series$PIBES$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(round(tail(series$PIBES$value, 1) / 1000000000, 2), "bi"),
                 text = "PIB ES",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -117,7 +117,7 @@ mod_atividade_economica_es_ui <- function(id) {
         ),
 
         # IBCR-ES
-        boxPlus(
+        box(
           title = tags$b("Indice de Atividade Economica Regional ES", style = ""),
           closable = FALSE,
           width = 4,
@@ -136,14 +136,14 @@ mod_atividade_economica_es_ui <- function(id) {
                   tail(series$IBCRES$value, 1) - head(tail(series$IBCRES$value, 2), 1), 2
                 ), "pts"),
                 numberColor = if (tail(series$IBCRES$value, 1) - head(tail(series$IBCRES$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$IBCRES$value, 1) - head(tail(series$IBCRES$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$IBCRES$value, 1), tail(months(series$IBCRES$date), 1)),
                 text = "IBCRES-ES",
@@ -157,18 +157,18 @@ mod_atividade_economica_es_ui <- function(id) {
                   tail(series$IBCRESs$value, 1) - head(tail(series$IBCRESs$value, 2), 1), 2
                 ), "pts"),
                 numberColor = if (tail(series$IBCRESs$value, 1) - head(tail(series$IBCRESs$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$IBCRESs$value, 1) - head(tail(series$IBCRESs$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$IBCRESs$value, 1), tail(months(series$IBCRESs$date), 1)),
                 text = "IBCRES-ES Dessazonalizado",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -176,7 +176,7 @@ mod_atividade_economica_es_ui <- function(id) {
         ),
 
         # Varejo e Serviços
-        boxPlus(
+        box(
           title = tags$b("Varejo e Serviços ES", style = ""),
           closable = FALSE,
           width = 4,
@@ -196,14 +196,14 @@ mod_atividade_economica_es_ui <- function(id) {
                   tail(series$VarejoES$value, 1) - head(tail(series$VarejoES$value, 2), 1), 2
                 ), "pts"),
                 numberColor = if (tail(series$VarejoES$value, 1) - head(tail(series$VarejoES$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$VarejoES$value, 1) - head(tail(series$VarejoES$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$VarejoES$value, 1), tail(months(series$VarejoES$date), 1)),
                 text = "Varejo ES",
@@ -217,18 +217,18 @@ mod_atividade_economica_es_ui <- function(id) {
                   tail(series$ServicosES$value, 1) - head(tail(series$ServicosES$value, 2), 1), 2
                 ), "pts"),
                 numberColor = if (tail(series$ServicosES$value, 1) - head(tail(series$ServicosES$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$ServicosES$value, 1) - head(tail(series$ServicosES$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$ServicosES$value, 1), tail(months(series$ServicosES$date), 1)),
                 text = "Serviços ES",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -236,7 +236,7 @@ mod_atividade_economica_es_ui <- function(id) {
         ),
 
         # Exportações
-        boxPlus(
+        box(
           title = tags$b("Exportações ES", style = ""),
           closable = FALSE,
           width = 4,
@@ -255,18 +255,18 @@ mod_atividade_economica_es_ui <- function(id) {
                   (tail(series$ExpES$value, 1) - head(tail(series$ExpES$value, 2), 1)) / 1000, 2
                 ), "mi"),
                 numberColor = if (tail(series$ExpES$value, 1) - head(tail(series$ExpES$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$ExpES$value, 1) - head(tail(series$ExpES$value, 2), 1) >= 0) {
-                  "fa fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fa fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste("US$", tail(series$ExpES$value / 1000, 1), "mi", tail(months(series$ExpES$date), 1)),
                 text = "Exportações",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )

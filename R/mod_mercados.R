@@ -7,7 +7,7 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS tagList
-#' @import shinydashboardPlus
+#' @import bs4Dash
 #' @import magrittr
 #' @import plotly
 
@@ -19,7 +19,7 @@ mod_mercados_ui <- function(id) {
     fluidPage(
       fluidRow(
         # Resenha
-        boxPlus(
+        box(
           title = tags$b("MERCADOS", style = ''),
           closable = FALSE,
           width = 4,
@@ -35,7 +35,7 @@ mod_mercados_ui <- function(id) {
           )
         ),
         # Mercado de Trabalho
-        boxPlus(
+        box(
           title = tags$b("Mercado de Trabalho", style = ''),
           closable = FALSE,
           width = 4,
@@ -56,25 +56,25 @@ mod_mercados_ui <- function(id) {
                   tail(series$Desemprego$value, 1) - head(tail(series$Desemprego$value, 2), 1), 2
                 ), "%"),
                 numberColor = if (tail(series$Desemprego$value, 1) - head(tail(series$Desemprego$value, 2), 1) >= 0) {
-                  "red"
+                  "danger"
                 } else {
-                  "green"
+                  "success"
                 },
                 numberIcon = if (tail(series$Desemprego$value, 1) - head(tail(series$Desemprego$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$Desemprego$value, 1), "%", tail(months(series$Desemprego$date), 1)),
                 text = "Desemprego",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
           )
         ),
         # Emprego ES
-        boxPlus(
+        box(
           title = tags$b("Mercado de Trabalho ES", style = ''),
           closable = FALSE,
           width = 4,
@@ -83,8 +83,8 @@ mod_mercados_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Taxa de Ocupação", style = 'text-align: left; font-size: 18px; color: #808080;'),
-          tags$p("Índice, população economciamente ativa, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          tags$b("Geração de emprego", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Unidades, empregos formais, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
           plotlyOutput(ns("plot4")),
           tags$p("Fonte: MTE", style = 'text-align: left; font-size: 12px; color: #808080;'),
           footer = fluidRow(
@@ -95,25 +95,25 @@ mod_mercados_ui <- function(id) {
                   tail(series$EmpregoGES$value, 1) - head(tail(series$EmpregoGES$value, 2), 1), 2
                 ), "unidades"),
                 numberColor = if (tail(series$EmpregoGES$value, 1) - head(tail(series$EmpregoGES$value, 2), 1) >= 0) {
-                  "green"
+                  "success"
                 } else {
-                  "red"
+                  "danger"
                 },
                 numberIcon = if (tail(series$EmpregoGES$value, 1) - head(tail(series$EmpregoGES$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$EmpregoGES$value, 1), "unidades", tail(months(series$EmpregoGES$date), 1)),
                 text = "Emprego Formal ES",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
           )
         ),
         # Selic
-        boxPlus(
+        box(
           title = tags$b("Juros", style = ''),
           closable = FALSE,
           width = 4,
@@ -132,25 +132,25 @@ mod_mercados_ui <- function(id) {
                   tail(series$Selic$value, 1) - head(tail(series$Selic$value, 2), 1), 2
                 ), "%"),
                 numberColor = if (tail(series$Selic$value, 1) - head(tail(series$Selic$value, 2), 1) >= 0) {
-                  "red"
+                  "danger"
                 } else {
-                  "green"
+                  "success"
                 },
                 numberIcon = if (tail(series$Selic$value, 1) - head(tail(series$Selic$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste(tail(series$Selic$value, 1), "%", tail(months(series$Selic$date), 1)),
                 text = "Selic",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
           )
         ),
         # Dolar
-        boxPlus(
+        box(
           title = tags$b("Taxa de Câmbio", style = ''),
           closable = FALSE,
           width = 8,
@@ -169,18 +169,18 @@ mod_mercados_ui <- function(id) {
                   tail(series$Dolar$value, 1) - head(tail(series$Dolar$value, 2), 1), 2
                 ), "/US$"),
                 numberColor = if (tail(series$Dolar$value, 1) - head(tail(series$Dolar$value, 2), 1) >= 0) {
-                  "red"
+                  "danger"
                 } else {
-                  "green"
+                  "success"
                 },
                 numberIcon = if (tail(series$Dolar$value, 1) - head(tail(series$Dolar$value, 2), 1) >= 0) {
-                  "fas fa-caret-up"
+                  icon("fas fa-caret-up")
                 } else {
-                  "fas fa-caret-down"
+                  icon("fas fa-caret-down")
                 },
                 header = paste("R$", round(tail(series$Dolar$value, 1), 2), "/US$", tail(months(series$Dolar$date), 1)),
                 text = "Dolar",
-                rightBorder = TRUE,
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )

@@ -4,7 +4,7 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import shinydashboard
-#' @import shinydashboardPlus
+#' @import bs4Dash
 #' @noRd
 
 
@@ -16,12 +16,11 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # List the first level UI elements here 
-    dashboardPagePlus(
-      dashboardHeaderPlus(title = "Econ Dashboard"),
+    dashboardPage(
+      dashboardHeader(title = "Dashboard Gerat"),
       dashboardSidebar(width = 150,
                        sidebarMenu(
-                         menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar")),
-                         menuItem("Mapas", tabName = "mapas", icon = icon("globe-americas"))
+                         menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar"))
                        )
       ),
       dashboardBody(
@@ -32,7 +31,8 @@ app_ui <- function(request) {
                   mod_atividade_economica_es_ui("atividade_economica_es_ui_1"),
                   mod_mercados_ui("mercados_ui_1"),
                   mod_inflacao_ui("inflacao_ui_1"),
-                  mod_consumo_ui("consumo_ui_1")
+                  mod_consumo_ui("consumo_ui_1"),
+                  mod_credito_ui("credito_ui_1")
           )
         )
       )
@@ -61,7 +61,7 @@ golem_add_external_resources <- function(){
     favicon(),
     bundle_resources(
       path = app_sys('app/www'),
-      app_title = 'econdashboard'
+      app_title = 'Dashboard Gerat'
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert() 

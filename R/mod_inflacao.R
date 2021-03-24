@@ -7,7 +7,7 @@
 #' @noRd 
 #'
 #' @importFrom shiny NS tagList 
-#' @import shinydashboardPlus
+#' @import bs4Dash
 #' @import magrittr
 #' @import plotly
 
@@ -21,7 +21,7 @@ mod_inflacao_ui = function(id){
       fluidRow(
         
         # Resenha
-        boxPlus(title = tags$b("INFLAÇÃO", style = ''),
+        box(title = tags$b("INFLAÇÃO"),
                 closable = FALSE, 
                 width = 4,
                 height = 855,
@@ -38,72 +38,35 @@ mod_inflacao_ui = function(id){
                    "Para 2019, os economistas das instituições financeiras diminuíram a expectativa de inflação de 4,03% para 4,01%. A meta central do próximo ano é de 4,25%, e o intervalo de tolerância do sistema de metas varia de 2,75% a 5,75%."
                 )),
         
-        # Inflação
-        boxPlus(
-          title = tags$b("Inflação", style = ''),
-          closable = FALSE, 
-          width = 4,
-          height = 855,
-          status = "danger", 
-          solidHeader = TRUE, 
-          tags$b("Índices de preços", style = 'text-align: left; font-size: 18px; color: #808080;'),
-          tags$p("Variação percentual, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
-          plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE, FGV e DIEESE", style = 'text-align: left; font-size: 12px; color: #808080;'),
-          footer = fluidRow(
-            column(
-              width = 6,
-              descriptionBlock(
-                number = paste(round(
-                  tail(series$IPCA$value,1)-head(tail(series$IPCA$value, 2), 1), 2), "pts"), 
-                numberColor = if(tail(series$IPCA$value,1) - head(tail(series$IPCA$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$IPCA$value,1) - head(tail(series$IPCA$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$IPCA$value,1), tail(months(series$IPCA$date),1)), 
-                text = "IPCA", 
-                rightBorder = TRUE,
-                marginBottom = FALSE
-              )
-            ), column(
-              width = 6,
-              descriptionBlock(
-                number = paste(round(
-                  tail(series$IGPM$value,1)-head(tail(series$IGPM$value, 2), 1), 2), "pts"), 
-                numberColor = if(tail(series$IGPM$value,1) - head(tail(series$IGPM$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$IGPM$value,1) - head(tail(series$IGPM$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$IGPM$value,1), tail(months(series$IGPM$date),1)), 
-                text = "IGPM", 
-                rightBorder = TRUE,
-                marginBottom = FALSE
-              )
-            )
-          ),
-          fluidRow(
-            column(
-              width = 6,
-              descriptionBlock(
-                number = paste(round(
-                  tail(series$IPCBr$value,1)-head(tail(series$IPCBr$value, 2), 1), 2), "pts"), 
-                numberColor = if(tail(series$IPCBr$value,1) - head(tail(series$IPCBr$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$IPCBr$value,1) - head(tail(series$IPCBr$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$IPCBr$value,1), tail(months(series$IPCBr$date),1)), 
-                text = "IPCBr", 
-                rightBorder = TRUE,
-                marginBottom = FALSE
-              )
-            ), column(
-              width = 6,
-              descriptionBlock(
-                number = paste(round(
-                  tail(series$ICV$value,1)-head(tail(series$ICV$value, 2), 1), 2), "pts"), 
-                numberColor = if(tail(series$ICV$value,1) - head(tail(series$ICV$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                numberIcon = if(tail(series$ICV$value,1) - head(tail(series$ICV$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
-                header = paste(tail(series$ICV$value,1), tail(months(series$ICV$date),1)), 
-                text = "ICV", 
-                rightBorder = TRUE,
-                marginBottom = FALSE)))),
+        # Capacidade Instalada
+          box(
+            title = tags$b("Capacidade Instalada"),
+            closable = FALSE, 
+            width = 4,
+            height = 855,
+            status = "danger", 
+            solidHeader = TRUE, 
+            collapsible = FALSE,
+            enable_dropdown = FALSE,
+            tags$b("Utilização da Capacidade Instalada", style = 'text-align: left; font-size: 18px; color: #808080;'),
+            tags$p("%, trimestral", style = 'text-align: left; font-size: 14px; color: #808080;'),
+            plotlyOutput(ns("plot3")),
+            tags$p("Fonte: FGV", style = 'text-align: left; font-size: 12px; color: #808080;'),
+            footer = fluidRow(
+              column(
+                width = 12,
+                descriptionBlock(
+                  number = paste(round(
+                    tail(series$CapInst$value,1)-head(tail(series$CapInst$value, 2), 1), 2), "pts."), 
+                  numberColor = if(tail(series$CapInst$value,1) - head(tail(series$CapInst$value, 2), 1) >= 0) {"danger"} else {"success"}, 
+                  numberIcon = if(tail(series$CapInst$value,1) - head(tail(series$CapInst$value, 2), 1) >= 0) {icon("fas fa-caret-up")} else {icon(icon(icon("fas fa-caret-down")))},
+                  header = paste(tail(series$CapInst$value,1), "%", tail(months(series$CapInst$date),1)), 
+                  text = "Capacidade Instalada", 
+                  rightBorder = FALSE,
+                  marginBottom = FALSE)))),
         
         # Cesta Básica Vitória
-          boxPlus(
+          box(
             title = tags$b("Cesta Básica", style = ''),
             closable = FALSE, 
             width = 4,
@@ -122,12 +85,73 @@ mod_inflacao_ui = function(id){
                 descriptionBlock(
                   number = paste(round(
                     tail(series$CestaES$value,1)-head(tail(series$CestaES$value, 2), 1), 2), "pts."), 
-                  numberColor = if(tail(series$CestaES$value,1) - head(tail(series$CestaES$value, 2), 1) >= 0) {"red"} else {"green"}, 
-                  numberIcon = if(tail(series$CestaES$value,1) - head(tail(series$CestaES$value, 2), 1) >= 0) {"fas fa-caret-up"} else {"fas fa-caret-down"},
+                  numberColor = if(tail(series$CestaES$value,1) - head(tail(series$CestaES$value, 2), 1) >= 0) {"danger"} else {"success"}, 
+                  numberIcon = if(tail(series$CestaES$value,1) - head(tail(series$CestaES$value, 2), 1) >= 0) {icon("fas fa-caret-up")} else {icon(icon(icon("fas fa-caret-down")))},
                   header = paste(tail(series$CestaES$value,1), "pts.", tail(months(series$CestaES$date),1)), 
                   text = "Cesta Básica", 
-                  rightBorder = TRUE,
-                  marginBottom = FALSE))))
+                  rightBorder = FALSE,
+                  marginBottom = FALSE)))),
+
+      # Inflação
+        box(
+          title = tags$b("Inflação"),
+          closable = FALSE, 
+          width = 12,
+          #height = 855,
+          status = "danger", 
+          solidHeader = TRUE, 
+          tags$b("Índices de preços", style = 'text-align: left; font-size: 18px; color: #808080;'),
+          tags$p("Variação percentual, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          plotlyOutput(ns("plot1")),
+          tags$p("Fonte: IBGE, FGV e DIEESE", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          footer = fluidRow(
+            column(
+              width = 3,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$IPCA$value,1)-head(tail(series$IPCA$value, 2), 1), 2), "pts"), 
+                numberColor = if(tail(series$IPCA$value,1) - head(tail(series$IPCA$value, 2), 1) >= 0) {"danger"} else {"success"}, 
+                numberIcon = if(tail(series$IPCA$value,1) - head(tail(series$IPCA$value, 2), 1) >= 0) {icon("fas fa-caret-up")} else {icon(icon(icon("fas fa-caret-down")))},
+                header = paste(tail(series$IPCA$value,1), tail(months(series$IPCA$date),1)), 
+                text = "IPCA", 
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 3,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$IGPM$value,1)-head(tail(series$IGPM$value, 2), 1), 2), "pts"), 
+                numberColor = if(tail(series$IGPM$value,1) - head(tail(series$IGPM$value, 2), 1) >= 0) {"danger"} else {"success"}, 
+                numberIcon = if(tail(series$IGPM$value,1) - head(tail(series$IGPM$value, 2), 1) >= 0) {icon("fas fa-caret-up")} else {icon(icon(icon("fas fa-caret-down")))},
+                header = paste(tail(series$IGPM$value,1), tail(months(series$IGPM$date),1)), 
+                text = "IGPM", 
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 3,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$IPCBr$value,1)-head(tail(series$IPCBr$value, 2), 1), 2), "pts"), 
+                numberColor = if(tail(series$IPCBr$value,1) - head(tail(series$IPCBr$value, 2), 1) >= 0) {"danger"} else {"success"}, 
+                numberIcon = if(tail(series$IPCBr$value,1) - head(tail(series$IPCBr$value, 2), 1) >= 0) {icon("fas fa-caret-up")} else {icon(icon(icon("fas fa-caret-down")))},
+                header = paste(tail(series$IPCBr$value,1), tail(months(series$IPCBr$date),1)), 
+                text = "IPCBr", 
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 3,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$ICV$value,1)-head(tail(series$ICV$value, 2), 1), 2), "pts"), 
+                numberColor = if(tail(series$ICV$value,1) - head(tail(series$ICV$value, 2), 1) >= 0) {"danger"} else {"success"}, 
+                numberIcon = if(tail(series$ICV$value,1) - head(tail(series$ICV$value, 2), 1) >= 0) {icon("fas fa-caret-up")} else {icon(icon(icon("fas fa-caret-down")))},
+                header = paste(tail(series$ICV$value,1), tail(months(series$ICV$date),1)), 
+                text = "ICV", 
+                rightBorder = FALSE,
+                marginBottom = FALSE))))
       )
     )
   )
@@ -154,7 +178,7 @@ mod_inflacao_server <- function(input, output, session){
                            xanchor = "center"))
   })
  
-  
+  # Cesta Básica Vitória
   output$plot2 = renderPlotly({
     
     plot_ly(data = series$CestaES, x=~date, y=~value,
@@ -165,6 +189,16 @@ mod_inflacao_server <- function(input, output, session){
                            xanchor = "center"))
   })
   
+  # Capacidade Instalada
+  output$plot3 = renderPlotly({
+    
+    plot_ly(data = series$CapInst, x=~date, y=~value,
+            type = "scatter", mode = "lines", name = "Capacidade Instalada") %>%
+      layout(title = "", xaxis = list(title = ""), yaxis = list(title = "%"),
+             legend = list(orientation = 'h',
+                           x = 0.5,
+                           xanchor = "center"))
+  })
   
 }
     
