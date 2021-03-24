@@ -34,12 +34,14 @@ jobs:
       - name: Instalar dependencias
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "devtools"), type = "binary")
+          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly"), type = "binary")
         shell: Rscript {0}
       
       - name: Instalar bs4Dash do github
         run: |
+          install.packages("devtools")
           devtools::install_github("RinteRface/bs4Dash")
+        shell: Rscript {0}
       
       - name: Atualizando dados
         run: |
