@@ -367,6 +367,65 @@ mod_credito_ui <- function(id) {
               )
             )
           )
+        ),
+
+        # Saldo operações de crédito ES
+        box(
+          title = tags$b("Crédito"),
+          closable = FALSE,
+          width = 4,
+          height = "800px",
+          status = "success",
+          solidHeader = TRUE,
+          tags$b("Saldo das operações de crédito do SFN - ES", style = "text-align: left; font-size: 18px; color: #808080;"),
+          tags$p("Em R$ bilhões, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          plotlyOutput(ns("plot5")),
+          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080;"),
+          footer = fluidRow(
+            column(
+              width = 6,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$SaldoESPF$value, 1) - head(tail(series$SaldoESPF$value, 2), 1), 2
+                ), "milhões"),
+                numberColor = if (tail(series$SaldoESPF$value, 1) - head(tail(series$SaldoESPF$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$SaldoESPF$value, 1) - head(tail(series$SaldoESPF$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste(round(tail(series$SaldoESPF$value / 1000, 1), 1), "bi", tail(months(series$SaldoESPF$date), 1)),
+                text = "Pessoa física",
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 6,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1), 2
+                ), "milhões"),
+                numberColor = if (tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste(round(tail(series$SaldoESPJ$value / 1000, 1), 1), "bi", tail(months(series$SaldoESPJ$date), 1)),
+                text = "Pessoa Jurídica",
+                rightBorder = FALSE,
+                marginBottom = FALSE
+              )
+            )
+          )
         )
       )
     )
@@ -475,6 +534,28 @@ mod_credito_server <- function(input, output, session) {
         title = "",
         xaxis = list(title = ""),
         yaxis = list(title = "pontos"),
+        legend = list(
+          orientation = "h",
+          x = 0.5,
+          xanchor = "center"
+        )
+      )
+  })
+
+  # Saldo das operações de crédito do SFN - ES
+  output$plot5 <- renderPlotly({
+    plot_ly(
+      data = series$SaldoESPF, x = ~date, y = ~value / 100,
+      type = "scatter", mode = "lines", name = "Pessoa Física"
+    ) %>%
+      add_trace(
+        y = series$SaldoESPJ$value / 100,
+        name = "Pessoa Jurídica", mode = "lines"
+      ) %>%
+      layout(
+        title = "",
+        xaxis = list(title = ""),
+        yaxis = list(title = "R$ bi"),
         legend = list(
           orientation = "h",
           x = 0.5,

@@ -349,14 +349,19 @@ mod_consumo_server <- function(input, output, session) {
         series$RendaC$value,
         series$RendaSC$value
       ) %>%
-        rename(date = 1, publico = 2, privado = 3, formal = 4, informal = 5) %>%
+        rename(date = 1, Público = 2, Privado = 3, Formal = 4, Informal = 5) %>%
           pivot_longer(!date) %>%
           ggplot(aes(x = date, y = value)) +
-          geom_line() +
+          geom_line(color = "#1f77b4") +
           scale_y_continuous(labels = scales::number) +
           facet_wrap(~name, scales = "free_y") +
           labs(x = "", y = "") +
-        theme_bw()
+          theme_bw() +
+          theme(
+            strip.background = element_rect(fill = "#3c8dbc", color = "#3c8dbc"),
+            strip.text = element_text(color = "white", family = "Century Gothic"),
+            panel.border = element_rect(color = "#3c8dbc")
+          )
     )
 
   })
