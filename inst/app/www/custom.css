@@ -86,7 +86,39 @@
   background-color: #004b8d !important;
 }
 
-h1, h2, h3, h4, h5, h6, b, p, span {
+.res-tit, .res-body, .box-tit, .box-subtit, .box-body, .box-legenda {
   font-family: "Century Gothic";
 }
 
+.res-tit {
+  font-size: 26px;
+  padding: 0px;
+}
+
+.res-body {
+  font-size: 14px;
+  color: white;
+  text-align: left;
+  padding: 10px;
+}
+
+.box-tit {
+  font-size: 26px;
+}
+
+.box-subtit {
+  font-size: 18px;
+  color: #808080;
+}
+
+.box-body {
+  font-size: 14px;
+  color: #808080;
+  padding: 1px;
+}
+
+.box-legenda {
+  font-size: 12px;
+  color: #808080;
+  padding: 1px;
+}
