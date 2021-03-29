@@ -1,89 +1,66 @@
 /* logo */
 .skin-blue .main-header .logo {
-  background-color: #fff1e0;
-  font-weight: bold;
-  color: #6D6964;
+  background-color: #004b8d;
+  font-weight: normal;
+  color: #808080;
+  padding: 0px;
 }
 
 /* logo when hovered */
 .skin-blue .main-header .logo:hover {
-  background-color: #fff1e0;
-  color: #6D6964;
+  background-color: #004b8d;
+  color: white;
 }
 
 /* navbar (rest of the header) */
 .skin-blue .main-header .navbar {
-  background-color: #fff1e0;
+  background-color: #004b8d;
   color: #6D6964;
 }
 
 /* main sidebar */
 .skin-blue .main-sidebar {
-  background-color: #fff1e0;
+  background-color: #004b8d;
   color: #6D6964;
 }
 
 /* active selected tab in the sidebarmenu */
-.skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
-  background-color: #fff1e0;
-  color: #6D6964;
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a {
+  background-color: #56af31;
+  color: white;
+}
+
+/* active selected tab in the sidebarmenu when hovered */
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a:hover {
+  background-color: white;
+  color: #808080;
 }
 
 /* other links in the sidebarmenu */
-.skin-blue .main-sidebar .sidebar .sidebar-menu a{
-  background-color: #fff1e0;
+.skin-blue .main-sidebar .sidebar .sidebar-menu a {
+  background-color: white;
   color: #6D6964;
 }
 
 /* other links in the sidebarmenu when hovered */
-.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
-  background-color: #fff1e0;
+.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover {
+  background-color: white;
   color: #6D6964;
+}
+
+/* toggle button when not hovered  */
+.skin-blue .main-header .navbar .sidebar-toggle {
+  background-color: #004b8d;
+  color: #56af31;
 }
 
 /* toggle button when hovered  */
-.skin-blue .main-header .navbar .sidebar-toggle:hover{
-  background-color: #fff1e0;
-  color: #6D6964;
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: #004b8d;
+  color: #56af31;
 }
 
-.content-wrapper, .right-side {
-  background-color: #fff1e0;
-}
-
-.res-tit, .res-body, .box-tit, .box-subtit, .box-body, .box-legenda {
-  font-family: "Century Gothic";
-}
-
-.res-tit {
-  font-size: 26px;
-  padding: 0px;
-}
-
-.res-body {
-  font-size: 14px;
-  color: white;
-  text-align: left;
-  padding: 10px;
-}
-
-.box-tit {
-  font-size: 26px;
-}
-
-.box-subtit {
-  font-size: 18px;
-  color: #808080;
-}
-
-.box-body {
-  font-size: 14px;
-  color: #808080;
-  padding: 1px;
-}
-
-.box-legenda {
-  font-size: 12px;
-  color: #808080;
-  padding: 1px;
+/* fundo do body */
+.content-wrapper {
+  background-color: white;
 }

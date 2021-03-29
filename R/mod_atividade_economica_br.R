@@ -21,7 +21,7 @@ mod_atividade_economica_ui <- function(id) {
 
         # Resenha
         box(
-          title = tags$b("ATIVIDADE ECONÔMICA", style = ""),
+          title = tags$div("ATIVIDADE ECONÔMICA", class = "res-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
@@ -29,29 +29,27 @@ mod_atividade_economica_ui <- function(id) {
           background = "yellow",
           solidHeader = TRUE,
           enable_dropdown = FALSE,
-          h4(
-            style = "text-align: justify;",
-            "A previsão do mercado financeiro para a queda da economia brasileira este ano foi ajustada de 5,46% para 5,28%. Para o próximo ano, a expectativa é de crescimento de 3,50%, a mesma previsão há 14 semanas consecutivas. Em 2022 e 2023, o mercado financeiro continua a projetar expansão de 2,50% do PIB.",
-            br(), br(),
-            "O indice de Atividade Economica do Banco Central (IBC-Br) que, com cautela, pode ser utilizado como sinalizador do Produto Interno Bruto (PIB), apresentou avanco de 0,02 por cento em outubro na comparacao com o mes anterior, de acordo com dado dessazonalizado divulgado BC.",
-            br(), br(),
-            "O desempenho foi melhor que a expectativa em pesquisa da Reuters de contracao de 0,20 por cento, representando o quinto resultado positivo no ano."
+          tags$div(
+            class = "res-body",
+            p("A previsão do mercado financeiro para a queda da economia brasileira este ano foi ajustada de 5,46% para 5,28%. Para o próximo ano, a expectativa é de crescimento de 3,50%, a mesma previsão há 14 semanas consecutivas. Em 2022 e 2023, o mercado financeiro continua a projetar expansão de 2,50% do PIB."),
+            p("O indice de Atividade Economica do Banco Central (IBC-Br) que, com cautela, pode ser utilizado como sinalizador do Produto Interno Bruto (PIB), apresentou avanco de 0,02 por cento em outubro na comparacao com o mes anterior, de acordo com dado dessazonalizado divulgado BC."),
+            p("O desempenho foi melhor que a expectativa em pesquisa da Reuters de contracao de 0,20 por cento, representando o quinto resultado positivo no ano.")
           )
         ),
 
         # Variação do PIB
         box(
-          title = tags$b("Produto Interno Bruto", style = ""),
+          title = tags$div("Produto Interno Bruto", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Crescimento do PIB", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Variação % anual real", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Crescimento do PIB", class = "box-subtit"),
+          tags$div("Variação % anual real", class = "box-body"),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE", style = "text-align: left; font-size: 12px; color: #808080"),
-          tags$p("O resultado positivo de 2017 sinaliza o encerramento do período recessivo e início da retomada da economia.", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Fonte: IBGE", style = "box-legenda"),
+          tags$div("O resultado positivo de 2017 sinaliza o encerramento do período recessivo e início da retomada da economia.", style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -80,16 +78,16 @@ mod_atividade_economica_ui <- function(id) {
 
         # PIB trimestral
         box(
-          title = tags$b("Produto Interno Bruto", style = ""),
+          title = tags$div("Produto Interno Bruto", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Crescimento do PIB", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Índice trimestral — valores observados a preço de mercado", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Crescimento do PIB", class = "box-subtit"),
+          tags$div("Índice trimestral, valores observados a preço de mercado", class = "box-body"),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: IBGE", style = "text-align: left; font-size: 12px; color: #808080"),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -140,16 +138,16 @@ mod_atividade_economica_ui <- function(id) {
 
         # IBC-Br
         box(
-          title = tags$b("IBC-Br", style = ""),
+          title = tags$div("IBC-Br", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Índice de Atividade Econômica", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Índice mensal observado e dessazonalizado", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Índice de Atividade Econômica", class = "box-subtit"),
+          tags$div("Índice mensal observado e dessazonalizado", class = "box-body"),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080"),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -199,17 +197,16 @@ mod_atividade_economica_ui <- function(id) {
 
         # Varejo e Serviços
         box(
-          title = tags$b("Varejo e Serviços", style = ""),
+          title = tags$div("Varejo e Serviços", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Índice mensal de varejo e serviços", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Volume de vendas no varejo e receita nominal de serviços", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Índice mensal de varejo e serviços", class = "box-subtit"),
+          tags$div("Volume de vendas no varejo e receita nominal de serviços", class = "box-body"),
           plotlyOutput(ns("plot4")),
-          tags$p("Fonte: IBGE", style = "text-align: left; font-size: 12px; color: #808080"),
-          tags$p("", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -259,16 +256,16 @@ mod_atividade_economica_ui <- function(id) {
 
         # Exportações
         box(
-          title = tags$b("Exportação de Bens", style = ""),
+          title = tags$div("Exportação de Bens", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Exportações", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Em US$ bilhões, balanço de pagamentos, mensal", style = "text-align: left; font-size: 14px; color: #808080"),
+          tags$div("Exportações", class = "box-subtit"),
+          tags$div("Em US$ bilhões, balanço de pagamentos, mensal", class = "box-body"),
           plotlyOutput(ns("plot5")),
-          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080"),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,

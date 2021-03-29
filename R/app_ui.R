@@ -1,3 +1,4 @@
+
 #' The application User-Interface
 #'
 #' @param request Internal parameter for `{shiny}`.
@@ -9,7 +10,6 @@
 
 
 app_ui <- function(request) {
-
   data("series")
 
   tagList(
@@ -17,11 +17,19 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # List the first level UI elements here
     dashboardPage(
-      dashboardHeader(title = "Dashboard Gerat"),
-      dashboardSidebar(width = 150,
-                       sidebarMenu(
-                         menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar"))
-                       )
+      dashboardHeader(title = tags$a(
+        href = "https://www.banestes.com.br",
+        tags$img(
+          src = "www/img/logo-fundo-azul.jpg",
+          height = "40px",
+          width = "120px"
+        )
+      ), titleWidth = "150px"),
+      dashboardSidebar(
+        width = 150,
+        sidebarMenu(
+          menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar"))
+        )
       ),
       dashboardBody(
         tabItems(
@@ -39,7 +47,6 @@ app_ui <- function(request) {
       )
     )
   )
-
 }
 
 #' Add external Resources to the Application
@@ -53,7 +60,6 @@ app_ui <- function(request) {
 
 
 golem_add_external_resources <- function() {
-
   add_resource_path(
     "www", app_sys("app/www")
   )

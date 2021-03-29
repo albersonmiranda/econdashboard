@@ -1,0 +1,96 @@
+/* fonte das boxes e resenhas */
+.res-tit, .res-body, .box-tit, .box-subtit, .box-body, .box-legenda, .conj-body, .conj-tit, .description-block>.description-header, .description-block>.description-text {
+  font-family: "Century Gothic";
+}
+
+/* título da página conjuntura */
+.conj-tit {
+  text-align: center;
+  font-size: 32px;
+  color: #004b8d;
+}
+
+/* corpo da página conjuntura */
+.conj-body {
+  text-align: center;
+  font-size: 20px;
+  color: #004b8d;
+}
+
+/* boxes warning resenha */
+.box.box-solid.bg-yellow  {
+  background-color: #004b8d !important;
+  border-style: solid;
+  border-width: thin;
+  border-color: #004b8d;
+}
+
+/* boxes warning exceto resenha */
+.box.box-solid.box-warning {
+  background-color: white !important;
+  border-style: solid;
+  border-width: thin;
+  border-color: #004b8d;
+}
+
+/* boxes warning exceto resenha - header */
+.box.box-solid.box-warning>.box-header {
+  background-color: #004b8d !important;
+}
+
+/* título da resenha */
+.res-tit {
+  font-size: 26px;
+  padding: 0px;
+}
+
+/* corpo da resenha */
+.res-body {
+  font-size: 14px;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  text-align: justify;
+}
+
+/* título das boxes */
+.box-tit {
+  font-size: 26px;
+}
+
+/* subtítulo das boxes */
+.box-subtit {
+  font-size: 18px;
+  color: #808080;
+}
+
+/* corpo das boxes */
+.box-body {
+  font-size: 14px;
+  color: #808080;
+  padding: 1px;
+}
+
+/* legenda das boxes */
+.box-legenda {
+  font-size: 12px;
+  color: #808080;
+  padding: 1px;
+}
+
+/* description header */
+.description-block>.description-header {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+/* description text */
+.description-block>.description-text {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #808080;
+  font-weight: normal;
+}

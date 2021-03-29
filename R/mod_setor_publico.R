@@ -15,17 +15,18 @@ mod_setor_publico_ui <- function(id) {
 
         # Resenha
         box(
-          title = tags$div("SETOR PÚBLICO ES", class = "res-tit"),
+          title = tags$div("SETOR PÚBLICO CAPIXABA", class = "res-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = NULL,
-          background = "red",
+          background = "yellow",
           solidHeader = TRUE,
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            "Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh"
+            p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh."),
+            p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh.")
           )
         ),
 
@@ -35,10 +36,10 @@ mod_setor_publico_ui <- function(id) {
           closable = FALSE,
           width = 4,
           height = 760,
-          status = "danger",
+          status = "warning",
           solidHeader = TRUE,
-          tags$div("Resultado Primário do Estado e municípios do ES", class = "box-subtit"),
-          tags$div("Fluxo acumulado no ano do Estado e Municípios, trimestral", class = "box-body"),
+          tags$div("Resultado Primário", class = "box-subtit"),
+          tags$div("Fluxo acumulado no ano, Estado e municípios, trimestral", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
@@ -74,10 +75,10 @@ mod_setor_publico_ui <- function(id) {
           closable = FALSE,
           width = 4,
           height = 760,
-          status = "danger",
+          status = "warning",
           solidHeader = TRUE,
-          tags$div("Dívida líquida do Estado e municípios do ES", class = "box-subtit"),
-          tags$div("Dívida líquida consolidada, trimestral", class = "box-body"),
+          tags$div("Dívida líquida", class = "box-subtit"),
+          tags$div("Dívida líquida consolidada, Estado e municípios, trimestral", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
