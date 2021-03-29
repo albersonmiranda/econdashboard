@@ -4,7 +4,7 @@
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
-#' @noRd 
+#' @noRd
 #'
 #' @importFrom shiny NS tagList
 #' @import bs4Dash
@@ -18,25 +18,26 @@ mod_mercados_ui <- function(id) {
   tagList(
     fluidPage(
       fluidRow(
+
         # Resenha
         box(
-          title = tags$b("MERCADOS", style = ''),
+          title = tags$div("MERCADOS", class = "res-tit"),
           closable = FALSE,
           width = 4,
           height = 700,
           status = NULL,
           background = "yellow",
           solidHeader = TRUE,
-          h4(
-            style = 'text-align: justify;',
-            "Para 2019, é esperado um aumento dos juros, motivado por uma provável recuperação da economia. Na média, os analistas do mercado financeiro esperam que a Selic feche o próximo ano em 7,5%.",
-            br(), br(),
-            "No mercado de trabalho, a taxa de desemprego no Brasil recuou para 11,6% no trimestre encerrado em novembro, segundo dados divulgados pelo IBGE, se mantendo praticamente constante — caiu 0,1% em relação ao mês anterior. Não obstante, o sinal é positivo pois foi a oitava queda mensal consecutiva no país."
+          tags$div(
+            class = "res-body",
+            p("Para 2019, é esperado um aumento dos juros, motivado por uma provável recuperação da economia. Na média, os analistas do mercado financeiro esperam que a Selic feche o próximo ano em 7,5%."),
+            p("No mercado de trabalho, a taxa de desemprego no Brasil recuou para 11,6% no trimestre encerrado em novembro, segundo dados divulgados pelo IBGE, se mantendo praticamente constante — caiu 0,1% em relação ao mês anterior. Não obstante, o sinal é positivo pois foi a oitava queda mensal consecutiva no país.")
           )
         ),
+
         # Mercado de Trabalho
         box(
-          title = tags$b("Mercado de Trabalho", style = ''),
+          title = tags$div("Mercado de Trabalho", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 700,
@@ -44,10 +45,10 @@ mod_mercados_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Taxa de desemprego", style = 'text-align: left; font-size: 18px; color: #808080;'),
-          tags$p("Percentual da população economicamente ativa, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          tags$div("Taxa de desemprego", class = "box-subtit"),
+          tags$div("Percentual da população economicamente ativa, mensal", class = "box-body"),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: IBGE", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,
@@ -75,7 +76,7 @@ mod_mercados_ui <- function(id) {
         ),
         # Emprego ES
         box(
-          title = tags$b("Mercado de Trabalho ES", style = ''),
+          title = tags$div("Mercado de Trabalho ES", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 700,
@@ -83,10 +84,10 @@ mod_mercados_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Geração de emprego", style = 'text-align: left; font-size: 18px; color: #808080;'),
-          tags$p("Unidades, empregos formais, mensal", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          tags$div("Geração de emprego", class = "box-subtit"),
+          tags$div("Unidades, empregos formais, mensal", class = "box-body"),
           plotlyOutput(ns("plot4")),
-          tags$p("Fonte: MTE", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          tags$div("Fonte: MTE", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,
@@ -114,16 +115,16 @@ mod_mercados_ui <- function(id) {
         ),
         # Selic
         box(
-          title = tags$b("Juros", style = ''),
+          title = tags$div("Juros", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 700,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Taxa básica Selic", style = 'text-align: left; font-size: 18px; color: #808080;'),
-          tags$p("Taxa ao ano, diária, anualizada, base 252", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          tags$div("Taxa básica Selic", class = "box-subtit"),
+          tags$div("Taxa ao ano, diária, anualizada, base 252", class = "box-body"),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,
@@ -151,16 +152,16 @@ mod_mercados_ui <- function(id) {
         ),
         # Dolar
         box(
-          title = tags$b("Taxa de Câmbio", style = ''),
+          title = tags$div("Taxa de Câmbio", class = "box-tit"),
           closable = FALSE,
           width = 8,
           height = 700,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Dólar", style = 'text-align: left; font-size: 18px; color: #808080;'),
-          tags$p("Preço de compra, cotação diária", style = 'text-align: left; font-size: 14px; color: #808080;'),
+          tags$div("Dólar", class = "box-subtit"),
+          tags$div("Preço de compra, cotação diária", class = "box-body"),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: Banco Central do Brasil", style = 'text-align: left; font-size: 12px; color: #808080;'),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,
@@ -195,54 +196,54 @@ mod_mercados_ui <- function(id) {
     
 #' mercados Server Function
 #'
-#' @noRd 
-mod_mercados_server <- function(input, output, session){
+#' @noRd
+mod_mercados_server <- function(input, output, session) {
   ns <- session$ns
- 
+
   # Selic
   output$plot1 = renderPlotly({
     plot_ly(data = series$Selic, x = ~date, y = ~value,
             type = "scatter", mode = "lines", name = "Selic") %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "% a.a."),
-             legend = list(orientation = 'h',
+             legend = list(orientation = "h",
                            x = 0.5,
                            xanchor = "center")
       )
   })
-  
+
   # Dolar
   output$plot2 = renderPlotly({
     plot_ly(data = subset(series$Dolar, date > "2000-01-01"), x = ~date, y = ~value,
             type = "scatter", mode = "lines", name = "Dolar") %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "R$/US$"),
-             legend = list(orientation = 'h',
+             legend = list(orientation = "h",
                            x = 0.5,
                            xanchor = "center")
       )
   })
-  
+
   # Mercado de Trabalho
   output$plot3 = renderPlotly({
     plot_ly(data = series$Desemprego, x = ~date, y = ~value,
             type = "scatter", mode = "lines", name = "Desemprego") %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "%"),
-             legend = list(orientation = 'h',
+             legend = list(orientation = "h",
                            x = 0.5,
                            xanchor = "center")
       )
   })
-  
+
   # Mercado de Trabalho ES
   output$plot4 = renderPlotly({
     plot_ly(data = series$EmpregoGES, x = ~date, y = ~value,
             type = "scatter", mode = "lines", name = "Emprego Gerado") %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "unidades"),
-             legend = list(orientation = 'h',
+             legend = list(orientation = "h",
                            x = 0.5,
                            xanchor = "center")
       )
   })
-  
+
 }
     
 ## To be copied in the UI
@@ -250,4 +251,3 @@ mod_mercados_server <- function(input, output, session){
     
 ## To be copied in the server
 # callModule(mod_mercados_server, "mercados_ui_1")
- 

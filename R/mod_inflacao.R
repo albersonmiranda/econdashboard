@@ -1,6 +1,6 @@
 #' inflacao UI Function
 #'
-#' @description A shiny Module.
+#' @description Modulo de informações de conjuntura relacionadas à inflação.
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
@@ -21,7 +21,7 @@ mod_inflacao_ui <- function(id) {
 
         # Resenha
         box(
-          title = tags$b("INFLAÇÃO"),
+          title = tags$div("INFLAÇÃO", class = "res-tit"),
           closable = FALSE,
           width = 4,
           height = 855,
@@ -30,19 +30,17 @@ mod_inflacao_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          h4(
-            style = "text-align: justify;",
-            "O Índice Nacional de Preços ao Consumidor Amplo (IPCA) teve queda de 0,21% em novembro, conforme divulgado pelo IBGE. O resultado foi o menor desde julho de 2017, quando houve queda de 0,23%. Entre os meses de novembro, a queda é a menor desde o início do Plano Real em 1994. Em 12 meses, a inflação acumula 4,05% enquanto a taxa acumulada de 2018 é de 3,59%.",
-            br(), br(),
-            "A comportamento brando dos índices de inflação é essencial para a recuperação do consumo das famílias e do crédito, uma vez que os últimos dados mostram contração da renda média familiar durante o período de recessão.",
-            br(), br(),
-            "Para 2019, os economistas das instituições financeiras diminuíram a expectativa de inflação de 4,03% para 4,01%. A meta central do próximo ano é de 4,25%, e o intervalo de tolerância do sistema de metas varia de 2,75% a 5,75%."
+          tags$div(
+            class = "res-body",
+            p("O Índice Nacional de Preços ao Consumidor Amplo (IPCA) teve queda de 0,21% em novembro, conforme divulgado pelo IBGE. O resultado foi o menor desde julho de 2017, quando houve queda de 0,23%. Entre os meses de novembro, a queda é a menor desde o início do Plano Real em 1994. Em 12 meses, a inflação acumula 4,05% enquanto a taxa acumulada de 2018 é de 3,59%."),
+            p("A comportamento brando dos índices de inflação é essencial para a recuperação do consumo das famílias e do crédito, uma vez que os últimos dados mostram contração da renda média familiar durante o período de recessão."),
+            p("Para 2019, os economistas das instituições financeiras diminuíram a expectativa de inflação de 4,03% para 4,01%. A meta central do próximo ano é de 4,25%, e o intervalo de tolerância do sistema de metas varia de 2,75% a 5,75%.")
           )
         ),
 
         # Capacidade Instalada
         box(
-          title = tags$b("Capacidade Instalada"),
+          title = tags$div("Capacidade Instalada", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 855,
@@ -50,10 +48,10 @@ mod_inflacao_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Utilização da Capacidade Instalada", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("%, trimestral", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Utilização da Capacidade Instalada", class = "box-subtit"),
+          tags$div("%, trimestral", class = "box-body"),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: FGV", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: FGV", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,
@@ -82,7 +80,7 @@ mod_inflacao_ui <- function(id) {
 
         # Cesta Básica Vitória
         box(
-          title = tags$b("Cesta Básica", style = ""),
+          title = tags$div("Cesta Básica", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 855,
@@ -90,10 +88,10 @@ mod_inflacao_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          tags$b("Custo da Cesta Básica", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Vitória-ES, índice, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Custo da Cesta Básica", class = "box-subtit"),
+          tags$div("Vitória-ES, índice, mensal", class = "box-body"),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: DIEESE", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: DIEESE", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 12,
@@ -122,16 +120,16 @@ mod_inflacao_ui <- function(id) {
 
         # Inflação
         box(
-          title = tags$b("Inflação"),
+          title = tags$div("Inflação", class = "box-tit"),
           closable = FALSE,
           width = 12,
           #height = 855,
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Índices de preços", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Variação percentual, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Índices de preços", class = "box-subtit"),
+          tags$div("Variação percentual, mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: IBGE, FGV e DIEESE", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: IBGE, FGV e DIEESE", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 3,

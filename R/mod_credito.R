@@ -21,7 +21,7 @@ mod_credito_ui <- function(id) {
 
         # Resenha
         box(
-          title = tags$b("CRÉDITO"),
+          title = tags$div("CRÉDITO", class = "res-tit"),
           closable = FALSE,
           width = 4,
           height = "800px",
@@ -30,28 +30,26 @@ mod_credito_ui <- function(id) {
           solidHeader = TRUE,
           collapsible = FALSE,
           enable_dropdown = FALSE,
-          h4(
-            style = "text-align: justify;",
-            "A lenta retomada da economia e o mercado de trabalho fragilizado continuam contribuindo para desaceleração do consumo e, consequentemente, da demanda por crédito. Embora em crescimento, a demanda por crédito foi bem aquém do projetado para o trimestre, conforme a Pesquisa Trimestral de Condições de Crédito do Departamento de Estudos e Pesquisas do Banco Central, frustando as expectativas do mercado de crédito pelo segundo trimestre consecutivo.",
-            br(), br(),
-            "Pelo lado da oferta, houve melhora da percepção do mercado em relação ao risco de crédito, revertendo o resultado negativo do trimestre anterior. Entretanto, a oferta também esteve abaixo da expectativa para o trimestre.",
-            br(), br(),
-            "O Espírito Santo ganhou destaque em setembro, quando um estudo da Fecomercio-SP apontou Vitória como a cidade de maior endividamento das famílias entre as capitais — 49%. Embora o endividamento não seja sinônimo da inadimplência, o primeiro antecede o segundo e sua elevação representa um fator de risco a ser monitorado pelos bancos."
+          tags$div(
+            class = "res-body",
+            p("A lenta retomada da economia e o mercado de trabalho fragilizado continuam contribuindo para desaceleração do consumo e, consequentemente, da demanda por crédito. Embora em crescimento, a demanda por crédito foi bem aquém do projetado para o trimestre, conforme a Pesquisa Trimestral de Condições de Crédito do Departamento de Estudos e Pesquisas do Banco Central, frustando as expectativas do mercado de crédito pelo segundo trimestre consecutivo."),
+            p("Pelo lado da oferta, houve melhora da percepção do mercado em relação ao risco de crédito, revertendo o resultado negativo do trimestre anterior. Entretanto, a oferta também esteve abaixo da expectativa para o trimestre."),
+            p("O Espírito Santo ganhou destaque em setembro, quando um estudo da Fecomercio-SP apontou Vitória como a cidade de maior endividamento das famílias entre as capitais — 49%. Embora o endividamento não seja sinônimo da inadimplência, o primeiro antecede o segundo e sua elevação representa um fator de risco a ser monitorado pelos bancos.")
           )
         ),
 
         # Pesquisa de Condições de Crédito
         box(
-          title = tags$b("Mercado de Crédito"),
+          title = tags$div("Mercado de Crédito", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = "800px",
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Pesquisa de Condições de Crédito", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("aprovações observadas, em pontos, trimestral", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Pesquisa de Condições de Crédito", class = "box-subtit"),
+          tags$div("aprovações observadas, em pontos, trimestral", class = "box-body"),
           plotlyOutput(ns("plot1")),
-          tags$p("Fonte: BCB-Depep", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: BCB-Depep", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -146,16 +144,16 @@ mod_credito_ui <- function(id) {
 
         # Endividamento das Famílias
         box(
-          title = tags$b("Endividamento"),
+          title = tags$div("Endividamento", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = "800px",
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Nível de endividamento das famílias", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Percentual da renda familiar, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Nível de endividamento das famílias", class = "box-subtit"),
+          tags$div("Percentual da renda familiar, mensal", class = "box-body"),
           plotlyOutput(ns("plot2")),
-          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -205,16 +203,16 @@ mod_credito_ui <- function(id) {
 
         # Inadimplência BR
         box(
-          title = tags$b("Inadimplência BR"),
+          title = tags$div("Inadimplência BR", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = "800px",
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Índice de Inadimplência - BR", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Percentual sobre saldo de créditos, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Índice de Inadimplência - BR", class = "box-subtit"),
+          tags$div("Percentual sobre saldo de créditos, mensal", class = "box-body"),
           plotlyOutput(ns("plot3")),
-          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -288,16 +286,16 @@ mod_credito_ui <- function(id) {
 
         # Inadimplência ES
         box(
-          title = tags$b("Inadimplência ES"),
+          title = tags$div("Inadimplência ES", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = "800px",
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Índice de Inadimplência - ES", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Percentual sobre saldo de créditos, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Índice de Inadimplência - ES", class = "box-subtit"),
+          tags$div("Percentual sobre saldo de créditos, mensal", class = "box-body"),
           plotlyOutput(ns("plot4")),
-          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
@@ -371,16 +369,16 @@ mod_credito_ui <- function(id) {
 
         # Saldo operações de crédito ES
         box(
-          title = tags$b("Crédito"),
+          title = tags$div("Crédito", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = "800px",
           status = "warning",
           solidHeader = TRUE,
-          tags$b("Saldo das operações de crédito do SFN - ES", style = "text-align: left; font-size: 18px; color: #808080;"),
-          tags$p("Em R$ bilhões, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
+          tags$div("Saldo das operações de crédito do SFN - ES", class = "box-subtit"),
+          tags$div("Em R$ bilhões, mensal", class = "box-body"),
           plotlyOutput(ns("plot5")),
-          tags$p("Fonte: Banco Central do Brasil", style = "text-align: left; font-size: 12px; color: #808080;"),
+          tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
