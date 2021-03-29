@@ -29,7 +29,7 @@ mod_consumo_ui <- function(id) {
           width = 4,
           height = 760,
           status = NULL,
-          background = "light-blue",
+          background = "yellow",
           solidHeader = TRUE,
           h4(
             style = "text-align: justify;",
@@ -44,7 +44,7 @@ mod_consumo_ui <- function(id) {
           closable = FALSE,
           width = 4,
           height = 760,
-          status = "primary",
+          status = "warning",
           solidHeader = TRUE,
           tags$b("Contribuição do consumo no PIB", style = "text-align: left; font-size: 18px; color: #808080;"),
           tags$p("Índice, trimestral", style = "text-align: left; font-size: 14px; color: #808080;"),
@@ -103,7 +103,7 @@ mod_consumo_ui <- function(id) {
           closable = FALSE,
           width = 4,
           height = 760,
-          status = "primary",
+          status = "warning",
           solidHeader = TRUE,
           tags$b("Percepção do consumidor", style = "text-align: left; font-size: 18px; color: #808080;"),
           tags$p("Índice, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
@@ -183,7 +183,7 @@ mod_consumo_ui <- function(id) {
           closable = FALSE,
           width = 12,
           height = 760,
-          status = "primary",
+          status = "warning",
           solidHeader = TRUE,
           tags$b("Renda média real das pessoas ocupadas", style = "text-align: left; font-size: 18px; color: #808080;"),
           tags$p("Em R$, mensal", style = "text-align: left; font-size: 14px; color: #808080;"),
@@ -358,9 +358,9 @@ mod_consumo_server <- function(input, output, session) {
           labs(x = "", y = "") +
           theme_bw() +
           theme(
-            strip.background = element_rect(fill = "#3c8dbc", color = "#3c8dbc"),
+            strip.background = element_rect(fill = "#56af31", color = "#56af31"),
             strip.text = element_text(color = "white", family = "Century Gothic"),
-            panel.border = element_rect(color = "#3c8dbc")
+            panel.border = element_rect(color = "#56af31")
           )
     )
 

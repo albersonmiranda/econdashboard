@@ -1,56 +1,92 @@
 /* logo */
 .skin-blue .main-header .logo {
-  background-color: #fff1e0;
-  font-weight: bold;
-  color: #6D6964;
+  background-color: #004b8d;
+  font-weight: normal;
+  color: #808080;
+  padding: 0px;
 }
 
 /* logo when hovered */
 .skin-blue .main-header .logo:hover {
-  background-color: #fff1e0;
-  color: #6D6964;
+  background-color: #004b8d;
+  color: white;
 }
 
 /* navbar (rest of the header) */
 .skin-blue .main-header .navbar {
-  background-color: #fff1e0;
+  background-color: #004b8d;
   color: #6D6964;
 }
 
 /* main sidebar */
 .skin-blue .main-sidebar {
-  background-color: #fff1e0;
+  background-color: #004b8d;
   color: #6D6964;
 }
 
 /* active selected tab in the sidebarmenu */
-.skin-blue .main-sidebar .sidebar .sidebar-menu .active a{
-  background-color: #fff1e0;
-  color: #6D6964;
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a {
+  background-color: #56af31;
+  color: white;
+}
+
+/* active selected tab in the sidebarmenu when hovered */
+.skin-blue .main-sidebar .sidebar .sidebar-menu .active a:hover {
+  background-color: white;
+  color: #808080;
 }
 
 /* other links in the sidebarmenu */
-.skin-blue .main-sidebar .sidebar .sidebar-menu a{
-  background-color: #fff1e0;
+.skin-blue .main-sidebar .sidebar .sidebar-menu a {
+  background-color: white;
   color: #6D6964;
 }
 
 /* other links in the sidebarmenu when hovered */
-.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover{
-  background-color: #fff1e0;
+.skin-blue .main-sidebar .sidebar .sidebar-menu a:hover {
+  background-color: white;
   color: #6D6964;
+}
+
+/* toggle button when not hovered  */
+.skin-blue .main-header .navbar .sidebar-toggle {
+  background-color: #004b8d;
+  color: #56af31;
 }
 
 /* toggle button when hovered  */
-.skin-blue .main-header .navbar .sidebar-toggle:hover{
-  background-color: #fff1e0;
-  color: #6D6964;
+.skin-blue .main-header .navbar .sidebar-toggle:hover {
+  background-color: #004b8d;
+  color: #56af31;
 }
 
-.content-wrapper, .right-side {
-  background-color: #fff1e0;
+/* fundo do body */
+.content-wrapper {
+  background-color: white;
+}
+
+/* boxes warning resenha */
+.box.box-solid.bg-yellow  {
+  background-color: #004b8d !important;
+  border-style: solid;
+  border-width: thin;
+  border-color: #004b8d;
+}
+
+/* boxes warning exceto resenha */
+.box.box-solid.box-warning {
+  background-color: white !important;
+  border-style: solid;
+  border-width: thin;
+  border-color: #004b8d;
+}
+
+/* boxes warning exceto resenha - header */
+.box.box-solid.box-warning>.box-header {
+  background-color: #004b8d !important;
 }
 
 h1, h2, h3, h4, h5, h6, b, p, span {
   font-family: "Century Gothic";
 }
+
