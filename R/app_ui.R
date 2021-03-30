@@ -14,9 +14,6 @@ app_ui <- function(request) {
   # load data
   data("series")
 
-  # set locale
-  Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
-
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
@@ -73,7 +70,7 @@ golem_add_external_resources <- function() {
     favicon(),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "Dashboard Gerat"
+      app_title = "Banestes Dashboard"
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert()
