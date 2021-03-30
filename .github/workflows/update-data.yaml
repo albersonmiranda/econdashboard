@@ -47,10 +47,6 @@ jobs:
         run: |
           source('data-raw/series.R')
         shell: Rscript {0}
-
-      - name: Set locale
-        run: Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
-        shell: Rscript {0}
       
       - name: Conectando ao ShinyApps
         env:

@@ -10,7 +10,12 @@
 
 
 app_ui <- function(request) {
+
+  # load data
   data("series")
+
+  # set locale
+  Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
 
   tagList(
     # Leave this function for adding external resources
