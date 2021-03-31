@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+
+name: teste
+
+jobs:
+  update-data:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: change macos locale
+        run: |
+          export LC_ALL=pt_BR.UTF-8  
+          export LANG=pt_BR.UTF-8

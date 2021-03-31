@@ -22,11 +22,6 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
-      - name: change macos locale
-        run: |
-          cd /usr/share/locale
-          sudo cp -R pt_BR.UTF-8 pt_BR
-
       - name: change R locale
         run: Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
         shell: Rscript {0}
