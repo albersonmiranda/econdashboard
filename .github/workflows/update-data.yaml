@@ -22,6 +22,11 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
+      - name: change macos locale
+        run: |
+          export LC_ALL=pt_BR.UTF-8  
+          export LANG=pt_BR.UTF-8
+
       - name: change R locale
         run: Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
         shell: Rscript {0}
