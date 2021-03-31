@@ -24,9 +24,8 @@ jobs:
 
       - name: change macos locale
         run: |
-          cd /usr/share/locale
-          sudo cp -R pt_BR.UTF-8
-        shell: /bin/bash -e {0}
+          sudo locale-gen pt_BR.UTF-8
+          sudo update-locale LANG=pt_BR.UTF-8
 
       - name: change R locale
         run: Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
