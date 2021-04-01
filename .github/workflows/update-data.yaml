@@ -28,7 +28,9 @@ jobs:
           export LANG=pt_BR.UTF-8
 
       - name: change R locale
-        run: Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
+        run: |
+          Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
+          Sys.setenv(LANG = "pt_BR.UTF-8")
         shell: Rscript {0}
 
       - name: Cache R packages
