@@ -22,8 +22,7 @@ app_ui <- function(request) {
       dashboardHeader(title = tags$a(
         href = "https://www.banestes.com.br",
         tags$img(
-          src = "www/img/logo-fundo-azul.jpg",
-          height = "40px",
+          src = "www/img/logo.png",
           width = "120px"
         )
       ), titleWidth = "150px"),
