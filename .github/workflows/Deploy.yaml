@@ -1,11 +1,13 @@
 on:
-  schedule:
-    - cron: "0 7 * * 1-5"
+  push:
+    branches:
+      - main
+      - master
 
-name: update-data
+name: Deploy to ShinyApps.io
 
 jobs:
-  update-data:
+  R-CMD-check:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -39,19 +41,6 @@ jobs:
           install.packages("devtools")
           devtools::install_github("RinteRface/bs4Dash")
         shell: Rscript {0}
-      
-      - name: Atualizando Dados de Conjuntura
-        run: |
-          source('data-raw/series.R')
-        shell: Rscript {0}
-
-      - name: Commit Dados de Conjuntura
-        run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add data/series.rda
-          git commit -m 'Update data' || echo "Update data"
-          git push origin || echo "Update data"
 
       - name: Conectando ao ShinyApps
         env:
