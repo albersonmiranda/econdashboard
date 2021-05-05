@@ -16,7 +16,7 @@
 
 
 
-mod_consumo_ui <- function(id) {
+mod_conj_consumo_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -287,7 +287,7 @@ mod_consumo_ui <- function(id) {
 #' consumo Server Function
 #'
 #' @noRd
-mod_consumo_server <- function(input, output, session) {
+mod_conj_consumo_server <- function(input, output, session) {
   ns = session$ns
 
   # Consumo das Famílias

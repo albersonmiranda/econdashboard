@@ -7,7 +7,7 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_titulo_ui <- function(id) {
+mod_conj_titulo_ui <- function(id) {
   ns <- NS(id)
   tagList(
     list(
@@ -23,7 +23,7 @@ mod_titulo_ui <- function(id) {
 #' titulo Server Function
 #'
 #' @noRd
-mod_titulo_server <- function(input, output, session) {
+mod_conj_titulo_server <- function(input, output, session) {
   ns <- session$ns
 
 }

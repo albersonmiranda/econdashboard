@@ -13,7 +13,7 @@
 
 
 
-mod_credito_ui <- function(id) {
+mod_conj_credito_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -433,7 +433,7 @@ mod_credito_ui <- function(id) {
 #' credito Server Function
 #'
 #' @noRd
-mod_credito_server <- function(input, output, session) {
+mod_conj_credito_server <- function(input, output, session) {
   ns <- session$ns
 
   # Pesquisa condições de crédito

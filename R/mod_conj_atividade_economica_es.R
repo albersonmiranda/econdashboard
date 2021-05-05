@@ -13,7 +13,7 @@
 
 
 
-mod_atividade_economica_es_ui <- function(id) {
+mod_conj_atividade_economica_es_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -280,7 +280,7 @@ mod_atividade_economica_es_ui <- function(id) {
 #' atividade_economica_es Server Function
 #'
 #' @noRd
-mod_atividade_economica_es_server <- function(input, output, session) {
+mod_conj_atividade_economica_es_server <- function(input, output, session) {
   ns <- session$ns
 
   # PIB variação anual

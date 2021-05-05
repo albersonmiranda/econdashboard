@@ -13,7 +13,7 @@
 
 
 
-mod_mercados_ui <- function(id) {
+mod_conj_mercados_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -197,7 +197,7 @@ mod_mercados_ui <- function(id) {
 #' mercados Server Function
 #'
 #' @noRd
-mod_mercados_server <- function(input, output, session) {
+mod_conj_mercados_server <- function(input, output, session) {
   ns <- session$ns
 
   # Selic

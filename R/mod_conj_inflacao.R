@@ -13,7 +13,7 @@
 
 
 
-mod_inflacao_ui <- function(id) {
+mod_conj_inflacao_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -227,7 +227,7 @@ mod_inflacao_ui <- function(id) {
 #' inflacao Server Function
 #'
 #' @noRd
-mod_inflacao_server <- function(input, output, session) {
+mod_conj_inflacao_server <- function(input, output, session) {
   ns <- session$ns
 
   # Inflação

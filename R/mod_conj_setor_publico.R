@@ -7,7 +7,7 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_setor_publico_ui <- function(id) {
+mod_conj_setor_publico_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -115,7 +115,7 @@ mod_setor_publico_ui <- function(id) {
 #' setor_publico Server Function
 #'
 #' @noRd
-mod_setor_publico_server <- function(input, output, session) {
+mod_conj_setor_publico_server <- function(input, output, session) {
   ns <- session$ns
 
   # resultado primário do ES
