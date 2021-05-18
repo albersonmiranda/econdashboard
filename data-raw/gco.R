@@ -85,5 +85,5 @@ pj$pdd_estimado = class_risco[match(pj$class_estimada, class_risco$Nivel), ]$Pro
 pj$impacto_pdd = pj$pdd_estimado - pj$pdd
 
 # Salvando dados
-gco = list(pf, pj)
+gco = rbind(pf, pj)
 usethis::use_data(gco, overwrite = TRUE)
