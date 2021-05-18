@@ -15,4 +15,5 @@ app_server <- function(input, output, session) {
   callModule(mod_conj_consumo_server, "consumo_ui_1")
   callModule(mod_conj_credito_server, "credito_ui_1")
   callModule(mod_conj_setor_publico_server, "setor_publico_ui_1")
+  mod_cobranca_server("cobranca_ui_1")
 }

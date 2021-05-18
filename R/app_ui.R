@@ -35,15 +35,22 @@ app_ui <- function(request) {
       ),
       dashboardBody(
         tabItems(
-          tabItem(tabName = "conjuntura",
-                  mod_conj_titulo_ui("titulo_ui_1"),
-                  mod_conj_atividade_economica_ui("atividade_economica_ui_1"),
-                  mod_conj_atividade_economica_es_ui("atividade_economica_es_ui_1"),
-                  mod_conj_mercados_ui("mercados_ui_1"),
-                  mod_conj_inflacao_ui("inflacao_ui_1"),
-                  mod_conj_consumo_ui("consumo_ui_1"),
-                  mod_conj_credito_ui("credito_ui_1"),
-                  mod_conj_setor_publico_ui("setor_publico_ui_1")
+          # tab conjuntura
+          tabItem(
+            tabName = "conjuntura",
+            mod_conj_titulo_ui("titulo_ui_1"),
+            mod_conj_atividade_economica_ui("atividade_economica_ui_1"),
+            mod_conj_atividade_economica_es_ui("atividade_economica_es_ui_1"),
+            mod_conj_mercados_ui("mercados_ui_1"),
+            mod_conj_inflacao_ui("inflacao_ui_1"),
+            mod_conj_consumo_ui("consumo_ui_1"),
+            mod_conj_credito_ui("credito_ui_1"),
+            mod_conj_setor_publico_ui("setor_publico_ui_1")
+          ),
+          # tab cobrança
+          tabItem(
+            tabName = "cobranca",
+            mod_cobranca_ui("cobranca_ui_1")
           )
         )
       )
