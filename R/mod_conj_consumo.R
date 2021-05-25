@@ -7,14 +7,6 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-#' @import bs4Dash
-#' @import magrittr
-#' @import plotly
-#' @import dplyr
-#' @import tidyr
-#' @import ggplot2
-
-
 
 mod_conj_consumo_ui <- function(id) {
   ns <- NS(id)

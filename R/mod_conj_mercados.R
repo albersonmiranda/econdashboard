@@ -7,11 +7,6 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-#' @import bs4Dash
-#' @import magrittr
-#' @import plotly
-
-
 
 mod_conj_mercados_ui <- function(id) {
   ns <- NS(id)
