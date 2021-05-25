@@ -5,7 +5,10 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import shinydashboard
-#' @import bs4Dash
+#' @importFrom bs4Dash descriptionBlock
+#' @import plotly
+#' @import ggplot2
+#' @import tidyr
 #' @noRd
 
 
@@ -13,6 +16,7 @@ app_ui <- function(request) {
 
   # load data
   data("series")
+  data("gco")
 
   tagList(
     # Leave this function for adding external resources
@@ -50,7 +54,7 @@ app_ui <- function(request) {
           # tab cobrança
           tabItem(
             tabName = "cobranca",
-            mod_cobranca_ui("cobranca_ui_1")
+            mod_cob_overview_ui("cob_overview_ui_1")
           )
         )
       )
