@@ -94,3 +94,8 @@
   color: #808080;
   font-weight: normal;
 }
+
+/* value boxes */
+.small-box.bg-yellow {
+  background-color: #004b8d !important;
+}
