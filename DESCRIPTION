@@ -12,6 +12,7 @@ Imports:
     bs4Dash,
     plotly,
     shinydashboard,
+    shinydashboardPlus,
     tidyr,
     ggplot2
 Encoding: UTF-8
