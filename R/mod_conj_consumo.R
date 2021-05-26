@@ -345,6 +345,7 @@ mod_conj_consumo_server <- function(input, output, session) {
           ggplot(aes(x = date, y = value)) +
           geom_line(color = "#1f77b4") +
           scale_y_continuous(labels = scales::number) +
+          scale_x_date(guide = guide_axis(n.dodge = 2)) +
           facet_wrap(~name, scales = "free_y") +
           labs(x = "", y = "") +
           theme_bw() +
