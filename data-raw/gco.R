@@ -84,6 +84,14 @@ pj$pdd_estimado = class_risco[match(pj$class_estimada, class_risco$Nivel), ]$Pro
 
 pj$impacto_pdd = pj$pdd_estimado - pj$pdd
 
-# Salvando dados
+# consolidando
 gco = rbind(pf, pj)
+
+# status atraso
+gco = within(gco, {
+    status = NA
+    status[dias_atraso <= 60] = "em dia"
+    status[dias_atraso > 60 & dias_atraso <= 90] = "atraso"
+    status[dias_atraso > 90] = "inadimplente"
+})
 usethis::use_data(gco, overwrite = TRUE)
