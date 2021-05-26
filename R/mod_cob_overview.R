@@ -155,7 +155,15 @@ mod_cob_overview_server <- function(input, output, session) {
         colors = value_box_i$cores
       ),
       outsidetextfont = list(size = 20, color = "white"),
-    )
+    ) %>%
+      layout(
+        margin = list(
+          r = 0,
+          t = 0,
+          b = 0,
+          l = 0
+        )
+      )
 
   })
 }
