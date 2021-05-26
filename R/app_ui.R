@@ -5,10 +5,13 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import shinydashboard
+#' @importFrom shinydashboardPlus boxLabel boxSidebar
 #' @importFrom bs4Dash descriptionBlock
 #' @import plotly
 #' @import ggplot2
-#' @import tidyr
+#' @importFrom magrittr %>%
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr rename
 #' @noRd
 
 
