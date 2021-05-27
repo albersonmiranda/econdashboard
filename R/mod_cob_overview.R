@@ -46,6 +46,27 @@ mod_cob_overview_ui <- function(id) {
           plotlyOutput(ns("treemap_1")),
           tags$div("Fonte: GCO", class = "box-legenda")
         )
+      ),
+      # treemap impacto PDD
+      fluidRow(
+        shinydashboardPlus::box(
+          title = tags$div("IMPACTO PDD", class = "box-tit"),
+          width = 12,
+          status = "warning",
+          solidHeader = TRUE,
+          background = "yellow",
+          label = boxLabel("", "primary"),
+          sidebar = boxSidebar(
+            id = "treemap_2_sidebar",
+            selectInput(
+              ns("but_classificacao"), "classificação estimada", c("todas", "C", "D", "E", "F", "G", "H")
+            )
+          ),
+          tags$div("Top 20 impactos de provisionamento", class = "box-subtit"),
+          tags$div("Por impacto estimado, mês corrente", class = "box-body"),
+          plotlyOutput(ns("treemap_2")),
+          tags$div("Fonte: GCO, simulação", class = "box-legenda")
+        )
       )
     )
   )
@@ -130,8 +151,7 @@ mod_cob_overview_server <- function(input, output, session) {
       subset(value_box_i, status == input$but_status)
     }
 
-    #value_box_i = head(value_box_i[order(-value_box_i$saldo_contabil), ], 20)
-    value_box_i = head(value_box_i, 20)
+    value_box_i = head(value_box_i[order(-value_box_i$saldo_contabil), ], 20)
 
     value_box_i$nome = paste(
       value_box_i$nome,
@@ -156,6 +176,67 @@ mod_cob_overview_server <- function(input, output, session) {
       labels = value_box_i$nome,
       parents = "top 20",
       values = value_box_i$saldo_contabil,
+      text = value_box_i$modalidade,
+      textinfo = "label+text+percent entry",
+      hoverinfo = "label+text+percent entry",
+      marker = list(
+        colors = value_box_i$cores
+      ),
+      outsidetextfont = list(size = 20, color = "white"),
+    ) %>%
+      layout(
+        margin = list(
+          r = 0,
+          t = 0,
+          b = 0,
+          l = 0
+        )
+      )
+
+  })
+
+  # treemap impacto PDD
+  output$treemap_2 = renderPlotly({
+
+    value_box_i = value_box_i()
+
+    value_box_i = if (input$but_classificacao == "todas") {
+      value_box_i
+    } else {
+      subset(value_box_i, class_estimada == input$but_classificacao)
+    }
+
+    value_box_i = head(value_box_i[order(-value_box_i$impacto_pdd), ], 20)
+
+    value_box_i$nome = paste(
+      value_box_i$nome,
+      paste("R$", format(
+        round(value_box_i$impacto_pdd, 0),
+        nsmall = 0,
+        big.mark = ".",
+        decimal.mark = ","
+      )), paste(value_box_i$dias_atraso, "dias de atraso"),
+      paste("de", value_box_i$class_risco, "para", value_box_i$class_estimada),
+      sep = "\r\n"
+    )
+
+    value_box_i = within(value_box_i, {
+      cores = NA
+      cores[class_estimada %in% c("AA", "A")] = "#004b8d"
+      cores[class_estimada == "B"] = "#FEE5D9"
+      cores[class_estimada == "C"] = "#FCBBA1"
+      cores[class_estimada == "D"] = "#FC9272"
+      cores[class_estimada == "E"] = "#FB6A4A"
+      cores[class_estimada == "F"] = "#EF3B2C"
+      cores[class_estimada == "G"] = "#CB181D"
+      cores[class_estimada == "H"] = "#99000D"
+    })
+
+    plot_ly(
+      type = "treemap",
+      labels = value_box_i$nome,
+      parents = "top 20",
+      values = value_box_i$impacto_pdd,
       text = value_box_i$modalidade,
       textinfo = "label+text+percent entry",
       hoverinfo = "label+text+percent entry",
