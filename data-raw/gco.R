@@ -1,5 +1,7 @@
 # CRIAR DADOS FALSOS PARA A ABA RISCO
 
+set.seed(1)
+
 # Dados pessoa física
 pf = data.frame(
     nome = charlatan::ch_name(10000), tipo_cli = 1,
@@ -9,7 +11,7 @@ pf = data.frame(
         replace = TRUE
     ),
     agencia = sample(1L:50L, 10000, replace = TRUE),
-    saldo_contabil = sample(100L:50000L, 10000, replace = TRUE),
+    saldo_contabil = sample(100L:1000000L, 10000, replace = TRUE),
     dias_atraso = sample(
         0L:365L,
         10000,
@@ -27,7 +29,7 @@ pj = data.frame(
         replace = TRUE
     ),
     agencia = sample(1L:50L, 1000, replace = TRUE),
-    saldo_contabil = sample(100L:50000L, 1000, replace = TRUE),
+    saldo_contabil = sample(100L:10000000L, 1000, replace = TRUE),
     dias_atraso = sample(0L:365L, 1000,
         replace = TRUE,
         prob = c(99, seq(from = 1, to = 0, length.out = 365))
