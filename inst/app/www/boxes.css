@@ -99,3 +99,21 @@
 .small-box.bg-yellow {
   background-color: #004b8d !important;
 }
+
+/* treemap sidebar positioning */
+.direct-chat-contacts-open .direct-chat-contacts {
+  width: 30%;
+}
+
+/* treemap sidebar button */
+.box-tools.pull-right .btn-warning {
+  background: #56af31 !important;
+  background-color: #56af31 !important;
+}
+
+/* treemap sidebar button hover */
+.box-tools.pull-right .btn-warning:hover {
+  background: white !important;
+  background-color: white !important;
+  color: #6D6964 !important;
+}

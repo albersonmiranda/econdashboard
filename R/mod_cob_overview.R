@@ -34,10 +34,12 @@ mod_cob_overview_ui <- function(id) {
           status = "warning",
           solidHeader = TRUE,
           background = "yellow",
-          maximizable = TRUE,
           label = boxLabel("", "primary"),
           sidebar = boxSidebar(
-            width = 25
+            id = "treemap_1_sidebar",
+            selectInput(
+              ns("but_status"), "status", c("todos", "em dia", "atraso", "inadimplente")
+            )
           ),
           tags$div("Top 20 contratos", class = "box-subtit"),
           tags$div("Por saldo contábil, mês anterior", class = "box-body"),
@@ -122,6 +124,12 @@ mod_cob_overview_server <- function(input, output, session) {
 
     value_box_i = value_box_i()
 
+    value_box_i = if (input$but_status == "todos") {
+      value_box_i
+    } else {
+      subset(value_box_i, status == input$but_status)
+    }
+
     #value_box_i = head(value_box_i[order(-value_box_i$saldo_contabil), ], 20)
     value_box_i = head(value_box_i, 20)
 
@@ -138,7 +146,7 @@ mod_cob_overview_server <- function(input, output, session) {
 
     value_box_i = within(value_box_i, {
       cores = NA
-      cores[status == "em dia"] = "navy"
+      cores[status == "em dia"] = "#004b8d"
       cores[status == "atraso"] = "orange"
       cores[status == "inadimplente"] = "firebrick"
     })
