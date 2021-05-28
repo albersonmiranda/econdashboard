@@ -486,7 +486,7 @@ mod_conj_credito_server <- function(input, output, session) {
   # Inadimplência BR
   output$plot3 <- renderPlotly({
     plot_ly(
-      data = series$InadBR, x = ~date, y = ~value,
+      data = series$InadBR[match(series$InadBRPF$date, series$InadBR$date), ], x = ~date, y = ~value,
       type = "scatter", mode = "lines", name = "Geral", line = list(color = "#004B8D")
     ) %>%
       add_trace(
