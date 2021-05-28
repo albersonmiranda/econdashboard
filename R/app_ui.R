@@ -32,7 +32,7 @@ app_ui <- function(request) {
           src = "www/img/Institucional_Outline_Fundo-Azul-cropped.png",
           class = "center"
         )
-      ), titleWidth = "200px"),
+      ), titleWidth = "150px"),
       dashboardSidebar(
         width = 150,
         sidebarMenu(
