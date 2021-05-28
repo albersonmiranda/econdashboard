@@ -3,7 +3,14 @@
   background-color: #004b8d;
   font-weight: normal;
   color: #808080;
-  padding: 0px;
+}
+
+.center {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 /* logo when hovered */

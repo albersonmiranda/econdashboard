@@ -29,10 +29,10 @@ app_ui <- function(request) {
       dashboardHeader(title = tags$a(
         href = "https://www.banestes.com.br",
         tags$img(
-          src = "www/img/logo.png",
-          width = "120px"
+          src = "www/img/Institucional_Outline_Fundo-Azul-cropped.png",
+          class = "center"
         )
-      ), titleWidth = "150px"),
+      ), titleWidth = "200px"),
       dashboardSidebar(
         width = 150,
         sidebarMenu(
