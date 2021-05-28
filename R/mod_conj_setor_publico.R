@@ -123,7 +123,7 @@ mod_conj_setor_publico_server <- function(input, output, session) {
     plot_ly(
       data = series$ResultadoES,
       x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Resultado Primário"
+      type = "scatter", mode = "lines", name = "Resultado Primário", line = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "R$ mi"),
@@ -140,7 +140,7 @@ mod_conj_setor_publico_server <- function(input, output, session) {
     plot_ly(
       data = series$DividaES,
       x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Dívida Líquida"
+      type = "scatter", mode = "lines", name = "Dívida Líquida", line = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "R$ mi"),

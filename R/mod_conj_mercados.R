@@ -198,7 +198,7 @@ mod_conj_mercados_server <- function(input, output, session) {
   # Selic
   output$plot1 = renderPlotly({
     plot_ly(data = series$Selic, x = ~date, y = ~value,
-            type = "scatter", mode = "lines", name = "Selic") %>%
+            type = "scatter", mode = "lines", name = "Selic", line = list(color = "#004B8D")) %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "% a.a."),
              legend = list(orientation = "h",
                            x = 0.5,
@@ -209,7 +209,7 @@ mod_conj_mercados_server <- function(input, output, session) {
   # Dolar
   output$plot2 = renderPlotly({
     plot_ly(data = subset(series$Dolar, date > "2000-01-01"), x = ~date, y = ~value,
-            type = "scatter", mode = "lines", name = "Dolar") %>%
+            type = "scatter", mode = "lines", name = "Dolar", line = list(color = "#004B8D")) %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "R$/US$"),
              legend = list(orientation = "h",
                            x = 0.5,
@@ -220,7 +220,7 @@ mod_conj_mercados_server <- function(input, output, session) {
   # Mercado de Trabalho
   output$plot3 = renderPlotly({
     plot_ly(data = series$Desemprego, x = ~date, y = ~value,
-            type = "scatter", mode = "lines", name = "Desemprego") %>%
+            type = "scatter", mode = "lines", name = "Desemprego", line = list(color = "#004B8D")) %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "%"),
              legend = list(orientation = "h",
                            x = 0.5,
@@ -231,7 +231,7 @@ mod_conj_mercados_server <- function(input, output, session) {
   # Mercado de Trabalho ES
   output$plot4 = renderPlotly({
     plot_ly(data = series$EmpregoGES, x = ~date, y = ~value,
-            type = "scatter", mode = "lines", name = "Emprego Gerado") %>%
+            type = "scatter", mode = "lines", name = "Emprego Gerado", line = list(color = "#004B8D")) %>%
       layout(title = "", xaxis = list(title = ""), yaxis = list(title = "unidades"),
              legend = list(orientation = "h",
                            x = 0.5,

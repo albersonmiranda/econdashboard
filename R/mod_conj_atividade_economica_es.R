@@ -282,7 +282,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
   output$plot1 <- renderPlotly({
     plot_ly(
       data = series$PIBvarES, x = ~date, y = ~value,
-      type = "bar", name = "PIB Anual"
+      type = "bar", name = "PIB Anual", marker = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Variação %"),
@@ -298,7 +298,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
   output$plot2 <- renderPlotly({
     plot_ly(
       data = series$PIBES, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "PIB ES"
+      type = "scatter", mode = "lines", name = "PIB ES", line = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "PIB (em R$)"),
@@ -315,9 +315,9 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
     plot_ly(
       data = series$IBCRES[match(series$IBCRESs$date, series$IBCRES$date), ],
       x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "IBCR-ES"
+      type = "scatter", mode = "lines", name = "IBCR-ES", line = list(color = "#004B8D")
     ) %>%
-      add_trace(y = series$IBCRESs$value, name = "IBC-ES dessazonalizado") %>%
+      add_trace(y = series$IBCRESs$value, name = "IBC-ES dessazonalizado", line = list(color = "#56af31")) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "IBCR-ES"),
         legend = list(
@@ -333,9 +333,9 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
     plot_ly(
       data = series$VarejoES[match(series$ServicosES$date, series$VarejoES$date), ],
       x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Varejo"
+      type = "scatter", mode = "lines", name = "Varejo", line = list(color = "#004B8D")
     ) %>%
-      add_trace(y = series$ServicosES$value, name = "Serviços") %>%
+      add_trace(y = series$ServicosES$value, name = "Serviços", line = list(color = "#56af31")) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
         legend = list(
@@ -351,7 +351,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
     plot_ly(
       data = series$ExpES,
       x = ~date, y = ~ value * 1000,
-      type = "scatter", mode = "lines", name = "Exportações"
+      type = "scatter", mode = "lines", name = "Exportações", line = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "US$ mi"),

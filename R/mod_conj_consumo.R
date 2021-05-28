@@ -286,11 +286,11 @@ mod_conj_consumo_server <- function(input, output, session) {
   output$plot1 = renderPlotly({
     plot_ly(
       data = series$PIBtriF, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Consumo das Famílias"
+      type = "scatter", mode = "lines", name = "Consumo das Famílias", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$PIBtriG$value,
-        name = "Consumo do Governo", mode = "lines"
+        name = "Consumo do Governo", mode = "lines", line = list(color = "#56af31")
       ) %>%
       layout(
         title = "",
@@ -308,15 +308,15 @@ mod_conj_consumo_server <- function(input, output, session) {
   output$plot3 = renderPlotly({
     plot_ly(
       data = series$ICC, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Confiança do Consumidor"
+      type = "scatter", mode = "lines", name = "Confiança do Consumidor", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$ICE$value,
-        name = "Condições Econômicas Atuais", mode = "lines"
+        name = "Condições Econômicas Atuais", mode = "lines", line = list(color = "#56af31")
       ) %>%
       add_trace(
         y = series$IEF$value,
-        name = "Expectativas Futuras", mode = "lines"
+        name = "Expectativas Futuras", mode = "lines", line = list(color = "#79bce7")
       ) %>%
       layout(
         title = "",
@@ -343,7 +343,7 @@ mod_conj_consumo_server <- function(input, output, session) {
         rename(date = 1, Público = 2, Privado = 3, Formal = 4, Informal = 5) %>%
           pivot_longer(!date) %>%
           ggplot(aes(x = date, y = value)) +
-          geom_line(color = "#1f77b4") +
+          geom_line(color = "#004b8d") +
           scale_y_continuous(labels = scales::number) +
           scale_x_date(guide = guide_axis(n.dodge = 2)) +
           facet_wrap(~name, scales = "free_y") +

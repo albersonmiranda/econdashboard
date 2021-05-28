@@ -435,19 +435,19 @@ mod_conj_credito_server <- function(input, output, session) {
   output$plot1 <- renderPlotly({
     plot_ly(
       data = series$PTCC_grandes, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Grandes Empresas"
+      type = "scatter", mode = "lines", name = "Grandes Empresas", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$PTCC_mpme$value,
-        name = "MPME", mode = "lines"
+        name = "MPME", mode = "lines", line = list(color = "#56af31")
       ) %>%
       add_trace(
         y = series$PTCC_consumo$value,
-        name = "Consumo", mode = "lines"
+        name = "Consumo", mode = "lines", line = list(color = "#79bce7")
       ) %>%
       add_trace(
         y = series$PTCC_habitacao$value,
-        name = "Habitação", mode = "lines"
+        name = "Habitação", mode = "lines", line = list(color = "#e7d8ac")
       ) %>%
       layout(
         title = "",
@@ -465,11 +465,11 @@ mod_conj_credito_server <- function(input, output, session) {
   output$plot2 <- renderPlotly({
     plot_ly(
       data = series$End, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "End. Famílias SFN"
+      type = "scatter", mode = "lines", name = "End. Famílias SFN", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$Endi$value,
-        name = "Exceto Imobiliário", mode = "lines"
+        name = "Exceto Imobiliário", mode = "lines", line = list(color = "#56af31")
       ) %>%
       layout(
         title = "",
@@ -487,15 +487,15 @@ mod_conj_credito_server <- function(input, output, session) {
   output$plot3 <- renderPlotly({
     plot_ly(
       data = series$InadBR, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Geral"
+      type = "scatter", mode = "lines", name = "Geral", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$InadBRPF$value,
-        name = "Pessoa Física", mode = "lines"
+        name = "Pessoa Física", mode = "lines", line = list(color = "#56af31")
       ) %>%
       add_trace(
         y = series$InadBRPJ$value,
-        name = "Pessoa Jurídica", mode = "lines"
+        name = "Pessoa Jurídica", mode = "lines", line = list(color = "#79bce7")
       ) %>%
       layout(
         title = "",
@@ -513,15 +513,15 @@ mod_conj_credito_server <- function(input, output, session) {
   output$plot4 <- renderPlotly({
     plot_ly(
       data = series$InadES, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Geral"
+      type = "scatter", mode = "lines", name = "Geral", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$InadESPF$value,
-        name = "Pessoa Física", mode = "lines"
+        name = "Pessoa Física", mode = "lines", line = list(color = "#56af31")
       ) %>%
       add_trace(
         y = series$InadESPJ$value,
-        name = "Pessoa Jurídica", mode = "lines"
+        name = "Pessoa Jurídica", mode = "lines", line = list(color = "#79bce7")
       ) %>%
       layout(
         title = "",
@@ -539,11 +539,11 @@ mod_conj_credito_server <- function(input, output, session) {
   output$plot5 <- renderPlotly({
     plot_ly(
       data = series$SaldoESPF, x = ~date, y = ~value / 100,
-      type = "scatter", mode = "lines", name = "Pessoa Física"
+      type = "scatter", mode = "lines", name = "Pessoa Física", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$SaldoESPJ$value / 100,
-        name = "Pessoa Jurídica", mode = "lines"
+        name = "Pessoa Jurídica", mode = "lines", line = list(color = "#56af31")
       ) %>%
       layout(
         title = "",

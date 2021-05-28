@@ -229,11 +229,11 @@ mod_conj_inflacao_server <- function(input, output, session) {
   output$plot1 <- renderPlotly({
     plot_ly(
       data = series$IPCA, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "IPCA"
+      type = "scatter", mode = "lines", name = "IPCA", line = list(color = "#004B8D")
     ) %>%
-      add_trace(series$IGPM, x = series$IGPM$date, y = series$IGPM$value, name = "IGPM", mode = "lines") %>%
-      add_trace(series$IPCBr, x = series$IPCBr$date, y = series$IPCBr$value, name = "IPCBr", mode = "lines") %>%
-      add_trace(series$ICV, x = series$ICV$date, y = series$ICV$value, name = "ICV", mode = "lines") %>%
+      add_trace(series$IGPM, x = series$IGPM$date, y = series$IGPM$value, name = "IGPM", mode = "lines", line = list(color = "#56af31")) %>%
+      add_trace(series$IPCBr, x = series$IPCBr$date, y = series$IPCBr$value, name = "IPCBr", mode = "lines", line = list(color = "#79bce7")) %>%
+      add_trace(series$ICV, x = series$ICV$date, y = series$ICV$value, name = "ICV", mode = "lines", line = list(color = "e7d8ac")) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Variação %"),
         legend = list(
@@ -248,7 +248,7 @@ mod_conj_inflacao_server <- function(input, output, session) {
   output$plot2 <- renderPlotly({
     plot_ly(
       data = series$CestaES, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Cesta Básica Vitória"
+      type = "scatter", mode = "lines", name = "Cesta Básica Vitória", line = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
@@ -264,7 +264,7 @@ mod_conj_inflacao_server <- function(input, output, session) {
   output$plot3 <- renderPlotly({
     plot_ly(
       data = series$CapInst, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Capacidade Instalada"
+      type = "scatter", mode = "lines", name = "Capacidade Instalada", line = list(color = "#004B8D")
     ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "%"),
