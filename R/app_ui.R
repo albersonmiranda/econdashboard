@@ -20,6 +20,7 @@ app_ui <- function(request) {
   # load data
   data("series")
   data("gco")
+  data("fundos")
 
   tagList(
     # Leave this function for adding external resources
@@ -37,7 +38,8 @@ app_ui <- function(request) {
         width = 150,
         sidebarMenu(
           menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar")),
-          menuItem("Cobrança", tabName = "cobranca", icon = icon("building"))
+          menuItem("Cobrança", tabName = "cobranca", icon = icon("building")),
+          menuItem("Fundos", tabName = "fundos", icon = icon("money-bill-wave"))
         )
       ),
       dashboardBody(
@@ -58,6 +60,11 @@ app_ui <- function(request) {
           tabItem(
             tabName = "cobranca",
             mod_cob_overview_ui("cob_overview_ui_1")
+          ),
+          # tab fundos
+          tabItem(
+            tabName = "fundos",
+            mod_fundos_overview_ui("fundos_overview_ui_1")
           )
         )
       )
