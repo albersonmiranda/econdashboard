@@ -47,3 +47,12 @@ fundos = dict(zip(names, tabela))
 
 # %% limpando demais
 del [i, names, tabela, tabela_temp, tabela_pre_rename, url, x]
+
+# %% corrigindo formatos e calculando rentabilidade acumulada
+cols = ['rentabilidade', 'variacao_cdi', 'desempenho_cdi']
+for i in fundos:
+    fundos[i][cols] = fundos[i][cols].replace({',': '.', '%': ''}, regex = True).astype('float') / 100
+    fundos[i]['rentabilidade_acum'] = fundos[i]['rentabilidade'].add(1).cumprod().add(-1)
+    fundos[i]['cdi_acum'] = fundos[i]['variacao_cdi'].add(1).cumprod().add(-1)
+
+# %%

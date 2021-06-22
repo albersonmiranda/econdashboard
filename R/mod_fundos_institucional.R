@@ -1,13 +1,13 @@
 #' fundos_overview UI Function
 #'
-#' @description A shiny Module.
+#' @description Modulo do fundo institucional.
 #'
 #' @param id, input, output, session Internal parameters for {shiny}.
 #'
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_fundos_overview_ui <- function(id) {
+mod_fundos_institucional_ui <- function(id) {
   ns <- NS(id)
   tagList(
     fluidPage(
@@ -41,27 +41,25 @@ mod_fundos_overview_ui <- function(id) {
           tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
-          tags$div("alguma legenda", style = "box-legenda"),
+          tags$div("fonte: Banestes DTVM", style = "box-legenda"),
           tags$div("Informações adicionais sobre o fundo (investimento mínimo, liquidez etc)", style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
-                number = paste(round(
-                  tail(series$PIBvar$value, 1), 2
-                ), "%"),
-                numberColor = if (tail(series$PIBvar$value, 1) >= 0) {
+                number = scales::percent(head(tail(fundos$Institucional$rentabilidade, 2), 1), 0.1),
+                numberColor = if (head(tail(fundos$Institucional$rentabilidade, 2), 1) >= 0) {
                   "success"
                 } else {
                   "danger"
                 },
-                numberIcon = if (tail(series$PIBvar$value, 1) >= 0) {
+                numberIcon = if (head(tail(fundos$Institucional$rentabilidade, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = NULL,
-                text = "var. % PIB",
+                header = paste(scales::percent(tail(fundos$Institucional$rentabilidade, 1), 0.1), "doze meses"),
+                text = "rentabilidade acumulada",
                 rightBorder = FALSE,
                 marginBottom = FALSE
               )
@@ -72,34 +70,35 @@ mod_fundos_overview_ui <- function(id) {
     )
   )
 }
-    
+
 #' fundos_overview Server Functions
 #'
 #' @noRd
-mod_fundos_overview_server <- function(id) {
+mod_fundos_institucional_server <- function(id) {
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
-    # PIB variação anual
+    # plot fundo
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = fundos$Institucional[1:nrow(fundos$Institucional) - 1,],
-        x = ~factor(mes, levels = fundos$Institucional$mes), y = ~rentabilidade,
+        data = fundos$Institucional[1:nrow(fundos$Institucional) - 1, ],
+        x = ~ factor(mes, levels = fundos$Institucional$mes), y = ~rentabilidade_acum,
         type = "scatter", mode = "lines", name = "Rentabilidade", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
-          data = fundos$Investidor[1:nrow(fundos$Investidor)-1,],
+          data = fundos$Investidor[1:nrow(fundos$Investidor) - 1, ],
           y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
-          title = "", xaxis = list(title = ""), yaxis = list(title = "Variação %")
+          title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
+          showlegend = FALSE
         )
     })
   })
 }
-    
+
 ## To be copied in the UI
-# mod_fundos_overview_ui("fundos_overview_ui_1")
-    
+# mod_fundos_institucional_ui("fundos_overview_ui_1")
+
 ## To be copied in the server
-# mod_fundos_overview_server("fundos_overview_ui_1")
+# mod_fundos_institucional_server("fundos_overview_ui_1")
