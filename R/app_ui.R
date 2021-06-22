@@ -59,7 +59,7 @@ app_ui <- function(request) {
           # tab cobrança
           tabItem(
             tabName = "cobranca",
-            mod_fundos_institucional_ui("cob_institucional_ui_1")
+            mod_cob_overview_ui("cob_overview_ui_1")
           ),
           # tab fundos
           tabItem(
