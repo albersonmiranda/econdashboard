@@ -38,7 +38,8 @@ mod_cob_overview_ui = function(id) {
           sidebar = boxSidebar(
             id = "treemap_1_sidebar",
             selectInput(
-              ns("but_status"), "status", c("todos", "em dia", "atraso", "inadimplente"), selected = "todos", multiple = TRUE
+              ns("but_status"), "status", c("todos", "em dia", "atraso", "inadimplente"),
+              selected = "todos", multiple = TRUE
             )
           ),
           tags$div("Top 20 contratos", class = "box-subtit"),
@@ -59,7 +60,8 @@ mod_cob_overview_ui = function(id) {
           sidebar = boxSidebar(
             id = "treemap_2_sidebar",
             selectInput(
-              ns("but_classificacao"), "classificação estimada", c("todas", "C", "D", "E", "F", "G", "H"), selected = "todas", multiple = TRUE
+              ns("but_classificacao"), "classificação estimada", c("todas", "C", "D", "E", "F", "G", "H"),
+              selected = "todas", multiple = TRUE
             )
           ),
           tags$div("Top 20 impactos de provisionamento", class = "box-subtit"),
@@ -142,7 +144,6 @@ mod_cob_overview_server = function(input, output, session) {
 
   # treemap maiores contratos
   output$treemap_1 = renderPlotly({
-
     value_box_i = value_box_i()
 
     value_box_i = if ("todos" %in% input$but_status) {
@@ -192,18 +193,16 @@ mod_cob_overview_server = function(input, output, session) {
           l = 0
         )
       )
-
   })
 
   # treemap impacto PDD
   output$treemap_2 = renderPlotly({
-
     value_box_i = value_box_i()
 
     value_box_i = if ("todas" %in% input$but_classificacao) {
       value_box_i
     } else {
-      subset(value_box_i, class_estimada %in% input$but_classificacao)
+      subset(value_box_i, class_usada %in% input$but_classificacao)
     }
 
     value_box_i = head(value_box_i[order(-value_box_i$impacto_pdd), ], 20)
@@ -216,20 +215,20 @@ mod_cob_overview_server = function(input, output, session) {
         big.mark = ".",
         decimal.mark = ","
       )), paste(value_box_i$dias_atraso, "dias de atraso"),
-      paste("de", value_box_i$class_risco, "para", value_box_i$class_estimada),
+      paste("de", value_box_i$class_risco, "para", value_box_i$class_usada),
       sep = "\r\n"
     )
 
     value_box_i = within(value_box_i, {
       cores = NA
-      cores[class_estimada %in% c("AA", "A")] = "#004b8d"
-      cores[class_estimada == "B"] = "#FEE5D9"
-      cores[class_estimada == "C"] = "#FCBBA1"
-      cores[class_estimada == "D"] = "#FC9272"
-      cores[class_estimada == "E"] = "#FB6A4A"
-      cores[class_estimada == "F"] = "#EF3B2C"
-      cores[class_estimada == "G"] = "#CB181D"
-      cores[class_estimada == "H"] = "#99000D"
+      cores[class_usada %in% c("AA", "A")] = "#004b8d"
+      cores[class_usada == "B"] = "#FEE5D9"
+      cores[class_usada == "C"] = "#FCBBA1"
+      cores[class_usada == "D"] = "#FC9272"
+      cores[class_usada == "E"] = "#FB6A4A"
+      cores[class_usada == "F"] = "#EF3B2C"
+      cores[class_usada == "G"] = "#CB181D"
+      cores[class_usada == "H"] = "#99000D"
     })
 
     plot_ly(
@@ -253,7 +252,6 @@ mod_cob_overview_server = function(input, output, session) {
           l = 0
         )
       )
-
   })
 }
 

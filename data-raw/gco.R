@@ -54,14 +54,14 @@ pf$class_risco = sapply(pf$dias_atraso, function(x) {
 
 pf$pdd = class_risco[match(pf$class_risco, class_risco$Nivel), ]$Prov * pf$saldo_contabil
 
-pf$class_estimada = sapply(ifelse(pf$dias_atraso > 0, pf$dias_atraso + 30, 0), function(x) {
+pf$class_usada = sapply(ifelse(pf$dias_atraso > 0, pf$dias_atraso + 30, 0), function(x) {
 
     diferenca = ifelse(x - class_risco$Dias_i >= 0, x - class_risco$Dias_i, NA)
     class_risco[which.min(diferenca), ]$Nivel
 
 })
 
-pf$pdd_estimado = class_risco[match(pf$class_estimada, class_risco$Nivel), ]$Prov * pf$saldo_contabil
+pf$pdd_estimado = class_risco[match(pf$class_usada, class_risco$Nivel), ]$Prov * pf$saldo_contabil
 
 pf$impacto_pdd = pf$pdd_estimado - pf$pdd
 
@@ -75,14 +75,14 @@ pj$class_risco = sapply(pj$dias_atraso, function(x) {
 
 pj$pdd = class_risco[match(pj$class_risco, class_risco$Nivel), ]$Prov * pj$saldo_contabil
 
-pj$class_estimada = sapply(ifelse(pj$dias_atraso > 0, pj$dias_atraso + 30, 0), function(x) {
+pj$class_usada = sapply(ifelse(pj$dias_atraso > 0, pj$dias_atraso + 30, 0), function(x) {
 
     diferenca = ifelse(x - class_risco$Dias_i >= 0, x - class_risco$Dias_i, NA)
     class_risco[which.min(diferenca), ]$Nivel
 
 })
 
-pj$pdd_estimado = class_risco[match(pj$class_estimada, class_risco$Nivel), ]$Prov * pj$saldo_contabil
+pj$pdd_estimado = class_risco[match(pj$class_usada, class_risco$Nivel), ]$Prov * pj$saldo_contabil
 
 pj$impacto_pdd = pj$pdd_estimado - pj$pdd
 
