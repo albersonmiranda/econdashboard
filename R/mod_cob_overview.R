@@ -7,8 +7,8 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_cob_overview_ui <- function(id) {
-  ns <- NS(id)
+mod_cob_overview_ui = function(id) {
+  ns = NS(id)
 
   tagList(
     fluidPage(
@@ -75,8 +75,8 @@ mod_cob_overview_ui <- function(id) {
 #' cob_overview Server Function
 #'
 #' @noRd
-mod_cob_overview_server <- function(input, output, session) {
-  ns <- session$ns
+mod_cob_overview_server = function(input, output, session) {
+  ns = session$ns
 
   value_box_i = reactive({
     value_box_i = if ("Todas" %in% input$but_agencia) {
@@ -85,13 +85,13 @@ mod_cob_overview_server <- function(input, output, session) {
       subset(gco, agencia %in% input$but_agencia)
     }
 
-    value_box_i = if (input$but_modalidade == "Todas") {
+    value_box_i = if ("Todas" %in% input$but_modalidade) {
       value_box_i
     } else {
       subset(value_box_i, modalidade %in% input$but_modalidade)
     }
 
-    value_box_i = if (input$but_tipo_cli == "Todos") {
+    value_box_i = if ("Todos" %in% input$but_tipo_cli) {
       value_box_i
     } else {
       subset(value_box_i, tipo_cli %in% input$but_tipo_cli)
@@ -145,7 +145,7 @@ mod_cob_overview_server <- function(input, output, session) {
 
     value_box_i = value_box_i()
 
-    value_box_i = if (input$but_status == "todos") {
+    value_box_i = if ("todos" %in% input$but_status) {
       value_box_i
     } else {
       subset(value_box_i, status %in% input$but_status)
