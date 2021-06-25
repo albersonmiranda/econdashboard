@@ -15,9 +15,9 @@ mod_cob_overview_ui <- function(id) {
 
       # botões de seleção de agência, modalidade e tipo cliente
       fluidRow(
-        selectInput(ns("but_agencia"), "Agência", c("Todas", sort(unique(gco$agencia)))),
-        selectInput(ns("but_modalidade"), "Modalidade", c("Todas", sort(unique(gco$modalidade)))),
-        selectInput(ns("but_tipo_cli"), "Tipo Cliente", c("Todos", sort(unique(gco$tipo_cli))))
+        selectInput(ns("but_agencia"), "Agência", c("Todas", sort(unique(gco$agencia))), selected = "Todas", multiple = TRUE),
+        selectInput(ns("but_modalidade"), "Modalidade", c("Todas", sort(unique(gco$modalidade))), selected = "Todas", multiple = TRUE),
+        selectInput(ns("but_tipo_cli"), "Tipo Cliente", c("Todos", sort(unique(gco$tipo_cli))), selected = "Todos", multiple = TRUE)
       ),
 
       # caixas de índices de inadimplência, atraso e iiq
@@ -38,7 +38,7 @@ mod_cob_overview_ui <- function(id) {
           sidebar = boxSidebar(
             id = "treemap_1_sidebar",
             selectInput(
-              ns("but_status"), "status", c("todos", "em dia", "atraso", "inadimplente")
+              ns("but_status"), "status", c("todos", "em dia", "atraso", "inadimplente"), selected = "todos", multiple = TRUE
             )
           ),
           tags$div("Top 20 contratos", class = "box-subtit"),
@@ -59,7 +59,7 @@ mod_cob_overview_ui <- function(id) {
           sidebar = boxSidebar(
             id = "treemap_2_sidebar",
             selectInput(
-              ns("but_classificacao"), "classificação estimada", c("todas", "C", "D", "E", "F", "G", "H")
+              ns("but_classificacao"), "classificação estimada", c("todas", "C", "D", "E", "F", "G", "H"), selected = "todas", multiple = TRUE
             )
           ),
           tags$div("Top 20 impactos de provisionamento", class = "box-subtit"),
@@ -79,22 +79,22 @@ mod_cob_overview_server <- function(input, output, session) {
   ns <- session$ns
 
   value_box_i = reactive({
-    value_box_i = if (input$but_agencia == "Todas") {
+    value_box_i = if ("Todas" %in% input$but_agencia) {
       gco
     } else {
-      subset(gco, agencia == input$but_agencia)
+      subset(gco, agencia %in% input$but_agencia)
     }
 
     value_box_i = if (input$but_modalidade == "Todas") {
       value_box_i
     } else {
-      subset(value_box_i, modalidade == input$but_modalidade)
+      subset(value_box_i, modalidade %in% input$but_modalidade)
     }
 
     value_box_i = if (input$but_tipo_cli == "Todos") {
       value_box_i
     } else {
-      subset(value_box_i, tipo_cli == input$but_tipo_cli)
+      subset(value_box_i, tipo_cli %in% input$but_tipo_cli)
     }
   })
 
@@ -148,7 +148,7 @@ mod_cob_overview_server <- function(input, output, session) {
     value_box_i = if (input$but_status == "todos") {
       value_box_i
     } else {
-      subset(value_box_i, status == input$but_status)
+      subset(value_box_i, status %in% input$but_status)
     }
 
     value_box_i = head(value_box_i[order(-value_box_i$saldo_contabil), ], 20)
@@ -200,10 +200,10 @@ mod_cob_overview_server <- function(input, output, session) {
 
     value_box_i = value_box_i()
 
-    value_box_i = if (input$but_classificacao == "todas") {
+    value_box_i = if ("todas" %in% input$but_classificacao) {
       value_box_i
     } else {
-      subset(value_box_i, class_estimada == input$but_classificacao)
+      subset(value_box_i, class_estimada %in% input$but_classificacao)
     }
 
     value_box_i = head(value_box_i[order(-value_box_i$impacto_pdd), ], 20)
