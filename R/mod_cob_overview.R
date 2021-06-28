@@ -209,8 +209,8 @@ mod_cob_overview_server = function(input, output, session) {
       subset(value_box_i, class_usada %in% input$but_classificacao)
     }
 
-    top20_cli = aggregate(saldo_contabil ~ nome, data = value_box_i, sum)
-    top20_cli = head(top20_cli[order(-top20_cli$saldo_contabil), ], 20)
+    top20_cli = aggregate(impacto_pdd ~ nome, data = value_box_i, sum)
+    top20_cli = head(top20_cli[order(-top20_cli$impacto_pdd), ], 20)
 
     value_box_i = subset(value_box_i, nome %in% top20_cli$nome)
 
