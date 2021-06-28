@@ -81,6 +81,7 @@ mod_cob_overview_server = function(input, output, session) {
   ns = session$ns
 
   value_box_i = reactive({
+
     value_box_i = if ("Todas" %in% input$but_agencia) {
       gco
     } else {
@@ -152,10 +153,13 @@ mod_cob_overview_server = function(input, output, session) {
       subset(value_box_i, status %in% input$but_status)
     }
 
-    value_box_i = head(value_box_i[order(-value_box_i$saldo_contabil), ], 20)
+    top20_cli = aggregate(saldo_contabil ~ nome, data = value_box_i, sum)
+    top20_cli = head(top20_cli[order(-top20_cli$saldo_contabil), ], 20)
 
-    value_box_i$nome = paste(
-      value_box_i$nome,
+    value_box_i = subset(value_box_i, nome %in% top20_cli$nome)
+
+    value_box_i$label = paste(
+      value_box_i$modalidade,
       paste("R$", format(
         round(value_box_i$saldo_contabil, 0),
         nsmall = 0,
@@ -174,14 +178,14 @@ mod_cob_overview_server = function(input, output, session) {
 
     plot_ly(
       type = "treemap",
-      labels = value_box_i$nome,
-      parents = "top 20",
-      values = value_box_i$saldo_contabil,
-      text = value_box_i$modalidade,
+      labels = c(top20_cli$nome, value_box_i$label),
+      parents = c(rep("top 20", 20), value_box_i$nome),
+      values = c(rep(0, 20), value_box_i$saldo_contabil),
+      text = c(rep("", 20), value_box_i$modalidade),
       textinfo = "label+text+percent entry",
       hoverinfo = "label+text+percent entry",
       marker = list(
-        colors = value_box_i$cores
+        colors = c(rep("#004b8d", 20), value_box_i$cores)
       ),
       outsidetextfont = list(size = 20, color = "white"),
     ) %>%
