@@ -209,10 +209,13 @@ mod_cob_overview_server = function(input, output, session) {
       subset(value_box_i, class_usada %in% input$but_classificacao)
     }
 
-    value_box_i = head(value_box_i[order(-value_box_i$impacto_pdd), ], 20)
+    top20_cli = aggregate(saldo_contabil ~ nome, data = value_box_i, sum)
+    top20_cli = head(top20_cli[order(-top20_cli$saldo_contabil), ], 20)
 
-    value_box_i$nome = paste(
-      value_box_i$nome,
+    value_box_i = subset(value_box_i, nome %in% top20_cli$nome)
+
+    value_box_i$label = paste(
+      value_box_i$modalidade,
       paste("R$", format(
         round(value_box_i$impacto_pdd, 0),
         nsmall = 0,
@@ -226,25 +229,20 @@ mod_cob_overview_server = function(input, output, session) {
     value_box_i = within(value_box_i, {
       cores = NA
       cores[class_usada %in% c("AA", "A")] = "#004b8d"
-      cores[class_usada == "B"] = "#FEE5D9"
-      cores[class_usada == "C"] = "#FCBBA1"
-      cores[class_usada == "D"] = "#FC9272"
-      cores[class_usada == "E"] = "#FB6A4A"
-      cores[class_usada == "F"] = "#EF3B2C"
-      cores[class_usada == "G"] = "#CB181D"
-      cores[class_usada == "H"] = "#99000D"
+      cores[class_usada %in% c("B", "C", "D")] = "orange"
+      cores[class_usada %in% c("E", "F", "G", "H")] = "firebrick"
     })
 
     plot_ly(
       type = "treemap",
-      labels = value_box_i$nome,
-      parents = "top 20",
-      values = value_box_i$impacto_pdd,
-      text = value_box_i$modalidade,
+      labels = c(top20_cli$nome, value_box_i$label),
+      parents = c(rep("top 20", 20), value_box_i$nome),
+      values = c(rep(0, 20), value_box_i$impacto_pdd),
+      text = c(rep("", 20), value_box_i$modalidade),
       textinfo = "label+text+percent entry",
       hoverinfo = "label+text+percent entry",
       marker = list(
-        colors = value_box_i$cores
+        colors = c(rep("#004b8d", 20), value_box_i$cores)
       ),
       outsidetextfont = list(size = 20, color = "white"),
     ) %>%
