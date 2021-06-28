@@ -45,7 +45,12 @@ mod_cob_overview_ui = function(id) {
           tags$div("Top 20 contratos", class = "box-subtit"),
           tags$div("Por saldo contábil, mês anterior", class = "box-body"),
           plotlyOutput(ns("treemap_1")),
-          tags$div("Fonte: GCO", class = "box-legenda")
+          tags$div("Fonte: GCO | Legenda:",
+            tags$div("adimplente", class = "azul"),
+            tags$div("em atraso", class = "amarelo"),
+            tags$div("inadimplente", class = "vermelho"),
+            class = "box-legenda"
+          )
         )
       ),
       # treemap impacto PDD
@@ -67,7 +72,11 @@ mod_cob_overview_ui = function(id) {
           tags$div("Top 20 impactos de provisionamento", class = "box-subtit"),
           tags$div("Por impacto estimado, mês corrente", class = "box-body"),
           plotlyOutput(ns("treemap_2")),
-          tags$div("Fonte: GCO, simulação", class = "box-legenda")
+          tags$div("Fonte: GCO, simulação | Legenda:",
+            tags$div("classificação C e D", class = "amarelo"),
+            tags$div("classificação E, F, G e H", class = "vermelho"),
+            class = "box-legenda"
+          )
         )
       )
     )

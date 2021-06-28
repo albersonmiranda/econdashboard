@@ -71,3 +71,30 @@
 .content-wrapper {
   background-color: white;
 }
+
+/* texto azul */
+.azul {
+  color: white;
+  background-color: #004b8d;
+  font-size: 12px;
+  padding: 1px;
+  display: inline;
+}
+
+/* texto amarelo */
+.amarelo {
+  color: black;
+  background-color: orange;
+  font-size: 12px;
+  padding: 1px;
+  display: inline;
+}
+
+/* texto vermelho */
+.vermelho {
+  color: white;
+  background-color: firebrick;
+  font-size: 12px;
+  padding: 1px;
+  display: inline;
+}
