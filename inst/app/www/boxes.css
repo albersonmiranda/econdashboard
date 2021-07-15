@@ -103,6 +103,12 @@
 /* treemap sidebar positioning */
 .direct-chat-contacts-open .direct-chat-contacts {
   width: 50%;
+  right: 0;
+}
+
+.direct-chat-contacts {
+  width: 50%;
+  right: 0;
 }
 
 /* treemap sidebar button */
