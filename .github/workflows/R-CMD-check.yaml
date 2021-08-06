@@ -13,7 +13,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        r-version: ['4.0.3']
+        r-version: ['4.1.0']
     steps:
       - uses: actions/checkout@v2
         
@@ -25,7 +25,6 @@ jobs:
         run: |
           install.packages(c("remotes", "rcmdcheck", "devtools"))
           remotes::install_deps(dependencies = TRUE)
-          devtools::install_github("RinteRface/bs4Dash")
         shell: Rscript {0}
         
       - name: Check
