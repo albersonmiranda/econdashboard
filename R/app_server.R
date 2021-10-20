@@ -18,4 +18,7 @@ app_server <- function(input, output, session) {
   callModule(mod_cob_overview_server, "cob_overview_ui_1")
   mod_fundos_institucional_server("fundos_institucional_ui_1")
   mod_fundos_investidor_server("fundos_investidor_ui_1")
+  mod_fundos_invest_money_server("fundos_invest_money_ui_1")
+  mod_fundos_Solidez_server("fundos_Solidez_ui_1")
+  mod_fundos_Estrategia_server("fundos_Estrategia_ui_1")
 }
