@@ -21,6 +21,7 @@ app_ui <- function(request) {
   data("series")
   data("gco")
   data("fundos")
+  data("resenhas_fundos")
 
   tagList(
     # Leave this function for adding external resources
