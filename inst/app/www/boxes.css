@@ -19,7 +19,7 @@
 
 /* boxes warning resenha */
 .box.box-solid.bg-yellow  {
-  background-color: #004b8d !important;
+  background-color: #fafdff !important;
   border-style: solid;
   border-width: thin;
   border-color: #004b8d;
@@ -47,7 +47,7 @@
 /* corpo da resenha */
 .res-body {
   font-size: 14px;
-  color: white;
+  color: #004b8d;
   text-align: left;
   padding: 10px;
   text-align: justify;
@@ -122,4 +122,10 @@
   background: white !important;
   background-color: white !important;
   color: #6D6964 !important;
+}
+
+h1 {
+  color: #004b8d;
+  font-family: "Century Gothic";
+  text-align: center;
 }

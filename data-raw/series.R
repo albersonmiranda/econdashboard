@@ -67,6 +67,12 @@ IPCBr = BETSget(191, data.frame = TRUE, from = "1995-01-01") # Indice de Precos 
 ICV = BETSget(194, data.frame = TRUE, from = "1995-01-01") # Indice Custo de Vida Dieese variação % mensal
 CapInst = BETSget(1344, data.frame = TRUE) # Utilização da capacidade instalada % (FGV)
 
+# Setor público ----
+ResultadoBR = BETSget(4792, data.frame = TRUE) # NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário
+ResultadoBR.PIB = BETSget(5507, data.frame = TRUE) #NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário (%PIB)
+DividaLiqBR = BETSget(4478, data.frame = TRUE) #Dívida Líquida do Setor Público - Saldos em R$ milhões
+DividaLiqBR.PIB = BETSget(4513, data.frame = TRUE) #Dívida Líquida do Setor pÚBLICO - % do PIB
+
 # Mercado financeiro ----
 Selic = BETSget(432, data.frame = TRUE) #	Meta definida pelo Copom
 Dolar = BETSget(10813, data.frame = TRUE) #	Taxa de Cambio Livre, Dolar, Compra

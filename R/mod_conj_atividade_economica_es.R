@@ -11,22 +11,20 @@
 mod_conj_atividade_economica_es_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    fluidPage(
+    fluidPage(titlePanel(h1("ATIVIDADE ECONÔMICA CAPIXABA")),
       fluidRow(
 
         # Resenha
         box(
-          title = tags$div("ATIVIDADE ECONÔMICA ES", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 760,
+          width = 12,
           status = NULL,
           background = "yellow",
           solidHeader = TRUE,
           collapsible = FALSE,
           tags$div(
             class = "res-body",
-            "O Produto Interno Bruto (PIB) do Espírito Santo vem mantendo bom desempenho em 2018. Dados divulgados pelo Instituto Jones dos Santos Neves (IJSN) referentes ao terceiro trimestre de 2018 mostram que o ritmo de crescimento da economia capixaba neste ano avançou 2,3% no acumulado do ano em comparação ao mesmo período do ano anterior. O número representa mais que o dobro do resultado nacional, que ficou em 1,1% na mesma base de comparação."
+           HTML(tail(resenhas_conjuntura$atividade.eco.es, 1))
           )
         ),
 
