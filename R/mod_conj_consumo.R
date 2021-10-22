@@ -11,21 +11,19 @@
 mod_conj_consumo_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    fluidPage(
+    fluidPage(titlePanel(h1("CONSUMO")),
       fluidRow(
 
         # Resenha
         box(
-          title = tags$div("CONSUMO", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 855,
+          width = 12,
           status = NULL,
           background = "yellow",
           solidHeader = TRUE,
           tags$div(
             class = "res-body",
-            p("Um dos principais motores da economia, o consumo das famílias reduziu seu ritmo de crescimento no 2T de 2018, divulgou o IBGE. Apesar da alta de 1,7% no trimestre, se comparado ao mesmo período de 2017, houve crescimento de apenas 0,1% em relção ao semestre anterior. Contribuem para esse cenário o aumento da informalidade no mercado de trabalho e estagnação da renda.")
+            HTML(tail(resenhas_conjuntura$consumo,1))
           )
         ),
 

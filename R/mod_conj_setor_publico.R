@@ -10,23 +10,20 @@
 mod_conj_setor_publico_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    fluidPage(
+    fluidPage(titlePanel(h1("SETOR PÚBLICO CAPIXABA")),
       fluidRow(
 
         # Resenha
         box(
-          title = tags$div("SETOR PÚBLICO CAPIXABA", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 760,
+          width = 12,
           status = NULL,
           background = "yellow",
           solidHeader = TRUE,
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh."),
-            p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh.")
+            HTML(tail(resenhas_conjuntura$setorpublico.es, 1))
           )
         ),
 

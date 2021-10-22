@@ -47,7 +47,7 @@
 
 /* corpo da resenha */
 .res-body {
-  font-size: 18px;
+  font-size: 14px;
   color: #004b8d;
   text-align: left;
   padding: 10px;
@@ -139,6 +139,11 @@
   color: #6D6964 !important;
 }
 
+/* títulos de conjuntura */
+h1 {
+  color: #004b8d;
+  font-family: "Century Gothic";
+  text-align: center;
 
 /* links */
 .link {

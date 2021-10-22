@@ -11,15 +11,13 @@
 mod_conj_credito_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    fluidPage(
+    fluidPage(titlePanel(h1("CRÉDITO")),
       fluidRow(
 
         # Resenha
         box(
-          title = tags$div("CRÉDITO", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 855,
+          width = 12,
           status = NULL,
           background = "yellow",
           solidHeader = TRUE,
@@ -27,9 +25,7 @@ mod_conj_credito_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            p("A lenta retomada da economia e o mercado de trabalho fragilizado continuam contribuindo para desaceleração do consumo e, consequentemente, da demanda por crédito. Embora em crescimento, a demanda por crédito foi bem aquém do projetado para o trimestre, conforme a Pesquisa Trimestral de Condições de Crédito do Departamento de Estudos e Pesquisas do Banco Central, frustando as expectativas do mercado de crédito pelo segundo trimestre consecutivo."),
-            p("Pelo lado da oferta, houve melhora da percepção do mercado em relação ao risco de crédito, revertendo o resultado negativo do trimestre anterior. Entretanto, a oferta também esteve abaixo da expectativa para o trimestre."),
-            p("O Espírito Santo ganhou destaque em setembro, quando um estudo da Fecomercio-SP apontou Vitória como a cidade de maior endividamento das famílias entre as capitais — 49%. Embora o endividamento não seja sinônimo da inadimplência, o primeiro antecede o segundo e sua elevação representa um fator de risco a ser monitorado pelos bancos.")
+            HTML(tail(resenhas_conjuntura$credito,1))
           )
         ),
 

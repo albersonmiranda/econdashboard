@@ -11,26 +11,43 @@
 mod_conj_atividade_economica_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    fluidPage(
+    fluidPage(titlePanel(h1("ATIVIDADE ECONÔMICA BRASILEIRA")),
       fluidRow(
 
         # Resenha
         box(
-          title = tags$div("ATIVIDADE ECONÔMICA", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 760,
+          width = 12,
           status = NULL,
           background = "yellow",
           solidHeader = TRUE,
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            p("A previsão do mercado financeiro para a queda da economia brasileira este ano foi ajustada de 5,46% para 5,28%. Para o próximo ano, a expectativa é de crescimento de 3,50%, a mesma previsão há 14 semanas consecutivas. Em 2022 e 2023, o mercado financeiro continua a projetar expansão de 2,50% do PIB."),
-            p("O indice de Atividade Economica do Banco Central (IBC-Br) que, com cautela, pode ser utilizado como sinalizador do Produto Interno Bruto (PIB), apresentou avanco de 0,02 por cento em outubro na comparacao com o mes anterior, de acordo com dado dessazonalizado divulgado BC."),
-            p("O desempenho foi melhor que a expectativa em pesquisa da Reuters de contracao de 0,20 por cento, representando o quinto resultado positivo no ano.")
+            HTML(tail(resenhas_conjuntura$atividadeeconomica, 1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf")),
+              tabPanel("2020", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf")),
+              tabPanel("2019", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf"))
+            )
+          )
+        ),
+
 
         # Variação do PIB
         box(

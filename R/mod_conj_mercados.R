@@ -11,22 +11,19 @@
 mod_conj_mercados_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    fluidPage(
+    fluidPage(titlePanel(h1("MERCADO DE TRABALHO, CÂMBIO E JUROS")),
       fluidRow(
 
         # Resenha
         box(
-          title = tags$div("MERCADOS", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 700,
-          status = NULL,
+          width = 12,
+          status = NULL, 
           background = "yellow",
           solidHeader = TRUE,
           tags$div(
             class = "res-body",
-            p("Para 2019, é esperado um aumento dos juros, motivado por uma provável recuperação da economia. Na média, os analistas do mercado financeiro esperam que a Selic feche o próximo ano em 7,5%."),
-            p("No mercado de trabalho, a taxa de desemprego no Brasil recuou para 11,6% no trimestre encerrado em novembro, segundo dados divulgados pelo IBGE, se mantendo praticamente constante — caiu 0,1% em relação ao mês anterior. Não obstante, o sinal é positivo pois foi a oitava queda mensal consecutiva no país.")
+           HTML(tail(resenhas_conjuntura$mercados, 1))
           )
         ),
 
