@@ -19,7 +19,7 @@
 
 /* boxes warning resenha */
 .box.box-solid.bg-yellow  {
-  background-color: #004b8d !important;
+  background-color: #fafdff !important;
   border-style: solid;
   border-width: thin;
   border-color: #004b8d;
@@ -42,20 +42,28 @@
 .res-tit {
   font-size: 26px;
   padding: 0px;
+  color: white;
 }
 
 /* corpo da resenha */
 .res-body {
-  font-size: 14px;
-  color: white;
+  font-size: 18px;
+  color: #004b8d;
   text-align: left;
   padding: 10px;
   text-align: justify;
 }
 
-/* título das boxes */
+/* título das boxes de conjuntura */
 .box-tit {
   font-size: 26px;
+  
+}
+
+/* título das boxes dos gráficos fundos */
+.box-graf {
+  font-size: 18px;
+
 }
 
 /* subtítulo das boxes */
@@ -76,6 +84,13 @@
   font-size: 12px;
   color: #808080;
   padding: 1px;
+}
+
+/* caracteristicas do fundo */
+.carac-fundos {
+  font-weight: 600;
+  font-size: 16px;
+  color: #56af31; 
 }
 
 /* description header */
@@ -122,4 +137,14 @@
   background: white !important;
   background-color: white !important;
   color: #6D6964 !important;
+}
+
+
+/* links */
+.link {
+ font-size: 18px;
+ color: #56af31;
+ font-weight: 500;
+ text-align: left;
+ padding: 10px;
 }
