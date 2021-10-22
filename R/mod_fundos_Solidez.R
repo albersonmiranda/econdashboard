@@ -1,21 +1,21 @@
-#' fundos_overview UI Function
+#' fundos_Solidez UI Function
 #'
-#' @description Modulo do fundo institucional.
+#' @description Modulo do fundo Solidez da Banestes DTVM.
 #'
-#' @param id, input, output, session Internal parameters for {shiny}.
+#' @param id,input,output,session Internal parameters for {shiny}.
 #'
-#' @noRd
+#' @noRd 
 #'
-#' @importFrom shiny NS tagList
-mod_fundos_institucional_ui <- function(id) {
+#' @importFrom shiny NS tagList 
+mod_fundos_Solidez_ui <- function(id){
   ns <- NS(id)
   tagList(
     fluidPage(
       fluidRow(
-
+        
         # resenha
         box(
-          title = tags$div("BANESTES INSTITUCIONAL", class = "res-tit"),
+          title = tags$div("BANESTES SOLIDEZ AUTOMÁTICO", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -26,27 +26,25 @@ mod_fundos_institucional_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            HTML(resenhas_fundos$institucional)
+            HTML(resenhas_fundos$solidez)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Institucional.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_solidez.pdf",
             "lâmina",
             class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_institucional.pdf",
-          "regulamento",
-          class = "link"),
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_solidez.pdf",
+            "regulamento",
+            class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_INSTITUCIONAL.pdf",
-          "relatório",
-          class = "link"),
-          tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_institucional.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_solidez.pdf",
             "termo de adesão",
             class = "link"),
-          ),
-      
-        # fundo institucional
+        ),
+        
+        
+        
+        # fundo Solidez
         box(
           title = tags$div("Gráfico de Performance", class = "box-graf"),
           closable = FALSE,
@@ -55,7 +53,7 @@ mod_fundos_institucional_ui <- function(id) {
           width = 12,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
+          tags$div("Fundo de Investimento Renda Fixa Curto Prazo", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
@@ -63,22 +61,21 @@ mod_fundos_institucional_ui <- function(id) {
             column(
               width = 12,
               descriptionBlock(
-                number = scales::percent(head(tail(fundos$Institucional$rentabilidade, 2), 1), 0.1),
-                numberColor = if (head(tail(fundos$Institucional$rentabilidade, 2), 1) >= 0) {
+                number = scales::percent(head(tail(fundos$Solidez$rentabilidade, 2), 1), 0.1),
+                numberColor = if (head(tail(fundos$Solidez$rentabilidade, 2), 1) >= 0) {
                   "success"
                 } else {
                   "danger"
                 },
-                numberIcon = if (head(tail(fundos$Institucional$rentabilidade, 2), 1) >= 0) {
+                numberIcon = if (head(tail(fundos$Solidez$rentabilidade, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Institucional$rentabilidade, 1), 0.1), "doze meses"),
+                header = paste(scales::percent(tail(fundos$Solidez$rentabilidade, 1), 0.1), "doze meses"),
                 text = "rentabilidade acumulada",
                 rightBorder = FALSE,
                 marginBottom = FALSE
-                
               )
             )
           )
@@ -87,24 +84,23 @@ mod_fundos_institucional_ui <- function(id) {
     )
   )
 }
- 
 
-#' fundos_overview Server Functions
+#' fundos_Solidez Server Functions
 #'
-#' @noRd
-mod_fundos_institucional_server <- function(id) {
-  moduleServer(id, function(input, output, session) {
+#' @noRd 
+mod_fundos_Solidez_server <- function(id){
+  moduleServer( id, function(input, output, session){
     ns <- session$ns
-
+ 
     # plot fundo
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = fundos$Institucional[1:nrow(fundos$Institucional) - 1, ],
-        x = ~ factor(mes, levels = fundos$Institucional$mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Fundo Institucional", marker = list(color = "#004B8D")
+        data = fundos$Solidez[1:nrow(fundos$Solidez) - 1, ],
+        x = ~ factor(mes, levels = fundos$Solidez$mes), y = ~rentabilidade_acum,
+        type = "scatter", mode = "lines", name = "Fundo Solidez", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
-          data = fundos$Investidor[1:nrow(fundos$Investidor) - 1, ],
+          data = fundos$Solidez[1:nrow(fundos$Solidez) - 1, ],
           y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
@@ -117,7 +113,7 @@ mod_fundos_institucional_server <- function(id) {
 }
 
 ## To be copied in the UI
-# mod_fundos_institucional_ui("fundos_overview_ui_1")
-
+# mod_fundos_Solidez_ui("fundos_Solidez_ui_1")
+    
 ## To be copied in the server
-# mod_fundos_institucional_server("fundos_overview_ui_1")
+# mod_fundos_Solidez_server("fundos_Solidez_ui_1")
