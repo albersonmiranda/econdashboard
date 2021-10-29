@@ -2,7 +2,7 @@
 #'
 #' @description Módulo do fundo Invest Public Banestes.
 #'
-#' @param id,input,output,session Internal parameters for {shiny}.
+#' @param id, input, output, session Internal parameters for {shiny}.
 #'
 #' @noRd 
 #'
@@ -13,36 +13,53 @@ mod_invest_public_ui <- function(id){
     fluidPage(
       fluidRow(
         
-        #resenha 
+        # resenha 
         box(
-          title = tags$div("INVEST PUBLIC RF", class = "res-tit"),
+          title = tags$div("BANESTES INVEST PUBLIC AUTOMÁTICO", class = "res-tit"),
           closable = FALSE,
-          width = 4,
-          height = 760,
-          status = NULL,
+          collapsible = FALSE,
+          collapsed = FALSE,
+          width = 12,
+          status = "warning",
           background = "yellow",
           solidHeader = TRUE,
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh."),
-            p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh.")
-        )
-      ), 
-      
+            HTML(resenhas_fundos$investpublic)
+          ),
+         
+          
+           tags$a(
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Invest_Public.pdf",
+            "Lâmina",
+            class = "link"),
+          tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_investpublic.pdf",
+        "Regulamento",
+            class = "link"),
+          tags$a(
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_investpublic.pdf",
+            "Termo de adesão",
+            class = "link"),
+        ),
+        
+        
+        
       #fundo Invest Public
       box(
-        title = tags$div("INVEST PUBLIC RF", class = "box-tit"),
+        title = tags$div("Desempenho do Fundo Banestes Invest Public", class = "box-graf"),
         closable = FALSE,
-        width = 8,
-        height = 760,
+        collapsible = TRUE,
+        collapsed = TRUE,
+        width = 12,
         status = "warning",
         solidHeader = TRUE,
         tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
         tags$div("Variação % mensal", class = "box-body"),
         plotlyOutput(ns("plot1")),
         tags$div("fonte: Banestes DTVM", style = "box-legenda"),
-        tags$div("Informações adicionais sobre o fundo (investimento mínimo, liquidez etc)", style = "box-body"),
+       
         footer = fluidRow(
           column(
             width = 12,
@@ -75,28 +92,33 @@ mod_invest_public_ui <- function(id){
 #'
 #' @noRd 
 mod_invest_public_server <- function(id){
-  moduleServer( id, function(input, output, session){
+  moduleServer( id, function(input, output, session) {
     ns <- session$ns
  
     #plot fundo Invest Public
     output$plot1 <- renderPlotly({
       plot_ly(
         data = fundos$Invest_Public[1:nrow(fundos$Invest_Public) - 1, ],
-        x = ~ factor(mes, levels = fundos$Investidor$mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Rentabilidade", marker = list(color = "#004B8D")
+        x = ~as.Date(mes), y = ~rentabilidade_acum,
+        type = "scatter", mode = "lines", name = "Fundo Banestes Invest Public", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
           data = fundos$Invest_Public[1:nrow(fundos$Invest_Public) - 1, ],
-          y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
+          y = ~indice_acum, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
           title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
-          showlegend = FALSE
+          xaxis = list(
+            type = 'date',
+            tickformat = "%b %Y"),
+           showlegend = TRUE,
+          legend = list(orientation = 'h')
         )
     })
   })
 }
-    
+
+
 ## To be copied in the UI
 # mod_invest_public_ui("invest_public_ui_1")
     

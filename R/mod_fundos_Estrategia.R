@@ -29,24 +29,28 @@ mod_fundos_Estrategia_ui <- function(id){
             HTML(resenhas_fundos$estrategia)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_estrategia.pdf",
-            "lâmina",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Estrategia.pdf",
+            "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_estrategia.pdf",
-            "regulamento",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento-invest-estrategia.pdf",
+            "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_estrategia.pdf",
-            "termo de adesão",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao-invest-estrategia.pdf",
+            "Termo de adesão",
             class = "link"),
+          tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_invest_estrategia.pdf",
+          "Relatório",
+          class = "link"),
         ),
         
         
         
         # fundo estrategia
         box(
-          title = tags$div("Gráfico de Performance", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo Banestes Estratégia", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
@@ -72,7 +76,7 @@ mod_fundos_Estrategia_ui <- function(id){
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Estrategia$rentabilidade, 1), 0.1), "doze meses"),
+                header = paste(scales::percent(tail(fundos$Estrategia$rentabilidade, 1), 0.1), "12 meses"),
                 text = "rentabilidade acumulada",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -82,9 +86,9 @@ mod_fundos_Estrategia_ui <- function(id){
         )
       )
     )
+    
   )
 }
-
     
 #' fundos_Estrategia Server Functions
 #'
@@ -97,16 +101,19 @@ mod_fundos_Estrategia_server <- function(id){
     output$plot1 <- renderPlotly({
       plot_ly(
         data = fundos$Estrategia[1:nrow(fundos$Estrategia) - 1, ],
-        x = ~ factor(mes, levels = fundos$Estrategia$mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Fundo Estratégia", marker = list(color = "#004B8D")
+        x = ~as.Date(mes), y = ~rentabilidade_acum,
+        type = "scatter", mode = "lines", name = "Fundo Banestes Estratégia", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
           data = fundos$Estrategia[1:nrow(fundos$Estrategia) - 1, ],
-          y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
+          y = ~indice_acum, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
           title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
-          showlegend = TRUE,
+          xaxis = list(
+            type = 'date',
+            tickformat = "%b %Y"
+          ),showlegend = TRUE,
           legend = list(orientation = 'h')
         )
     })

@@ -31,12 +31,13 @@ jobs:
       - name: Instalar Dependências
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash"), type = "binary")
+          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash", "reticulate"), type = "binary")
         shell: Rscript {0}
       
       - name: Atualizando Dados de Conjuntura
         run: |
-          source('data-raw/series.R')
+          source("data-raw/series.R")
+          source("data-raw/fundos.py")
         shell: Rscript {0}
 
       - name: Commit Dados de Conjuntura

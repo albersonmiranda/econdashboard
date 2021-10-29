@@ -30,22 +30,22 @@ mod_fundos_invest_money_ui <- function(id){
           ),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/lamina_Invest_Money.pdf",
-            "lâmina",
+            "Lâmina",
             class = "link"),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/regulamento_investmoney.pdf",
-            "regulamento",
+            "Regulamento",
             class = "link"),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/adesao_investmoney.pdf",
-            "termo de adesão",
+            "Termo de adesão",
             class = "link"),
         ),
         
         
         # fundo invest money
         box(
-          title = tags$div("Gráfico de Performance", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo Banestes Invest Money", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
@@ -97,15 +97,22 @@ mod_fundos_invest_money_server <- function(id){
     output$plot1 <- renderPlotly({
       plot_ly(
         data = fundos$Invest_Money[1:nrow(fundos$Invest_Money) - 1, ],
-        x = ~ factor(mes, levels = fundos$Invest_Money$mes), y = ~rentabilidade_acum,
+        x = ~as.Date(mes), y = ~rentabilidade_acum,
         type = "scatter", mode = "lines", name = "Fundo Invest Money", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
           data = fundos$Invest_Money[1:nrow(fundos$Invest_Money) - 1, ],
-          y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
+          y = ~indice_acum, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
-          title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
+          title = "", xaxis = list(title = ""),
+          yaxis = list(
+            title = "rentabilidade", tickformat = ".1%"
+          ),
+          xaxis = list(
+            type = 'date',
+            tickformat = "%b %Y"
+          ),
           showlegend = TRUE,
           legend = list(orientation = 'h')
         )

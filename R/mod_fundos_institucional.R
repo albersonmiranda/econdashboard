@@ -30,25 +30,25 @@ mod_fundos_institucional_ui <- function(id) {
           ),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/lamina_Institucional.pdf",
-            "lâmina",
+            "Lâmina",
             class = "link"),
           tags$a(
           href="https://www.banestes.com.br/investimentos/pdf/regulamento_institucional.pdf",
-          "regulamento",
+          "Regulamento",
           class = "link"),
           tags$a(
           href="https://www.banestes.com.br/investimentos/pdf/publicitario_INSTITUCIONAL.pdf",
-          "relatório",
+          "Relatório",
           class = "link"),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/adesao_institucional.pdf",
-            "termo de adesão",
+            "Termo de adesão",
             class = "link"),
           ),
       
         # fundo institucional
         box(
-          title = tags$div("Gráfico de Performance", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
@@ -99,16 +99,22 @@ mod_fundos_institucional_server <- function(id) {
     # plot fundo
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = fundos$Institucional[1:nrow(fundos$Institucional) - 1, ],
-        x = ~ factor(mes, levels = fundos$Institucional$mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Fundo Institucional", marker = list(color = "#004B8D")
+        data = fundos$Institucional[1:nrow(fundos$Institucional) - 1, ], 
+        x = ~as.Date(mes), y = ~rentabilidade_acum,
+        type = "scatter", mode = "lines", name = "Fundo Banestes Institucional", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
-          data = fundos$Investidor[1:nrow(fundos$Investidor) - 1, ],
-          y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
+          data = fundos$Institucional[1:nrow(fundos$Institucional) - 1, ],
+          y = ~indice_acum, name = "IMA-B", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
-          title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
+          title = "", xaxis = list(title = ""),
+          yaxis = list(
+            title = "rentabilidade", tickformat = ".1%"
+            ),
+          xaxis = list(
+            type = 'date',
+            tickformat = "%b %Y"),
           showlegend = TRUE,
           legend = list(orientation = 'h')
         )
