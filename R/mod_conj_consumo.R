@@ -26,6 +26,24 @@ mod_conj_consumo_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$consumo,1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # Consumo
         box(
@@ -175,7 +193,7 @@ mod_conj_consumo_ui <- function(id) {
           status = "warning",
           solidHeader = TRUE,
           tags$div("Renda média real das pessoas ocupadas", class = "box-subtit"),
-          tags$div("Em R$, mensal", class = "box-body"),
+          tags$div("Mensal, R$", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           footer = fluidRow(
