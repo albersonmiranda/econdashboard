@@ -26,17 +26,35 @@ mod_conj_setor_publico_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$setorpublico.es, 1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # Resultado primário ES
         box(
-          title = tags$div("NFSP", class = "box-tit"),
+          title = tags$div("Resultado Primário", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Resultado Primário", class = "box-subtit"),
-          tags$div("Fluxo acumulado no ano, Estado e municípios, trimestral", class = "box-body"),
+          tags$div("Necessidade de financiamento do Estado do ES e municípios", class = "box-subtit"),
+          tags$div("Fluxo acumulado no ano, trimestral", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
@@ -68,17 +86,17 @@ mod_conj_setor_publico_ui <- function(id) {
 
         # Dívida Líquida ES
         box(
-          title = tags$div("NFSP", class = "box-tit"),
+          title = tags$div("Dívida líquida", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Dívida líquida", class = "box-subtit"),
-          tags$div("Dívida líquida consolidada, Estado e municípios, trimestral", class = "box-body"),
+          tags$div("Dívida líquida consolidada do Estado do ES e municípios", class = "box-subtit"),
+          tags$div("Trimestral", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-          tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
+          tags$div("Após uma queda significativa em 2019, a dívida líquida capixaba voltou a crescer em 2020", class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,

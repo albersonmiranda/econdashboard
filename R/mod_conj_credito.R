@@ -28,6 +28,24 @@ mod_conj_credito_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$credito,1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # Pesquisa de Condições de Crédito
         box(
@@ -367,7 +385,7 @@ mod_conj_credito_ui <- function(id) {
           status = "warning",
           solidHeader = TRUE,
           tags$div("Saldo das operações de crédito do SFN - ES", class = "box-subtit"),
-          tags$div("Em R$ bilhões, mensal", class = "box-body"),
+          tags$div("Mensal, R$ bilhões", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(

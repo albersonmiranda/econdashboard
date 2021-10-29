@@ -26,19 +26,37 @@ mod_setor_publico_br_ui <- function(id){
                         )
                       ),
                       
+                      #Relatorios
+                      box( 
+                        title = tags$div("Relatórios", class = "box-tit"),
+                        closable = FALSE,
+                        collapsible = TRUE,
+                        collapsed = TRUE,
+                        width = 12,
+                        status = "warning",
+                        background = "yellow",
+                        solidHeader = TRUE,
+                        enable_dropdown = FALSE,
+                        mainPanel(
+                          tabsetPanel(
+                            tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+                          )
+                        )
+                      ),
+                      
                       # Resultado primário BR
                       box(
-                        title = tags$div("Necessida de Financiamento do Setor Público", class = "box-tit"),
+                        title = tags$div("Resultado Primário", class = "box-tit"),
                         closable = FALSE,
                         width = 4,
                         height = 760,
                         status = "warning",
                         solidHeader = TRUE,
-                        tags$div("Resultado Primário", class = "box-subtit"),
-                        tags$div("Fluxo acumulado no ano, setor público consolidado", class = "box-body"),
+                        tags$div("Necessidade de financiamento do setor público consolidado", class = "box-subtit"),
+                        tags$div("Fluxo acumulado no ano", class = "box-body"),
                         plotlyOutput(ns("plot1")),
                         tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-                        tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
+                        tags$div("A partir de 2015 o resultado primário brasileiro passou a ser deficitário.", class = "box-body"),
                         footer = fluidRow(
                           column(
                             width = 12,
@@ -65,58 +83,19 @@ mod_setor_publico_br_ui <- function(id){
                         )
                       ),
                       
-                      #Resultado primário BR %PIB
-                      box(
-                        title = tags$div("Necessida de Financiamento do Setor Público", class = "box-tit"),
-                        closable = FALSE,
-                        width = 4,
-                        height = 760,
-                        status = "warning",
-                        solidHeader = TRUE,
-                        tags$div("Resultado Primário em % PIB", class = "box-subtit"),
-                        tags$div("Fluxo acumulado no ano, setor público consolidado", class = "box-body"),
-                        plotlyOutput(ns("plot3")),
-                        tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-                        tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
-                        footer = fluidRow(
-                          column(
-                            width = 12,
-                            descriptionBlock(
-                              number = paste("R$", round(
-                                (tail(series$ResultadoBR.PIB$value, 1) - head(tail(series$ResultadoBR.PIB$value, 2), 1)), 1
-                              ), "mi"),
-                              numberColor = if (tail(series$ResultadoBR.PIB$value, 1) - head(tail(series$ResultadoBR.PIB$value, 2), 1) >= 0) {
-                                "success"
-                              } else {
-                                "danger"
-                              },
-                              numberIcon = if (tail(series$ResultadoBR.PIB$value, 1) - head(tail(series$ResultadoBR.PIB$value, 2), 1) >= 0) {
-                                icon("fas fa-caret-up")
-                              } else {
-                                icon("fas fa-caret-down")
-                              },
-                              header = paste("R$", round(tail(series$ResultadoBR.PIB$value, 1), 1), "mi", tail(months(series$ResultadoBR.PIB$date), 1)),
-                              text = "Resultado Primário",
-                              rightBorder = FALSE,
-                              marginBottom = FALSE
-                            )
-                          )
-                        )
-                      ),
-                      
                       # Dívida Líquida BR
                       box(
-                        title = tags$div("NFSP", class = "box-tit"),
+                        title = tags$div("Dívida Líquida", class = "box-tit"),
                         closable = FALSE,
                         width = 4,
                         height = 760,
                         status = "warning",
                         solidHeader = TRUE,
-                        tags$div("Dívida líquida", class = "box-subtit"),
-                        tags$div("Dívida líquida do setor público", class = "box-body"),
+                        tags$div("Dívida líquida do setor público", class = "box-subtit"),
+                        tags$div("Saldos em R$ milhões", class = "box-body"),
                         plotlyOutput(ns("plot2")),
                         tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-                        tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
+                        tags$div("A dívida líquida inclui todos os débitos do setor público não financeiro, exceto o pagamento de juros.", class = "box-body"),
                         footer = fluidRow(
                           column(
                             width = 12,
@@ -144,24 +123,24 @@ mod_setor_publico_br_ui <- function(id){
                       ), 
                     #Dívida Liquida BR %PIB  
                     box(
-                      title = tags$div("NFSP", class = "box-tit"),
+                      title = tags$div("Dívida Líquida (%PIB)", class = "box-tit"),
                       closable = FALSE,
                       width = 4,
                       height = 760,
                       status = "warning",
                       solidHeader = TRUE,
-                      tags$div("Dívida líquida em % PIB", class = "box-subtit"),
-                      tags$div("Dívida líquida do setor público", class = "box-body"),
+                      tags$div("Dívida líquida do setor público", class = "box-subtit"),
+                      tags$div("Saldo total", class = "box-body"),
                       plotlyOutput(ns("plot4")),
                       tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-                      tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
+                      tags$div("A partir de 2015 a dívida líquida brasileira passou a apresentar uma trajetória de crescimento ascendente em relação ao PIB.", class = "box-body"),
                       footer = fluidRow(
                         column(
                           width = 12,
                           descriptionBlock(
-                            number = paste("R$", round(
+                            number = paste("", round(
                               (tail(series$DividaLiqBR.PIB$value, 1) - head(tail(series$DividaLiqBR.PIB$value, 2), 1)), 1
-                            ), "mi"),
+                            ), "%"),
                             numberColor = if (tail(series$DividaLiqBR.PIB$value, 1) - head(tail(series$DividaLiqBR.PIB$value, 2), 1) >= 0) {
                               "danger"
                             } else {
@@ -172,17 +151,93 @@ mod_setor_publico_br_ui <- function(id){
                             } else {
                               icon("fas fa-caret-down")
                             },
-                            header = paste("R$", round(tail(series$DividaLiqBR.PIB$value, 1), 1), "mi", tail(months(series$DividaLiqBR.PIB$date), 1)),
+                            header = paste("", round(tail(series$DividaLiqBR.PIB$value, 1), 1), "%", tail(months(series$DividaLiqBR.PIB$date), 1)),
                             text = "Dívida Líquida Consolidada",
                             rightBorder = FALSE,
                             marginBottom = FALSE
                           )
                         )
                       )
-                    )  
-                    )
-  )
- 
+                    ),
+                    # Dívida Bruta BR
+                    box(
+                      title = tags$div("Dívida Bruta", class = "box-tit"),
+                      closable = FALSE,
+                      width = 4,
+                      height = 760,
+                      status = "warning",
+                      solidHeader = TRUE,
+                      tags$div("Dívida bruta do Governo Geral", class = "box-subtit"),
+                      tags$div("Saldos em R$ milhões", class = "box-body"),
+                      plotlyOutput(ns("plot5")),
+                      tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+                      tags$div("", class = "box-body"),
+                      tags$div("A dívida bruta inclui todos os passivos do Governo Geral, inclusive pagamento de juros e títulos públicos.", style = "box-body"),
+                      footer = fluidRow(
+                        column(
+                          width = 12,
+                          descriptionBlock(
+                            number = paste("R$", round(
+                              (tail(series$DividaBrutaBR$value, 1) - head(tail(series$DividaBrutaBR$value, 2), 1)), 1
+                            ), "mi"),
+                            numberColor = if (tail(series$DividaBrutaBR$value, 1) - head(tail(series$DividaBrutaBR$value, 2), 1) >= 0) {
+                              "danger"
+                            } else {
+                              "success"
+                            },
+                            numberIcon = if (tail(series$DividaBrutaBR$value, 1) - head(tail(series$DividaBrutaBR$value, 2), 1) >= 0) {
+                              icon("fas fa-caret-up")
+                            } else {
+                              icon("fas fa-caret-down")
+                            },
+                            header = paste("R$", round(tail(series$DividaBrutaBR$value, 1), 1), "mi", tail(months(series$DividaBrutaBR$date), 1)),
+                            text = "Dívida Bruta",
+                            rightBorder = FALSE,
+                            marginBottom = FALSE
+                          )
+                        )
+                      )
+                    ),
+                    #Dívida Liquida BR %PIB  
+                    box(
+                      title = tags$div("Dívida Bruta (%PIB)", class = "box-tit"),
+                      closable = FALSE,
+                      width = 4,
+                      height = 760,
+                      status = "warning",
+                      solidHeader = TRUE,
+                      tags$div("Dívida bruta do Governo Geral", class = "box-subtit"),
+                      tags$div("Saldo total", class = "box-body"),
+                      plotlyOutput(ns("plot6")),
+                      tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+                      tags$div("Em 2021, a DBGG atingiu o maior percentual em relação ao PIB registrado pela série histórica.", class = "box-body"),
+                      footer = fluidRow(
+                        column(
+                          width = 12,
+                          descriptionBlock(
+                            number = paste("", round(
+                              (tail(series$DividaBrutaBR.PIB$value, 1) - head(tail(series$DividaBrutaBR.PIB$value, 2), 1)), 1
+                            ), "%"),
+                            numberColor = if (tail(series$DividaBrutaBR.PIB$value, 1) - head(tail(series$DividaBrutaBR.PIB$value, 2), 1) >= 0) {
+                              "danger"
+                            } else {
+                              "success"
+                            },
+                            numberIcon = if (tail(series$DividaBrutaBR.PIB$value, 1) - head(tail(series$DividaBrutaBR.PIB$value, 2), 1) >= 0) {
+                              icon("fas fa-caret-up")
+                            } else {
+                              icon("fas fa-caret-down")
+                            },
+                            header = paste("", round(tail(series$DividaBrutaBR.PIB$value, 1), 1), "%", tail(months(series$DividaBrutaBR.PIB$date), 1)),
+                            text = "Dívida Bruta",
+                            rightBorder = FALSE,
+                            marginBottom = FALSE
+                          )
+            )
+          )
+        )  
+      )
+    )
   )
 }
     
@@ -197,23 +252,6 @@ mod_setor_publico_br_server <- function(id){
     output$plot1 <- renderPlotly({
       plot_ly(
         data = series$ResultadoBR,
-        x = ~date, y = ~value,
-        type = "scatter", mode = "lines", name = "Resultado Primário", line = list(color = "#004B8D")
-      ) %>%
-        layout(
-          title = "", xaxis = list(title = ""), yaxis = list(title = "R$ mi"),
-          legend = list(
-            orientation = "h",
-            x = 0.5,
-            xanchor = "center"
-          )
-        )
-    })
-    
-    #resultado primário do BR % PIB 
-    output$plot3 <- renderPlotly({
-      plot_ly(
-        data = series$ResultadoBR.PIB,
         x = ~date, y = ~value,
         type = "scatter", mode = "lines", name = "Resultado Primário", line = list(color = "#004B8D")
       ) %>%
@@ -252,6 +290,23 @@ mod_setor_publico_br_server <- function(id){
         type = "scatter", mode = "lines", name = "Dívida Líquida", line = list(color = "#004B8D")
       ) %>%
         layout(
+          title = "", xaxis = list(title = ""), yaxis = list(title = "%"),
+          legend = list(
+            orientation = "h",
+            x = 0.5,
+            xanchor = "center"
+          )
+        )
+    })
+    
+    # Dívida bruta consolidada BR
+    output$plot5 <- renderPlotly({
+      plot_ly(
+        data = series$DividaBrutaBR,
+        x = ~date, y = ~value,
+        type = "scatter", mode = "lines", name = "Dívida Bruta", line = list(color = "#004B8D")
+      ) %>%
+        layout(
           title = "", xaxis = list(title = ""), yaxis = list(title = "R$ mi"),
           legend = list(
             orientation = "h",
@@ -260,6 +315,23 @@ mod_setor_publico_br_server <- function(id){
           )
         )
     })
+    
+    # Dívida Bruta BR % PIB
+    output$plot6 <- renderPlotly({
+      plot_ly(
+        data = series$DividaBrutaBR.PIB,
+        x = ~date, y = ~value,
+        type = "scatter", mode = "lines", name = "Dívida Bruta", line = list(color = "#004B8D")
+      ) %>%
+        layout(
+          title = "", xaxis = list(title = ""), yaxis = list(title = "%"),
+          legend = list(
+            orientation = "h",
+            x = 0.5,
+            xanchor = "center"
+          )
+        )
+    })  
   })
 }
     

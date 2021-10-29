@@ -28,6 +28,24 @@ mod_conj_inflacao_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$inflacao, 1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # Capacidade Instalada
         box(
@@ -43,6 +61,7 @@ mod_conj_inflacao_ui <- function(id) {
           tags$div("%, trimestral", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: FGV", class = "box-legenda"),
+          tags$div("Em 2021, a utilização da capacidade instalada atingiu níveis similares ao período pré-pandemia.", style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -83,6 +102,7 @@ mod_conj_inflacao_ui <- function(id) {
           tags$div("Vitória-ES, índice, mensal", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: DIEESE", class = "box-legenda"),
+          tags$div("Houve um aumento significativo do custo da cesta básica à partir de 2020", style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,

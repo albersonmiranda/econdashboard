@@ -27,6 +27,24 @@ mod_conj_atividade_economica_es_ui <- function(id) {
            HTML(tail(resenhas_conjuntura$atividade.eco.es, 1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # PIB variação anual
         box(
@@ -80,7 +98,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           status = "warning",
           solidHeader = TRUE,
           tags$div("Crescimento do PIB ES", class = "box-subtit"),
-          tags$div("Em R$, valores observados a preço de mercado", class = "box-body"),
+          tags$div("Valores observados a preço de mercado em R$", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div("A economia capixaba fechou 2017 em patamar pré-2012.", class = "box-body"),
@@ -112,14 +130,14 @@ mod_conj_atividade_economica_es_ui <- function(id) {
 
         # IBCR-ES
         box(
-          title = tags$div("Atividade Economica Regional", class = "box-tit"),
+          title = tags$div("IBCR-ES", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Atividade Econômica Regional — IBCR-ES", class = "box-subtit"),
-          tags$div("Índice mensal observado, dessazonalizado", class = "box-body"),
+          tags$div("Índice de Atividade Econômica Regional", class = "box-subtit"),
+          tags$div("Índice mensal observado e dessazonalizado", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
@@ -236,8 +254,8 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Exportações", class = "box-subtit"),
-          tags$div("Em US$ milhões", class = "box-body"),
+          tags$div("Exportações de bens ES", class = "box-subtit"),
+          tags$div("US$ milhões, mensal", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: MDIC", class = "box-legenda"),
           footer = fluidRow(

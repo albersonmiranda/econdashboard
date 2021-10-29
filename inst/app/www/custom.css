@@ -98,3 +98,52 @@
   padding: 1px;
   display: inline;
 }
+
+/* actionButton */ 
+.button { 
+  background-color: white;
+  border: 1px solid #79bce7;
+  font-weight: 600;
+  text-align: center;
+  height: 15vh;
+  font-size: 2vh;
+  width: 30%;
+  cursor: pointer;
+  margin-left: 1vh;
+  margin-top: 2vh;
+  list-style: none;
+}
+
+.button:hover { 
+  background-color: #004b8d;
+  border: 1px solid #004b8d;
+  text-align: center;
+  font-weight: 600;
+  height: 15vh;
+  font-size: 2vh;
+  width: 30%;
+  cursor: pointer;
+  margin-left: 1vh;
+  margin-top: 2vh;
+  transform: scale(1.1);
+  transition: all 0.5s;
+  box-shadow: 0 2rem 2rem rgb(0 0 0 / 20%);
+  text-transform: uppercase;
+  list-style: none;
+}
+
+/* Icone dos botões */ 
+.icon {
+  color: #56af31;
+  font-size: 25px;
+}
+
+li a {
+  color: #004b8d;
+  display: block;
+}
+
+.button:hover a {
+  color: #fff;
+  display: block;
+}
