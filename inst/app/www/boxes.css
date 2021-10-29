@@ -144,12 +144,14 @@ h1 {
   color: #004b8d;
   font-family: "Century Gothic";
   text-align: center;
+}
 
 /* links */
 .link {
- font-size: 18px;
+ font-size: 16px;
  color: #56af31;
- font-weight: 500;
+ font-weight: 600;
  text-align: left;
  padding: 10px;
+  
 }

@@ -98,14 +98,21 @@ app_ui <- function(request) {
           # tab fundos
           tabItem(
             tabName = "fundos",
+            mod_fundos_vitoria_500_ui("fundos_vitoria_500_ui_1"),
             mod_fundos_institucional_ui("fundos_institucional_ui_1"),
             mod_fundos_investidor_ui("fundos_investidor_ui_1"),
             mod_invest_public_ui("invest_public_ui_1"),
             mod_fundo_previdenciario_ui("fundo_previdenciario_ui_1"),
+            mod_fundos_vip_ui("fundos_vip_ui_1"),
             mod_fundo_liquidez_ui("fundo_liquidez_ui_1"),
+            mod_fundos_referencial_ui("fundos_referencial_ui_1"),
+            mod_fundos_btg_ui("fundos_btg_ui_1"),
             mod_fundos_invest_money_ui("fundos_invest_money_ui_1"),
             mod_fundos_Solidez_ui("fundos_Solidez_ui_1"),
-            mod_fundos_Estrategia_ui("fundos_Estrategia_ui_1")
+            mod_fundos_valores_ui("fundos_valores_ui_1"),
+            mod_fundos_debentures_ui("fundos_debentures_ui_1"),
+            mod_fundos_Estrategia_ui("fundos_Estrategia_ui_1"),
+            mod_fundos_dividendos_ui("fundos_dividendos_ui_1")
           )
         )
       )

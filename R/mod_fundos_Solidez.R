@@ -30,15 +30,15 @@ mod_fundos_Solidez_ui <- function(id){
           ),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/lamina_solidez.pdf",
-            "lâmina",
+            "Lâmina",
             class = "link"),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/regulamento_solidez.pdf",
-            "regulamento",
+            "Regulamento",
             class = "link"),
           tags$a(
             href="https://www.banestes.com.br/investimentos/pdf/adesao_solidez.pdf",
-            "termo de adesão",
+            "Termo de adesão",
             class = "link"),
         ),
         
@@ -46,7 +46,7 @@ mod_fundos_Solidez_ui <- function(id){
         
         # fundo Solidez
         box(
-          title = tags$div("Gráfico de Performance", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo Banestes Solidez", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
@@ -96,15 +96,20 @@ mod_fundos_Solidez_server <- function(id){
     output$plot1 <- renderPlotly({
       plot_ly(
         data = fundos$Solidez[1:nrow(fundos$Solidez) - 1, ],
-        x = ~ factor(mes, levels = fundos$Solidez$mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Fundo Solidez", marker = list(color = "#004B8D")
+        x = ~as.Date(mes), y = ~rentabilidade_acum,
+        type = "scatter", mode = "lines", name = "Fundo Banestes Solidez", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
           data = fundos$Solidez[1:nrow(fundos$Solidez) - 1, ],
-          y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
+          y = ~indice_acum, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
-          title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
+          title = "", xaxis = list(title = ""), 
+          yaxis = list(
+            title = "rentabilidade", tickformat = ".1%"),
+          xaxis = list(
+            type = 'date',
+            tickformat = "%b %Y"),
           showlegend = TRUE,
           legend = list(orientation = 'h')
         )

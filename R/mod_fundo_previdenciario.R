@@ -12,36 +12,49 @@ mod_fundo_previdenciario_ui <- function(id){
   tagList(fluidPage(
     fluidRow(
       
-      #resenha 
+      # resenha
       box(
-        title = tags$div("BANESTES PREVIDENCIÁRIO RF", class = "res-tit"),
+        title = tags$div("BANESTES PREVIDENCIÁRIO ", class = "res-tit"),
         closable = FALSE,
-        width = 4,
-        height = 760,
-        status = NULL,
+        collapsible = FALSE,
+        collapsed = FALSE,
+        width = 12,
+        status = "warning",
         background = "yellow",
         solidHeader = TRUE,
         enable_dropdown = FALSE,
         tags$div(
           class = "res-body",
-          p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh."),
-          p("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh. Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed. Inceptos fermentum nibh.")
-        )
-      ), 
+          HTML(resenhas_fundos$previdenciario)
+        ),
+        tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/lamina_Previdenciario.pdf",
+          "Lâmina",
+          class = "link"),
+        tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_Previdenciario.pdf",
+          "Regulamento",
+          class = "link"),
+        tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/adesao_previdenciario.pdf",
+          "Termo de adesão",
+          class = "link"),
+      ),
+      
       
       #fundo previdenciario
       box(
-        title = tags$div("BANESTES PREVIDENCIÁRIO RF", class = "box-tit"),
-        closable = FALSE,
-        width = 8,
-        height = 760,
-        status = "warning",
-        solidHeader = TRUE,
+          title = tags$div("Desempenho do Fundo Banestes Previdenciário", class = "box-graf"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          solidHeader = TRUE,
         tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
         tags$div("Variação % mensal", class = "box-body"),
         plotlyOutput(ns("plot2")),
         tags$div("fonte: Banestes DTVM", style = "box-legenda"),
-        tags$div("Informações adicionais sobre o fundo (investimento mínimo, liquidez etc)", style = "box-body"),
         footer = fluidRow(
           column(
             width = 12,
@@ -82,16 +95,20 @@ mod_fundo_previdenciario_server <- function(id){
     output$plot2 <- renderPlotly({
       plot_ly(
         data = fundos$Previdenciario[1:nrow(fundos$Previdenciario) - 1, ],
-        x = ~ factor(mes, levels = fundos$Previdenciario$mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Rentabilidade", marker = list(color = "#004B8D")
+        x = ~as.Date(mes), y = ~rentabilidade_acum,
+        type = "scatter", mode = "lines", name = "Fundo Banestes Previdenciário", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
           data = fundos$Previdenciario[1:nrow(fundos$Previdenciario) - 1, ],
-          y = ~variacao_cdi, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
+          y = ~indice_acum, name = "IMA-B", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
           title = "", xaxis = list(title = ""), yaxis = list(title = "rentabilidade", tickformat = ".1%"),
-          showlegend = FALSE
+          xaxis = list(
+            type = 'date',
+            tickformat = "%b %Y"
+          ),showlegend = TRUE,
+          legend = list(orientation = 'h')
         )
     })
  

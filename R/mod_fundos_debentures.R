@@ -1,21 +1,21 @@
-#' fundos_investidor UI Function
+#' fundos_debentures UI Function
 #'
-#' @description Modulo do fundo Investidor da Banestes DTVM.
+#' @description A shiny Module.
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
-#' @noRd
+#' @noRd 
 #'
-#' @importFrom shiny NS tagList
-mod_fundos_investidor_ui <- function(id) {
+#' @importFrom shiny NS tagList 
+mod_fundos_debentures_ui <- function(id){
   ns <- NS(id)
   tagList(
     fluidPage(
       fluidRow(
-
+        
         # resenha
         box(
-          title = tags$div("BANESTES INVESTIDOR AUTOMÁTICO", class = "res-tit"),
+          title = tags$div("BANESTES  DEBÊNTURES INCENTIVADAS FIC de FI", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -26,56 +26,59 @@ mod_fundos_investidor_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div(
             class = "res-body",
-            HTML(resenhas_fundos$investidor)
+            HTML(resenhas_fundos$debentures)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Investidor.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_investidor.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_investidor.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf",
+            "Relatório",
+            class = "link"),
+          tags$a(
+            href="https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf",
             "Termo de adesão",
             class = "link"),
         ),
         
-        
-        # fundo investidor automático
+        # fundo debêntures incentivadas
         box(
-          title = tags$div("Desempenho do Fundo Investidor Automático", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
           width = 12,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Fundo de Investimento Renda Fixa Curto Prazo", class = "box-subtit"),
+          tags$div("Fundo Multimercado Crédito Privado", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
-        
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
-                number = scales::percent(head(tail(fundos$Investidor$rentabilidade, 2), 1), 0.1),
-                numberColor = if (head(tail(fundos$Investidor$rentabilidade, 2), 1) >= 0) {
+                number = scales::percent(head(tail(fundos$Debentures$rentabilidade, 2), 1), 0.1),
+                numberColor = if (head(tail(fundos$Debentures$rentabilidade, 2), 1) >= 0) {
                   "success"
                 } else {
                   "danger"
                 },
-                numberIcon = if (head(tail(fundos$Investidor$rentabilidade, 2), 1) >= 0) {
+                numberIcon = if (head(tail(fundos$Debentures$rentabilidade, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Investidor$rentabilidade, 1), 0.1), "doze meses"),
+                header = paste(scales::percent(tail(fundos$Debentures$rentabilidade, 1), 0.1), "doze meses"),
                 text = "rentabilidade acumulada",
                 rightBorder = FALSE,
                 marginBottom = FALSE
+                
               )
             )
           )
@@ -84,28 +87,31 @@ mod_fundos_investidor_ui <- function(id) {
     )
   )
 }
-    
-#' fundos_investidor Server Functions
+
+
+#' fundos_debentures Server Functions
 #'
 #' @noRd 
-mod_fundos_investidor_server <- function(id){
+mod_fundos_debentures_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-
+ 
     # plot fundo
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = fundos$Investidor[1:nrow(fundos$Investidor) - 1, ],
+        data = fundos$Debentures[1:nrow(fundos$Debentures) - 1, ], 
         x = ~as.Date(mes), y = ~rentabilidade_acum,
-        type = "scatter", mode = "lines", name = "Fundo Banestes Investidor", marker = list(color = "#004B8D")
+        type = "scatter", mode = "lines", name = "Fundo Banestes Debêntures Incentivadas", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
-          data = fundos$Investidor[1:nrow(fundos$Investidor) - 1, ],
+          data = fundos$BTG_Pactual_Absoluto[1:nrow(fundos$BTG_Pactual_Absoluto) - 1, ],
           y = ~indice_acum, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
-          title = "", xaxis = list(title = ""), 
-          yaxis = list(title = "rentabilidade", tickformat = ".1%"),
+          title = "", xaxis = list(title = ""),
+          yaxis = list(
+            title = "rentabilidade", tickformat = ".1%"
+          ),
           xaxis = list(
             type = 'date',
             tickformat = "%b %Y"
@@ -116,9 +122,8 @@ mod_fundos_investidor_server <- function(id){
     })
   })
 }
-    
 ## To be copied in the UI
-# mod_fundos_investidor_ui("fundos_investidor_ui_1")
+# mod_fundos_debentures_ui("fundos_debentures_ui_1")
     
 ## To be copied in the server
-# mod_fundos_investidor_server("fundos_investidor_ui_1")
+# mod_fundos_debentures_server("fundos_debentures_ui_1")
