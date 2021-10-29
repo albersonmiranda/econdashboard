@@ -72,6 +72,8 @@ ResultadoBR = BETSget(4792, data.frame = TRUE) # NFSP sem desvalorização cambi
 ResultadoBR.PIB = BETSget(5507, data.frame = TRUE) #NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário (%PIB)
 DividaLiqBR = BETSget(4478, data.frame = TRUE) #Dívida Líquida do Setor Público - Saldos em R$ milhões
 DividaLiqBR.PIB = BETSget(4513, data.frame = TRUE) #Dívida Líquida do Setor pÚBLICO - % do PIB
+DividaBrutaBR = BETSget(13761, data.frame = TRUE) #Divida bruta do Governo Geral - Saldo em R$ mi
+DividaBrutaBR.PIB = BETSget(13762, data.frame = TRUE) #Dívida bruta do Governo Geral - % do PIB
 
 # Mercado financeiro ----
 Selic = BETSget(432, data.frame = TRUE) #	Meta definida pelo Copom

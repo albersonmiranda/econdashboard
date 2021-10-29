@@ -26,6 +26,24 @@ mod_conj_mercados_ui <- function(id) {
            HTML(tail(resenhas_conjuntura$mercados, 1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # Mercado de Trabalho
         box(
@@ -117,6 +135,7 @@ mod_conj_mercados_ui <- function(id) {
           tags$div("Taxa ao ano, diária, anualizada, base 252", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div("Nos últimos meses, o comitê de política monetária (COPOM) adotou uma trajetória ascendente da taxa Selic para conter as expectativas de aumento da inflação.", style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -146,8 +165,8 @@ mod_conj_mercados_ui <- function(id) {
         box(
           title = tags$div("Taxa de Câmbio", class = "box-tit"),
           closable = FALSE,
-          width = 8,
-          height = 700,
+          width = 12,
+         # height = 700,
           status = "warning",
           solidHeader = TRUE,
           tags$div("Dólar", class = "box-subtit"),

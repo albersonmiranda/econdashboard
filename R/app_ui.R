@@ -45,14 +45,14 @@ app_ui <- function(request) {
                                tabName = "visao_geral"),
                    menuSubItem("Atividade Econômica",
                                tabName = "atividade_economica"),
-                   menuSubItem("Mercados", 
-                               tabName = "mercados"),
-                   menuSubItem("Inflação",
-                               tabName = "inflacao"),
                    menuSubItem("Consumo",
                                tabName = "consumo"),
                    menuSubItem("Crédito",
                                tabName = "credito"),
+                   menuSubItem("Inflação",
+                               tabName = "inflacao"),
+                   menuSubItem("Mercados", 
+                               tabName = "mercados"),
                    menuSubItem("Setor Público",
                                tabName = "setor_publico")
           ),
@@ -73,17 +73,17 @@ app_ui <- function(request) {
             mod_conj_atividade_economica_ui("atividade_economica_ui_1"),
             mod_conj_atividade_economica_es_ui("atividade_economica_es_ui_1")
             ),
+          tabItem(tabName = "consumo",
+                  mod_conj_consumo_ui("consumo_ui_1")
+          ),
+          tabItem(tabName = "credito",
+                  mod_conj_credito_ui("credito_ui_1")
+          ),
           tabItem(tabName = "mercados", 
                   mod_conj_mercados_ui("mercados_ui_1")
                   ),
           tabItem(tabName = "inflacao",
                   mod_conj_inflacao_ui("inflacao_ui_1")
-                  ),
-          tabItem(tabName = "consumo",
-                  mod_conj_consumo_ui("consumo_ui_1")
-                  ),
-          tabItem(tabName = "credito",
-                  mod_conj_credito_ui("credito_ui_1")
                   ),
           tabItem(tabName = "setor_publico",
                   mod_setor_publico_br_ui("setor_publico_br_ui_1"), 

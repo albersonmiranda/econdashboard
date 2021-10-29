@@ -22,6 +22,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           background = "yellow",
           solidHeader = TRUE,
           enable_dropdown = FALSE,
+          aligh = "center",
           tags$div(
             class = "res-body",
             HTML(tail(resenhas_conjuntura$atividadeeconomica, 1))
@@ -41,9 +42,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf")),
-              tabPanel("2020", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf")),
-              tabPanel("2019", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf"))
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
             )
           )
         ),
@@ -100,6 +99,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           tags$div("Índice trimestral, valores observados a preço de mercado", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div("Após queda no pior momento da pandemia no ínicio de 2020, o PIB volta a crescer.", style = "box-body"),
           footer = fluidRow(
             column(
               width = 6,
@@ -268,14 +268,14 @@ mod_conj_atividade_economica_ui <- function(id) {
 
         # Exportações
         box(
-          title = tags$div("Exportação de Bens", class = "box-tit"),
+          title = tags$div("Exportaçôes", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Exportações", class = "box-subtit"),
-          tags$div("Em US$ bilhões, balanço de pagamentos, mensal", class = "box-body"),
+          tags$div("Exportações de bens", class = "box-subtit"),
+          tags$div("Balanço de pagamentos, US$ bilhões, mensal", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(

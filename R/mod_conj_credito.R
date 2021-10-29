@@ -28,6 +28,24 @@ mod_conj_credito_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$credito,1))
           )
         ),
+        
+        #Relatorios
+        box( 
+          title = tags$div("Relatórios", class = "box-tit"),
+          closable = FALSE,
+          collapsible = TRUE,
+          collapsed = TRUE,
+          width = 12,
+          status = "warning",
+          background = "yellow",
+          solidHeader = TRUE,
+          enable_dropdown = FALSE,
+          mainPanel(
+            tabsetPanel(
+              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+            )
+          )
+        ),
 
         # Pesquisa de Condições de Crédito
         box(
@@ -360,22 +378,22 @@ mod_conj_credito_ui <- function(id) {
 
         # Saldo operações de crédito ES
         box(
-          title = tags$div("Crédito", class = "box-tit"),
+          title = tags$div("Crédito ES", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 855,
           status = "warning",
           solidHeader = TRUE,
           tags$div("Saldo das operações de crédito do SFN - ES", class = "box-subtit"),
-          tags$div("Em R$ bilhões, mensal", class = "box-body"),
+          tags$div("Mensal, R$ milhões", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           footer = fluidRow(
             column(
               width = 6,
               descriptionBlock(
-                number = paste(round(
-                  tail(series$SaldoESPF$value, 1) - head(tail(series$SaldoESPF$value, 2), 1), 2
+                number = paste("R$", round(
+                  (tail(series$SaldoESPF$value, 1) - head(tail(series$SaldoESPF$value, 2), 1)) /1000, 2
                 ), "milhões"),
                 numberColor = if (tail(series$SaldoESPF$value, 1) - head(tail(series$SaldoESPF$value, 2), 1) >= 0) {
                   "success"
@@ -387,7 +405,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(round(tail(series$SaldoESPF$value / 1000, 1), 1), "bi", tail(months(series$SaldoESPF$date), 1)),
+                header = paste(round(tail(series$SaldoESPF$value / 1000, 1), 1), "mi", tail(months(series$SaldoESPF$date), 1)),
                 text = "Pessoa física",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -396,7 +414,7 @@ mod_conj_credito_ui <- function(id) {
               width = 6,
               descriptionBlock(
                 number = paste(round(
-                  tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1), 2
+                  (tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1)) / 1000, 2
                 ), "milhões"),
                 numberColor = if (tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1) >= 0) {
                   "success"
@@ -408,7 +426,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(round(tail(series$SaldoESPJ$value / 1000, 1), 1), "bi", tail(months(series$SaldoESPJ$date), 1)),
+                header = paste(round(tail(series$SaldoESPJ$value / 1000, 1), 1), "mi", tail(months(series$SaldoESPJ$date), 1)),
                 text = "Pessoa Jurídica",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -534,17 +552,17 @@ mod_conj_credito_server <- function(input, output, session) {
   # Saldo das operações de crédito do SFN - ES
   output$plot5 <- renderPlotly({
     plot_ly(
-      data = series$SaldoESPF, x = ~date, y = ~value / 100,
+      data = series$SaldoESPF, x = ~date, y = ~value / 1000,
       type = "scatter", mode = "lines", name = "Pessoa Física", line = list(color = "#004B8D")
     ) %>%
       add_trace(
-        y = series$SaldoESPJ$value / 100,
+        y = series$SaldoESPJ$value / 1000,
         name = "Pessoa Jurídica", mode = "lines", line = list(color = "#56af31")
       ) %>%
       layout(
         title = "",
         xaxis = list(title = ""),
-        yaxis = list(title = "R$ bi"),
+        yaxis = list(title = "R$ mi"),
         legend = list(
           orientation = "h",
           x = 0.5,
