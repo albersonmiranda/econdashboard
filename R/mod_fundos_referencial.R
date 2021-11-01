@@ -74,8 +74,8 @@ mod_fundos_referencial_ui <- function(id){
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$IRF_M1$rentabilidade, 1), 0.1), "doze meses"),
-                text = "rentabilidade acumulada",
+                header = paste(scales::percent(tail(fundos$IRF_M1$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
+                text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
                 

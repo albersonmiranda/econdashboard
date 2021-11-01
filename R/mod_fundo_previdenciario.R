@@ -14,7 +14,7 @@ mod_fundo_previdenciario_ui <- function(id){
       
       # resenha
       box(
-        title = tags$div("BANESTES PREVIDENCIÁRIO ", class = "res-tit"),
+        title = tags$div("BANESTES PREVIDENCIÁRIO FI ", class = "res-tit"),
         closable = FALSE,
         collapsible = FALSE,
         collapsed = FALSE,
@@ -44,7 +44,7 @@ mod_fundo_previdenciario_ui <- function(id){
       
       #fundo previdenciario
       box(
-          title = tags$div("Desempenho do Fundo Banestes Previdenciário", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
@@ -70,8 +70,8 @@ mod_fundo_previdenciario_ui <- function(id){
               } else {
                 icon("fas fa-caret-down")
               },
-              header = paste(scales::percent(tail(fundos$Previdenciario$rentabilidade, 1), 0.1), "doze meses"),
-              text = "rentabilidade acumulada",
+              header = paste(scales::percent(tail(fundos$Previdenciario$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
+              text = "nos últimos 12 meses",
               rightBorder = FALSE,
               marginBottom = FALSE
             )

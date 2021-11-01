@@ -15,7 +15,7 @@ mod_fundos_Estrategia_ui <- function(id){
         
         # resenha
         box(
-          title = tags$div("BANESTES ESTRATÉGIA", class = "res-tit"),
+          title = tags$div("BANESTES ESTRATÉGIA FIC de FI ", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -50,7 +50,7 @@ mod_fundos_Estrategia_ui <- function(id){
         
         # fundo estrategia
         box(
-          title = tags$div("Desempenho do Fundo Banestes Estratégia", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
@@ -76,8 +76,8 @@ mod_fundos_Estrategia_ui <- function(id){
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Estrategia$rentabilidade, 1), 0.1), "12 meses"),
-                text = "rentabilidade acumulada",
+                header = paste(scales::percent(tail(fundos$Estrategia$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
+                text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
               )

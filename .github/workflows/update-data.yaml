@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-shinydoc2
+          key: ${{ runner.os }}-shinydoc3
           restore-keys: |
             ${{ runner.os }}-
 
