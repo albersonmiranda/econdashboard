@@ -51,7 +51,7 @@ app_ui <- function(request) {
                                tabName = "credito"),
                    menuSubItem("Inflação",
                                tabName = "inflacao"),
-                   menuSubItem("Mercados", 
+                   menuSubItem("Mercados",
                                tabName = "mercados"),
                    menuSubItem("Setor Público",
                                tabName = "setor_publico")
@@ -89,7 +89,7 @@ app_ui <- function(request) {
                   mod_setor_publico_br_ui("setor_publico_br_ui_1"), 
                   mod_conj_setor_publico_ui("setor_publico_ui_1")
                   ),
-          
+
           # tab cobrança
           tabItem(
             tabName = "cobranca",
