@@ -15,7 +15,7 @@ mod_fundos_invest_money_ui <- function(id){
         
         # resenha
         box(
-          title = tags$div("BANESTES INVEST MONEY", class = "res-tit"),
+          title = tags$div("BANESTES INVEST MONEY FI", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -72,8 +72,8 @@ mod_fundos_invest_money_ui <- function(id){
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Invest_Money$rentabilidade, 1), 0.1), "doze meses"),
-                text = "rentabilidade acumulada",
+                header = paste(scales::percent(tail(fundos$Invest_Money$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
+                text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
               )

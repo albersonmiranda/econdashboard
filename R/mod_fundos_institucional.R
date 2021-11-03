@@ -15,7 +15,7 @@ mod_fundos_institucional_ui <- function(id) {
 
         # resenha
         box(
-          title = tags$div("BANESTES INSTITUCIONAL", class = "res-tit"),
+          title = tags$div("BANESTES INSTITUCIONAL FI", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -55,7 +55,7 @@ mod_fundos_institucional_ui <- function(id) {
           width = 12,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
+          tags$div("Fundo de Investimento em Renda Fixa", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
@@ -74,8 +74,8 @@ mod_fundos_institucional_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Institucional$rentabilidade, 1), 0.1), "doze meses"),
-                text = "rentabilidade acumulada",
+                header = paste(scales::percent(tail(fundos$Institucional$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
+                text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
                 

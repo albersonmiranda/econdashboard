@@ -15,7 +15,7 @@ mod_fundos_vitoria_500_ui <- function(id){
         
         # resenha
         box(
-          title = tags$div("BANESTES VITÓRIA 500", class = "res-tit"),
+          title = tags$div("BANESTES VITÓRIA 500 FIC de FI", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -59,7 +59,7 @@ mod_fundos_vitoria_500_ui <- function(id){
             column(
               width = 12,
               descriptionBlock(
-                text = "rentabilidade acumulada",
+                text = "nos últimos 12 meses",
                 number = scales::percent(head(tail(fundos$Vitoria_500$rentabilidade, 2), 1), 0.1),
                 numberColor = if (head(tail(fundos$Vitoria_500$rentabilidade, 2), 1) >= 0) {
                   "success"
@@ -71,7 +71,7 @@ mod_fundos_vitoria_500_ui <- function(id){
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Vitoria_500$rentabilidade, 1), 0.1), "doze meses"),
+                header = paste(scales::percent(tail(fundos$Vitoria_500$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
                 rightBorder = FALSE,
                 marginBottom = FALSE
                 

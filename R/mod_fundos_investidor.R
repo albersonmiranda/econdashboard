@@ -15,7 +15,7 @@ mod_fundos_investidor_ui <- function(id) {
 
         # resenha
         box(
-          title = tags$div("BANESTES INVESTIDOR AUTOMÁTICO", class = "res-tit"),
+          title = tags$div("BANESTES INVESTIDOR AUTOMÁTICO FI", class = "res-tit"),
           closable = FALSE,
           collapsible = FALSE,
           collapsed = FALSE,
@@ -52,7 +52,7 @@ mod_fundos_investidor_ui <- function(id) {
           width = 12,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Fundo de Investimento Renda Fixa Curto Prazo", class = "box-subtit"),
+          tags$div("Fundo de Investimento de Renda Fixa Curto Prazo", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
@@ -72,8 +72,8 @@ mod_fundos_investidor_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(scales::percent(tail(fundos$Investidor$rentabilidade, 1), 0.1), "doze meses"),
-                text = "rentabilidade acumulada",
+                header = paste(scales::percent(tail(fundos$Investidor$rentabilidade, 1), 0.1), "de rentabilidade acumulada"),
+                text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
               )
