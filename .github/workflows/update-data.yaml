@@ -38,6 +38,7 @@ jobs:
         run: |
           source("data-raw/series.R")
           source("data-raw/fundos.py")
+          source("data-raw/resenhas.R")
         shell: Rscript {0}
 
       - name: Commit Dados de Conjuntura
