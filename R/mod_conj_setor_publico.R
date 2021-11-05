@@ -57,7 +57,15 @@ mod_conj_setor_publico_ui <- function(id) {
           tags$div("Fluxo acumulado no ano, trimestral", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-          tags$div("Lorem ipsum dolor sit amet, porttitor eu amet etiam ridiculus praesent nam sed.", class = "box-body"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$primario.es, 1)),
+                "", 
+                tail(legenda_conjuntura$primario.es, 1)
+              )
+            ),
+                class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -75,7 +83,7 @@ mod_conj_setor_publico_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", round(tail(series$ResultadoES$value, 1), 1), "mi", tail(months(series$ResultadoES$date), 1)),
+                header = paste0(" R$", round(tail(series$ResultadoES$value, 1), 1), " mi", " (", tail(months(series$ResultadoES$date), 1), ")"),
                 text = "Resultado Primário",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -96,7 +104,15 @@ mod_conj_setor_publico_ui <- function(id) {
           tags$div("Trimestral", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-          tags$div("Após uma queda significativa em 2019, a dívida líquida capixaba voltou a crescer em 2020", class = "box-body"),
+          tags$div(
+            HTML(
+              ifelse(
+              is.na(tail(legenda_conjuntura$div.liq.es, 1)),
+              "",
+              tail(legenda_conjuntura$div.liq.es, 1)
+              )
+            ),
+            class = "box-body" ),
           footer = fluidRow(
             column(
               width = 12,
@@ -114,7 +130,7 @@ mod_conj_setor_publico_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", round(tail(series$DividaES$value, 1), 1), "mi", tail(months(series$DividaES$date), 1)),
+                header = paste0(" R$", round(tail(series$DividaES$value, 1), 1), " mi", " (", tail(months(series$DividaES$date), 1), ")"),
                 text = "Dívida Líquida Consolidada",
                 rightBorder = FALSE,
                 marginBottom = FALSE

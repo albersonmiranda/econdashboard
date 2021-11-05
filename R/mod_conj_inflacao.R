@@ -61,14 +61,21 @@ mod_conj_inflacao_ui <- function(id) {
           tags$div("%, trimestral", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: FGV", class = "box-legenda"),
-          tags$div("Em 2021, a utilização da capacidade instalada atingiu níveis similares ao período pré-pandemia.", style = "box-body"),
+          tags$div(HTML(
+            ifelse( 
+              is.na(tail(legenda_conjuntura$capac.inst, 1)),
+              "",
+              tail(legenda_conjuntura$capac.inst, 1)
+            )
+          ),
+              style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
                 number = paste(round(
                   tail(series$CapInst$value, 1) - head(tail(series$CapInst$value, 2), 1), 2
-                ), "pts."),
+                ), "pts"),
                 numberColor = if (tail(series$CapInst$value, 1) - head(tail(series$CapInst$value, 2), 1) >= 0) {
                   "danger"
                 } else {
@@ -79,7 +86,7 @@ mod_conj_inflacao_ui <- function(id) {
                 } else {
                   icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste(tail(series$CapInst$value, 1), "%", tail(months(series$CapInst$date), 1)),
+                header = paste0(tail(series$CapInst$value, 1), "%", " (", tail(months(series$CapInst$date), 1), ")"),
                 text = "Capacidade Instalada",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -102,14 +109,23 @@ mod_conj_inflacao_ui <- function(id) {
           tags$div("Vitória-ES, índice, mensal", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: DIEESE", class = "box-legenda"),
-          tags$div("Houve um aumento significativo do custo da cesta básica à partir de 2020", style = "box-body"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$cestabasica, 1)),
+                "",
+                tail(legenda_conjuntura$cestabasica, 1)
+                )
+              ), 
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
                 number = paste(round(
                   tail(series$CestaES$value, 1) - head(tail(series$CestaES$value, 2), 1), 2
-                ), "pts."),
+                ), "pts"),
                 numberColor = if (tail(series$CestaES$value, 1) - head(tail(series$CestaES$value, 2), 1) >= 0) {
                   "danger"
                 } else {
@@ -120,7 +136,7 @@ mod_conj_inflacao_ui <- function(id) {
                 } else {
                   icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste(tail(series$CestaES$value, 1), "pts.", tail(months(series$CestaES$date), 1)),
+                header = paste0(tail(series$CestaES$value, 1), " pts", " (", tail(months(series$CestaES$date), 1), ")"),
                 text = "Cesta Básica",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -141,6 +157,15 @@ mod_conj_inflacao_ui <- function(id) {
           tags$div("Variação percentual, mensal", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: IBGE, FGV e DIEESE", class = "box-legenda"),
+          tags$div( 
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$inflacao, 1)), 
+                "", 
+                tail(legenda_conjuntura$inflacao, 1)
+              )
+            ), 
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 3,
@@ -158,7 +183,7 @@ mod_conj_inflacao_ui <- function(id) {
                 } else {
                   icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste(tail(series$IPCA$value, 1), tail(months(series$IPCA$date), 1)),
+                header = paste0(tail(series$IPCA$value, 1), " (", tail(months(series$IPCA$date), 1), ")"),
                 text = "IPCA",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -179,7 +204,7 @@ mod_conj_inflacao_ui <- function(id) {
                 } else {
                   icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste(tail(series$IGPM$value, 1), tail(months(series$IGPM$date), 1)),
+                header = paste0(tail(series$IGPM$value, 1), " (", tail(months(series$IGPM$date), 1), ")"),
                 text = "IGPM",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -200,7 +225,7 @@ mod_conj_inflacao_ui <- function(id) {
                 } else {
                   icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste(tail(series$IPCBr$value, 1), tail(months(series$IPCBr$date), 1)),
+                header = paste0(tail(series$IPCBr$value, 1), " (", tail(months(series$IPCBr$date), 1), ")"),
                 text = "IPCBr",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -221,7 +246,7 @@ mod_conj_inflacao_ui <- function(id) {
                 } else {
                   icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste(tail(series$ICV$value, 1), tail(months(series$ICV$date), 1)),
+                header = paste0(tail(series$ICV$value, 1), " (", tail(months(series$ICV$date), 1), ")"),
                 text = "ICV",
                 rightBorder = FALSE,
                 marginBottom = FALSE

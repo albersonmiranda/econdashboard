@@ -57,6 +57,16 @@ mod_conj_consumo_ui <- function(id) {
           tags$div("Índice, trimestral", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$consumo,1)),
+                "",
+                tail(legenda_conjuntura$consumo,1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -74,7 +84,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PIBtriF$value, 1), tail(months(series$PIBtriF$date), 1)),
+                header = paste0(tail(series$PIBtriF$value, 1), " (", tail(months(series$PIBtriF$date), 1), ")"),
                 text = "Consumo das Famílias",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -95,7 +105,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PIBtriG$value, 1), tail(months(series$PIBtriG$date), 1)),
+                header = paste0(tail(series$PIBtriG$value, 1), " (", tail(months(series$PIBtriG$date), 1), ")"),
                 text = "Consumo do Governo",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -116,6 +126,16 @@ mod_conj_consumo_ui <- function(id) {
           tags$div("Índice, mensal", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: Fecomercio", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$consumo,1)),
+                "",
+                tail(legenda_conjuntura$consumo,1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 4,
@@ -133,7 +153,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$ICC$value, 1), tail(months(series$ICC$date), 1)),
+                header = paste0(tail(series$ICC$value, 1), " (", tail(months(series$ICC$date), 1), ")"),
                 text = "ICC",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -154,7 +174,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$ICE$value, 1), tail(months(series$ICE$date), 1)),
+                header = paste0(tail(series$ICE$value, 1), " (", tail(months(series$ICE$date), 1), ")"),
                 text = "ICE",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -175,7 +195,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$IEF$value, 1), tail(months(series$IEF$date), 1)),
+                header = paste0(tail(series$IEF$value, 1), " (", tail(months(series$IEF$date), 1), ")"),
                 text = "IEF",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -196,6 +216,15 @@ mod_conj_consumo_ui <- function(id) {
           tags$div("Mensal, R$", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$renda.media, 1)),
+              "",
+              tail(legenda_conjuntura$renda.media, 1)
+            )
+          ), 
+          class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -213,7 +242,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", tail(series$RendaC$value, 1), "em", tail(months(series$RendaC$date), 1)),
+                header = paste0( " R$", tail(series$RendaC$value, 1), " em", " (", tail(months(series$RendaC$date), 1), ")"),
                 text = "Formalizado",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -234,7 +263,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", round(tail(series$RendaSC$value, 1), 2), "em", tail(months(series$RendaSC$date), 1)),
+                header = paste0( " R$", round(tail(series$RendaSC$value, 1), 2), " em", " (", tail(months(series$RendaSC$date), 1), ")"),
                 text = "Informal",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -258,7 +287,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", tail(series$RendaPriv$value, 1), "em", tail(months(series$RendaPriv$date), 1)),
+                header = paste0( " R$", tail(series$RendaPriv$value, 1), " em", " (", tail(months(series$RendaPriv$date), 1), ")"),
                 text = "Setor Privado",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -279,7 +308,7 @@ mod_conj_consumo_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", round(tail(series$RendaPub$value, 1), 2), "em", tail(months(series$RendaPub$date), 1)),
+                header = paste0( " R$", round(tail(series$RendaPub$value, 1), 2), " em", " (", tail(months(series$RendaPub$date), 1), ")"),
                 text = "Setor Público",
                 rightBorder = FALSE,
                 marginBottom = FALSE
