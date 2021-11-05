@@ -35,9 +35,15 @@ jobs:
         run: |
           install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash", "reticulate"), type = "binary")
         shell: Rscript {0}
-      
-      - name: Atualizando Dados de Conjuntura
-        run: source("data-raw/series.R")
+
+      - name: Install Miniconda
+        run: |
+          reticulate::install_miniconda()
+        shell: Rscript {0}
+
+      - name: Install Python Packages
+        run: |
+          reticulate::py_install("tabula-py")
         shell: Rscript {0}
 
       - name: Atualizando Dados de Fundos
@@ -46,6 +52,10 @@ jobs:
 
       - name: Atualizando Resenhas
         run: source("data-raw/resenhas.R")
+        shell: Rscript {0}
+      
+      - name: Atualizando Dados de Conjuntura
+        run: source("data-raw/series.R")
         shell: Rscript {0}
 
       - name: Commit dos dados
