@@ -33,7 +33,7 @@ jobs:
       - name: Instalar Dependências
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash", "reticulate", "Rcpp"), type = "binary")
+          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash", "reticulate", "Rcpp", "readxl"), type = "binary")
         shell: Rscript {0}
 
       - name: Install Miniconda
