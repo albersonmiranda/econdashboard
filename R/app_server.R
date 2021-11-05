@@ -17,6 +17,7 @@ app_server <- function(input, output, session) {
   callModule(mod_conj_setor_publico_server, "setor_publico_ui_1")
   mod_setor_publico_br_server("setor_publico_br_ui_1")
   callModule(mod_cob_overview_server, "cob_overview_ui_1")
+  mod_fundos_introducao_server("fundos_introducao_ui_1")
   mod_fundos_vitoria_500_server("fundos_vitoria_500_ui_1")
   mod_fundos_institucional_server("fundos_institucional_ui_1")
   mod_fundos_investidor_server("fundos_investidor_ui_1")

@@ -98,6 +98,7 @@ app_ui <- function(request) {
           # tab fundos
           tabItem(
             tabName = "fundos",
+            mod_fundos_introducao_ui("fundos_introducao_ui_1"),
             mod_fundos_vitoria_500_ui("fundos_vitoria_500_ui_1"),
             mod_fundos_institucional_ui("fundos_institucional_ui_1"),
             mod_fundos_investidor_ui("fundos_investidor_ui_1"),

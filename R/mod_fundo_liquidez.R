@@ -36,13 +36,17 @@ mod_fundo_liquidez_ui <- function(id){
           "Regulamento",
           class = "link"),
         tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_liquidez_referenciado.pdf",
+          "Relatório",
+          class = "link"),
+        tags$a(
           href="https://www.banestes.com.br/investimentos/pdf/adesao_liquidez_referenciado.pdf",
           "Termo de adesão",
           class = "link"),
       ),
       # fundo liquidez
       box(
-          title = tags$div("Desempenho do Fundo Banestes Liquidez", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,
