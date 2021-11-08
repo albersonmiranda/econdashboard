@@ -60,7 +60,15 @@ mod_conj_atividade_economica_ui <- function(id) {
           tags$div("Variação % anual real", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: IBGE", style = "box-legenda"),
-          tags$div("O resultado positivo de 2017 sinaliza o encerramento do período recessivo e início da retomada da economia.", style = "box-body"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$pib, 1)),
+                  "",
+                  tail(legenda_conjuntura$pib, 1)
+                )
+              ),
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -99,7 +107,14 @@ mod_conj_atividade_economica_ui <- function(id) {
           tags$div("Índice trimestral, valores observados a preço de mercado", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
-          tags$div("Após queda no pior momento da pandemia no ínicio de 2020, o PIB volta a crescer.", style = "box-body"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$pib.tri, 1)),
+              "",
+              tail(legenda_conjuntura$pib.tri, 1)
+              )
+            ),
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 6,
@@ -117,7 +132,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PIBtriobs$value, 1), tail(months(series$PIBtriobs$date), 1)),
+                header = paste0(tail(series$PIBtriobs$value, 1), " (", tail(months(series$PIBtriobs$date), 1), ")"),
                 text = "PIB",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -139,7 +154,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PIBtri$value, 1), tail(months(series$PIBtri$date), 1)),
+                header = paste0(tail(series$PIBtri$value, 1), " (", tail(months(series$PIBtri$date), 1), ")"),
                 text = "PIB Dessazonalizado",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -160,6 +175,14 @@ mod_conj_atividade_economica_ui <- function(id) {
           tags$div("Índice mensal observado e dessazonalizado", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$ibc.br, 1)),
+              "",
+              tail(legenda_conjuntura$ibc.br, 1)
+                 )
+                ),
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 6,
@@ -177,7 +200,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$IBCBr$value, 1), tail(months(series$IBCBr$date), 1)),
+                header = paste0(tail(series$IBCBr$value, 1), " (", tail(months(series$IBCBr$date), 1), ")"),
                 text = "IBC-Br",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -198,7 +221,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$IBCBrs$value, 1), tail(months(series$IBCBrs$date), 1)),
+                header = paste0(tail(series$IBCBrs$value, 1), " (", tail(months(series$IBCBrs$date), 1), ")"),
                 text = "IBC-Br Dessazonalizado",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -219,6 +242,15 @@ mod_conj_atividade_economica_ui <- function(id) {
           tags$div("Volume de vendas no varejo e receita nominal de serviços", class = "box-body"),
           plotlyOutput(ns("plot4")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$varejo.servico, 1)),
+                "",
+                tail(legenda_conjuntura$varejo.servico, 1)
+                )
+              ),
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 6,
@@ -236,7 +268,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$Varejo$value, 1), tail(months(series$Varejo$date), 1)),
+                header = paste0(tail(series$Varejo$value, 1), " (", tail(months(series$Varejo$date), 1), ")"),
                 text = "Varejo",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -257,7 +289,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$Servicos$value, 1), tail(months(series$Servicos$date), 1)),
+                header = paste0(tail(series$Servicos$value, 1), " (", tail(months(series$Servicos$date), 1), ")"),
                 text = "Serviços",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -278,6 +310,14 @@ mod_conj_atividade_economica_ui <- function(id) {
           tags$div("Balanço de pagamentos, US$ bilhões, mensal", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$exportacoes, 1)),
+              "",
+              tail(legenda_conjuntura$exportacoes, 1)
+            )
+           ),
+           class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -295,7 +335,7 @@ mod_conj_atividade_economica_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("US$", round(tail(series$ExpBR$value / 1000, 1), 1), "bi", tail(months(series$ExpBR$date), 1)),
+                header = paste0(" US$", round(tail(series$ExpBR$value / 1000, 1), 1), " bi", " (", tail(months(series$ExpBR$date), 1), ")"),
                 text = "Exportações",
                 rightBorder = FALSE,
                 marginBottom = FALSE

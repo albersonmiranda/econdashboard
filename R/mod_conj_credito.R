@@ -59,6 +59,14 @@ mod_conj_credito_ui <- function(id) {
           tags$div("aprovações observadas, em pontos, trimestral", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: BCB-Depep", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$consumo,1)),
+              "",
+              tail(legenda_conjuntura$consumo,1)
+            )
+          ),
+          class = "box-body"),
           footer = fluidRow(
             column(
               width = 6,
@@ -76,7 +84,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PTCC_grandes$value, 1), tail(months(series$PTCC_grandes$date), 1)),
+                header = paste0(tail(series$PTCC_grandes$value, 1), " (", tail(months(series$PTCC_grandes$date), 1), ")"),
                 text = "grandes empresas",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -97,7 +105,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PTCC_mpme$value, 1), tail(months(series$PTCC_mpme$date), 1)),
+                header = paste0(tail(series$PTCC_mpme$value, 1), " (", tail(months(series$PTCC_mpme$date), 1), ")"),
                 text = "MPME",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -121,7 +129,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PTCC_consumo$value, 1), tail(months(series$PTCC_consumo$date), 1)),
+                header = paste0(tail(series$PTCC_consumo$value, 1)," (", tail(months(series$PTCC_consumo$date), 1), ")"),
                 text = "consumo",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -142,7 +150,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$PTCC_habitacao$value, 1), tail(months(series$PTCC_habitacao$date), 1)),
+                header = paste0(tail(series$PTCC_habitacao$value, 1)," (", tail(months(series$PTCC_habitacao$date), 1), ")"),
                 text = "MPME",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -163,6 +171,16 @@ mod_conj_credito_ui <- function(id) {
           tags$div("Percentual da renda familiar, mensal", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$endividamento, 1)),
+                "",
+                tail(legenda_conjuntura$endividamento, 1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -180,7 +198,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$End$value, 1), tail(months(series$End$date), 1)),
+                header = paste0(tail(series$End$value, 1), " (", tail(months(series$End$date), 1), ")"),
                 text = "Endividamento",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -201,7 +219,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$Endi$value, 1), tail(months(series$Endi$date), 1)),
+                header = paste0(tail(series$Endi$value, 1), " (", tail(months(series$Endi$date), 1), ")"),
                 text = "Exceto imobiliário",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -222,6 +240,16 @@ mod_conj_credito_ui <- function(id) {
           tags$div("Percentual sobre saldo de créditos, mensal", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$inadimplencia.br, 1)),
+                "",
+                tail(legenda_conjuntura$inadimplencia.br, 1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -239,7 +267,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$InadBRPF$value, 1), tail(months(series$InadBRPF$date), 1)),
+                header = paste0(tail(series$InadBRPF$value, 1), " (", tail(months(series$InadBRPF$date), 1), ")"),
                 text = "Pessoa física",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -260,7 +288,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$InadBRPJ$value, 1), tail(months(series$InadBRPJ$date), 1)),
+                header = paste0(tail(series$InadBRPJ$value, 1), " (", tail(months(series$InadBRPJ$date), 1), ")"),
                 text = "Pessoa Jurídica",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -284,7 +312,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$InadBR$value, 1), tail(months(series$InadBR$date), 1)),
+                header = paste0(tail(series$InadBR$value, 1), " (", tail(months(series$InadBR$date), 1), ")"),
                 text = "Geral",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -305,6 +333,16 @@ mod_conj_credito_ui <- function(id) {
           tags$div("Percentual sobre saldo de créditos, mensal", class = "box-body"),
           plotlyOutput(ns("plot4")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$inadimplencia.es, 1)),
+                "",
+                tail(legenda_conjuntura$inadimplencia.es, 1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -322,7 +360,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$InadESPF$value, 1), tail(months(series$InadESPF$date), 1)),
+                header = paste0(tail(series$InadESPF$value, 1), " (", tail(months(series$InadESPF$date), 1), ")"),
                 text = "Pessoa física",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -343,7 +381,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$InadESPJ$value, 1), tail(months(series$InadESPJ$date), 1)),
+                header = paste0(tail(series$InadESPJ$value, 1), " (", tail(months(series$InadESPJ$date), 1), ")"),
                 text = "Pessoa Jurídica",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -367,7 +405,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$InadES$value, 1), tail(months(series$InadES$date), 1)),
+                header = paste0(tail(series$InadES$value, 1), " (", tail(months(series$InadES$date), 1), ")"),
                 text = "Geral",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -388,6 +426,16 @@ mod_conj_credito_ui <- function(id) {
           tags$div("Mensal, R$ milhões", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$credito.es, 1)),
+                "",
+                tail(legenda_conjuntura$credito.es, 1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -405,7 +453,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(round(tail(series$SaldoESPF$value / 1000, 1), 1), "mi", tail(months(series$SaldoESPF$date), 1)),
+                header = paste0(" R$", round(tail(series$SaldoESPF$value / 1000, 1), 1), " mi", " (", tail(months(series$SaldoESPF$date), 1), ")"),
                 text = "Pessoa física",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -413,7 +461,7 @@ mod_conj_credito_ui <- function(id) {
             ), column(
               width = 6,
               descriptionBlock(
-                number = paste(round(
+                number = paste("R$", round(
                   (tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1)) / 1000, 2
                 ), "milhões"),
                 numberColor = if (tail(series$SaldoESPJ$value, 1) - head(tail(series$SaldoESPJ$value, 2), 1) >= 0) {
@@ -426,7 +474,7 @@ mod_conj_credito_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(round(tail(series$SaldoESPJ$value / 1000, 1), 1), "mi", tail(months(series$SaldoESPJ$date), 1)),
+                header = paste0(" R$", round(tail(series$SaldoESPJ$value / 1000, 1), 1), " mi", " (", tail(months(series$SaldoESPJ$date), 1), ")"),
                 text = "Pessoa Jurídica",
                 rightBorder = FALSE,
                 marginBottom = FALSE

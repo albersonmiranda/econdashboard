@@ -59,6 +59,16 @@ mod_conj_mercados_ui <- function(id) {
           tags$div("Percentual da população economicamente ativa, mensal", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$merc.trab, 1)),
+                "",
+                tail(legenda_conjuntura$merc.trab, 1)
+              )
+            ), 
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 12,
@@ -76,7 +86,7 @@ mod_conj_mercados_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$Desemprego$value, 1), "%", tail(months(series$Desemprego$date), 1)),
+                header = paste0(tail(series$Desemprego$value, 1), "%", " (", tail(months(series$Desemprego$date), 1), ")"),
                 text = "Desemprego",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -96,6 +106,16 @@ mod_conj_mercados_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Geração de emprego", class = "box-subtit"),
           tags$div("Unidades, empregos formais, mensal", class = "box-body"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$emprego.es, 1)),
+                "",
+                tail(legenda_conjuntura$emprego.es, 1)
+              )
+            ), 
+            class = "box-body"
+          ),
           plotlyOutput(ns("plot4")),
           tags$div("Fonte: MTE", class = "box-legenda"),
           footer = fluidRow(
@@ -115,7 +135,7 @@ mod_conj_mercados_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$EmpregoGES$value, 1), "unidades", tail(months(series$EmpregoGES$date), 1)),
+                header = paste0(tail(series$EmpregoGES$value, 1), " unidades", " (", tail(months(series$EmpregoGES$date), 1), ")"),
                 text = "Emprego Formal ES",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -135,7 +155,15 @@ mod_conj_mercados_ui <- function(id) {
           tags$div("Taxa ao ano, diária, anualizada, base 252", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
-          tags$div("Nos últimos meses, o comitê de política monetária (COPOM) adotou uma trajetória ascendente da taxa Selic para conter as expectativas de aumento da inflação.", style = "box-body"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$selic, 1)),
+                "",
+                tail(legenda_conjuntura$selic, 1)
+                )
+              ),
+            style = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -153,7 +181,7 @@ mod_conj_mercados_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$Selic$value, 1), "%", tail(months(series$Selic$date), 1)),
+                header = paste0(tail(series$Selic$value, 1), "%", " (", tail(months(series$Selic$date), 1), ")"),
                 text = "Selic",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -173,6 +201,16 @@ mod_conj_mercados_ui <- function(id) {
           tags$div("Preço de compra, cotação diária", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+         tags$div(
+           HTML(
+             ifelse(
+               is.na(tail(legenda_conjuntura$dolar, 1)),
+               "",
+               tail(legenda_conjuntura$dolar, 1)
+             )
+           ),
+           class = "box-body"
+         ),
           footer = fluidRow(
             column(
               width = 12,
@@ -190,7 +228,7 @@ mod_conj_mercados_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("R$", round(tail(series$Dolar$value, 1), 2), "/US$", tail(months(series$Dolar$date), 1)),
+                header = paste0(" R$", round(tail(series$Dolar$value, 1), 2), " /US$", " (", tail(months(series$Dolar$date), 1), ")"),
                 text = "Dolar",
                 rightBorder = FALSE,
                 marginBottom = FALSE

@@ -60,9 +60,14 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           tags$div("Variação % anual real", class = "box-body"),
           plotlyOutput(ns("plot1")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
-          tags$div("O crescimento de 4.1% indica forte retomada da economia capixaba, que vinha de dois anos de uma recessão pior do que a apresentada em 2009 após a crise do subprime.",
-            style = "box-body"
-          ),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$pib.var.es,1)),
+              "",
+              tail(legenda_conjuntura$pib.var.es,1)
+              )
+            ), 
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -101,7 +106,14 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           tags$div("Valores observados a preço de mercado em R$", class = "box-body"),
           plotlyOutput(ns("plot2")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
-          tags$div("A economia capixaba fechou 2017 em patamar pré-2012.", class = "box-body"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$pib.es, 1)), 
+              "",
+              tail(legenda_conjuntura$pib.es, 1)
+              ) 
+            ),
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -119,7 +131,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(round(tail(series$PIBES$value, 1) / 1000000000, 2), "bi"),
+                header = paste0(round(tail(series$PIBES$value, 1) / 1000000000, 2), " bi"),
                 text = "PIB ES",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -140,6 +152,15 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           tags$div("Índice mensal observado e dessazonalizado", class = "box-body"),
           plotlyOutput(ns("plot3")),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+            is.na(tail(legenda_conjuntura$ibcr.es, 1)),
+            "", 
+            tail(legenda_conjuntura$ibcr.es, 1)
+              )
+            ),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -157,7 +178,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$IBCRES$value, 1), tail(months(series$IBCRES$date), 1)),
+                header = paste0(tail(series$IBCRES$value, 1), " (", tail(months(series$IBCRES$date), 1), ")"),
                 text = "IBCRES-ES",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -178,7 +199,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$IBCRESs$value, 1), tail(months(series$IBCRESs$date), 1)),
+                header = paste0(tail(series$IBCRESs$value, 1), " (", tail(months(series$IBCRESs$date), 1), ")"),
                 text = "IBCRES-ES Dessazonalizado",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -199,6 +220,15 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           tags$div("Volume de vendas no varejo e receita nominal de serviços", class = "box-body"),
           plotlyOutput(ns("plot4")),
           tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$varejo.es, 1)),
+              "",
+              tail(legenda_conjuntura$varejo.es, 1)
+            )
+           ),
+           class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 6,
@@ -216,7 +246,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$VarejoES$value, 1), tail(months(series$VarejoES$date), 1)),
+                header = paste0(tail(series$VarejoES$value, 1), " (", tail(months(series$VarejoES$date), 1), ")"),
                 text = "Varejo ES",
                 rightBorder = TRUE,
                 marginBottom = FALSE
@@ -237,7 +267,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste(tail(series$ServicosES$value, 1), tail(months(series$ServicosES$date), 1)),
+                header = paste0(tail(series$ServicosES$value, 1), " (", tail(months(series$ServicosES$date), 1), ")"),
                 text = "Serviços ES",
                 rightBorder = FALSE,
                 marginBottom = FALSE
@@ -258,6 +288,14 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           tags$div("US$ milhões, mensal", class = "box-body"),
           plotlyOutput(ns("plot5")),
           tags$div("Fonte: MDIC", class = "box-legenda"),
+          tags$div(HTML(
+            ifelse(
+              is.na(tail(legenda_conjuntura$exportacoes.es, 1)),
+              "",
+              tail(legenda_conjuntura$exportacoes.es, 1)
+            )
+          ),
+          class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
@@ -275,7 +313,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste("US$", tail(series$ExpES$value / 1000, 1), "mi", tail(months(series$ExpES$date), 1)),
+                header = paste0(" US$", tail(series$ExpES$value / 1000, 1), " mi", " (", tail(months(series$ExpES$date), 1), ")"),
                 text = "Exportações",
                 rightBorder = FALSE,
                 marginBottom = FALSE

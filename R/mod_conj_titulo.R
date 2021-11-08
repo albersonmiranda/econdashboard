@@ -19,7 +19,7 @@ mod_conj_titulo_ui <- function(id) {
       ),
     
     # Action Button
-      actionButton(inputId = "atividade_economica", 
+     actionButton(inputId = "atividade_economica", 
                  label = menuSubItem(HTML("<br>Atividade<br>Econômica"),
                                      tabName = "atividade_economica", 
                                      icon = icon("chart-line", class = "icon")),
@@ -30,7 +30,7 @@ mod_conj_titulo_ui <- function(id) {
                                      tabName = "consumo", 
                                      icon = icon("users", class = "icon")),
                  class = "button"), 
-      actionButton(inputId = "credito", 
+    actionButton(inputId = "credito", 
                  label = menuSubItem(HTML("<br>Crédito"),
                                      tabName = "credito",
                                      icon = icon("credit-card", class = "icon")),
