@@ -12,6 +12,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr rename
+#' @importFrom shinyjs useShinyjs
 #' @noRd
 
 
@@ -39,7 +40,8 @@ app_ui <- function(request) {
       ), titleWidth = "150px"),
       dashboardSidebar(
         width = 175,
-        sidebarMenu(
+        collapsed = TRUE,
+        sidebarMenu(id = "tabs",
           menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar"),
                    menuSubItem("Visão Geral",
                                tabName = "visao_geral"),
@@ -60,7 +62,7 @@ app_ui <- function(request) {
           menuItem("Fundos", tabName = "fundos", icon = icon("money-bill-wave"))
         )
       ),
-      dashboardBody(
+      dashboardBody(shinyjs::useShinyjs(),
         tabItems(
           # tab visão geral
           tabItem(

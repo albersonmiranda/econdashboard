@@ -32,4 +32,9 @@ app_server <- function(input, output, session) {
   mod_fundos_debentures_server("fundos_debentures_ui_1")
   mod_fundos_Estrategia_server("fundos_Estrategia_ui_1")
   mod_fundos_dividendos_server("fundos_dividendos_ui_1")
-  }
+  
+  #menu Itens
+  observeEvent(input$tabs, {
+    shinyjs::toggleClass(selector = "body", class = "sidebar-collapse")
+  }, ignoreInit = TRUE)
+}
