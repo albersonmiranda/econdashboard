@@ -57,6 +57,10 @@ jobs:
       - name: Atualizando Dados de Conjuntura
         run: source("data-raw/series.R")
         shell: Rscript {0}
+        
+      - name: Atualizando legenda de Conjuntura 
+        run: source("data-raw/legenda-conjuntura.R")
+        shell: Rscript {0}
 
       - name: Commit dos dados
         run: |
@@ -66,6 +70,7 @@ jobs:
           git add data/fundos.rda
           git add data/resenhas_conjuntura.rda
           git add data/resenhas_fundos.rda
+          git add data/legenda_conjuntura.rda
           git commit -m 'Update data' || echo "Update data"
           git push origin || echo "Update data"
 
