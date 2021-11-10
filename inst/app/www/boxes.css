@@ -167,10 +167,9 @@ h1 {
 
 /* corpo da página inicial dos fundos */
 .fundos-body {
-  text-align: center;
+  text-align: justify;
   font-size: 18px;
   color: #004b8d;
-  text-align: justify;
   margin: 10px
 
 }
