@@ -45,7 +45,7 @@ mod_fundos_investidor_ui <- function(id) {
         
         # fundo investidor automático
         box(
-          title = tags$div("Desempenho do Fundo Investidor Automático", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,

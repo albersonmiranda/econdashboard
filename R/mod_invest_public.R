@@ -48,7 +48,7 @@ mod_invest_public_ui <- function(id){
         
       #fundo Invest Public
       box(
-        title = tags$div("Desempenho do Fundo Banestes Invest Public", class = "box-graf"),
+        title = tags$div("Desempenho do Fundo", class = "box-graf"),
         closable = FALSE,
         collapsible = TRUE,
         collapsed = TRUE,

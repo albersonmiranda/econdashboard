@@ -45,7 +45,7 @@ mod_fundos_invest_money_ui <- function(id){
         
         # fundo invest money
         box(
-          title = tags$div("Desempenho do Fundo Banestes Invest Money", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,

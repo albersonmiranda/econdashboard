@@ -32,15 +32,18 @@ mod_fundo_previdenciario_ui <- function(id){
           "Lâmina",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_Previdenciario.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_previdenciario.pdf",
           "Regulamento",
+          class = "link"),
+        tags$a(
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_PREVIDENCIARIO.pdf",
+          "Relatório",
           class = "link"),
         tags$a(
           href="https://www.banestes.com.br/investimentos/pdf/adesao_previdenciario.pdf",
           "Termo de adesão",
           class = "link"),
       ),
-      
       
       #fundo previdenciario
       box(
@@ -80,9 +83,9 @@ mod_fundo_previdenciario_ui <- function(id){
       )
     )
   )
- 
   )
 }
+
     
 #' fundo_previdenciario Server Functions
 #'

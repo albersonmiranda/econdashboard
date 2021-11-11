@@ -149,10 +149,29 @@ h1 {
 
 /* links */
 .link {
- font-size: 16px;
+ font-size: 11px;
  color: #56af31;
  font-weight: 600;
- text-align: left;
  padding: 10px;
+ text-align: center;
   
 }
+/* título da página inicial dos fundos */
+.fundos-tit {
+  text-align: center;
+  font-size: 40px;
+  color: #004b8d;
+  padding: 10px;
+
+}
+
+
+/* corpo da página inicial dos fundos */
+.fundos-body {
+  text-align: justify;
+  font-size: 18px;
+  color: #004b8d;
+  margin: 10px
+
+}
+

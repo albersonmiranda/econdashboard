@@ -46,7 +46,7 @@ mod_fundos_Solidez_ui <- function(id){
         
         # fundo Solidez
         box(
-          title = tags$div("Desempenho do Fundo Banestes Solidez", class = "box-graf"),
+          title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
           collapsed = TRUE,

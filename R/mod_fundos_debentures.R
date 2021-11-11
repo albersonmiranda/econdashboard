@@ -104,7 +104,7 @@ mod_fundos_debentures_server <- function(id){
         type = "scatter", mode = "lines", name = "Fundo Banestes Debêntures Incentivadas", marker = list(color = "#004B8D")
       ) %>%
         add_trace(
-          data = fundos$BTG_Pactual_Absoluto[1:nrow(fundos$BTG_Pactual_Absoluto) - 1, ],
+          data = fundos$Debentures[1:nrow(fundos$Debentures) - 1, ],
           y = ~indice_acum, name = "CDI", marker = list(color = "#56af31"), line = list(color = "#56af31")
         ) %>%
         layout(
