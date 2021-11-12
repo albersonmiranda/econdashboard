@@ -40,7 +40,8 @@ app_ui <- function(request) {
       ), titleWidth = "150px"),
       dashboardSidebar(
         width = 175,
-        sidebarMenu(
+        collapsed = TRUE,
+        sidebarMenu(id = "tabs",
           menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar"),
                    menuSubItem("Visão Geral",
                                tabName = "visao_geral"),
@@ -71,7 +72,7 @@ app_ui <- function(request) {
           )
         )
       ),
-      dashboardBody(
+      dashboardBody(shinyjs::useShinyjs(),
         tabItems(
           # tab visão geral
           tabItem(
