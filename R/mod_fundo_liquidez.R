@@ -28,19 +28,19 @@ mod_fundo_liquidez_ui <- function(id){
           HTML(resenhas_fundos$liquidez)
         ),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/lamina_Liquidez.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/lamina_Liquidez.pdf", target="_blank",
           "Lâmina",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_liquidez_referenciado.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_liquidez_referenciado.pdf", target="_blank",
           "Regulamento",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_liquidez_referenciado.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_liquidez_referenciado.pdf", target="_blank",
           "Relatório",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/adesao_liquidez_referenciado.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/adesao_liquidez_referenciado.pdf", target="_blank",
           "Termo de adesão",
           class = "link"),
       ),

@@ -29,19 +29,19 @@ mod_fundos_institucional_ui <- function(id) {
             HTML(resenhas_fundos$institucional)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Institucional.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Institucional.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_institucional.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_institucional.pdf", target="_blank",
           "Regulamento",
           class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_INSTITUCIONAL.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_INSTITUCIONAL.pdf", target="_blank",
           "Relatório",
           class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_institucional.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_institucional.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
           ),

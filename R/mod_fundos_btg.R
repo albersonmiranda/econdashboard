@@ -29,19 +29,19 @@ mod_fundos_btg_ui <- function(id){
             HTML(resenhas_fundos$btg)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_BTG_Pactual_Absoluto.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_BTG_Pactual_Absoluto.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_btg.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_btg.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_btg.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_btg.pdf", target="_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_btg.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_btg.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

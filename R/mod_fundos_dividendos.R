@@ -36,19 +36,19 @@ mod_fundos_dividendos_ui <- function(id){
             HTML(resenhas_fundos$dividendos)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Dividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Dividendos.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_dividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_dividendos.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_FDividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_FDividendos.pdf", target="_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_dividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_dividendos.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

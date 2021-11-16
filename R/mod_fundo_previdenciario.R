@@ -28,19 +28,19 @@ mod_fundo_previdenciario_ui <- function(id){
           HTML(resenhas_fundos$previdenciario)
         ),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/lamina_Previdenciario.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/lamina_Previdenciario.pdf", target="_blank",
           "Lâmina",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_previdenciario.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_previdenciario.pdf", target="_blank",
           "Regulamento",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_PREVIDENCIARIO.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_PREVIDENCIARIO.pdf", target="_blank",
           "Relatório",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/adesao_previdenciario.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/adesao_previdenciario.pdf", target="_blank",
           "Termo de adesão",
           class = "link"),
       ),

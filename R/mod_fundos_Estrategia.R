@@ -29,19 +29,19 @@ mod_fundos_Estrategia_ui <- function(id){
             HTML(resenhas_fundos$estrategia)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Estrategia.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Estrategia.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento-invest-estrategia.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento-invest-estrategia.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao-invest-estrategia.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao-invest-estrategia.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_invest_estrategia.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/publicitario_invest_estrategia.pdf", target="_blank",
           "Relatório",
           class = "link"),
         ),

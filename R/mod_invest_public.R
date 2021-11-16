@@ -31,15 +31,15 @@ mod_invest_public_ui <- function(id){
          
           
            tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Invest_Public.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Invest_Public.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_investpublic.pdf",
+          href="https://www.banestes.com.br/investimentos/pdf/regulamento_investpublic.pdf", target="_blank",
         "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_investpublic.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_investpublic.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

@@ -36,19 +36,19 @@ mod_fundos_debentures_ui <- function(id){
             HTML(resenhas_fundos$debentures)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf", target="_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),
