@@ -29,19 +29,19 @@ mod_fundos_vip_ui <- function(id){
             HTML(resenhas_fundos$vip)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_VIP_DI.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_VIP_DI.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_vipdi.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_vipdi.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_VIPDI.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_VIPDI.pdf", target="_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_vipdi.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_vipdi.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

@@ -29,15 +29,15 @@ mod_fundos_Solidez_ui <- function(id){
             HTML(resenhas_fundos$solidez)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_solidez.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_solidez.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_solidez.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_solidez.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_solidez.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_solidez.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

@@ -12,6 +12,13 @@ mod_fundos_dividendos_ui <- function(id){
   tagList(
     fluidPage(
       fluidRow(
+        tags$div(class = "conj-tit",br(),
+                 "Fundos Banestes de Ações"),
+        br(),
+        tags$div(class = "fundos-text",
+                 "Os Fundos de Ações devem aplicar no mínimo 67% dos seus ativos em ações. São fundos voltados para o investidor com perfil mais arrojado, que tem como objetivo maior rentabilidade, e para isso está disposto a assumir maiores riscos."),
+        
+        br(), br(),
         
         # resenha
         box(
@@ -29,19 +36,19 @@ mod_fundos_dividendos_ui <- function(id){
             HTML(resenhas_fundos$dividendos)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Dividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Dividendos.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_dividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_dividendos.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_FDividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_FDividendos.pdf", target="_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_dividendos.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_dividendos.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

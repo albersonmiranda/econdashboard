@@ -29,15 +29,15 @@ mod_fundos_investidor_ui <- function(id) {
             HTML(resenhas_fundos$investidor)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Investidor.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Investidor.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_investidor.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento_investidor.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_investidor.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao_investidor.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

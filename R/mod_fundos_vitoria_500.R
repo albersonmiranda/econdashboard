@@ -12,6 +12,13 @@ mod_fundos_vitoria_500_ui <- function(id){
   tagList(
     fluidPage(
       fluidRow(
+        tags$div(class = "conj-tit",br(),
+                 "Fundos Banestes de Renda Fixa"),
+        br(),
+        tags$div(class = "fundos-text",
+                 "Os Fundos de Renda Fixa têm uma carteira composta por, pelo menos, 80% dos seus ativos em títulos de renda fixa. São fundos voltados para o investidor com perfil conservador porque os riscos são mais baixos mas, por outro lado, oferecem um potencial menor de retorno."),
+                 
+        br(), br(),
         
         # resenha
         box(
@@ -29,15 +36,15 @@ mod_fundos_vitoria_500_ui <- function(id){
             HTML(resenhas_fundos$vitoria500)),
           
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Vitoria_500.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Vitoria_500.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento-vitoria-500.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento-vitoria-500.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao-vitoria-500.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao-vitoria-500.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),

@@ -12,6 +12,13 @@ mod_fundos_debentures_ui <- function(id){
   tagList(
     fluidPage(
       fluidRow(
+        tags$div(class = "conj-tit",br(),
+                 "Fundos Banestes Multimercado"),
+        br(),
+        tags$div(class = "fundos-text",
+                 "Os Fundos Multimercados podem aplicar em diferentes ativos, como renda fixa, câmbio, ações, entre outros. Eles funcionam como meio termo, tanto quando o assunto é risco, como também quando é potencial de retorno."),
+        
+        br(), br(),
         
         # resenha
         box(
@@ -29,19 +36,19 @@ mod_fundos_debentures_ui <- function(id){
             HTML(resenhas_fundos$debentures)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf", target="_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf", target="_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf", target="_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf",
+            href="https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf", target="_blank",
             "Termo de adesão",
             class = "link"),
         ),
