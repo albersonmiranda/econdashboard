@@ -12,6 +12,13 @@ mod_fundos_dividendos_ui <- function(id){
   tagList(
     fluidPage(
       fluidRow(
+        tags$div(class = "conj-tit",br(),
+                 "Fundos Banestes de Ações"),
+        br(),
+        tags$div(class = "fundos-text",
+                 "Os Fundos de Ações devem aplicar no mínimo 67% dos seus ativos em ações. São fundos voltados para o investidor com perfil mais arrojado, que tem como objetivo maior rentabilidade, e para isso está disposto a assumir maiores riscos."),
+        
+        br(), br(),
         
         # resenha
         box(

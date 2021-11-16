@@ -12,6 +12,13 @@ mod_fundos_debentures_ui <- function(id){
   tagList(
     fluidPage(
       fluidRow(
+        tags$div(class = "conj-tit",br(),
+                 "Fundos Banestes Multimercado"),
+        br(),
+        tags$div(class = "fundos-text",
+                 "Os Fundos Multimercados podem aplicar em diferentes ativos, como renda fixa, câmbio, ações, entre outros. Eles funcionam como meio termo, tanto quando o assunto é risco, como também quando é potencial de retorno."),
+        
+        br(), br(),
         
         # resenha
         box(

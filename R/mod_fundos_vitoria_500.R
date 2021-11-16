@@ -12,6 +12,13 @@ mod_fundos_vitoria_500_ui <- function(id){
   tagList(
     fluidPage(
       fluidRow(
+        tags$div(class = "conj-tit",br(),
+                 "Fundos Banestes de Renda Fixa"),
+        br(),
+        tags$div(class = "fundos-text",
+                 "Os Fundos de Renda Fixa têm uma carteira composta por, pelo menos, 80% dos seus ativos em títulos de renda fixa. São fundos voltados para o investidor com perfil conservador porque os riscos são mais baixos mas, por outro lado, oferecem um potencial menor de retorno."),
+                 
+        br(), br(),
         
         # resenha
         box(

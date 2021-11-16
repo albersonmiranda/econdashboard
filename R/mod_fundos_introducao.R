@@ -11,7 +11,7 @@ mod_fundos_introducao_ui <- function(id){
   ns <- NS(id)
   tagList(
     list(
-      tags$div(class = "fundos-tit",br(),
+      tags$div(class = "conj-tit",br(),
                "Fundos de Investimento Banestes"),
       br(),
       tags$div(class = "fundos-body",
@@ -52,7 +52,7 @@ mod_fundos_introducao_ui <- function(id){
       br(),
       
       tags$div(class = "fundos-body",
-               "Já os Fundos Multimercados podem aplicar em diferentes ativos, como renda fixa, câmbio, ações, entre outros. Eles funcionam como meio termo, tanto quando o assunto é risco, como também quando é potencial de retorno.")
+               "Os Fundos Multimercados podem aplicar em diferentes ativos, como renda fixa, câmbio, ações, entre outros. Eles funcionam como meio termo, tanto quando o assunto é risco, como também quando é potencial de retorno.")
       
       
       

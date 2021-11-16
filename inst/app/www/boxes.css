@@ -157,15 +157,6 @@ h1 {
 
   
 }
-/* título da página inicial dos fundos */
-.fundos-tit {
-  text-align: center;
-  font-size: 40px;
-  color: #004b8d;
-  padding: 10px;
-
-}
-
 
 /* corpo da página inicial dos fundos */
 .fundos-body {
@@ -174,5 +165,15 @@ h1 {
   color: #004b8d;
   margin: 10px
 
+}
+
+
+/* corpo dos fundos */
+.fundos-text {
+  text-align: justify;
+  font-size: 22px;
+  color: #004b8d;
+  margin: 2px
+  border-width: thin;
 }
 
