@@ -61,9 +61,11 @@ jobs:
         shell: Rscript {0}
 
       - name: Commit dos dados
+        with:
+          token: ${{ secrets.ADMIN_TOKEN }}
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          git config --local user.email ${{ secrets.ADMIN_EMAIL }}
+          git config --local user.name ${{ secrets.ADMIN_NAME }}
           git add data/series.rda
           git add data/fundos.rda
           git add data/resenhas_conjuntura.rda
