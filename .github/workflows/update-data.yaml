@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ADMIN_TOKEN }}
 
       - name: Instalar R ${{ matrix.r-version }}
         uses: r-lib/actions/setup-r@v1
@@ -71,8 +73,6 @@ jobs:
           git add data/legenda_conjuntura.rda
           git commit -m 'Update data' || echo "Update data"
           git push origin || echo "Update data"
-        with:
-          token: ${{ secrets.ADMIN_TOKEN }}
 
       - name: Conectando ao ShinyApps
         env:
