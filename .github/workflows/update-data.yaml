@@ -61,8 +61,6 @@ jobs:
         shell: Rscript {0}
 
       - name: Commit dos dados
-        with:
-          token: ${{ secrets.ADMIN_TOKEN }}
         run: |
           git config --local user.email ${{ secrets.ADMIN_EMAIL }}
           git config --local user.name ${{ secrets.ADMIN_NAME }}
@@ -73,6 +71,8 @@ jobs:
           git add data/legenda_conjuntura.rda
           git commit -m 'Update data' || echo "Update data"
           git push origin || echo "Update data"
+        with:
+          token: ${{ secrets.ADMIN_TOKEN }}
 
       - name: Conectando ao ShinyApps
         env:
