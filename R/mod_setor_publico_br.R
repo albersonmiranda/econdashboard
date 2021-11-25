@@ -39,7 +39,7 @@ mod_setor_publico_br_ui <- function(id){
                         enable_dropdown = FALSE,
                         mainPanel(
                           tabsetPanel(
-                            tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+                            tabPanel("2021", tags$a("Relatório de Política Fiscal", href="www/relatorios/politica-fiscal.pdf", target="_blank"))
                           )
                         )
                       ),
