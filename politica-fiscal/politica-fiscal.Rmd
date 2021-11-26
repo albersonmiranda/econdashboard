@@ -4,7 +4,7 @@ author: \textbf{\textcolor{white}{Política Fiscal}}
 date: \textbf{\textcolor{white}{\today}}
 params:
   logo: logo-banestes-transparente.png
-  logotitle: logo-branca-banestes.png
+  logotitle: logo-banestes-branca.png
   cover: cover-banestes-menor.png
   iblue: 004b8d
   igray: d4dbde
