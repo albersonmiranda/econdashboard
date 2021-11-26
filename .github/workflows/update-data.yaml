@@ -32,12 +32,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
 
-      - name: Instalar Dependências
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          install.packages(c("remotes", "rsconnect"))
-          remotes::install_deps()
-        shell: Rscript {0}
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          cache-version: 1
+          extra-packages: |
+            "rsconnect"
 
       - name: Install Miniconda
         run: |
