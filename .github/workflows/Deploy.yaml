@@ -1,5 +1,8 @@
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ["update-data"]
+    types:
+      - completed
   push:
     branches:
       - main
@@ -12,7 +15,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        r-version: ['4.0.3']
+        r-version: ['4.1.0']
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -34,7 +37,8 @@ jobs:
       - name: Instalar Dependências
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash", "reticulate", "Rcpp", "readxl", "shinyjs"), type = "binary")
+          install.packages(c("remotes", "rsconnect"))
+          remotes::install_deps()
         shell: Rscript {0}
 
       - name: Conectando ao ShinyApps
