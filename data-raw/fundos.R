@@ -7,11 +7,9 @@ reticulate::source_python("data-raw/fundos.py")
 # converting to R
 fundos = lapply(fundos, reticulate::py_to_r)
 
-# correção formato data
-
 fundos = lapply(fundos, function(x){
 
-  x$mes = format(as.Date(paste0(x$mes, "-01"), "%Y, %B-%d"), "%Y-%m-%d")
+  x$mes = readr::parse_date(paste0(teste$mes, "-01"), "%Y, %B-%d", locale = readr::locale("pt"))
   x$mes[13] = "acumulado"
   x
 

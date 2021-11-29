@@ -32,11 +32,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
 
-      - name: Instalar Dependências
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          install.packages(c("BETS", "usethis", "rsconnect", "shinydashboardPlus", "golem", "plotly", "bs4Dash", "reticulate", "Rcpp", "readxl", "shinyjs"), type = "binary")
-        shell: Rscript {0}
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          cache-version: 1
+          extra-packages: |
+            "rsconnect"
 
       - name: Install Miniconda
         run: |
@@ -73,18 +74,3 @@ jobs:
           git add data/legenda_conjuntura.rda
           git commit -m 'Update data' || echo "Update data"
           git push origin || echo "Update data"
-
-      - name: Conectando ao ShinyApps
-        env:
-          SHINY_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-          SHINY_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-        run: |
-          shiny_token = Sys.getenv("SHINY_TOKEN")
-          shiny_secret = Sys.getenv("SHINY_SECRET")
-          rsconnect::setAccountInfo('albersonmiranda', token = shiny_token, secret = shiny_secret)
-        shell: Rscript {0}
-
-      - name: Deploy to ShinyApps
-        run: |
-          rsconnect::deployApp(forceUpdate = getOption("rsconnect.force.update.apps", TRUE))
-        shell: Rscript {0}
