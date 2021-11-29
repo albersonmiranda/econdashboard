@@ -25,21 +25,12 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
-      - name: Cache R Packages
-        id: cache
-        uses: actions/cache@v2
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-shinydoc3
-          restore-keys: |
-            ${{ runner.os }}-
-
-      - name: Instalar Dependências
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          install.packages(c("remotes", "rsconnect"))
-          remotes::install_deps()
-        shell: Rscript {0}
+          cache-version: 1
+          extra-packages: |
+            "rsconnect"
 
       - name: Conectando ao ShinyApps
         env:
