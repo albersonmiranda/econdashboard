@@ -15,7 +15,6 @@ Imports:
     magrittr,
     plotly,
     Rcpp,
-    rcpp,
     readxl,
     reticulate,
     shiny,
