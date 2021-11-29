@@ -18,6 +18,7 @@ Imports:
     readxl,
     reticulate,
     shiny,
+    shinydashboard,
     shinydashboardPlus,
     shinyjs,
     tidyr
