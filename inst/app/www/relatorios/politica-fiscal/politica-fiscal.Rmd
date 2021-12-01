@@ -3,9 +3,9 @@ title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
 author: \textbf{\textcolor{white}{Política Fiscal}}
 date: \textbf{\textcolor{white}{\today}}
 params:
-  logo: logo-banestes-transparente.png
-  logotitle: logo-banestes-branca.png
-  cover: cover-banestes-menor.png
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
   iblue: 004b8d
   igray: d4dbde
 documentclass: article
@@ -37,26 +37,27 @@ library(ggplot2)
 library(kableExtra)
 library(fpp3)
 library(here)
+library(showtext)
 
-#carregando dados 
+# carregando dados
 load(here("data", "series.rda"))
 
 # settings
-knitr::opts_chunk$set(root.dir = 'C:/Users/700105220/RProject/econdashboard', echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(root.dir = "C:/Users/700105220/RProject/econdashboard", echo = FALSE, message = FALSE, warning = FALSE)
 
 # tema gráficos
 tema = theme(
   plot.title = element_text(hjust = 0.5, size = 15),
-  plot.subtitle = element_text(hjust = 0.5, size = 13), 
-  axis.ticks.x=element_blank(), 
-  legend.position="bottom", 
-  legend.title = element_blank(), 
+  plot.subtitle = element_text(hjust = 0.5, size = 13),
+  axis.ticks.x = element_blank(),
+  legend.position = "bottom",
+  legend.title = element_blank(),
   legend.text = element_text(size = 12))
 
 # resultado do governo central
 tb_ckan = ckanr::resource_show(
-  id="527ccdb1-3059-42f3-bf23-b5e3ab4c6dc6",
-  url="http://www.tesourotransparente.gov.br/ckan")
+  id = "527ccdb1-3059-42f3-bf23-b5e3ab4c6dc6",
+  url = "http://www.tesourotransparente.gov.br/ckan")
 
 download.file(
   tb_ckan$url,
@@ -88,16 +89,16 @@ O quadro explica-se principalmente pela elevação das receitas (aumento de 20 \
 Além disso, em relação ao acumulado de janeiro a setembro, o Governo Central obteve déficit de R\$ 82,4 bilhões. Em termos reais, este resultado destaca uma redução no déficit em aproximadamente de 88\%, em comparação ao mesmo período do ano passado. 
 
 ```{r Tabela Gov Central}
-#Renomeando colunas 
+# Renomeando colunas
 names(gov_central)[-1] <-  format(as.Date(as.numeric(names(gov_central)[-1]),
                                        origin = "1899-12-30"), "%B/%Y")
-#calculando o acumulado 
-gov_central$gov_central_acum2020 = rowSums(gov_central[,c(278:286)])
-gov_central$gov_central_acum2021 = rowSums(gov_central[,c(290:298)])
+# Calculando o acumulando
+gov_central$gov_central_acum2020 = rowSums(gov_central[, c(278:286)])
+gov_central$gov_central_acum2021 = rowSums(gov_central[, c(290:298)])
 
-#filtrando dados 
-gov_central_tab = subset(gov_central,   
-                  select = c("setembro/2020", 
+# Filtrando dados
+gov_central_tab = subset(gov_central,
+                  select = c("setembro/2020",
                              "setembro/2021",
                              "gov_central_acum2020",
                              "gov_central_acum2021"),
@@ -105,33 +106,33 @@ gov_central_tab = subset(gov_central,
                       "1. RECEITA TOTAL 1/",
                       "2. TRANSF. POR REPARTIÇÃO DE RECEITA 2/",
                       "3. RECEITA LÍQUIDA  (1-2)",
-                      "4. DESPESA TOTAL 2/", 
+                      "4. DESPESA TOTAL 2/",
                       "5. RESULTADO PRIMÁRIO GOVERNO CENTRAL - ACIMA DA LINHA (3 - 4)"))
 
-#Adicionando coluna 
-tab_gov_central = gov_central_tab %>% 
+# Adicionando coluna
+tab_gov_central = gov_central_tab %>%
   mutate(across(everything(), scales::comma_format(big.mark = ".", decimal.mark = ","))) %>%
-  add_column(Discriminação = c("Receital Total (1)", 
-                               "Transf. por Repartição de Receita (2)", 
+  add_column(Discriminação = c("Receital Total (1)",
+                               "Transf. por Repartição de Receita (2)",
                                "Receita Líquida (1 - 2)",
-                               "Despesa Total (3)", 
-                               "Resultado Primário Governo Central (3 - 4)"), 
+                               "Despesa Total (3)",
+                               "Resultado Primário Governo Central (3 - 4)"),
                               .before = "setembro/2020")
 
 #Fazendo a tabela
-kbl(tab_gov_central, 
+kbl(tab_gov_central,
     col.names = c("Discriminação",
                   "2020",
                   "2021",
                   "2020",
                   "2021"),
     align = "lrrrr",
-    longtable = TRUE, 
+    longtable = TRUE,
     booktabs = TRUE,
     caption = "Resultado do Governo Central") %>%
 add_header_above(c("", "SETEMBRO" = 2, "ACUMULADO DO ANO" = 2)) %>%
 kable_styling(latex_options = c("repeat_header"),
-              font_size = 13) %>% 
+              font_size = 13) %>%
 footnote(
   general = "Tesouro Nacional",
   general_title = "Fonte:",
@@ -149,35 +150,35 @@ footnote(
 Em setembro, o setor público consolidado obteve superávit primário de R\$ 12,9 bilhões, resultado positivo em comparação ao déficit de R\$ 64,5 bilhões registrado em setembro do ano passado. No acumulado do ano, o superávit primário foi de R\$ 14,1 bilhões, em relação ao ano passado, houve melhora no resultado fiscal, visto que o período fechou com déficit de R\$ 635 bilhões (11\% do PIB). 
 
 ```{r setor publico consolidado}
-# Filtrando dados 
+# Filtrando dados
 ResultadoBR.set = subset(series$ResultadoBR,
-                         date %in% as.Date(c("2020-09-01", "2021-09-01"))) 
+                         date %in% as.Date(c("2020-09-01", "2021-09-01")))
 
-# Plotando grafico 
+# Plotando grafico
 setembro <- ResultadoBR.set %>%
   ggplot(aes(
     y = value * -1,
     x = date,
-    label = scales::number(value*-1, scale = 1/ 1000, accuracy = 0.1),
+    label = scales::number(value * -1, scale = 1 / 1000, accuracy = 0.1),
     fill = factor(
       format(date, "%Y/%B")
       )
-    )) + 
- geom_bar(stat = "identity") + 
- geom_label(vjust = .5, colour = "white", show.legend = FALSE) + 
- scale_y_continuous(labels = scales::number_format(scale = 1 / 1000)) +  
+    )) +
+ geom_bar(stat = "identity") +
+ geom_label(vjust = .5, colour = "white", show.legend = FALSE) +
+ scale_y_continuous(labels = scales::number_format(scale = 1 / 1000)) +
  coord_cartesian(ylim = c(-700000, 300000)) +
  labs(
     title = "Resultado Primário Acumulado",
     subtitle = "Setor Público Consolidado",
     caption = "Fonte: Tesouro Nacional",
-    x="",
-    y="R$ bilhões"
+    x = "",
+    y = "R$ bilhões"
   ) +
   theme_minimal() +
-  theme(axis.text.x=element_blank()) +
+  theme(axis.text.x = element_blank()) +
   tema +
-  scale_fill_manual(values=c("#b22222", "#004B8D"))
+  scale_fill_manual(values = c("#b22222", "#004B8D"))
 
 setembro
 ```
@@ -189,39 +190,39 @@ No que se refere a dívida bruta do governo geral (DBGG), verifica-se uma trajet
 
 ```{r Divida Liquida e Bruta}
 #filtrando dados
-DivLiq = subset(series$DividaLiqBR, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01")) 
+DivLiq = subset(series$DividaLiqBR, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01"))
 
-DivBru = subset(series$DividaBrutaBR, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01")) 
+DivBru = subset(series$DividaBrutaBR, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01"))
 
 
-#plotando grafico 
-DivLiq %>% 
-  inner_join(DivBru, by = "date") %>% 
+# Plotando grafico
+DivLiq %>%
+  inner_join(DivBru, by = "date") %>%
   tidyr::pivot_longer(-date) %>%
-  ggplot(aes(x = date, y = value, color = name)) + 
+  ggplot(aes(x = date, y = value, color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
     labels = c("Dívida Líquida", "Dívida Bruta"),
-    values=c("#004b8d", "#56af31")) +
+    values = c("#004b8d", "#56af31")) +
   scale_y_continuous(labels = scales::number_format(scale = 1 / 1000000)) +
   scale_x_date(date_labels = "%B/%Y", date_breaks = "1 year") +
   coord_cartesian(ylim = c(2500000, 8000000)) +
   labs(
-    y = "R$ trilhões", 
-    x = "", 
+    y = "R$ trilhões",
+    x = "",
     title = "Evolução da Dívida Pública",
     caption = "Fonte: Banco Central") +
   theme_minimal() +
-  tema 
+  tema
 ```
 
 Por fim, os principais indicadores que explicam a relação dívida/PIB são os juros nominais, inflação, resultado primário e crescimento econômico. Nesse sentido, a alta da taxa Selic para conter a expectativa de alta da inflação pode explicar o crescimento da relação dívida/PIB. Por outro lado, o ajuste nas contas públicas provocado pela redução das despesas em 2021 é um fator importante para conter este avanço. 
 
 ```{r Divida PIB}
-#filtrando os dados 
-DivLiq.pib = subset(series$DividaLiqBR.PIB, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01")) 
+# Filtrando os dados
+DivLiq.pib = subset(series$DividaLiqBR.PIB, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01"))
 
-DivBru.pib = subset(series$DividaBrutaBR.PIB, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01")) 
+DivBru.pib = subset(series$DividaBrutaBR.PIB, date >= as.Date("2018-01-01") & date <= as.Date("2021-09-01"))
 
 
 #plotando grafico
@@ -236,8 +237,8 @@ DivBru.pib %>%
   scale_x_date(date_labels = "%B/%Y", date_breaks = "1 year") +
   #coord_cartesian(ylim = c(0, 100)) +
   labs(
-    y = "% PIB", 
-    x = "", 
+    y = "% PIB",
+    x = "",
     title = "Evolução da Dívida Pública (%PIB)",
     caption = "Fonte: Banco Central") +
   theme_minimal() +
