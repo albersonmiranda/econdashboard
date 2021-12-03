@@ -1,8 +1,4 @@
 on:
-  workflow_run:
-    workflows: ["update-data"]
-    types:
-      - completed
   push:
     branches:
       - main
