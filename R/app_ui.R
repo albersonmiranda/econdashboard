@@ -12,20 +12,22 @@
 #' @importFrom magrittr %>%
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr rename
-#' @importFrom shinyjs useShinyjs 
+#' @importFrom shinyjs useShinyjs
 #' @noRd
 
 
 app_ui <- function(request) {
-  
+
   # load data
   data("series")
   data("gco")
   data("fundos")
   data("resenhas_conjuntura")
   data("resenhas_fundos")
-  
-  
+
+  # set locale
+  Sys.setlocale(locale = "pt_BR.UTF-8")
+
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
