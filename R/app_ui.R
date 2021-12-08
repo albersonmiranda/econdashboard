@@ -42,7 +42,7 @@ app_ui <- function(request) {
       ), titleWidth = "150px"),
       dashboardSidebar(
         width = 175,
-        collapsed = TRUE,
+        collapsed = FALSE,
         sidebarMenu(id = "tabs",
           menuItem("Conjuntura", tabName = "conjuntura", icon = icon("chart-bar"),
                    menuSubItem("Visão Geral",
