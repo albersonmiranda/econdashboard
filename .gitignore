@@ -2,3 +2,10 @@
 .RData
 .Rproj.user
 econdashboard.Rproj
+resultado_gov.xlsx
+cover.png
+logo.png
+*.ttf
+*.log
+politica-fiscal.tex
+inst/app/www/relatorios/politica-fiscal/politica-fiscal_files

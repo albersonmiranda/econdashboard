@@ -1,6 +1,12 @@
+/* incluindo fonte banestes */
+@font-face {
+    font-family: WhitneyHTF;
+    src: url("fontes/WhitneyHTF-Book.otf") format("opentype");
+}
+
 /* fonte das boxes e resenhas */
-.res-tit, .res-body, .box-tit, .box-subtit, .box-body, .box-legenda, .conj-body, .conj-tit, .description-block>.description-header, .description-block>.description-text {
-  font-family: "Century Gothic";
+.res-tit, .res-body, .box-tit, .box-subtit, .box-body, .box-legenda, .conj-body, .conj-tit, .sidebar, .description-block>.description-header, .description-block>.description-text {
+  font-family: "WhitneyHTF";
 }
 
 /* título da página conjuntura */
@@ -143,7 +149,7 @@
 /* títulos de conjuntura */
 h1 {
   color: #004b8d;
-  font-family: "Century Gothic";
+  font-family: "WhitneyHTF";
   text-align: center;
 }
 
