@@ -3,12 +3,9 @@
 .Rproj.user
 econdashboard.Rproj
 resultado_gov.xlsx
-inst/app/www/relatorios/politica-fiscal/cover.png
-inst/app/www/relatorios/politica-fiscal/logo.png
-inst/app/www/relatorios/politica-fiscal/Lato-Black.ttf
-inst/app/www/relatorios/politica-fiscal/Lato-BlackItalic.ttf
-inst/app/www/relatorios/politica-fiscal/Lato-Bold.ttf
-inst/app/www/relatorios/politica-fiscal/Lato-BoldItalic.ttf
-inst/app/www/relatorios/politica-fiscal/Lato-Italic.ttf
-inst/app/www/relatorios/politica-fiscal/Lato-Regular.ttf
+cover.png
+logo.png
+*.ttf
+*.log
+politica-fiscal.tex
 inst/app/www/relatorios/politica-fiscal/politica-fiscal_files

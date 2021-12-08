@@ -35,9 +35,7 @@ library(knitr)
 library(xtable)
 library(ggplot2)
 library(kableExtra)
-library(fpp3)
 library(here)
-library(showtext)
 
 # carregando dados
 load(here("data", "series.rda"))
@@ -110,9 +108,9 @@ gov_central_tab = subset(gov_central,
                       "5. RESULTADO PRIMÁRIO GOVERNO CENTRAL - ACIMA DA LINHA (3 - 4)"))
 
 # Adicionando coluna
-tab_gov_central = gov_central_tab %>%
-  mutate(across(everything(), scales::comma_format(big.mark = ".", decimal.mark = ","))) %>%
-  add_column(Discriminação = c("Receital Total (1)",
+tab_gov_central = gov_central_tab |>
+  mutate(across(everything(), scales::comma_format(big.mark = ".", decimal.mark = ","))) |>
+  mutate(Discriminação = c("Receital Total (1)",
                                "Transf. por Repartição de Receita (2)",
                                "Receita Líquida (1 - 2)",
                                "Despesa Total (3)",
@@ -129,10 +127,10 @@ kbl(tab_gov_central,
     align = "lrrrr",
     longtable = TRUE,
     booktabs = TRUE,
-    caption = "Resultado do Governo Central") %>%
-add_header_above(c("", "SETEMBRO" = 2, "ACUMULADO DO ANO" = 2)) %>%
+    caption = "Resultado do Governo Central") |>
+add_header_above(c("", "SETEMBRO" = 2, "ACUMULADO DO ANO" = 2)) |>
 kable_styling(latex_options = c("repeat_header"),
-              font_size = 13) %>%
+              font_size = 13) |>
 footnote(
   general = "Tesouro Nacional",
   general_title = "Fonte:",
@@ -155,7 +153,7 @@ ResultadoBR.set = subset(series$ResultadoBR,
                          date %in% as.Date(c("2020-09-01", "2021-09-01")))
 
 # Plotando grafico
-setembro <- ResultadoBR.set %>%
+setembro <- ResultadoBR.set |>
   ggplot(aes(
     y = value * -1,
     x = date,
@@ -196,9 +194,9 @@ DivBru = subset(series$DividaBrutaBR, date >= as.Date("2018-01-01") & date <= as
 
 
 # Plotando grafico
-DivLiq %>%
-  inner_join(DivBru, by = "date") %>%
-  tidyr::pivot_longer(-date) %>%
+DivLiq |>
+  inner_join(DivBru, by = "date") |>
+  tidyr::pivot_longer(-date) |>
   ggplot(aes(x = date, y = value, color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
@@ -226,9 +224,9 @@ DivBru.pib = subset(series$DividaBrutaBR.PIB, date >= as.Date("2018-01-01") & da
 
 
 #plotando grafico
-DivBru.pib %>%
-  inner_join(DivLiq.pib, by = "date") %>%
-  tidyr::pivot_longer(-date) %>%
+DivBru.pib |>
+  inner_join(DivLiq.pib, by = "date") |>
+  tidyr::pivot_longer(-date) |>
   ggplot(aes(x = date, y = value, color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
