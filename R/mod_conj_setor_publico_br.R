@@ -4,14 +4,14 @@
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
-#' @noRd 
+#' @noRd
 #'
-#' @importFrom shiny NS tagList 
-mod_setor_publico_br_ui <- function(id){
+#' @importFrom shiny NS tagList
+mod_conj_setor_publico_br_ui <- function(id){
   ns <- NS(id)
   tagList(fluidPage(titlePanel(h1("SETOR PÚBLICO BRASILEIRO")),
                     fluidRow(
-                      
+
                       # Resenha
                       box(
                         closable = FALSE,
@@ -25,9 +25,9 @@ mod_setor_publico_br_ui <- function(id){
                           HTML(tail(resenhas_conjuntura$setorpublico.br, 1))
                         )
                       ),
-                      
+
                       #Relatorios
-                      box( 
+                      box(
                         title = tags$div("Relatórios", class = "box-tit"),
                         closable = FALSE,
                         collapsible = TRUE,
@@ -43,7 +43,7 @@ mod_setor_publico_br_ui <- function(id){
                           )
                         )
                       ),
-                      
+
                       # Resultado primário BR
                       box(
                         title = tags$div("Resultado Primário", class = "box-tit"),
@@ -89,7 +89,7 @@ mod_setor_publico_br_ui <- function(id){
                           )
                         )
                       ),
-                      
+
                       # Dívida Líquida BR
                       box(
                         title = tags$div("Dívida Líquida", class = "box-tit"),
@@ -134,9 +134,9 @@ mod_setor_publico_br_ui <- function(id){
                             )
                           )
                         )
-                      ), 
-                      
-                    #Dívida Liquida BR %PIB  
+                      ),
+
+                    #Dívida Liquida BR %PIB
                     box(
                       title = tags$div("Dívida Líquida (%PIB)", class = "box-tit"),
                       closable = FALSE,
@@ -155,7 +155,7 @@ mod_setor_publico_br_ui <- function(id){
                             "",
                             tail(legenda_conjuntura$div.liq.br.pib, 1)
                           )
-                        ), 
+                        ),
                         class = "box-body"
                       ),
                       footer = fluidRow(
@@ -230,7 +230,7 @@ mod_setor_publico_br_ui <- function(id){
                         )
                       )
                     ),
-                    #Dívida Liquida BR %PIB  
+                    #Dívida Liquida BR %PIB
                     box(
                       title = tags$div("Dívida Bruta (%PIB)", class = "box-tit"),
                       closable = FALSE,
@@ -274,7 +274,7 @@ mod_setor_publico_br_ui <- function(id){
                           )
             )
           )
-        )  
+        )
       )
     )
   )
@@ -282,11 +282,11 @@ mod_setor_publico_br_ui <- function(id){
     
 #' setor_publico_br Server Functions
 #'
-#' @noRd 
-mod_setor_publico_br_server <- function(id){
-  moduleServer( id, function(input, output, session){
+#' @noRd
+mod_conj_setor_publico_br_server <- function(id) {
+  moduleServer(id, function(input, output, session) {
     ns <- session$ns
- 
+
     # resultado primário do BR
     output$plot1 <- renderPlotly({
       plot_ly(
@@ -303,7 +303,7 @@ mod_setor_publico_br_server <- function(id){
           )
         )
     })
-    
+
     # Dívida líquida consolidada BR
     output$plot2 <- renderPlotly({
       plot_ly(
@@ -320,7 +320,7 @@ mod_setor_publico_br_server <- function(id){
           )
         )
     })
-    
+
    # Dívida líquida consolidada BR % PIB
     output$plot4 <- renderPlotly({
       plot_ly(
@@ -337,7 +337,7 @@ mod_setor_publico_br_server <- function(id){
           )
         )
     })
-    
+
     # Dívida bruta consolidada BR
     output$plot5 <- renderPlotly({
       plot_ly(
@@ -354,7 +354,7 @@ mod_setor_publico_br_server <- function(id){
           )
         )
     })
-    
+
     # Dívida Bruta BR % PIB
     output$plot6 <- renderPlotly({
       plot_ly(
@@ -370,12 +370,12 @@ mod_setor_publico_br_server <- function(id){
             xanchor = "center"
           )
         )
-    })  
+    })
   })
 }
     
 ## To be copied in the UI
-# mod_setor_publico_br_ui("setor_publico_br_ui_1")
+# mod_conj_setor_publico_br_ui("setor_publico_br_ui_1")
     
 ## To be copied in the server
-# mod_setor_publico_br_server("setor_publico_br_ui_1")
+# mod_conj_setor_publico_br_server("setor_publico_br_ui_1")

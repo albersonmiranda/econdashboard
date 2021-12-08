@@ -70,7 +70,6 @@ app_ui <- function(request) {
                                tabName = "fundos_acoes"),
                    menuSubItem("Fundos Multimercado",
                                tabName = "fundos_multimercado")
-                   
           )
         )
       ),
@@ -93,31 +92,29 @@ app_ui <- function(request) {
           tabItem(tabName = "credito",
                   mod_conj_credito_ui("credito_ui_1")
           ),
-          tabItem(tabName = "mercados", 
+          tabItem(tabName = "mercados",
                   mod_conj_mercados_ui("mercados_ui_1")
           ),
           tabItem(tabName = "inflacao",
                   mod_conj_inflacao_ui("inflacao_ui_1")
           ),
           tabItem(tabName = "setor_publico",
-                  mod_setor_publico_br_ui("setor_publico_br_ui_1"), 
+                  mod_conj_setor_publico_br_ui("setor_publico_br_ui_1"),
                   mod_conj_setor_publico_ui("setor_publico_ui_1")
           ),
-          
+
           # tab cobrança
           tabItem(
             tabName = "cobranca",
             mod_cob_overview_ui("cob_overview_ui_1")
           ),
-          
-          
+
           # tab fundos banestes
           tabItem(
             tabName = "fundos",
             mod_fundos_introducao_ui("fundos_introducao_ui_1")
           ),
-          
-          
+
           # tab fundos de renda fixa
           tabItem(
             tabName = "fundos_renda_fixa",
@@ -134,16 +131,14 @@ app_ui <- function(request) {
             mod_fundos_valores_ui("fundos_valores_ui_1"),
             mod_fundos_Estrategia_ui("fundos_Estrategia_ui_1")
           ),
-          
-          
+
           # tab Fundos de ações
           tabItem(
             tabName = "fundos_acoes",
             mod_fundos_dividendos_ui("fundos_dividendos_ui_1"),
             mod_fundos_btg_ui("fundos_btg_ui_1"),
           ),
-          
-          
+
           # tab Fundos Multimercado
           tabItem(
             tabName = "fundos_multimercado",
@@ -169,7 +164,7 @@ golem_add_external_resources <- function() {
   add_resource_path(
     "www", app_sys("app/www")
   )
-  
+
   tags$head(
     favicon(),
     bundle_resources(

@@ -26,9 +26,9 @@ mod_conj_setor_publico_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$setorpublico.es, 1))
           )
         ),
-        
+
         #Relatorios
-        box( 
+        box(
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
