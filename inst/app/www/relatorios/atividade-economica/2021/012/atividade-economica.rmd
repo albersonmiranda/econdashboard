@@ -1,0 +1,212 @@
+---
+title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
+author: \textbf{\textcolor{white}{Atividade Econômica}}
+date: \textbf{\textcolor{white}{Dezembro/2021}}
+params:
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
+  iblue: 004b8d
+  igray: d4dbde
+documentclass: article
+papersize: a4paper
+fontsize: 100
+output:
+  IReports::businessReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\logotitle}{`r gsub("_", "\\_", params$logotitle)`}
+  - \newcommand{\iblue}{`r params$iblue`}
+  - \newcommand{\igray}{`r params$igray`}
+include-before:
+  - \renewcommand{\contentsname}{Sumário}
+---
+
+
+```{r setup, include = FALSE}
+
+# packages
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(kableExtra)
+library(here)
+
+# carregando dados
+load(here("data", "series.rda"))
+
+# settings
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# tema gráficos
+tema = theme(
+  plot.title = element_text(hjust = 0.5, size = 15),
+  plot.subtitle = element_text(hjust = 0.5, size = 13),
+  axis.ticks.x = element_blank(),
+  legend.position = "bottom",
+  legend.title = element_blank(),
+  legend.text = element_text(size = 12))
+```
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Atividade Econômica} 
+ \vspace{0.5cm}
+
+Segundo os dados divulgados pelo Instituto Brasileiro de Geografia e Estatística (IBGE) o Produto Interno Bruto  (PIB) brasileiro apresentou leve queda de 0,1% no 3° trimestre deste ano em relação ao trimestre imediatamente anterior com ajuste sazonal. Esta redução foi influenciada principalmente pela queda de 8% no setor agrícola. Por outro lado, a indústria manteve-se no mesmo nível do trimestre anterior (variação de 0%), enquanto o setor de serviços registrou aumento de 1,1%. Em valores correntes, o PIB do 3° trimestre fechou ao patamar de R$ 2,2 trilhões. 
+
+```{r PIB TRI}
+# filtrando dados
+PIB_trimestral = subset(series$PIBtri, date >= as.Date("2019-07-01"))
+
+# plotando grafico
+PIB_trimestral|>
+ggplot(aes(
+  y = value,
+  x = date,
+  color = "name")) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = "PIB trimestral",
+    values = "#004b8d"
+  ) +
+  scale_x_date(date_labels = "%m/%Y", date_breaks = "3 month") +
+  coord_cartesian(ylim = c(150, 180)) +
+  labs(
+    x = "",
+    y = "Número Índice (base = 1995)",
+    title = "Evolução do PIB Trimestral",
+    caption =  "Fonte: Banco Central"
+  ) +
+  theme_minimal() +
+  tema +
+  theme(legend.position = "none")
+```
+
+
+```{r PIB corrente}
+# Filtrando dados 
+PIBmensal_tri = subset(series$PIBmensal,
+                          date >= as.Date("2021-01-01"))
+
+# Plotando grafico
+PIBmensal_tri |>
+  ggplot(aes(
+    x = date,
+    y = value,
+    label = scales::number(value, scale = 1 / 1000, accuracy = 0.1),
+    fill = factor(
+      format(date, "%Y/%B")
+     )
+    )
+   ) +
+  geom_bar(stat = "identity") +
+  geom_label(vjust = .5, colour = "white", show.legend = FALSE) +
+ scale_y_continuous(labels = scales::number_format(scale = 1 / 1000)) +
+ scale_x_date(date_breaks = "1 month", date_labels = "%Y/%m") +
+ labs(
+    title = " PIB mensal",
+    subtitle = "Valores correntes",
+    caption = "Fonte: Banco Central",
+    x = "",
+    y = "R$ bilhões"
+  ) +
+  theme_minimal() +
+  tema +
+  scale_fill_manual(values = c("#004B8D", "#004B8D", "#004B8D", "#004B8D", "#004B8D", "#004B8D", "#004B8D",
+                               "#004B8D", "#004B8D", "#004B8D")) +
+   theme(legend.position = "none")
+
+```
+
+Detalhando a análise do PIB pela ótica da produção, a queda na agricultura – segundo o IBGE – foi impulsionada principalmente pelo encerramento da safra de soja, um dos principais produtos exportados pelo Brasil. Já no setor industrial, destaca-se a atuação da Construção que registrou aumento de 3,9% no 3° trimestre do ano. No que se refere aos serviços, houve aumento de 4,4% na rubrica Outras Atividades de Serviços. Além disso, apesar do avanço da vacinação no país e a implementação de medidas menos restritivas em relação a pandemia, o comércio (atividade bastante prejudicada pela crise do COVID-19) apresentou queda de 0,4%. 
+
+```{r PIB producao}
+# filtrando dados
+PIB_industria = subset(series$PIBtriI, date >= as.Date("2019-10-01"))
+PIB_servicos = subset(series$PIBtriS, date >= as.Date("2019-10-01"))
+PIB_agricultura = subset(series$PIBtriA, date >= as.Date("2019-10-01"))
+
+#plotando grafico
+PIB_industria |>
+  inner_join(PIB_servicos, by = "date") |>
+  inner_join(PIB_agricultura, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+    aes(
+      x = date,
+      y = value,
+      color = name
+    )) +
+    geom_line(size = 1.1)  +
+  scale_color_manual(
+    labels = c("Agricultura", "Indústria", "Serviços"),
+    values = c("#004b8d", "#56af31", "#e7d8ac")) +
+  scale_x_date(date_labels = "%m/%Y", date_breaks = "3 month") +
+  scale_y_continuous(limits = c(100, 250),
+                              breaks = c(100,
+                                         125,
+                                         150,
+                                         175,
+                                         200,
+                                         225,
+                                         250)) +
+  labs(
+    y = "Número índice (base = 1995)",
+    x = "",
+    title = "Produto Interno Bruto",
+    subtitle = "Ótica da Produção",
+    caption = "Fonte: IBGE") +
+  theme_minimal() +
+  tema
+```
+
+Olhando pela ótica da despesa, o consumo das famílias aumentou 0,9% no 3° trimestre em relação ao 2° trimestre do ano. Da mesma forma, o consumo do governo obteve um aumento de 0,8%, enquanto a formação bruta de capital fixo caiu 0,1%. Além disso, tanto importações quanto exportações obtiveram reduções significativas de 8,3% e 9,8%, respectivamente. 
+
+```{r PIB demanda}
+# filtrando dados
+PIBtri_familias = subset(series$PIBtriF, date >= as.Date("2019-07-01"))
+PIBtri_governo = subset(series$PIBtriG, date >= as.Date("2019-07-01"))
+
+#plotando grafico
+PIBtri_familias |>
+  inner_join(PIBtri_governo, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+    aes(
+      x = date,
+      y = value,
+      color = name)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Consumo das Famílias", "Consumo do Governo"),
+    values = c("#004b8d", "#56af31")) +
+  scale_x_date(date_labels = "%m/%Y", date_breaks = "3 month") +
+  scale_y_continuous(limits = c(130, 190),
+                              breaks = c(130,
+                                         140,
+                                         150,
+                                         160,
+                                         170,
+                                         180,
+                                         190)) +
+  labs(
+    y = "Número índice (base = 1995)",
+    x = "",
+    title = "Produto Interno Bruto",
+    subtitle = "Ótica da Demanda",
+    caption = "Fonte: IBGE") +
+  theme_minimal() +
+  tema
+```
+
+Em relação ao acumulado do ano, o PIB brasileiro cresceu 4% comparado ao mesmo período de 2020. É importante salientar que apesar do resultado positivo, a comparação com 2020 deve ser feita com cautela, visto que foi um ano atípico e as contas nacionais sofreram fortemente os impactos da pandemia do COVID-19. Nesse sentido, o PIB do 3° trimestre alcançou o mesmo patamar do PIB no final de 2019, momento pré-pandemia.
