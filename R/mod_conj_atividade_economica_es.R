@@ -41,7 +41,10 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+               tags$a("2° Trimestre",
+                href="www/relatorios/atividade-economica-es/2021/012/atividade-economica-es.pdf",
+                 target="_blank"))
             )
           )
         ),
