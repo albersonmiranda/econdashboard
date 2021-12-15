@@ -1,0 +1,117 @@
+% Author: Karol KozioL
+% License: GPL-3
+% Modified by: Sarah Wagner
+
+% % % packages -----------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{calc}
+\usepackage{eso-pic}
+\usepackage[left = 30pt, right = 30pt, top = 25pt, bottom = 25pt, headsep = 40pt, includeheadfoot]{geometry}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{lastpage}
+\usepackage{multirow}
+\usepackage{tabularx} 
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{titling}
+\usepackage{xcolor, colortbl}
+\usepackage{etoolbox}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage[fontsize=14]{scrextend}
+\usepackage[portuguese]{babel}
+\usepackage{indentfirst}
+
+% % % settings -----------------------------------------------------------------------------------
+
+% % custom colors
+\definecolor{iblue}{HTML}{\iblue}
+\definecolor{igray}{HTML}{\igray}
+
+% definition of pagename
+\newcommand\pagename{Page}
+
+% % fonts 
+\defaultfontfeatures{Mapping = tex-text}
+\setmainfont{Arial}
+\newfontfamily\headingfont{Arial}
+
+
+
+% % sections
+\titleformat{\section}{\color{iblue}\headingfont\Large\bfseries}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}{\color{iblue}\headingfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\color{iblue}\headingfont\large\bfseries}{\thesubsubsection}{1em}{}
+
+% % misc
+\setlength{\parindent}{0em} 
+\setlength{\parskip}{1em}
+\linespread{1.15}
+\renewcommand{\baselinestretch}{1.25}
+\raggedright
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\justifying
+
+
+% % % custom titlepage ----------------------------------------------------------------------------
+\newcommand\BackgroundPic{%
+	\put(0,0){%
+		\parbox[b][\paperheight]{\paperwidth}{%
+			\vfill
+			\centering
+			\includegraphics[width=\paperwidth,height=\paperheight]{\cover}%
+			\vfill
+}}}
+
+\makeatletter
+
+% pagestyle titlepage
+\fancypagestyle{customtitle}{
+	\lhead{}
+	\chead{}
+	\rhead{\includegraphics{\logotitle}}
+	\makeatother
+	\lfoot{}
+	\cfoot{}
+	\rfoot{}
+}
+
+
+% titlepage
+\renewcommand{\maketitle}{
+	\thispagestyle{customtitle}
+	\AddToShipoutPicture*{\BackgroundPic}
+	\ClearShipoutPicture
+	
+	\phantom{a}\hfill
+	\vspace{12cm}
+	
+	\begin{tabular}[l]{@{}p{\textwidth}@{}}
+		\color{iblue}\headingfont\LARGE\@title\\[1em]
+		\color{iblue}\headingfont\Large\@author\\[1em]
+		\color{iblue}\headingfont\large\@date\\[1em]
+	\end{tabular}
+	
+	
+	\clearpage
+}
+
+\makeatother
+
+% % % header and footer ---------------------------------------------------------------------------
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{ \includegraphics{\logo}}
+\makeatother
+\newlength{\myheight}
+\lfoot{}
+\cfoot{}
+\rfoot{\pagename~\thepage \hspace{1pt} / \pageref{LastPage}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}

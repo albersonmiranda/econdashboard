@@ -45,6 +45,7 @@ ICC = BETSget(4393, data.frame = TRUE) # índice confiança do consumidor
 ICE = BETSget(4394, data.frame = TRUE) # índice de condições econômicas atuais
 IEF = BETSget(4395, data.frame = TRUE) # índice de expectativas futuras
 ExpBR = BETSget(22708, data.frame = TRUE) # exportação de bens free on board
+ConsumoPetro = BETSget(1398, data.frame = TRUE) # consumo de barril de petroleo por dia
 
 # Mercado de trabalho ----
 Emprego = BETSget(25239, data.frame = TRUE) # índice de emprego formal
@@ -66,6 +67,8 @@ IGPM = BETSget(189, data.frame = TRUE, from = "1995-01-01") # Indice Geral de Pr
 IPCBr = BETSget(191, data.frame = TRUE, from = "1995-01-01") # Indice de Precos ao Consumidor-Brasil FGV
 ICV = BETSget(194, data.frame = TRUE, from = "1995-01-01") # Indice Custo de Vida Dieese variação % mensal
 CapInst = BETSget(1344, data.frame = TRUE) # Utilização da capacidade instalada % (FGV)
+IPCAtransportes = BETSget(1398, data.frame = TRUE, from = "1999-08-31") # Subitem transportes de IPCA
+IPCA12mes = BETSget(13522, data.frame = TRUE) # Indice nacional de Preços ao consumidor-Amplo dos ultimos 12 meses IBGE
 
 # Setor público ----
 ResultadoBR = BETSget(4792, data.frame = TRUE) # NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário
@@ -124,7 +127,7 @@ SaldoES = BETSget(14063, data.frame = TRUE)
 InadESPF = BETSget(15868, data.frame = TRUE) # inadimplência %
 InadESPJ = BETSget(15900, data.frame = TRUE)
 InadES = BETSget(15932, data.frame = TRUE)
-
+CreditoPIB = BETSget(20622, data.frame = TRUE) # Saldo das operações de crédito em % em relação ao PIB
 
 # 3. ARQUIVO -----------------------------------------------------------------
 

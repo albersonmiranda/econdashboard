@@ -1,0 +1,6 @@
+\babel@toc {portuguese}{}\relax 
+\contentsline {section}{\numberline {1}Índice Nacional de Preços ao Consumidor Amplo}{3}{}%
+\contentsline {section}{\numberline {2}Combustíveis}{4}{}%
+\contentsline {section}{\numberline {3}Desvalorização Cambial}{5}{}%
+\contentsline {section}{\numberline {4}Variação do Produto Interno Bruto}{6}{}%
+\contentsline {section}{\numberline {5}Inflação - Grande Vitória}{7}{}%
