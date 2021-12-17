@@ -58,15 +58,15 @@ tema = theme(
 ```
 
 \maketitle
-\tableofcontents
+<!--\tableofcontents-->
 \clearpage
 
 \section{Atividade Econômica Capixaba} 
  \vspace{0.5cm}
 
-Segundos dados divulgados pelo Instituto Jones dos Santos Neves (IJSN) o Produto Interno Bruto (PIB) capixaba obteve um aumento de 0,4% no segundo trimestre desse ano comparado ao trimestre imediatamente anterior. Este resultado é superior a variação PIB nacional que apresentou uma leve retração de 0,1% na passagem do 1° para o 2° trimestre. 
+Segundo dados divulgados pelo Instituto Jones dos Santos Neves (IJSN), o Produto Interno Bruto (PIB) capixaba cresceu 0,4% no segundo trimestre desse ano comparado ao trimestre imediatamente anterior. Este resultado é superior à variação do PIB nacional que apresentou uma leve retração de 0,1% na passagem do 1° para o 2° trimestre. 
 
-Em relação ao acumulado do ano, o PIB capixaba fechou o período com alta de 7,9% comparado ao mesmo período do ano, superando o resultado nacional que foi uma alta de 6,4%. Além disso, em número absolutos o PIB nominal capixaba fechou o 2° trimestre ao patamar de R$ 40 bilhões. 
+Em relação ao acumulado do ano, o PIB capixaba fechou o período com alta de 7,9% comparado ao mesmo período de 2020, superando o resultado nacional que foi 6,4%. Além disso, em número absolutos, o PIB nominal capixaba fechou o 2° trimestre no patamar de R$ 40 bilhões. 
 
 ```{r PIB ES}
 # Concertando data
@@ -91,7 +91,7 @@ geom_line(size = 1.1, color = "#004b8d") +
 scale_x_date(date_labels = "%m/%Y", date_breaks = "6 month") +
 coord_cartesian(ylim = c(130, 165)) +
 labs(
-y = "Número índice (série encadeada)",
+y = "índice (série encadeada)",
 x = "",
 title = "PIB trimestral",
 subtitle = "Espírito Santo",
@@ -100,25 +100,14 @@ theme_minimal() +
 tema
 ```
 
-No que diz respeito a análise setorial, os dados divulgados são mais recentes. Segundo a Pesquisa Industrial Mensal (PIM-PF), realizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE), a produção industrial capixaba variou positivamente 0,2% em setembro de 2021 comparado ao mês anterior, na série com ajuste sazonal. No acumulado do ano, o crescimento da indústria foi de 8,5% em relação ao mesmo período do ano passado. Destaque para a indústria transformação que cresceu 23,9%, enquanto a indústria de extrativa variou negativamente em 14,2%. 
-
-Em relação ao setor de serviços, o avanço da vacinação contra a Covid-19 e o relaxamento das medidas relativas ao combate do vírus foram fatores importantes para a melhora dos resultados no setor. Segundo a Pesquisa Mensal de Serviços (PMS) do IBGE, o volume de serviços cresceu 10,2% na comparação interanual. Já em relação ao mês de setembro deste ano, houve queda no volume de serviços de 0,3% em comparação ao mês anterior, com ajuste sazonal. 
-
-O aumento no volume de serviços foi puxado principalmente pelo aumento nos serviços prestados às famílias que apresentou crescimento de 23% no acumulado do ano em comparação ao ano anterior. Serviços relacionados a transporte também obtiveram resultados positivos (aumento de 12,9%).
-Por fim, a Pesquisa Mensal do Comércio (PMS) revelou que o volume de vendas do comércio varejista reduziu 0,6% em setembro deste ano comparado ao mês anterior. Tendência que acompanha a queda do indicador em nível nacional (variação de -1,3%). 
-
-Já em relação ao acumulado do ano, o volume de comércio capixaba superou a média nacional. Enquanto o Espírito Santo registrou aumento de 9,1%, o país obteve crescimento de 3,8%, comparativamente ao ano passado. O resultado do indicador capixaba foi devido ao aumento no volume de vendas de combustíveis e lubrificantes (21,1%) e artigos farmacêuticos (18,4%).  
+No que diz respeito à análise setorial, a Pesquisa Industrial Mensal (PIM-PF), realizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE), revelou variação positiva de 0,2% em setembro de 2021 comparado ao mês anterior na série com ajuste sazonal. No acumulado do ano, o crescimento da indústria foi de 8,5% em relação ao mesmo período do ano passado, com destaque para a indústria transformação, que cresceu 23,9% enquanto a indústria extrativista caiu 14,2%.
 
 ```{r indices}
-# filtrando dados
-ServicosES_tri = subset(series$ServicosES, date >= as.Date("2020-07-01"))
-VarejoES_tri = subset(series$VarejoES, date >= as.Date("2020-07-01"))
-PIM.ES_tri = subset(series$PIM.es, date >= as.Date("2020-07-01"))
 
-# plotando grafico 
-ServicosES_tri |>
-  inner_join(VarejoES_tri, by = "date") |>
-  inner_join(PIM.ES_tri, by = "date") |> 
+# plotando grafico
+series$ServicosES |>
+  inner_join(series$VarejoES, by = "date") |>
+  inner_join(series$PIM.ES, by = "date") |>
   tidyr::pivot_longer(-date) |>
   ggplot(
       aes(
@@ -129,7 +118,11 @@ ServicosES_tri |>
   scale_color_manual(
     labels = c("Indústria", "Serviços", "Varejo"),
     values = c("#004b8d", "#56af31", "#e7d8ac")) +
-  scale_x_date(date_labels = "%m/%Y", date_breaks = "3 month") +
+  scale_x_date(
+    date_labels = "%b/%Y",
+    date_breaks = "6 month",
+    limits = as.Date(c("2018-01-01", "2021-09-01"))
+  ) +
   labs(
     y = "Número Índice",
     x = "",
@@ -139,3 +132,7 @@ ServicosES_tri |>
   theme_minimal() +
   tema
 ```
+
+Em relação ao setor de serviços, o avanço da vacinação contra a Covid-19 e o relaxamento das medidas restritivas foram fatores importantes para a melhora dos resultados no setor. Segundo a Pesquisa Mensal de Serviços (PMS) do IBGE, o volume de serviços cresceu 10,2% na comparação interanual. Já em relação ao mês de setembro deste ano, houve queda no volume de serviços de 0,3%^[com ajuste sazonal.] em comparação ao mês anterior. O aumento no volume de serviços foi puxado principalmente pelos serviços prestados às famílias, que cresceu 23% no acumulado do ano em comparação ao ano anterior, e serviços relacionados a transporte, com aumento de 12,9%.
+
+Acerca do comércio, a Pesquisa Mensal do Comércio (PMC) identificou que o volume de vendas do comércio varejista reduziu 0,6% em setembro deste ano comparado ao mês anterior, tendência que acompanha a queda do indicador em nível nacional (variação de -1,3%). Já em relação ao acumulado do ano, o volume de comércio capixaba superou a média nacional. Enquanto o Espírito Santo registrou aumento de 9,1%, o país cresceu apenas 3,8%. Esse resultado se explica por conta do aumento no volume de vendas de combustíveis e lubrificantes (21,1%) e artigos farmacêuticos (18,4%).  
