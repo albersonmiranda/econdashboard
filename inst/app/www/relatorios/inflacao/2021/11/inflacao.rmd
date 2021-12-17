@@ -30,8 +30,6 @@ include-before:
 
 # packages
 library(dplyr)
-library(knitr)
-library(xtable)
 library(ggplot2)
 library(kableExtra)
 library(here)
@@ -47,32 +45,31 @@ knitr::opts_chunk$set(
 )
 
 # tema gráficos
-tema = theme(
-  plot.title = element_text(hjust = 0.5, size = 15),
-  plot.subtitle = element_text(hjust = 0.5, size = 13),
-  axis.ticks.x = element_blank(),
-  legend.position = "bottom",
-  legend.title = element_blank(),
-  legend.text = element_text(size = 12))
+tema = theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 15),
+    plot.subtitle = element_text(hjust = 0.5, size = 13),
+    axis.ticks.x = element_blank(),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 12)
+  )
+
 ```
 
 \maketitle
 \tableofcontents
 \clearpage
 
-\section{Índice Nacional de Preços ao Consumidor Amplo} 
+\section{IPCA} 
  \vspace{0,5cm}
 
-O Índice Nacional de Preços ao Consumidor Amplo, que mede a inflação no Brasil, registrou alta de 0,95% em novembro, e 9,26% no acumulado do ano.
-Valor bem distante do centro da meta estipulada pelo Conselho Monetário Nacional (CMN) de 3,75%, mesmo com faixa de tolerência de 1,5 p.p para cima ou para baixo.
+O Índice Nacional de Preços ao Consumidor Amplo registrou alta de 0,95% em novembro e 9,26% no acumulado do ano, valor bem distante de 3,75% que é o centro da meta estipulada pelo Conselho Monetário Nacional (CMN), mesmo com faixa de tolerência de 1,5 p.p para mais ou para menos.
 
 ```{r inflacao 12 meses}
-# Filtrando os dados
-IPCAmensal = subset(series$IPCA12mes, date >= as.Date("2020-11-01"))
 
-
-#plotando grafico
-IPCAmensal|>
+# plotando grafico
+series$IPCA12mes |>
 ggplot(aes
 (x = date,
 y = value,
@@ -82,36 +79,37 @@ geom_line(
   scale_color_manual(
     labels = c("IPCA"),
     values = c("#56af31")) +
-  scale_x_date(date_labels = "%m/%y", date_breaks = "month") +
+  scale_x_date(
+    date_labels = "%b/%y",
+    date_breaks = "3 month",
+    limits = as.Date(c("2020-11-01", "2021-11-01")) +
   labs(
-    y = "variação em %",
+    y = "variação %",
     x = "",
     title = "Inflação acumulada nos últimos doze meses",
-    caption = "Fonte: Banco Central") +
-  theme_minimal() +
+    caption = "Fonte: Bacen") +
   tema
 ```
 
-Destaque se dá para os transportes que teve o maior aumento do índice por três meses consecutivos, essa variação foi influenciada principalmente pelo preço dos combustíveis, que no acumulado do ano sofreu aumento de 50,43%. 
+O destaque se dá para o setor de transportes, que teve o maior aumento do índice por três meses consecutivos. Essa variação foi influenciada principalmente pelo preço dos combustíveis, que no acumulado do ano sofreu aumento de 50,43%. 
 \newpage
 
+<!-- colocar esse e o próximo tópicos como subseção de IPCA -->
 \section{Combustíveis} 
  \vspace{0,5cm}
  
- A variação no preço dos combustíveis é causada por vários fatores e gera aumento em toda cadeia de preços, visto que, a maior parte dos produtos são dependes de transporte.
+ A variação no preço dos combustíveis é causada por vários fatores e afeta toda cadeia de preços, visto que a maior parte dos produtos são dependentes de transporte.
 
-O avanço da vacinação contra a covid-19 a nível mundial proporcionou a retomada global da economia, gerando uma grande demanda por petróleo que não foi acompanhado da oferta, já que, no ano passado a Organização dos Países Produtores de Petróleo 
-(Opep) decidiu diminuir a produção para evitar que os preços caíssem demais, com a recuperação da economia a oferta de petróleo
-está sendo normalizada gradativamente, enquanto a demanda cresce a um nível mais acelerado, provocando o aumento no preço do barril. 
+O avanço da vacinação contra a covid-19 a nível mundial proporcionou a retomada global da economia, gerando uma grande demanda por petróleo que não foi acompanhado da oferta, uma vez que no ano passado a Organização dos Países Produtores de Petróleo 
+(Opep) decidiu diminuir a produção para evitar uma queda mais acentuada no nível do preço. Com a recuperação da economia, a oferta de petróleo
+vem se normalizando gradativamente enquanto a demanda cresce de forma mais acelerada, pressionando o preço do barril. 
 
 
 
 ```{r Consumo Petroleo}
-# Filtrando os dados
-Petroleo = subset(series$ConsumoPetro, date >= as.Date("2020-01-01"))
 
 #plotando grafico
-Petroleo |>
+series$ConsumoPetro |>
 ggplot(aes
 (x = date,
 y = value,
@@ -121,12 +119,15 @@ geom_line(
   scale_color_manual(
     labels = c(""),
     values = c("#56af31")) +
-  scale_x_date(date_labels = "%m/%Y", date_breaks = "3 month") +
+  scale_x_date(
+    date_labels = "%b/%Y",
+    date_breaks = "3 month",
+    limits = as.Date("2020-01-01", "2021-11-01")) +
   labs(
     y = "Barris/dia (mil)",
     x = "",
-    title = "Consumo de Petróleo por dia",
-    caption = "Fonte: Agência Nacional do Petroleo") +
+    title = "Consumo diário de Petróleo",
+    caption = "Fonte: Agência Nacional do Petróleo") +
   theme_minimal() +
   tema +
   theme(legend.position = "none")
@@ -137,7 +138,7 @@ geom_line(
 \section{Desvalorização Cambial} 
  \vspace{0,5cm}
 
-O impacto desse aumento é ainda maior no Brasil devido à desvalorização cambial, que ocorre principalmente em razão dos riscos fiscais domésticos, a Dívida Bruta do Governo Geral (DBGG) que compreende governo federal, INSS e governos estaduais e municipais – atingiu 82,9% do PIB (R$7,0 trilhões) em outubro, essa incerteza fiscal afasta o investimento estrangeiro.
+O impacto do cenário internacional é ainda maior no Brasil devido à desvalorização cambial, que ocorre principalmente em razão dos riscos fiscais domésticos: especificamente a Dívida Bruta do Governo Geral (DBGG), que compreende o governo federal, o INSS e os governos estaduais e municipais. A DBGG atingiu 82,9% do PIB (R$ 7 trilhões) em outubro, <!--essa incerteza fiscal afasta o investimento estrangeiro. DESENOVLVER -->
 
 ```{r Divida Bruta/PIB}
 #filtrando dados
@@ -159,12 +160,12 @@ geom_line(
     y = "% PIB",
     x = "",
     title = "Dívida Bruta/PIB",
-    caption = "Fonte: Banco Central") +
-  theme_minimal() +
+    caption = "Fonte: Bacen") +
   tema
 ```
  \newpage
 
+<!-- reavaliar essa seção -->
  \section{Variação do Produto Interno Bruto} 
  \vspace{0,5cm}
 
@@ -205,6 +206,7 @@ O aumento da Selic, impacta diretamente o custo do crédito, desacelerando o inv
 
  \newpage
 
+<!-- PARAMOS AQUI -->
 \section{Inflação - Grande Vitória} 
  \vspace{0,25cm}
 
