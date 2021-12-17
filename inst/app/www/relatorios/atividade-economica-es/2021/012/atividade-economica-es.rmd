@@ -1,0 +1,138 @@
+---
+title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
+author: \textbf{\textcolor{white}{Atividade Econômica}}
+date: \textbf{\textcolor{white}{Dezembro/2021}}
+params:
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
+  iblue: 004b8d
+  igray: d4dbde
+documentclass: article
+papersize: a4paper
+fontsize: 100
+output:
+  IReports::businessReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\logotitle}{`r gsub("_", "\\_", params$logotitle)`}
+  - \newcommand{\iblue}{`r params$iblue`}
+  - \newcommand{\igray}{`r params$igray`}
+include-before:
+  - \renewcommand{\contentsname}{Sumário}
+---
+
+
+```{r setup, include = FALSE}
+# packages
+library(dplyr)
+library(knitr)
+library(xtable)
+library(ggplot2)
+library(kableExtra)
+library(here)
+
+# carregando dados
+load(here("data", "series.rda"))
+load(here("data", "PIB_capixaba.rda"))
+
+# settings
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# tema gráficos
+tema = theme(
+  plot.title = element_text(hjust = 0.5, size = 15),
+  plot.subtitle = element_text(hjust = 0.5, size = 13),
+  axis.ticks.x = element_blank(),
+  legend.position = "bottom",
+  legend.title = element_blank(),
+  legend.text = element_text(size = 12))
+```
+
+\maketitle
+<!--\tableofcontents-->
+\clearpage
+
+\section{Atividade Econômica Capixaba} 
+ \vspace{0.5cm}
+
+Segundo dados divulgados pelo Instituto Jones dos Santos Neves (IJSN), o Produto Interno Bruto (PIB) capixaba cresceu 0,4% no segundo trimestre desse ano comparado ao trimestre imediatamente anterior. Este resultado é superior à variação do PIB nacional que apresentou uma leve retração de 0,1% na passagem do 1° para o 2° trimestre. 
+
+Em relação ao acumulado do ano, o PIB capixaba fechou o período com alta de 7,9% comparado ao mesmo período de 2020, superando o resultado nacional que foi 6,4%. Além disso, em número absolutos, o PIB nominal capixaba fechou o 2° trimestre no patamar de R$ 40 bilhões. 
+
+```{r PIB ES}
+# Concertando data
+PIB_capixaba$date = as.Date(
+  PIB_capixaba$date,
+  format = "%Y-%m-%d"
+)
+
+# Filtrando dados
+PIB_capixaba_filtro = subset(
+  PIB_capixaba,
+  date >= "2018-01-01"
+)
+
+# Plotando grafico
+PIB_capixaba_filtro |>
+ggplot(aes(
+x = date,
+y = value,
+group = 1)) +
+geom_line(size = 1.1, color = "#004b8d") +
+scale_x_date(date_labels = "%m/%Y", date_breaks = "6 month") +
+coord_cartesian(ylim = c(130, 165)) +
+labs(
+y = "índice (série encadeada)",
+x = "",
+title = "PIB trimestral",
+subtitle = "Espírito Santo",
+caption = "Fonte: Instituto Jones Santos Neves") +
+theme_minimal() +
+tema
+```
+
+No que diz respeito à análise setorial, a Pesquisa Industrial Mensal (PIM-PF), realizada pelo Instituto Brasileiro de Geografia e Estatística (IBGE), revelou variação positiva de 0,2% em setembro de 2021 comparado ao mês anterior na série com ajuste sazonal. No acumulado do ano, o crescimento da indústria foi de 8,5% em relação ao mesmo período do ano passado, com destaque para a indústria transformação, que cresceu 23,9% enquanto a indústria extrativista caiu 14,2%.
+
+```{r indices}
+
+# plotando grafico
+series$ServicosES |>
+  inner_join(series$VarejoES, by = "date") |>
+  inner_join(series$PIM.ES, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+      aes(
+          x = date,
+          y = value,
+          color = name)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Indústria", "Serviços", "Varejo"),
+    values = c("#004b8d", "#56af31", "#e7d8ac")) +
+  scale_x_date(
+    date_labels = "%b/%Y",
+    date_breaks = "6 month",
+    limits = as.Date(c("2018-01-01", "2021-09-01"))
+  ) +
+  labs(
+    y = "Número Índice",
+    x = "",
+    title = "Pesquisa Mensal",
+    subtitle = "Indústria, Comércio e Serviços",
+    caption = "Fonte: Banco Central") +
+  theme_minimal() +
+  tema
+```
+
+Em relação ao setor de serviços, o avanço da vacinação contra a Covid-19 e o relaxamento das medidas restritivas foram fatores importantes para a melhora dos resultados no setor. Segundo a Pesquisa Mensal de Serviços (PMS) do IBGE, o volume de serviços cresceu 10,2% na comparação interanual. Já em relação ao mês de setembro deste ano, houve queda no volume de serviços de 0,3%^[com ajuste sazonal.] em comparação ao mês anterior. O aumento no volume de serviços foi puxado principalmente pelos serviços prestados às famílias, que cresceu 23% no acumulado do ano em comparação ao ano anterior, e serviços relacionados a transporte, com aumento de 12,9%.
+
+Acerca do comércio, a Pesquisa Mensal do Comércio (PMC) identificou que o volume de vendas do comércio varejista reduziu 0,6% em setembro deste ano comparado ao mês anterior, tendência que acompanha a queda do indicador em nível nacional (variação de -1,3%). Já em relação ao acumulado do ano, o volume de comércio capixaba superou a média nacional. Enquanto o Espírito Santo registrou aumento de 9,1%, o país cresceu apenas 3,8%. Esse resultado se explica por conta do aumento no volume de vendas de combustíveis e lubrificantes (21,1%) e artigos farmacêuticos (18,4%).  

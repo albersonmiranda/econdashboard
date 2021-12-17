@@ -28,9 +28,9 @@ mod_conj_atividade_economica_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$atividadeeconomica, 1))
           )
         ),
-        
+
         #Relatorios
-        box( 
+        box(
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
@@ -42,7 +42,10 @@ mod_conj_atividade_economica_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+                tags$a("3° Trimestre",
+                 href = "www/relatorios/atividade-economica/2021/012/atividade-economica.pdf",
+                  target = "_blank"))
             )
           )
         ),
