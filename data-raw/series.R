@@ -16,6 +16,9 @@ library(BETS)
 # PIB em US$ tri ----
 PIB = BETSget(7324, data.frame = TRUE)
 
+# PIB em R$ milhões ----
+PIBmensal = BETSget(4380, data.frame = TRUE) # PIB mensal em valores correntes
+
 # taxas de variação anual ----
 PIBvar = BETSget(7326, data.frame = TRUE)
 PIBvarA = BETSget(7327, data.frame = TRUE) # agropecuaria
@@ -108,6 +111,7 @@ VarejoES = BETSget(1473, data.frame = TRUE) # índice volume de vendas no varejo
 ServicosES = BETSget(28134, data.frame = TRUE) # índice pesquisa mensal serviços
 ServicosESs = BETSget(28033, data.frame = TRUE) # índice pesquisa mensal serviços
 ExpES = BETSget(13386, data.frame = TRUE) # exportação de bens em US$ milhares
+PIM.ES = BETSget(21926, data.frame = TRUE) # produção industrial mensal
 
 # Mercado de Trabalho ----
 EmpregoES = BETSget(28308, data.frame = TRUE) # índice de emprego formal

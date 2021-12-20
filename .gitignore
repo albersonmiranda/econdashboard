@@ -7,5 +7,9 @@ cover.png
 logo.png
 *.ttf
 *.log
-politica-fiscal.tex
+*.tex
+*.toc
 politica-fiscal_files/
+atividade-economica-es_files/
+atividade-economica_files/
+nul
