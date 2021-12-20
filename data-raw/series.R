@@ -119,6 +119,7 @@ CestaES = BETSget(7494, data.frame = TRUE) # custo da cesta básica de Vitória
 
 # Setor Público ----
 ResultadoES = BETSget(14923, data.frame = TRUE) # resultado primário do ES (Estado e municípios) acumulado no ano em milhões
+ResultadotriES = BETSget(14819, data.frame = TRUE) # resultado primário do ES (Estado e municípios) no trimestre em milhões
 DividaES = BETSget(15141, data.frame = TRUE) # dívida líquida do ES (Estado e municípios)
 
 # Mercado Financeiro ----
