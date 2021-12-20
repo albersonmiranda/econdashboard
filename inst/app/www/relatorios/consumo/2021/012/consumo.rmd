@@ -61,11 +61,11 @@ tema = theme_minimal() +
 \section{Consumo} 
  \vspace{0.5cm}
 
-Os dados divulgados do Produto Interno Bruto (PIB) pelo Instituto Brasileiro de Geografia e Estatística (IBGE) referentes ao 3° trimestre desse ano revelam que o consumo das famílias cresceu 0,9% em relação ao trimestre anterior, com ajuste sazonal. No que se refere ao acumulado do ano, o aumento foi mais expressivo chegando a 4,2% comparativamente ao mesmo período do ano passado. 
+Os dados do PIB divulgados IBGE referentes ao 3° trimestre desse ano revelam que o consumo das famílias cresceu 0,9% em relação ao trimestre anterior, com ajuste sazonal. No que se refere ao acumulado do ano, o aumento foi mais expressivo chegando a 4,2% comparativamente ao mesmo período do ano passado. 
 
-O aumento pode ser explicado pela alta no setor de Serviços, que cresceu 1,1% nesse trimestre. O avanço da vacinação e o a flexibilização das medidas de combate à pandemia permitiram a expansão do setor, impulsionando o consumo das famílias, principalmente as de maior renda.
+O aumento pode ser explicado pela alta no setor de serviços, que cresceu 1,1% nesse trimestre. O avanço da vacinação e o a flexibilização das medidas de combate à pandemia permitiram a expansão do setor, impulsionando o consumo das famílias, principalmente as de maior renda.
 
-O consumo das famílias é o principal componente do PIB pela ótica da demanda. No 3° trimestre, soma cerca de 60% do seu valor total (aproximadamente R$ 1,3 trilhões). Já o consumo do governo cresceu 0,8% nesse trimestre em comparação com o anterior, com ajuste sazonal. No acumulado do ano o aumento foi de 1,7%, explicado pelas despesas relacionadas a pandemia, como a compra de vacinas.
+O consumo das famílias é o principal componente do PIB pela ótica da demanda: no 3° trimestre, soma cerca de 60% do seu valor total (aproximadamente R$ 1,3 trilhões). Já o consumo do governo cresceu 0,8% nesse trimestre em comparação com o anterior, com ajuste sazonal. No acumulado do ano, o aumento de 1,7% é explicado pelas despesas relacionadas a pandemia, como a compra de vacinas.
 
 ```{r PIB consumo, fig.height = 3.5, fig.width = 5.5, fig.align = "center"}
 # Plotando grafico
@@ -98,9 +98,7 @@ series$PIBtriF |>
   tema
 ```
 
-Em relação aos indicadores de consumo, o Índice de Confiança do Consumidor (ICC) mensura o "sentimento" do consumidor quanto a percepção de sua situação financeira, das condições econômicas do país e suas expectativas futuras. Seu valor varia de 0 a 200, sendo 0 totalmente pessista e 200 totalmente otimista \citep{fecomercio1}. 
-
-Em outubro desse ano, o índice retraiu 4,7% comparado ao mês anterior, fechando com 109,4 pontos. Em relação ao mesmo período do ano passado, houve aumento de 1,6% no indicador. O resultado negativo em outubro foi puxado principalmente pela queda no Índice de Expectativas Futuras (IEF), que caiu 5,3 pontos em outubro, redução de 3,5%. 
+Em relação aos indicadores de consumo, o Índice de Confiança do Consumidor (ICC)\footnote{Mensura o "sentimento" do consumidor quanto a percepção de sua situação financeira, das condições econômicas do país e suas expectativas futuras. Seu valor varia de 0 a 200, sendo 0 totalmente pessista e 200 totalmente otimista \citep{fecomercio1}.} retraiu 4,7% em outubro deste ano comparado ao mês anterior, fechando com 109,4 pontos. Em relação ao mesmo período do ano passado, houve aumento de 1,6% no indicador. O resultado negativo em outubro foi puxado principalmente pela queda no Índice de Expectativas Futuras (IEF), que caiu 5,3 pontos em outubro, redução de 3,5%. 
 
 ```{r ICC}
 # Filtrando dados
