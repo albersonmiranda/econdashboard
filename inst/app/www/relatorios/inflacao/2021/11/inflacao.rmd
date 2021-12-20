@@ -204,17 +204,15 @@ geom_line(
 
 O aumento da Selic, impacta diretamente o custo do crédito, desacelerando o investimento. Além disso, segundo o próprio Banco Central, o impacto da taxa SELIC na inflação leva em média entre 6 a 9 meses para ocorrer.
 
- \newpage
+\newpage
+\section{Grande Vitória} 
+\vspace{0,25cm}
 
-<!-- PARAMOS AQUI -->
-\section{Inflação - Grande Vitória} 
- \vspace{0,25cm}
+A Grande Vitória ocupa o segundo lugar no ranking das capitais com maior índice de inflação, com alta de 9,58% no acumulado do ano, ficando atrás apenas de Curitiba que teve variação de 10,97%. Em relação à variação mensal, a capital atingiu 1,53% em outubro, ocupando o primeiro lugar do ranking entre as capitais.
 
-A Grande Vitória ocupa o segundo lugar no ranking das capitais com maior índice de inflação, com alta de 9,58% no acumulado do ano, ficando atrás apenas de Curitiba que teve variação de 10,97%. Em relação a variação mensal a capital atingiu 1,53%, ocupando o primeiro lugar do ranking.
+Um dos principais fatores que explicam essa alta inflação na região é a habitação\footnote{FALAR O QUE COMPOE HABITAÇÃO}, que no acumulado do ano obteve a segunda maior alta do Brasil (+15%). Apenas em outubro, teve variação de +3,04%, sendo o item com maior alta da Grande Vitória, impulsionado principalmente pelo gás de botija, que subiu 5,41% em relação ao mês anterior.
 
-Destaque para a habitação que no acumulado do ano obteve a segunda maior alta do Brasil, com variação de 15,01%, durante o mês de outubro foi o item com maior alta da Grande Vitória, o aumento de 3,04% foi impulsionado principalmente pelo subitem gás de botija, que teve alta de 5,41% em relação ao mês anterior.
-
-No que se refere aos alimentos e bebidas foi a maior alta do país, com aumento de 2,48% em relação ao mês anterior, e variação de 7,43% no acumulado do ano. De acordo com o Dieese, o valor da cesta básica em setembro na Grande Vitória foi de R$633,03.
+Em relação aos alimentos e bebidas, Vitória teve a maior alta do país, com aumento de 2,48% em relação ao mês anterior e variação de 7,43% no acumulado do ano. De acordo com o Dieese, o valor da cesta básica em setembro na Grande Vitória foi de R$633,03. COMPLEMENTAR COM ANÁLISE DA SÉRIE DA CESTA BÁSICA (vairação, máxima histórica etc)
 
 ```{r IPCA es}
 
