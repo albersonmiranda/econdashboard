@@ -23,12 +23,12 @@ mod_conj_consumo_ui <- function(id) {
           solidHeader = TRUE,
           tags$div(
             class = "res-body",
-            HTML(tail(resenhas_conjuntura$consumo,1))
+            HTML(tail(resenhas_conjuntura$consumo, 1))
           )
         ),
-        
+
         #Relatorios
-        box( 
+        box(
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
@@ -40,7 +40,8 @@ mod_conj_consumo_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+              tags$a("Dezembro", href = "www/relatorios/consumo/2021/012/consumo.pdf", target = "_blank"))
             )
           )
         ),
@@ -60,9 +61,9 @@ mod_conj_consumo_ui <- function(id) {
           tags$div(
             HTML(
               ifelse(
-                is.na(tail(legenda_conjuntura$consumo,1)),
+                is.na(tail(legenda_conjuntura$consumo, 1)),
                 "",
-                tail(legenda_conjuntura$consumo,1)
+                tail(legenda_conjuntura$consumo, 1)
               )
             ),
             class = "box-body"
@@ -129,9 +130,9 @@ mod_conj_consumo_ui <- function(id) {
           tags$div(
             HTML(
               ifelse(
-                is.na(tail(legenda_conjuntura$consumo,1)),
+                is.na(tail(legenda_conjuntura$consumo, 1)),
                 "",
-                tail(legenda_conjuntura$consumo,1)
+                tail(legenda_conjuntura$consumo, 1)
               )
             ),
             class = "box-body"
@@ -222,7 +223,7 @@ mod_conj_consumo_ui <- function(id) {
               "",
               tail(legenda_conjuntura$renda.media, 1)
             )
-          ), 
+          ),
           class = "box-body"
           ),
           footer = fluidRow(
