@@ -128,7 +128,11 @@ InadESPF = BETSget(15868, data.frame = TRUE) # inadimplência %
 InadESPJ = BETSget(15900, data.frame = TRUE)
 InadES = BETSget(15932, data.frame = TRUE)
 CreditoPIB = BETSget(20622, data.frame = TRUE) # Saldo das operações de crédito em % em relação ao PIB
-
+saldocredito = BETSget(20539, data.frame = TRUE) # Saldo todas das operações de crédito
+creditolivrepj = BETSget(20543, data.frame = TRUE) # saldo de credito livre a pj
+creditolivrepf = BETSget(20579, data.frame = TRUE) # saldo de credito livre a pf
+novasconcessoespj = BETSget(20632, data.frame = TRUE) # novas contratações de crédito por pj
+novasconcessoespf = BETSget(20633, data.frame = TRUE) # novas contratações de crédito por pf
 # 3. ARQUIVO -----------------------------------------------------------------
 
 
