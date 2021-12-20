@@ -1,0 +1,65 @@
+---
+title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
+author: \textbf{\textcolor{white}{Política Fiscal Capixaba}}
+date: \textbf{\textcolor{white}{Dezembro/2021}}
+params:
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
+  iblue: 004b8d
+  igray: d4dbde
+documentclass: article
+papersize: a4paper
+fontsize: 100
+output:
+  IReports::businessReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\logotitle}{`r gsub("_", "\\_", params$logotitle)`}
+  - \newcommand{\iblue}{`r params$iblue`}
+  - \newcommand{\igray}{`r params$igray`}
+include-before:
+  - \renewcommand{\contentsname}{Sumário}
+---
+
+
+```{r setup, include = FALSE}
+# packages
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(here)
+
+# carregando dados
+load(here("data", "series.rda"))
+
+# settings
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# tema gráficos
+tema = theme_minimal() +
+  theme(
+  plot.title = element_text(hjust = 0.5, size = 15),
+  plot.subtitle = element_text(hjust = 0.5, size = 13),
+  axis.ticks.x = element_blank(),
+  legend.position = "bottom",
+  legend.title = element_blank(),
+  legend.text = element_text(size = 12))
+```
+
+\maketitle
+<!--\tableofcontents-->
+\clearpage
+
+\section{Setor Público Capixaba} 
+ \vspace{0.5cm}
+
+A ocorrência pandemia do COVID-19 encerrou uma série de resultados fiscais positivos que vinham desde 2017. Por outro lado, as contas públicas capixabas apresentam sinais de recuperação em 2021, voltando aos níveis pré-pandemia. O resultado primário registrado pelo Estado do Espírito Santo e municípios foi um superávit de R$ 494,7 milhões, aumento de aproximadamente 480% frente ao superávit de R$ 85 milhões no trimestre anterior. 
