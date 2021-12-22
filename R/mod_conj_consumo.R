@@ -55,7 +55,7 @@ mod_conj_consumo_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Contribuição do consumo no PIB", class = "box-subtit"),
           tags$div("Índice, trimestral", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
@@ -124,7 +124,7 @@ mod_conj_consumo_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Percepção do consumidor", class = "box-subtit"),
           tags$div("Índice, mensal", class = "box-body"),
-          plotlyOutput(ns("plot3")),
+          withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Fecomercio", class = "box-legenda"),
           tags$div(
             HTML(
@@ -214,7 +214,7 @@ mod_conj_consumo_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Renda média real das pessoas ocupadas", class = "box-subtit"),
           tags$div("Mensal, R$", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(HTML(
             ifelse(

@@ -45,7 +45,7 @@ mod_fundos_btg_ui <- function(id){
             "Termo de adesão",
             class = "link"),
         ),
-        
+
         # fundo de ações btg pactual
         box(
           title = tags$div("Desempenho do Fundo", class = "box-graf"),
@@ -57,7 +57,7 @@ mod_fundos_btg_ui <- function(id){
           solidHeader = TRUE,
           tags$div("Fundo de Investimento Renda Variável", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
           footer = fluidRow(
             column(
@@ -78,7 +78,7 @@ mod_fundos_btg_ui <- function(id){
                 text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
-                
+
               )
             )
           )
@@ -96,11 +96,11 @@ mod_fundos_btg_ui <- function(id){
 mod_fundos_btg_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
- 
+
     # plot fundo
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = fundos$BTG_Pactual_Absoluto[1:nrow(fundos$BTG_Pactual_Absoluto) - 1, ], 
+        data = fundos$BTG_Pactual_Absoluto[1:nrow(fundos$BTG_Pactual_Absoluto) - 1, ],
         x = ~as.Date(mes), y = ~rentabilidade_acum,
         type = "scatter", mode = "lines", name = "Fundo Banestes de Ações BTG", marker = list(color = "#004B8D")
       ) %>%

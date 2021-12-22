@@ -13,6 +13,7 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr rename
 #' @importFrom shinyjs useShinyjs
+#' @import shinycssloaders
 #' @noRd
 
 
