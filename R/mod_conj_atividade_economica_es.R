@@ -407,7 +407,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
   output$plot5 <- renderPlotly({
     plot_ly(
       data = series$ExpES,
-      x = ~date, y = ~ value * 1000,
+      x = ~date, y = ~ value / 1000,
       type = "scatter", mode = "lines", name = "Exportações", line = list(color = "#004B8D")
     ) %>%
       layout(
