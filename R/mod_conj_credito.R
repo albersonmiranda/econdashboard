@@ -151,7 +151,7 @@ mod_conj_credito_ui <- function(id) {
                   icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$PTCC_habitacao$value, 1)," (", tail(months(series$PTCC_habitacao$date), 1), ")"),
-                text = "MPME",
+                text = "HABITAÇÃO",
                 rightBorder = FALSE,
                 marginBottom = FALSE
               )
