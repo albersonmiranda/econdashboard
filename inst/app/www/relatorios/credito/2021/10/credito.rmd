@@ -146,31 +146,24 @@ series$novasconcessoespj |>
     x = "",
     title = "Novas conscessões de crédito",
     caption = "Fonte: Bacen") +
-  theme_minimal() +
   tema
 ```
 
-O valor das novas concessão de crédito livre às empresas foi de 189,8 bilhões, com queda de 2,2% em relação ao mês anterior
- e aumento de 13,5% no acumulado em doze meses. As modalidades de antecipação de faturas de
- cartão de crédito (5,5%), capital de giro com prazo superior a 365 dias (0,9%) e financiamento às exportações
-  (3,0%) se destacam. A concessão de crédito direcionado\footnote{destinadas principalmente ao investimento de médio e 
-longo prazos, aos setores imobiliário, rural e de infraestrutura} atingiu R$ 34,4 bilhões em outubro, com
- retração de 44,4% e retração interanual de 27,2%. 
+O valor das novas concessão de crédito livre às empresas foi de 189,8 bilhões, com queda de 2,2% em relação ao mês anterior e aumento de 13,5% no acumulado em doze meses. As modalidades de antecipação de faturas de cartão de crédito (5,5%), capital de giro com prazo superior a 365 dias (0,9%) e financiamento às exportações (3,0%) se destacam. A concessão de crédito direcionado\footnote{destinadas principalmente ao investimento de médio e longo prazos, aos setores imobiliário, rural e de infraestrutura.} atingiu R$ 34,4 bilhões em outubro, com retração de 44,4% e retração interanual de 27,2%. 
  
- Para as pessoas físicas, a concessão de crédito livre foi de
-  R$ 193,8 bilhões em outubro, queda de 0,2% em relação ao mês anterior. Em se tratando do crédito direcionado
- o valor foi de R$ 34,4 bilhões, queda de 9,3%, em relação ao mês anterior 
- e alta de 42,4% na comparação interanual.\footnote{resultados sem ajuste sazonal}
+Para as pessoas físicas, a concessão de crédito livre foi de R$ 193,8 bilhões em outubro, queda de 0,2% em relação ao mês anterior. Em se tratando do crédito direcionado
+o valor foi de R$ 34,4 bilhões, queda de 9,3%, em relação ao mês anterior e alta de 42,4% na comparação interanual.\footnote{resultados sem ajuste sazonal.}
 
- \newpage
+\newpage
 \section{O Indicador de Custo do Crédito (ICC) e Inadimplência} 
- \vspace{0,20cm}
-O Indicador de Custo do Crédito (ICC), atingiu 18,0% a.a., elevando-se 0,3 p.p. no mês e 0,8 p.p. na comparação com outubro de 2020. No crédito livre não rotativo, o ICC situou-se em 23,7% a.a., variações de 0,4 p.p. em outubro (0,8 p.p. na comparação interanual). O spread geral do ICC situou-se em 12,3 p.p. (+0,1 p.p. no mês e +0,2p.p. na comparação interanual).
+\vspace{0,20cm}
 
-A inadimplência total permaneceu estável em outubro, no patamar de 2,3%, essa taxa se mantem por seis meses consecutivos. Por segmento, o crédito livre registrou estabilidade neste indicador em 3,0% do total da carteira, enquanto nas operações direcionadas a inadimplência apresentou redução de 0,1 p.p. ao atingir 1,2%.
+O Indicador de Custo do Crédito (ICC), atingiu 18,0% a.a., elevando-se 0,3 p.p. no mês e 0,8 p.p. na comparação com outubro de 2020. No crédito livre não rotativo, o ICC situou-se em 23,7% a.a., com variações de 0,4 p.p. em outubro e 0,8 p.p. na comparação interanual. Já o spread geral situou-se em 12,3% (+0,1 p.p. no mês e +0,2 p.p. na comparação interanual).
+
+A inadimplência total permaneceu estável em outubro, no patamar de 2,3%, se mantendo por seis meses consecutivos. Por segmento, o crédito livre registrou estabilidade neste indicador em 3,0% do total da carteira, enquanto nas operações direcionadas a inadimplência apresentou redução de 0,1 p.p. ao atingir 1,2%.
 
 
-```{r inadiplencia}
+```{r inadimplencia}
 
 # plotando grafico
 series$InadBR |>
@@ -197,6 +190,5 @@ series$InadBR |>
     x = "",
     title = "Índice de inadiplência no Brasil",
     caption = "Fonte: Bacen") +
-  theme_minimal() +
   tema
 ```
