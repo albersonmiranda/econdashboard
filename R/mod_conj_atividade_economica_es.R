@@ -296,9 +296,9 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           tags$div(
             HTML(
               ifelse(
-                is.na(tail(legenda_conjuntura$cestabasica, 1)),
+                is.na(tail(legenda_conjuntura$industria.es, 1)),
                 "",
-                tail(legenda_conjuntura$cestabasica, 1)
+                tail(legenda_conjuntura$industria.es, 1)
                 )
               ),
             class = "box-body"
