@@ -301,6 +301,56 @@ mod_conj_atividade_economica_ui <- function(id) {
           )
         ),
 
+        # Indústria
+        box(
+          title = tags$div("Indústria", class = "box-tit"),
+          closable = FALSE,
+          width = 4,
+          height = 760,
+          status = "warning",
+          solidHeader = TRUE,
+          collapsible = FALSE,
+          enable_dropdown = FALSE,
+          tags$div("Indicadores de Produção Industrial", class = "box-subtit"),
+          tags$div("Indústria geral, mensal", class = "box-body"),
+          plotlyOutput(ns("plot6")),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$cestabasica, 1)),
+                "",
+                tail(legenda_conjuntura$cestabasica, 1)
+                )
+              ),
+            class = "box-body"
+          ),
+          footer = fluidRow(
+            column(
+              width = 12,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$IndustriaBR$value, 1) - head(tail(series$IndustriaBR$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$IndustriaBR$value, 1) - head(tail(series$IndustriaBR$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$IndustriaBR$value, 1) - head(tail(series$IndustriaBR$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon(icon(icon("fas fa-caret-down")))
+                },
+                header = paste0(tail(series$IndustriaBR$value, 1), " pts", " (", tail(months(series$IndustriaBR$date), 1), ")"),
+                text = "produção industrial",
+                rightBorder = FALSE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        ),
+
         # Exportações
         box(
           title = tags$div("Exportaçôes", class = "box-tit"),
@@ -419,6 +469,22 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
       add_trace(y = series$Servicos$value, name = "Serviços", line = list(color = "#56AF31")) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        legend = list(
+          orientation = "h",
+          x = 0.5,
+          xanchor = "center"
+        )
+      )
+  })
+
+  # Indústria
+  output$plot6 <- renderPlotly({
+    plot_ly(
+      data = series$IndustriaBR, x = ~date, y = ~value,
+      type = "scatter", mode = "lines", name = "produção industrial", line = list(color = "#004B8D")
+    ) %>%
+      layout(
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,

@@ -49,6 +49,9 @@ ICE = BETSget(4394, data.frame = TRUE) # índice de condições econômicas atua
 IEF = BETSget(4395, data.frame = TRUE) # índice de expectativas futuras
 ExpBR = BETSget(22708, data.frame = TRUE) # exportação de bens free on board
 
+# Industria
+IndustriaBR = BETSget(21859, data.frame = TRUE) # indicadores de produção industrial mensal
+
 # Mercado de trabalho ----
 Emprego = BETSget(25239, data.frame = TRUE) # índice de emprego formal
 Empregos = BETSget(28512, data.frame = TRUE) # índice de emprego dessazonalizado
