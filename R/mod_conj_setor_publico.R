@@ -74,9 +74,9 @@ mod_conj_setor_publico_ui <- function(id) {
                   (tail(series$ResultadoES$value, 1) - head(tail(series$ResultadoES$value, 2), 1)), 1
                 ), "mi"),
                 numberColor = if (tail(series$ResultadoES$value, 1) - head(tail(series$ResultadoES$value, 2), 1) >= 0) {
-                  "success"
-                } else {
                   "danger"
+                } else {
+                  "success"
                 },
                 numberIcon = if (tail(series$ResultadoES$value, 1) - head(tail(series$ResultadoES$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
