@@ -303,7 +303,7 @@ mod_conj_atividade_economica_ui <- function(id) {
 
         # Exportações
         box(
-          title = tags$div("Exportaçôes", class = "box-tit"),
+          title = tags$div("Exportações", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
