@@ -292,7 +292,7 @@ mod_conj_inflacao_server <- function(input, output, session) {
       type = "scatter", mode = "lines", name = "Cesta Básica Vitória", line = list(color = "#004B8D")
     ) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,

@@ -382,7 +382,7 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
     ) %>%
       add_trace(y = series$PIBtri$value, name = "PIB trimestral dessazonalizado", line = list(color = "#56af31")) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice (1995=100)"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice (1995=100)"),
         legend = list(
           orientation = "h",
           x = 0.5,
@@ -418,7 +418,7 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
     ) %>%
       add_trace(y = series$Servicos$value, name = "Serviços", line = list(color = "#56AF31")) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,
