@@ -64,7 +64,7 @@ tema = theme_minimal() +
 
 Passado o pior momento da pandemia, as contas públicas capixabas apresentam sinais de recuperação. O resultado primário\footnote{O resultado primário é calculado segundo a metodologia "abaixo da linha", isto é, através da variação do saldo da dívida pública. Nesse sentido, variações positivas são consideradas déficits, enquanto variações negativas são superávits.} do estado do Espírito Santo e munícipios foi superavitário no 2° trimestre de 2021, atingindo o valor de R$ 409,7 milhões. Esse dado representa um aumento de 382% frente ao superávit de R$ 85 milhões registrado no trimestre anterior. 
 
-Em relação ao acumulado no ano, o superávit primário foi de R$ 494,7 milhões, aumento de 156% na comparação interanual. Além disso, vale destacar a trajetória positiva das contas públicas capixabas, que voltaram a apresentar resultados fiscais similares aos níveis pré-pandemia.
+Em relação ao acumulado no ano, o superávit primário foi de R$ 494,7 milhões (+156% na comparação interanual). Além disso, vale destacar a trajetória positiva das contas públicas capixabas, que voltaram a apresentar resultados fiscais similares aos níveis pré-pandemia.
 
 ```{r resultado-es, fig.height = 4.3}
 # plotando grafico
