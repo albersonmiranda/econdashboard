@@ -30,7 +30,6 @@ include-before:
 ```{r setup, include = FALSE}
 # packages
 library(dplyr)
-library(knitr)
 library(ggplot2)
 library(here)
 
@@ -61,9 +60,9 @@ tema = theme_minimal() +
 \section{Consumo} 
  \vspace{0.5cm}
 
-O consumo das famílias é o principal componente do PIB pela ótica da demanda, no 3° trimestre desse ano soma cerca de 60% do seu valor total (aproximadamente R$ 1,3 trilhões). Além disso, os dados divulgados pelo IBGE revelam que o consumo das famílias cresceu, com ajuste sazonal, 0,9% nesse trimestre em relação ao anterior. No que se refere ao acumulado do ano, o aumento foi mais expressivo chegando a 4,2% comparativamente ao mesmo período do ano passado. 
+O consumo das famílias é o principal componente do PIB pela ótica da demanda, somando cerca de 60% do PIB (R$ 1,3 trilhões) no 3° trimestre desse ano. Além disso, os dados divulgados pelo IBGE revelam que o consumo das famílias cresceu 0,9% nesse trimestre em relação ao anterior (com ajuste sazonal). No que se refere ao acumulado do ano, o aumento foi mais expressivo, chegando a 4,2% comparativamente ao mesmo período do ano passado. 
 
-Já o consumo do governo\footnote{O consumo do governo engloba todos os gastos relacionados a produção de bens e serviços coletivos \citep{consumogov}.} cresceu, com ajuste sazonal, 0,8% nesse trimestre em comparação ao anterior. No acumulado do ano, o aumento de 1,7% é explicado pelas despesas relacionadas à pandemia, como a compra de vacinas.
+Já o consumo do governo\footnote{O consumo do governo engloba todos os gastos relacionados a produção de bens e serviços coletivos \citep{consumogov}.} cresceu 0,8% nesse trimestre em comparação ao anterior. No acumulado do ano, o aumento de 1,7% é explicado pelas despesas relacionadas à pandemia, como a compra de vacinas.
 
 ```{r PIB consumo, fig.align = "center"}
 # Plotando grafico
@@ -98,9 +97,7 @@ series$PIBtriF |>
 
 O aumento do consumo das famílias pode ser explicado pela alta no setor de serviços, que cresceu 1,1% no 3° trimestre. Nesse sentido, a flexibilização das medidas de combate à pandemia e o avanço da vacinação permitiram que serviços prestados às famílias e serviços de transporte expandissem. Segundo a Pesquisa Mensal de Serviços (PMS), os serviços prestados às famílias cresceram 16,3% no 3° trimestre comparado ao anterior, enquanto serviços de transporte aumentaram 7,3%.  
 
-Em relação aos indicadores de consumo, o Índice de Confiança do Consumidor (ICC)\footnote{Mensura o "sentimento" do consumidor quanto a percepção de sua situação financeira, das condições econômicas do país e suas expectativas futuras. Seu valor varia de 0 a 200, sendo 0 totalmente pessista e 200 totalmente otimista \citep{fecomercio1}.} retraiu 4,7% em outubro de 2021 comparado a setembro, fechando com 109,4 pontos. Em relação ao mesmo período do ano passado, houve aumento de 1,6% no indicador. 
-
-O resultado negativo em outubro foi puxado principalmente pela queda de 5,2 pontos no Índice de Condições Econômicas Atuais (ICE), o que representa redução de 7,8%. Além disso, o Índice de Expectativas Futuras (IEF) caiu 5,3 pontos em outubro, queda de 3,5%. 
+Em relação aos indicadores de consumo, o Índice de Confiança do Consumidor (ICC)\footnote{Mensura o "sentimento" do consumidor quanto a percepção de sua situação financeira, das condições econômicas do país e suas expectativas futuras. Seu valor varia de 0 a 200, sendo 0 totalmente pessimista e 200 totalmente otimista \citep{fecomercio1}.} retraiu 4,7% em outubro de 2021 comparado a setembro, fechando com 109,4 pontos. Em relação ao mesmo período do ano passado, houve aumento de 1,6% no indicador. O resultado negativo em outubro foi puxado pela queda de 5,2 pontos no Índice de Condições Econômicas Atuais (ICE) e pela redução em 5,3 pontos no Índice de Expectativas Futuras (IEF).
 
 ```{r ICC, fig.height = 4.1, fig.width = 7}
 # Plotando grafico
