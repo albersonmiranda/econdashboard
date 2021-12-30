@@ -1,0 +1,138 @@
+---
+title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
+author: \textbf{\textcolor{white}{Consumo}}
+date: \textbf{\textcolor{white}{Dezembro/2021}}
+params:
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
+  iblue: 004b8d
+  igray: d4dbde
+documentclass: article
+papersize: a4paper
+fontsize: 100
+output:
+  IReports::businessReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\logotitle}{`r gsub("_", "\\_", params$logotitle)`}
+  - \newcommand{\iblue}{`r params$iblue`}
+  - \newcommand{\igray}{`r params$igray`}
+include-before:
+  - \renewcommand{\contentsname}{Sumário}
+---
+
+
+```{r setup, include = FALSE}
+# packages
+library(dplyr)
+library(ggplot2)
+library(here)
+
+# carregando dados
+load(here("data", "series.rda"))
+
+# settings
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# tema gráficos
+tema = theme_minimal() +
+ theme(
+  plot.title = element_text(hjust = 0.5, size = 15),
+  plot.subtitle = element_text(hjust = 0.5, size = 13),
+  axis.ticks.x = element_blank(),
+  legend.position = "bottom",
+  legend.title = element_blank(),
+  legend.text = element_text(size = 12))
+```
+
+\maketitle
+\clearpage
+
+\section{Consumo} 
+ \vspace{0.5cm}
+
+O consumo das famílias é o principal componente do PIB pela ótica da demanda, somando cerca de 60% do PIB (R$ 1,3 trilhões) no 3° trimestre desse ano. Além disso, os dados divulgados pelo IBGE revelam que o consumo das famílias cresceu 0,9% nesse trimestre em relação ao anterior (com ajuste sazonal). No que se refere ao acumulado do ano, o aumento foi mais expressivo, chegando a 4,2% comparativamente ao mesmo período do ano passado. 
+
+Já o consumo do governo\footnote{O consumo do governo engloba todos os gastos relacionados a produção de bens e serviços coletivos \citep{consumogov}.} cresceu 0,8% nesse trimestre em comparação ao anterior. No acumulado do ano, o aumento de 1,7% é explicado pelas despesas relacionadas à pandemia, como a compra de vacinas.
+
+```{r PIB consumo, fig.align = "center"}
+# Plotando grafico
+series$PIBtriF |>
+ inner_join(series$PIBtriG, by = "date") |>
+ tidyr::pivot_longer(-date) |>
+ ggplot(aes(
+   x = date,
+   y = value,
+   color = name
+  )) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Consumo das famílias", "Consumo do governo"),
+    values = c("#004b8d", "#56af31")) +
+  coord_cartesian(ylim = c(130, 190)) +
+  scale_x_date(
+     breaks = "3 month",
+     date_labels = "%b/%Y",
+     expand = c(0, 10),
+     limits = as.Date(c("2019-10-01", "2021-07-01"))) +
+  scale_y_continuous(
+    breaks = seq(130, 190, length.out = 7)
+  ) +
+  labs(
+    y = "Índice (base = 1995)",
+    x = "",
+    title = "Evolução do Consumo das Famílias e do Governo",
+    caption = "Fonte: Banco Central") +
+  tema
+```
+
+O aumento do consumo das famílias pode ser explicado pela alta no setor de serviços, que cresceu 1,1% no 3° trimestre. Nesse sentido, a flexibilização das medidas de combate à pandemia e o avanço da vacinação permitiram que serviços prestados às famílias e serviços de transporte expandissem. Segundo a Pesquisa Mensal de Serviços (PMS), os serviços prestados às famílias cresceram 16,3% no 3° trimestre comparado ao anterior, enquanto serviços de transporte aumentaram 7,3%.  
+
+Em relação aos indicadores de consumo, o Índice de Confiança do Consumidor (ICC)\footnote{Mensura o "sentimento" do consumidor quanto a percepção de sua situação financeira, das condições econômicas do país e suas expectativas futuras. Seu valor varia de 0 a 200, sendo 0 totalmente pessimista e 200 totalmente otimista \citep{fecomercio1}.} retraiu 4,7% em outubro de 2021 comparado a setembro, fechando com 109,4 pontos. Em relação ao mesmo período do ano passado, houve aumento de 1,6% no indicador. O resultado negativo em outubro foi puxado pela queda de 5,2 pontos no Índice de Condições Econômicas Atuais (ICE) e pela redução em 5,3 pontos no Índice de Expectativas Futuras (IEF).
+
+```{r ICC, fig.height = 4.1, fig.width = 7}
+# Plotando grafico
+series$ICC |>
+  inner_join(series$IEF, by = "date") |>
+  inner_join(series$ICE, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+    aes(
+      x = date,
+      y = value,
+      color = name
+    )) +
+    geom_line(size = 1.1)  +
+  scale_color_manual(
+    labels = c("Índice de Condições Econômicas Atuais",
+               "Índice de Confiança do Consumidor",
+               "Índice de Expectativas Futuras"),
+    values = c("#004b8d", "#56af31", "#e7d8ac")) +
+  scale_x_date(date_labels = "%m/%Y",
+               date_breaks = "3 month",
+               limits = as.Date(c("2019-10-01", "2021-10-01")),
+               expand = c(0, 5)
+               ) +
+  scale_y_continuous(limits = c(50, 160),
+                              breaks = seq(50, 160, length.out = 12)) +
+  labs(
+    y = "Índice",
+    x = "",
+    title = "Evolução dos Indicadores de Consumo",
+    caption = "Fonte: Fecomercio") +
+  guides(colour = guide_legend(nrow = 3,
+                               byrow = TRUE)) +
+  tema
+```
+
+\newpage
+\bibliography{bib}

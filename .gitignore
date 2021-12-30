@@ -9,6 +9,8 @@ logo.png
 *.log
 politica-fiscal.tex
 politica-fiscal_files/
+consumo_files/
+consumo.tex
 atividade-economica-es_files/
 atividade-economica-es.tex
 atividade-economica_files/
