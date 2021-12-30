@@ -341,7 +341,7 @@ mod_conj_consumo_server <- function(input, output, session) {
       layout(
         title = "",
         xaxis = list(title = ""),
-        yaxis = list(title = "Indice (1995=100)"),
+        yaxis = list(title = "Índice (1995=100)"),
         legend = list(
           orientation = "h",
           x = 0.5,
@@ -367,7 +367,7 @@ mod_conj_consumo_server <- function(input, output, session) {
       layout(
         title = "",
         xaxis = list(title = ""),
-        yaxis = list(title = "Indice (2000=100)"),
+        yaxis = list(title = "Índice (2000=100)"),
         legend = list(
           orientation = "h",
           x = 0.5,

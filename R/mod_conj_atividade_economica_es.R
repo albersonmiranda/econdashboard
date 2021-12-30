@@ -41,7 +41,10 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+               tags$a("2° Trimestre",
+                href="www/relatorios/atividade-economica-es/2021/012/atividade-economica-es.pdf",
+                 target="_blank"))
             )
           )
         ),
@@ -391,7 +394,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
     ) %>%
       add_trace(y = series$ServicosES$value, name = "Serviços", line = list(color = "#56af31")) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,
@@ -404,7 +407,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
   output$plot5 <- renderPlotly({
     plot_ly(
       data = series$ExpES,
-      x = ~date, y = ~ value * 1000,
+      x = ~date, y = ~ value / 1000,
       type = "scatter", mode = "lines", name = "Exportações", line = list(color = "#004B8D")
     ) %>%
       layout(
