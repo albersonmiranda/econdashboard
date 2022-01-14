@@ -65,9 +65,7 @@ tema = theme_minimal() +
 \section{Operações de crédito do Sistema Financeiro Nacional (SFN)} 
  \vspace{0.5cm}
 
-De acordo com o Banco Central, o saldo total de crédito cresceu 18,8% no acumulado dos últimos doze meses, 
-atingindo R$4,5 trilhões em outubro de 2021, aumento de 1,5% em relação ao mês anterior. 
-Esse montante representa cerca de 53,2% do Produto Interno Bruto (PIB) do país. 
+O saldo total de crédito cresceu 18,8% no acumulado dos últimos doze meses, atingindo R$ 4,5 trilhões em outubro de 2021, aumento de 1,5% em relação ao mês anterior. Esse montante representa cerca de 53,2% do Produto Interno Bruto (PIB) do país. 
 
 ```{r credido e pib}
 # plotando grafico
@@ -82,10 +80,9 @@ geom_line(
     labels = c("IPCA"),
     values = c("#56af31")) +
   scale_x_date(
-    date_labels = "%m/%y",
+    date_labels = "%m/%Y",
     date_breaks = "2 month",
-    limits = as.Date(c("2020-01-01", "2021-10-01"))) +
-   coord_cartesian(ylim = c(47, 54.5)) +
+    limits = as.Date(c("2020-11-01", "2021-10-01"))) +
 labs(
 y = "variação %",
 x = "",
@@ -102,7 +99,7 @@ No crédito livre às pessoas jurídicas, a taxa média de juros atingiu 19,1% a
 \section{Novas concessões} 
  \vspace{0,15cm}
 
-Em relação ao total de novas contratações, ocorreu retração de 3,8% em outubro, com diminuição de 6,1% nas contratações com pessoas jurídicas, 
+Em relação ao total de novas contratações, houve retração de 3,8% em outubro, com diminuição de 6,1% nas contratações com pessoas jurídicas, 
 e queda de 1,7% nas contratações de pessoas físicas.
 
 ```{r novas conscessoes, fig.height = 3, fig.width = 5,  fig.align = "center"}
