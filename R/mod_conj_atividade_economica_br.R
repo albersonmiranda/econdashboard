@@ -313,7 +313,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Indicadores de Produção Industrial", class = "box-subtit"),
           tags$div("Indústria geral, mensal", class = "box-body"),
-          plotlyOutput(ns("plot6")),
+          withSpinner(plotlyOutput(ns("plot6")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
