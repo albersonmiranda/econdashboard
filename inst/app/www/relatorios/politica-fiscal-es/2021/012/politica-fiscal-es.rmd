@@ -96,7 +96,7 @@ series$ResultadoES |>
   theme(legend.position = "none")
 ```
 
-Uma possível explicação para a melhora do resultado primário é a queda de aproximadamente 80% da dívida líquida capixaba (diferença de cerca de R$ 635 milhões) no 2° trimestre desse ano comparado ao trimestre anterior. Em valores correntes, a dívida líquida fechou o trimestre no patamar de R$ 188,8 milhões.
+A melhora do resultado primário foi puxada principalmente pela queda de aproximadamente 80% da dívida líquida capixaba (diferença de cerca de R$ 635 milhões) no 2° trimestre desse ano comparado ao trimestre anterior. Em valores correntes, a dívida líquida fechou o trimestre no patamar de R$ 188,8 milhões.
 
 ```{r divida-es}
 # plotando grafico
