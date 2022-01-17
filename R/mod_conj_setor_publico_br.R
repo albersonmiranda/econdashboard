@@ -73,19 +73,19 @@ mod_conj_setor_publico_br_ui <- function(id){
                   width = 12,
                   descriptionBlock(
                     number = paste("R$", round(
-                      (tail(series$ResultadoBR$value, 1) - head(tail(series$ResultadoBR$value, 2), 1)), 1
-                    ), "mi"),
-                    numberColor = if (tail(series$ResultadoBR$value, 1) - head(tail(series$ResultadoBR$value, 2), 1) >= 0) {
-                      "success"
-                    } else {
+                      (tail(series$PrimarioBR$value, 1) - head(tail(series$PrimarioBR$value, 2), 1)) / 1000, 1
+                    ), "bi"),
+                    numberColor = if (tail(series$PrimarioBR$value, 1) - head(tail(series$PrimarioBR$value, 2), 1) >= 0) {
                       "danger"
+                    } else {
+                      "success"
                     },
-                    numberIcon = if (tail(series$ResultadoBR$value, 1) - head(tail(series$ResultadoBR$value, 2), 1) >= 0) {
+                    numberIcon = if (tail(series$PrimarioBR$value, 1) - head(tail(series$PrimarioBR$value, 2), 1) >= 0) {
                       icon("fas fa-caret-up")
                     } else {
                       icon("fas fa-caret-down")
                     },
-                    header = paste0(" R$", round(tail(series$ResultadoBR$value / 100 , 1), 1), " bi", " (", tail(months(series$ResultadoBR$date), 1), ")"),
+                    header = paste0(" R$", round(tail(series$PrimarioBR$value / 1000, 1), 1), " bi", " (", tail(months(series$PrimarioBR$date), 1), ")"),
                     text = "Resultado Primário",
                     rightBorder = FALSE,
                     marginBottom = FALSE
@@ -119,8 +119,8 @@ mod_conj_setor_publico_br_ui <- function(id){
                   width = 12,
                   descriptionBlock(
                     number = paste("R$", round(
-                      (tail(series$DividaLiqBR$value, 1) - head(tail(series$DividaLiqBR$value, 2), 1)), 1
-                    ), "mi"),
+                      (tail(series$DividaLiqBR$value, 1) - head(tail(series$DividaLiqBR$value, 2), 1)) / 1000, 1
+                    ), "bi"),
                     numberColor = if (tail(series$DividaLiqBR$value, 1) - head(tail(series$DividaLiqBR$value, 2), 1) >= 0) {
                       "danger"
                     } else {
@@ -214,8 +214,8 @@ mod_conj_setor_publico_br_ui <- function(id){
                 width = 12,
                 descriptionBlock(
                   number = paste("R$", round(
-                    (tail(series$DividaBrutaBR$value, 1) - head(tail(series$DividaBrutaBR$value, 2), 1)), 1
-                  ), "mi"),
+                    (tail(series$DividaBrutaBR$value, 1) - head(tail(series$DividaBrutaBR$value, 2), 1)) / 1000, 1
+                  ), "bi"),
                   numberColor = if (tail(series$DividaBrutaBR$value, 1) - head(tail(series$DividaBrutaBR$value, 2), 1) >= 0) {
                     "danger"
                   } else {
@@ -294,8 +294,8 @@ mod_conj_setor_publico_br_server <- function(id) {
     # resultado primário do BR
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = series$ResultadoBR,
-        x = ~date, y = ~value * 10000000,
+        data = series$PrimarioBR,
+        x = ~date, y = ~value / 1000,
         type = "scatter", mode = "lines", name = "Resultado Primário", line = list(color = "#004B8D")
       ) %>%
         layout(
@@ -312,7 +312,7 @@ mod_conj_setor_publico_br_server <- function(id) {
     output$plot2 <- renderPlotly({
       plot_ly(
         data = series$DividaLiqBR,
-        x = ~date, y = ~value * 1000000,
+        x = ~date, y = ~value / 1000000,
         type = "scatter", mode = "lines", name = "Dívida Líquida", line = list(color = "#004B8D")
       ) %>%
         layout(
@@ -346,7 +346,7 @@ mod_conj_setor_publico_br_server <- function(id) {
     output$plot5 <- renderPlotly({
       plot_ly(
         data = series$DividaBrutaBR,
-        x = ~date, y = ~value * 1000000,
+        x = ~date, y = ~value / 1000000,
         type = "scatter", mode = "lines", name = "Dívida Bruta", line = list(color = "#004B8D")
       ) %>%
         layout(
