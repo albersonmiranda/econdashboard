@@ -17,9 +17,9 @@ mod_fundos_debentures_ui <- function(id){
         br(),
         tags$div(class = "fundos-text",
                  "Os Fundos Multimercados podem aplicar em diferentes ativos, como renda fixa, câmbio, ações, entre outros. Eles funcionam como meio termo, tanto quando o assunto é risco, como também quando é potencial de retorno."),
-        
+
         br(), br(),
-        
+
         # resenha
         box(
           title = tags$div("BANESTES  DEBÊNTURES INCENTIVADAS FIC de FI", class = "res-tit"),
@@ -36,23 +36,23 @@ mod_fundos_debentures_ui <- function(id){
             HTML(resenhas_fundos$debentures)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/lamina_Debentures.pdf", target = "_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/regulamento-debentures-incentivadas.pdf", target = "_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/publicitario_debentures-incentivadas.pdf", target = "_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/adesao-debentures-incentivadas.pdf", target = "_blank",
             "Termo de adesão",
             class = "link"),
         ),
-        
+
         # fundo debêntures incentivadas
         box(
           title = tags$div("Desempenho do Fundo", class = "box-graf"),
@@ -64,7 +64,7 @@ mod_fundos_debentures_ui <- function(id){
           solidHeader = TRUE,
           tags$div("Fundo Multimercado Crédito Privado", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
           footer = fluidRow(
             column(
@@ -85,7 +85,7 @@ mod_fundos_debentures_ui <- function(id){
                 text = "nos últimos 12 meses",
                 rightBorder = FALSE,
                 marginBottom = FALSE
-                
+
               )
             )
           )
@@ -98,15 +98,15 @@ mod_fundos_debentures_ui <- function(id){
 
 #' fundos_debentures Server Functions
 #'
-#' @noRd 
+#' @noRd
 mod_fundos_debentures_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
- 
+
     # plot fundo
     output$plot1 <- renderPlotly({
       plot_ly(
-        data = fundos$Debentures[1:nrow(fundos$Debentures) - 1, ], 
+        data = fundos$Debentures[1:nrow(fundos$Debentures) - 1, ],
         x = ~as.Date(mes), y = ~rentabilidade_acum,
         type = "scatter", mode = "lines", name = "Fundo Banestes Debêntures Incentivadas", marker = list(color = "#004B8D")
       ) %>%
