@@ -76,6 +76,7 @@ IPCA12mes = BETSget(13522, data.frame = TRUE) # Indice nacional de Preços ao co
 # Setor público ----
 ResultadoBR = BETSget(4792, data.frame = TRUE) # NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário
 ResultadoBR.PIB = BETSget(5507, data.frame = TRUE) #NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário (%PIB)
+PrimarioBR = BETSget(4782, data.frame = TRUE) # NFSP sem desvalorização cambial - Governo federal e Banco central - Fluxo acumulado no ano
 DividaLiqBR = BETSget(4478, data.frame = TRUE) #Dívida Líquida do Setor Público - Saldos em R$ milhões
 DividaLiqBR.PIB = BETSget(4513, data.frame = TRUE) #Dívida Líquida do Setor pÚBLICO - % do PIB
 DividaBrutaBR = BETSget(13761, data.frame = TRUE) #Divida bruta do Governo Geral - Saldo em R$ mi
