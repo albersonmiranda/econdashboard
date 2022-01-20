@@ -42,7 +42,8 @@ mod_conj_credito_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+               tags$a("Outubro", href = "www/relatorios/credito/2021/10/credito.pdf", target = "_blank"))
             )
           )
         ),

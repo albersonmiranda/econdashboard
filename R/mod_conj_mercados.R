@@ -40,7 +40,7 @@ mod_conj_mercados_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021", tags$a("Novembro", href="www/relatorios/mercados/2021/11/mercados.pdf", target="_blank"))
             )
           )
         ),

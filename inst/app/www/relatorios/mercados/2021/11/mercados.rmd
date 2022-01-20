@@ -64,14 +64,15 @@ tema = theme_minimal() +
 \subsection{Brasil} 
  \vspace{0.25cm}
 Os dados da Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua) revelam que o mercado de trabalho tem se recuperado nos últimos meses.
-Nesse sentido, a taxa de desocupação segue caindo desde março desse ano, chegando a 12,6% no terceiro trimestre de 2021, após atingir o maior nível da 
+Visto que, a taxa de desocupação segue caindo desde março desse ano, chegando a 12,1% no terceiro trimestre, após atingir o maior nível da 
 série no primeiro trimestre de 2021 (14,9%).
 
 Na comparação interanual, houve aumento de 11,4% na população ocupada,
  resultado influenciado pelo avanço na vacinação e a retomada da economia brasileira.
-Apesar disso, o número de desempregados ainda é muito alto e totaliza 13,5 milhões de pessoas.
- O saldo líquido de emprego formal ficou positivo em 324.112 vagas em novembro, 
- ante previsão do mercado, de criação de 216 mil vagas.
+  O saldo líquido de emprego formal ficou positivo em 324.112 vagas em novembro, 
+ ante previsão do mercado de criação de apenas 216 mil vagas.
+Apesar disso, o número de desempregados ainda é muito alto e totaliza 12,9 milhões de pessoas.
+
 
 ```{r desemprego, fig.height = 4, fig.width = 6,  fig.align = "center"}
 
@@ -87,9 +88,9 @@ geom_line(
     labels = c(""),
     values = c("#56af31")) +
   scale_x_date(
-    date_labels = "%b/%Y",
+    date_labels = "%b/%y",
     date_breaks = "2 month",
-    limits = as.Date(c("2020-01-01", "2021-07-01"))) +
+    limits = as.Date(c("2020-01-01", "2021-11-01"))) +
    coord_cartesian(ylim = c(11, 15)) +
 labs(
 y = "variação %",
@@ -103,9 +104,15 @@ theme(legend.position = "none")
 \newpage
 \subsection{Espiríto Santo} 
  \vspace{0.5cm}
-Em relação ao Estado, o número de novas admissões foi de 35.000 no mês de outubro,
+Em relação ao Estado, o número de novas admissões foi de 35.000 em novembro,
  ante as 26.774 demissões, o saldo total foi de 8.535, variação de 1,01% em relação ao
-  mês anterior, uma das maiores variações entre as capitais, atrás apenas de Amapá (1,39%).  
+  mês anterior, uma das maiores altas entre as capitais, atrás apenas de Amapá (1,39%).  
+
+  O setor de serviços foi o que obteve o maior saldo de empregos com 3.322, seguido do comércio
+  com 3.062 e da indústria geral com 1.531. No que diz respeito ao acumulado do ano o Espiríto
+   Santo obteve aumento de  7,84% no saldo de empregos.
+
+
 
 ```{r emprego es}
 
@@ -121,9 +128,9 @@ geom_line(
     labels = c(""),
     values = c("#56af31")) +
   scale_x_date(
-    date_labels = "%B/%Y",
+    date_labels = "%m/%y",
     date_breaks = "1 month",
-    limits = as.Date(c("2021-01-01", "2021-07-01"))) +
+    limits = as.Date(c("2021-01-01", "2021-08-01"))) +
   coord_cartesian(ylim = c(900, 8000)) +
 labs(
 y = "unidades",
@@ -134,16 +141,13 @@ tema +
 theme(legend.position = "none")
 ```
 
-No que diz respeito ao acumulado do ano o Espiríto Santo obteve aumento de  7,84% no saldo de empregos.
-
-
  \newpage
 \section{Juros} 
  \vspace{0,20cm}
 
  A taxa básica de juros (Selic) é o principal instrumento econômico que o Comitê de Política Monetária
-(Copom), utiliza para controlar o aumento da inflação, a taxa aumentou 7 vezes seguidas em 2021 e passou de 2% em março para 9,25% em 
- Dezembro, a SELIC não sofria aumento desde 2015.
+(Copom) utiliza para controlar o aumento da inflação, a taxa aumentou 7 vezes seguidas em 2021 e passou de 2% em março para 9,25% em 
+ Dezembro, a Selic não sofria aumento desde 2015.
 
 ```{r Selic}
 
@@ -172,20 +176,20 @@ tema +
 theme(legend.position = "none")
 ```
 
-No entanto, é preciso ter cautela na elevação da SELIC, visto que, ela impacta também no 
+No entanto, é preciso ter cautela na elevação da taxa, visto que, ela impacta também no 
 Produto Interno Bruto (PIB), que teve variação negativa por dois trimestres consecutivos.
-Além disso, segundo o próprio Banco Central, o impacto da taxa SELIC na inflação leva em média 
+Além disso, segundo o próprio Banco Central, o impacto da taxa Selic na inflação leva em média 
 entre 6 a 9 meses para ocorrer.
 
  \newpage
 \section{Taxa de Câmbio} 
  \vspace{0,20cm}
 
-A alta da Selic deveria proporcionar uma queda na cotação do dólar, já que
+A alta da Selic deveria proporcionar uma queda na cotação do dólar, visto que
 juros mais altos expandem os rendimentos de renda fixa, e a tendência é a atração de capital estrangeiro.
 
 No entanto, o Federal Reserve (Fed) anunciou a retirada de incentivos da economia, a injeção mensal de US$ 120 bilhões será 
-reduzida em US$ 15 bilhões mês a mês, isso ocasionara, redução na liquidez dos mercados, levando a valorização do dólar. 
+reduzida em US$ 15 bilhões mês a mês, isso ocasionara redução na liquidez dos mercados, levando a valorização do dólar. 
 
 Além disso, a questão fiscal ainda é latente no Brasil, a dívida pública fechou em 82% do PIB, uma das mais altas entre os principais países emergentes, 
 nesse sentido, países muito endividados tendem a ter maior risco de não pagarem seus compromissos, o que afasta os investidores e eleva o dólar.
@@ -207,9 +211,9 @@ geom_line(
     values = c("#56af31")) +
   scale_x_date(
     date_labels = "%m/%y",
-    date_breaks = "6 month",
-    limits = as.Date(c("2015-01-01", "2021-12-01"))) +
-   coord_cartesian(ylim = c(3, 5.9)) +
+    date_breaks = "2 month",
+    limits = as.Date(c("2020-01-01", "2021-12-01"))) +
+   coord_cartesian(ylim = c(4, 5.9)) +
 labs(
 y = "R$/US$",
 x = "",
