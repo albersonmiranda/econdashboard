@@ -61,7 +61,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Crescimento do PIB", class = "box-subtit"),
           tags$div("Variação % anual real", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", style = "box-legenda"),
           tags$div(
             HTML(
@@ -108,7 +108,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Crescimento do PIB", class = "box-subtit"),
           tags$div("Índice trimestral, valores observados a preço de mercado", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
@@ -176,7 +176,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índice de Atividade Econômica", class = "box-subtit"),
           tags$div("Índice mensal observado e dessazonalizado", class = "box-body"),
-          plotlyOutput(ns("plot3")),
+          withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
@@ -243,7 +243,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índice mensal de varejo e serviços", class = "box-subtit"),
           tags$div("Volume de vendas no varejo e receita nominal de serviços", class = "box-body"),
-          plotlyOutput(ns("plot4")),
+          withSpinner(plotlyOutput(ns("plot4")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
@@ -303,7 +303,7 @@ mod_conj_atividade_economica_ui <- function(id) {
 
         # Exportações
         box(
-          title = tags$div("Exportaçôes", class = "box-tit"),
+          title = tags$div("Exportações", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
@@ -311,7 +311,7 @@ mod_conj_atividade_economica_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Exportações de bens", class = "box-subtit"),
           tags$div("Balanço de pagamentos, US$ bilhões, mensal", class = "box-body"),
-          plotlyOutput(ns("plot5")),
+          withSpinner(plotlyOutput(ns("plot5")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
@@ -382,7 +382,7 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
     ) %>%
       add_trace(y = series$PIBtri$value, name = "PIB trimestral dessazonalizado", line = list(color = "#56af31")) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice (1995=100)"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice (1995=100)"),
         legend = list(
           orientation = "h",
           x = 0.5,
@@ -418,7 +418,7 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
     ) %>%
       add_trace(y = series$Servicos$value, name = "Serviços", line = list(color = "#56AF31")) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,

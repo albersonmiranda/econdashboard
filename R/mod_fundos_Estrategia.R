@@ -29,19 +29,19 @@ mod_fundos_Estrategia_ui <- function(id){
             HTML(resenhas_fundos$estrategia)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Estrategia.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/lamina_Estrategia.pdf", target = "_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento-invest-estrategia.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/regulamento-invest-estrategia.pdf", target = "_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao-invest-estrategia.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/adesao-invest-estrategia.pdf", target = "_blank",
             "Termo de adesão",
             class = "link"),
           tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_invest_estrategia.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/publicitario_invest_estrategia.pdf", target = "_blank",
           "Relatório",
           class = "link"),
         ),
@@ -59,7 +59,7 @@ mod_fundos_Estrategia_ui <- function(id){
           solidHeader = TRUE,
           tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
           footer = fluidRow(
             column(
