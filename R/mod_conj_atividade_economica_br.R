@@ -233,24 +233,24 @@ mod_conj_atividade_economica_ui <- function(id) {
           )
         ),
 
-        # Varejo e Serviços
+        # Serviços
         box(
-          title = tags$div("Varejo e Serviços", class = "box-tit"),
+          title = tags$div("Serviços", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Índice mensal de varejo e serviços", class = "box-subtit"),
-          tags$div("Volume de vendas no varejo e receita nominal de serviços", class = "box-body"),
-          withSpinner(plotlyOutput(ns("plot4")), type = 1, color = "#004b8d", size = 1.5),
+          tags$div("Pesquisa Mensal de Serviços", class = "box-subtit"),
+          tags$div("Receita nominal e volume de serviços", class = "box-body"),
+          withSpinner(plotlyOutput(ns("plot7")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
               ifelse(
-                is.na(tail(legenda_conjuntura$varejo.servico, 1)),
+                is.na(tail(legenda_conjuntura$servicos, 1)),
                 "",
-                tail(legenda_conjuntura$varejo.servico, 1)
+                tail(legenda_conjuntura$servicos, 1)
                 )
               ),
             class = "box-body"),
@@ -259,20 +259,20 @@ mod_conj_atividade_economica_ui <- function(id) {
               width = 6,
               descriptionBlock(
                 number = paste(round(
-                  tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1), 2
+                  tail(series$Vol.Servicos$value, 1) - head(tail(series$Vol.Servicos$value, 2), 1), 2
                 ), "pts"),
-                numberColor = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                numberColor = if (tail(series$Vol.Servicos$value, 1) - head(tail(series$Vol.Servicos$value, 2), 1) >= 0) {
                   "success"
                 } else {
                   "danger"
                 },
-                numberIcon = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                numberIcon = if (tail(series$Vol.Servicos$value, 1) - head(tail(series$Vol.Servicos$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
                   icon("fas fa-caret-down")
                 },
-                header = paste0(tail(series$Varejo$value, 1), " (", tail(months(series$Varejo$date), 1), ")"),
-                text = "Varejo",
+                header = paste0(tail(series$Vol.Servicos$value, 1), " (", tail(months(series$Vol.Servicos$date), 1), ")"),
+                text = "Volume de serviços",
                 rightBorder = TRUE,
                 marginBottom = FALSE
               )
@@ -293,8 +293,55 @@ mod_conj_atividade_economica_ui <- function(id) {
                   icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$Servicos$value, 1), " (", tail(months(series$Servicos$date), 1), ")"),
-                text = "Serviços",
+                text = "Receita de Serviços",
                 rightBorder = FALSE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        ),
+
+        # Varejo
+        box(
+          title = tags$div("Varejo", class = "box-tit"),
+          closable = FALSE,
+          width = 4,
+          height = 760,
+          status = "warning",
+          solidHeader = TRUE,
+          tags$div("Volume de Vendas no Varejo", class = "box-subtit"),
+          tags$div("índice mensal", class = "box-body"),
+          plotlyOutput(ns("plot4")),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$varejo, 1)),
+                "",
+                tail(legenda_conjuntura$varejo, 1)
+                )
+              ),
+            class = "box-body"),
+          footer = fluidRow(
+            column(
+              width = 12,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste0(tail(series$Varejo$value, 1), " (", tail(months(series$Varejo$date), 1), ")"),
+                text = "Varejo",
+                rightBorder = TRUE,
                 marginBottom = FALSE
               )
             )
@@ -409,14 +456,31 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
       )
   })
 
-  # Varejo e Serviços
+  # Serviços
+  output$plot7 <- renderPlotly({
+    plot_ly(
+      data = series$Vol.Servicos[match(series$Servicos$date, series$Vol.Servicos$date), ],
+      x = ~date, y = ~value,
+      type = "scatter", mode = "lines", name = "Volume de Serviços", line = list(color = "#004B8D")
+    ) %>%
+      add_trace(y = series$Servicos$value, name = "Receita de Serviços", line = list(color = "#56AF31")) %>%
+      layout(
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
+        legend = list(
+          orientation = "h",
+          x = 0.5,
+          xanchor = "center"
+        )
+      )
+  })
+
+  # Varejo
   output$plot4 <- renderPlotly({
     plot_ly(
-      data = series$Varejo[match(series$Servicos$date, series$Varejo$date), ],
+      data = series$Varejo,
       x = ~date, y = ~value,
       type = "scatter", mode = "lines", name = "Varejo", line = list(color = "#004B8D")
-    ) %>%
-      add_trace(y = series$Servicos$value, name = "Serviços", line = list(color = "#56AF31")) %>%
+    )  %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
