@@ -17,9 +17,9 @@ mod_fundos_dividendos_ui <- function(id){
         br(),
         tags$div(class = "fundos-text",
                  "Os Fundos de Ações devem aplicar no mínimo 67% dos seus ativos em ações. São fundos voltados para o investidor com perfil mais arrojado, que tem como objetivo maior rentabilidade, e para isso está disposto a assumir maiores riscos."),
-        
+
         br(), br(),
-        
+
         # resenha
         box(
           title = tags$div("BANESTES DIVIDENDOS FI", class = "res-tit"),
@@ -36,19 +36,19 @@ mod_fundos_dividendos_ui <- function(id){
             HTML(resenhas_fundos$dividendos)
           ),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/lamina_Dividendos.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/lamina_Dividendos.pdf", target = "_blank",
             "Lâmina",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/regulamento_dividendos.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/regulamento_dividendos.pdf", target = "_blank",
             "Regulamento",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/publicitario_FDividendos.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/publicitario_FDividendos.pdf", target = "_blank",
             "Relatório",
             class = "link"),
           tags$a(
-            href="https://www.banestes.com.br/investimentos/pdf/adesao_dividendos.pdf", target="_blank",
+            href = "https://www.banestes.com.br/investimentos/pdf/adesao_dividendos.pdf", target = "_blank",
             "Termo de adesão",
             class = "link"),
         ),
@@ -64,7 +64,7 @@ mod_fundos_dividendos_ui <- function(id){
           solidHeader = TRUE,
           tags$div("Fundo de Investimento Renda Variável", class = "box-subtit"),
           tags$div("Variação % mensal", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("fonte: Banestes DTVM", style = "box-legenda"),
           footer = fluidRow(
             column(

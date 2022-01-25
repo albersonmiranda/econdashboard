@@ -1,0 +1,5 @@
+\babel@toc {portuguese}{}\relax 
+\contentsline {section}{\numberline {1}IPCA}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Combustíveis}{4}{}%
+\contentsline {subsection}{\numberline {1.2}Desvalorização Cambial}{5}{}%
+\contentsline {section}{\numberline {2}Grande Vitória}{6}{}%
