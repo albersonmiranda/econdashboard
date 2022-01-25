@@ -1,0 +1,221 @@
+---
+title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
+author: \textbf{\textcolor{white}{Inflação}}
+date: \textbf{\textcolor{white}{Novembro/2021}}
+params:
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
+  iblue: 004b8d
+  igray: d4dbde
+documentclass: article
+papersize: a4paper
+fontsize: 100
+output:
+  IReports::businessReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\logotitle}{`r gsub("_", "\\_", params$logotitle)`}
+  - \newcommand{\iblue}{`r params$iblue`}
+  - \newcommand{\igray}{`r params$igray`}
+include-before:
+  - \renewcommand{\contentsname}{Sumário}
+---
+
+```{r setup, include = FALSE}
+
+# packages
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+library(here)
+
+# carregando dados
+load(here("data", "series.rda"))
+
+# settings
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# tema gráficos
+tema = theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 15),
+    plot.subtitle = element_text(hjust = 0.5, size = 13),
+    axis.ticks.x = element_blank(),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 12)
+  )
+```
+
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{IPCA} 
+ \vspace{0,5cm}
+
+O Índice Nacional de Preços ao Consumidor Amplo registrou alta de 0,95% em novembro e 9,26% no acumulado do ano, valor bem distante de 3,75% que é o centro da meta estipulada pelo Conselho Monetário Nacional (CMN), mesmo com faixa de tolerência de 1,5 p.p para mais ou para menos.
+
+```{r inflacao 12 meses}
+
+# plotando grafico
+series$IPCA12mes |>
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1.1
+  ) +
+  scale_color_manual(
+    labels = c("IPCA"),
+    values = c("#56af31")
+  ) +
+  scale_x_date(
+    date_labels = "%b/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2020-11-01", "2021-11-01"))
+  ) +
+  coord_cartesian(ylim = c(4, 11)) +
+  labs(
+    y = "variação %",
+    x = "",
+    title = "Inflação acumulada nos últimos doze meses",
+    caption = "Fonte: Bacen"
+  ) +
+  tema
+```
+
+O destaque se dá para o setor de transportes, que teve o maior aumento do índice por três meses consecutivos. Essa variação foi influenciada principalmente pelo preço dos combustíveis, que no acumulado do ano sofreu aumento de 50,43%. Como a economia de modo geral depende do setor, esse aumento impacta diretamente todos os demais.
+\newpage
+
+
+\subsection{Combustíveis} 
+ \vspace{0,5cm}
+ 
+A variação no preço dos combustíveis é causada por vários fatores, um deles foi o avanço da vacinação contra a covid-19 a nível mundial que proporcionou a retomada global da economia, gerando uma grande demanda por petróleo que não foi acompanhado da oferta, pressionando o preço do barril. Isso ocorreu porque em 2020 a Organização dos Países Produtores de Petróleo (Opep) decidiu diminuir a produção para evitar uma queda mais acentuada no nível do preço.
+
+```{r Consumo Petroleo}
+
+# plotando grafico
+series$ConsumoPetro |>
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1.1
+  ) +
+  scale_color_manual(
+    labels = c("IPCA"),
+    values = c("#56af31")
+  ) +
+  scale_x_date(
+    date_labels = "%b/%y",
+    date_breaks = "2 month",
+    limits = as.Date(c("2020-01-01", "2021-09-01"))
+  ) +
+  coord_cartesian(ylim = c(1490, 2080)) +
+  labs(
+    y = "barris/dia (mil)",
+    x = "",
+    title = "Consumo diário de petróleo",
+    caption = "Fonte: Agência Nacional do Petróleo"
+  ) +
+  tema +
+  theme(legend.position = "none")
+```
+\newpage
+
+\subsection{Desvalorização Cambial} 
+ \vspace{0,5cm}
+
+O impacto do cenário internacional é ainda maior no Brasil devido à desvalorização cambial, que ocorre principalmente em razão dos riscos fiscais domésticos, especificamente a Dívida Bruta do Governo Geral (DBGG)\footnote{Que compreende o governo federal, o INSS e os governos estaduais e municipais.}. A DBGG atingiu 82,9% do PIB (R$ 7 trilhões) em outubro, fazendo com que a confiança dos investidores internacionais se reduza e a incerteza fiscal afaste o investimento estrangeiro.
+
+```{r Divida Bruta/PIB}
+# filtrando dados
+DivBru.pib = subset(series$DividaBrutaBR.PIB, date >= as.Date("2018-01-01"))
+
+# Plotando grafico
+DivBru.pib |>
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1.1
+  ) +
+  scale_y_continuous(
+    limits = c(0, 100)
+  ) +
+  scale_color_manual(
+    labels = c("Dívida Bruta/PIB"),
+    values = c("#56af31")
+  ) +
+  scale_x_date(date_labels = "%m/%y", date_breaks = "4 month") +
+  labs(
+    y = "% PIB",
+    x = "",
+    title = "Dívida Bruta/PIB",
+    caption = "Fonte: Bacen"
+  ) +
+  tema
+```
+ \newpage
+
+\section{Grande Vitória} 
+\vspace{0,25cm}
+
+A Grande Vitória ocupa o segundo lugar no ranking das capitais com maior índice de inflação, com alta de 9,58% no acumulado do ano, ficando atrás apenas de Curitiba que teve variação de 10,97%. Em relação à variação mensal, a capital atingiu 1,53% em outubro, ocupando o primeiro lugar do ranking entre as capitais.
+
+Um dos principais fatores que explicam essa alta inflação na região é a habitação\footnote{O grupo habitação é composto por combustíveis domésticos (gás de cozinha), artigos de limpeza, energia elétrica residencial, reparos, aluguel e taxas.}, que no acumulado do ano obteve a segunda maior alta do Brasil (+15%). Apenas em outubro, teve variação de +3,04%, sendo o item com maior alta da Grande Vitória, impulsionado principalmente pelo gás de botija, que subiu 5,41% em relação ao mês anterior.
+
+Em relação aos alimentos e bebidas, a Grande Vitória obteve a maior alta do país, com aumento de 2,48% em relação ao mês anterior e variação de 7,43% no acumulado do ano. De acordo com Departamento Intersindical de Estatística e Estudos Socioeconômicos (DIEESE), o custo da cesta básica em Vitória no mês de setembro foi de R$ 633,03 máxima histórica da série desde sua criação em 1998.
+
+```{r IPCA es, fig.height = 3.3, fig.width = 5.1, fig.align="center" }
+
+# Plotando grafico
+series$CestaES |>
+  filter(date >= as.Date("2018-01-01")) |>
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1
+  ) +
+  scale_y_continuous(
+    limits = c(0, 700)
+  ) +
+  scale_color_manual(
+    labels = c(""),
+    values = c("#56af31")
+  ) +
+  scale_x_date(date_labels = "%m/%y", date_breaks = "4 month") +
+  labs(
+    y = "valor em real",
+    x = "",
+    title = "Preço da Cesta Básica em Vitória",
+    caption = "Fonte: Dieese"
+  ) +
+  theme_minimal() +
+  tema +
+  theme(legend.position = "none")
+```

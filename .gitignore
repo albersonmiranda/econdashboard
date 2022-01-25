@@ -7,12 +7,13 @@ cover.png
 logo.png
 *.ttf
 *.log
-politica-fiscal.tex
+*.tex
+*.toc
 politica-fiscal_files/
+consumo_files/
+consumo.tex
 atividade-economica-es_files/
-atividade-economica-es.tex
 atividade-economica_files/
-atividade-economica.tex
 nul
 politica-fiscal-es.tex
 politica-fiscal-es_files/
