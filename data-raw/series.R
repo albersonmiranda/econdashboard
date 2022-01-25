@@ -44,6 +44,7 @@ IBCBrs = BETSget(24364, data.frame = TRUE)
 Varejos = BETSget(28473, data.frame = TRUE) # índice volume de vendas no varejo dessazonalizado
 Varejo = BETSget(1455, data.frame = TRUE) # índice volume de vendas no varejo
 Servicos = BETSget(21637, data.frame = TRUE) # índice receita nominal de serviços
+Vol.Servicos = BETSget(23982, data.frame = TRUE) # índice volume de serviços
 ICC = BETSget(4393, data.frame = TRUE) # índice confiança do consumidor
 ICE = BETSget(4394, data.frame = TRUE) # índice de condições econômicas atuais
 IEF = BETSget(4395, data.frame = TRUE) # índice de expectativas futuras
