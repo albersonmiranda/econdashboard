@@ -301,47 +301,50 @@ mod_conj_atividade_economica_ui <- function(id) {
           )
         ),
 
-        # Varejo
+        # Indústria
         box(
-          title = tags$div("Varejo", class = "box-tit"),
+          title = tags$div("Indústria", class = "box-tit"),
           closable = FALSE,
           width = 4,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
-          tags$div("Volume de Vendas no Varejo", class = "box-subtit"),
-          tags$div("índice mensal", class = "box-body"),
-          plotlyOutput(ns("plot4")),
+          collapsible = FALSE,
+          enable_dropdown = FALSE,
+          tags$div("Indicadores de Produção Industrial", class = "box-subtit"),
+          tags$div("Indústria geral, mensal", class = "box-body"),
+          withSpinner(plotlyOutput(ns("plot6")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
               ifelse(
-                is.na(tail(legenda_conjuntura$varejo, 1)),
+                is.na(tail(legenda_conjuntura$industria, 1)),
                 "",
-                tail(legenda_conjuntura$varejo, 1)
+                tail(legenda_conjuntura$industria, 1)
                 )
               ),
-            class = "box-body"),
+            class = "box-body"
+          ),
           footer = fluidRow(
             column(
               width = 12,
               descriptionBlock(
                 number = paste(round(
-                  tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1), 2
+                  tail(series$IndustriaBR$value, 1) - head(tail(series$IndustriaBR$value, 2), 1), 2
                 ), "pts"),
-                numberColor = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                numberColor = if (tail(series$IndustriaBR$value, 1) - head(tail(series$IndustriaBR$value, 2), 1) >= 0) {
                   "success"
                 } else {
                   "danger"
                 },
-                numberIcon = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                numberIcon = if (tail(series$IndustriaBR$value, 1) - head(tail(series$IndustriaBR$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon("fas fa-caret-down")
+                  icon(icon(icon("fas fa-caret-down")))
                 },
-                header = paste0(tail(series$Varejo$value, 1), " (", tail(months(series$Varejo$date), 1), ")"),
-                text = "Varejo",
-                rightBorder = TRUE,
+                header = paste0(tail(series$IndustriaBR$value, 1), " pts", " (", tail(months(series$IndustriaBR$date), 1), ")"),
+                text = "produção industrial",
+                rightBorder = FALSE,
                 marginBottom = FALSE
               )
             )
@@ -481,6 +484,22 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
       x = ~date, y = ~value,
       type = "scatter", mode = "lines", name = "Varejo", line = list(color = "#004B8D")
     )  %>%
+      layout(
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
+        legend = list(
+          orientation = "h",
+          x = 0.5,
+          xanchor = "center"
+        )
+      )
+  })
+
+  # Indústria
+  output$plot6 <- renderPlotly({
+    plot_ly(
+      data = series$IndustriaBR, x = ~date, y = ~value,
+      type = "scatter", mode = "lines", name = "produção industrial", line = list(color = "#004B8D")
+    ) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
