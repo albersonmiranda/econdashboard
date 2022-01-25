@@ -1,0 +1,126 @@
+---
+title: \textbf{\textcolor{white}{Relatório de Conjuntura}}
+author: \textbf{\textcolor{white}{Setor Público Capixaba}}
+date: \textbf{\textcolor{white}{Dezembro/2021}}
+params:
+  logo: !expr here::here("inst/app/www/img/logo-banestes-transparente.png")
+  logotitle: !expr here::here("inst/app/www/img/logo-banestes-branca.png")
+  cover: !expr here::here("inst/app/www/img/cover-banestes-menor.png")
+  iblue: 004b8d
+  igray: d4dbde
+documentclass: article
+papersize: a4paper
+fontsize: 100
+output:
+  IReports::businessReport:
+    keep_tex: TRUE
+    latex_engine: xelatex
+    resetStyleFiles: FALSE
+header-includes: 
+  - \newcommand{\logo}{`r gsub("_", "\\_", params$logo)`}
+  - \newcommand{\cover}{`r gsub("_", "\\_", params$cover)`}
+  - \newcommand{\logotitle}{`r gsub("_", "\\_", params$logotitle)`}
+  - \newcommand{\iblue}{`r params$iblue`}
+  - \newcommand{\igray}{`r params$igray`}
+include-before:
+  - \renewcommand{\contentsname}{Sumário}
+---
+
+
+```{r setup, include = FALSE}
+# packages
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(here)
+
+# carregando dados
+load(here("data", "series.rda"))
+
+# settings
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+
+# tema gráficos
+tema = theme_minimal() +
+  theme(
+  plot.title = element_text(hjust = 0.5, size = 15),
+  plot.subtitle = element_text(hjust = 0.5, size = 13),
+  axis.ticks.x = element_blank(),
+  legend.position = "bottom",
+  legend.title = element_blank(),
+  legend.text = element_text(size = 12))
+```
+
+\maketitle
+<!--\tableofcontents-->
+\clearpage
+
+\section{Setor Público Capixaba} 
+ \vspace{0.5cm}
+
+Passado o pior momento da pandemia, as contas públicas capixabas apresentam sinais de recuperação. O resultado primário\footnote{O resultado primário é calculado segundo a metodologia "abaixo da linha", isto é, através da variação do saldo da dívida pública. Nesse sentido, variações positivas são consideradas déficits, enquanto variações negativas são superávits.} do estado do Espírito Santo e munícipios foi superavitário no 2° trimestre de 2021, atingindo o valor de R$ 409,7 milhões. Esse dado representa um aumento de 382% frente ao superávit de R$ 85 milhões registrado no trimestre anterior. 
+
+Em relação ao acumulado no ano, o superávit primário foi de R$ 494,7 milhões (+156% na comparação interanual). Além disso, vale destacar a trajetória positiva das contas públicas capixabas, que voltaram a apresentar resultados fiscais similares aos níveis pré-pandemia.
+
+```{r resultado-es, fig.height = 4.3}
+# plotando grafico
+series$ResultadoES |>
+  ggplot(aes(
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = "Resultado primário",
+    values = "#004b8d"
+  ) +
+  coord_cartesian(ylim = c(-550, 400)) +
+  scale_x_date(date_labels = "%m/%Y",
+               date_breaks = "6 month",
+               limits = as.Date(c("2017-01-01", "2021-04-01"))) +
+  labs(
+    x = "",
+    y = "R$ milhões (acumulado no ano)",
+    title = "Resultado Primário Capixaba",
+    subtitle = "(+) déficit (-) superávit",
+    caption =  "Fonte: Banco Central"
+  ) +
+  geom_hline(yintercept = 0,
+             linetype = "dashed") +
+  tema +
+  theme(legend.position = "none")
+```
+
+A melhora do resultado primário foi puxada principalmente pela queda de aproximadamente 80% da dívida líquida capixaba (diferença de cerca de R$ 635 milhões) no 2° trimestre desse ano comparado ao trimestre anterior. Em valores correntes, a dívida líquida fechou o trimestre no patamar de R$ 188,8 milhões.
+
+```{r divida-es}
+# plotando grafico
+series$DividaES |>
+  ggplot(aes(
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = "Dívida Líquida",
+    values = "#004b8d"
+  ) +
+  coord_cartesian(ylim = c(0, 2000)) +
+  scale_x_date(date_labels = "%m/%Y",
+               date_breaks = "6 month",
+               limits = as.Date(c("2018-01-01", "2021-04-01"))) +
+  labs(
+    x = "",
+    y = "R$ milhões",
+    title = "Dívida Líquida ES",
+    caption =  "Fonte: Banco Central"
+  ) +
+  tema +
+  theme(legend.position = "none")
+```
