@@ -44,11 +44,15 @@ IBCBrs = BETSget(24364, data.frame = TRUE)
 Varejos = BETSget(28473, data.frame = TRUE) # índice volume de vendas no varejo dessazonalizado
 Varejo = BETSget(1455, data.frame = TRUE) # índice volume de vendas no varejo
 Servicos = BETSget(21637, data.frame = TRUE) # índice receita nominal de serviços
+Vol.Servicos = BETSget(23982, data.frame = TRUE) # índice volume de serviços
 ICC = BETSget(4393, data.frame = TRUE) # índice confiança do consumidor
 ICE = BETSget(4394, data.frame = TRUE) # índice de condições econômicas atuais
 IEF = BETSget(4395, data.frame = TRUE) # índice de expectativas futuras
 ExpBR = BETSget(22708, data.frame = TRUE) # exportação de bens free on board
 ConsumoPetro = BETSget(1398, data.frame = TRUE) # consumo de barril de petroleo por dia
+
+# Industria
+IndustriaBR = BETSget(21859, data.frame = TRUE) # indicadores de produção industrial mensal
 
 # Mercado de trabalho ----
 Emprego = BETSget(25239, data.frame = TRUE) # índice de emprego formal
@@ -123,6 +127,7 @@ CestaES = BETSget(7494, data.frame = TRUE) # custo da cesta básica de Vitória
 
 # Setor Público ----
 ResultadoES = BETSget(14923, data.frame = TRUE) # resultado primário do ES (Estado e municípios) acumulado no ano em milhões
+ResultadotriES = BETSget(14819, data.frame = TRUE) # resultado primário do ES (Estado e municípios) no trimestre em milhões
 DividaES = BETSget(15141, data.frame = TRUE) # dívida líquida do ES (Estado e municípios)
 
 # Mercado Financeiro ----
