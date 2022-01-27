@@ -301,6 +301,74 @@ mod_conj_atividade_economica_ui <- function(id) {
           )
         ),
 
+        # Varejo
+        box(
+          title = tags$div("Varejo", class = "box-tit"),
+          closable = FALSE,
+          width = 4,
+          height = 760,
+          status = "warning",
+          solidHeader = TRUE,
+          tags$div("Índice de volume de vendas no varejo", class = "box-subtit"),
+          tags$div("Mensal", class = "box-body"),
+          withSpinner(plotlyOutput(ns("plot4")), type = 1, color = "#004b8d", size = 1.5),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$varejo, 1)),
+                "",
+                tail(legenda_conjuntura$varejo, 1)
+                )
+              ),
+            class = "box-body"),
+          footer = fluidRow(
+            column(
+              width = 6,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$Varejo$value, 1) - head(tail(series$Varejo$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste0(tail(series$Varejo$value, 1), " (", tail(months(series$Varejo$date), 1), ")"),
+                text = "Varejo Sazonalizado",
+                rightBorder = TRUE,
+                marginBottom = FALSE
+              )
+            ), column(
+              width = 6,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$Varejos$value, 1) - head(tail(series$Varejos$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$Varejos$value, 1) - head(tail(series$Varejos$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$Varejos$value, 1) - head(tail(series$Varejos$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon("fas fa-caret-down")
+                },
+                header = paste0(tail(series$Varejos$value, 1), " (", tail(months(series$Varejos$date), 1), ")"),
+                text = "Varejo Dessazonalizado",
+                rightBorder = FALSE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        ),
+
         # Indústria
         box(
           title = tags$div("Indústria", class = "box-tit"),
@@ -480,10 +548,11 @@ mod_conj_atividade_economica_server <- function(input, output, session) {
   # Varejo
   output$plot4 <- renderPlotly({
     plot_ly(
-      data = series$Varejo,
+      data = series$Varejo[match(series$Varejos$date, series$Varejo$date), ],
       x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "Varejo", line = list(color = "#004B8D")
+      type = "scatter", mode = "lines", name = "Varejo Sazonalizado", line = list(color = "#004B8D")
     )  %>%
+    add_trace(y = series$Varejos$value, name = "Varejo Dessazonalizado", line = list(color = "#56AF31")) %>%
       layout(
         title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
