@@ -65,17 +65,12 @@ tema = theme_minimal() +
 \section{Operações de crédito do Sistema Financeiro Nacional (SFN)} 
  \vspace{0.5cm}
 
-<<<<<<< HEAD
-O saldo total de crédito cresceu 18,8% no acumulado dos últimos doze meses, 
-atingindo R$4,5 trilhões em outubro de 2021, aumento de 1,5% em relação ao mês anterior. 
-Esse montante representa cerca de 53,2% do Produto Interno Bruto (PIB) do país. 
-=======
 O saldo total de crédito cresceu 18,8% no acumulado dos últimos doze meses, atingindo R$ 4,5 trilhões em outubro de 2021, aumento de 1,5% em relação ao mês anterior. Esse montante representa cerca de 53,2% do Produto Interno Bruto (PIB) do país. 
->>>>>>> e9451cb2cf18867d10ec3ec095792fd47b794967
 
-```{r credido e pib}
+```{r Saldo credito}
+
 # plotando grafico
-series$CreditoPIB |>
+series$saldocredito|>
 ggplot(aes
 (x = date,
 y = value,
@@ -86,13 +81,15 @@ geom_line(
     labels = c("IPCA"),
     values = c("#56af31")) +
   scale_x_date(
-    date_labels = "%m/%Y",
-    date_breaks = "2 month",
-    limits = as.Date(c("2020-11-01", "2021-10-01"))) +
+    date_labels = "%b/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-11-01"))) +
+    scale_y_continuous(labels = scales::number_format(scale = 1 / 1000000)) +
+   coord_cartesian(ylim = c(4000000, 4600000)) +
 labs(
-y = "variação %",
+y = "(R$ trilhões)",
 x = "",
-title = " Porcentagem de crédito em relação ao PIB",
+title = "Saldo Total de Crédito",
 caption = "Fonte: Bacen") +
 tema +
 theme(legend.position = "none")
@@ -102,13 +99,13 @@ Em relação ao total das operações de crédito com recursos livres\footnote{t
 No crédito livre às pessoas jurídicas, a taxa média de juros atingiu 19,1% a.a., e para pessoas físicas atingiu 43,8% a.a., com aumentos de 2,1 pontos percertuais (p.p.) no mês e de 4,8 p.p. em 12 meses.
 
  \newpage
-\section{Novas concessões} 
+\section{Concessões de Credito} 
  \vspace{0,15cm}
 
 Em relação ao total de novas contratações, houve retração de 3,8% em outubro, com diminuição de 6,1% nas contratações com pessoas jurídicas, 
 e queda de 1,7% nas contratações de pessoas físicas.
 
-```{r novas conscessoes, fig.height = 3, fig.width = 5,  fig.align = "center"}
+```{r  conscessoes}
 
 # plotando grafico
 series$novasconcessoespj |>
@@ -121,35 +118,62 @@ series$novasconcessoespj |>
           color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
-    labels = c("Pessoa Jurídica", "Pessoa Fisíca"),
+    labels = c("Pessoa Jurídica", "Pessoa Física"),
     values = c("#004b8d", "#56af31")) +
   scale_x_date(
     date_labels = "%b/%y",
     date_breaks = "month",
     limits = as.Date(c("2021-01-01", "2021-10-01"))
   ) +
- ## coord_cartesian(ylim = c(120000, 240000)) +
-    scale_y_continuous(limits = c(120000, 240000),
-breaks = c(120000,
-140000,
-160000,
-180000,
-200000,
-220000,
-240000
-)) +
+  scale_y_continuous(
+    labels = scales::number_format(scale = 1 / 1000)
+) +
   labs(
-    y = "R$ (milhões)",
+    y = "R$ (bilhões)",
     x = "",
-    title = "Novas conscessões de crédito",
+    title = "Conscessões de Crédito",
     caption = "Fonte: Bacen") +
   tema
 ```
 
-O valor das novas conscessões de crédito livre às empresas foi de 189,8 bilhões, com queda de 2,2% em relação ao mês anterior e aumento de 13,5% no acumulado em doze meses. As altas nas modalidades de antecipação de faturas de cartão de crédito (5,5%), capital de giro com prazo superior a 365 dias (0,9%) e financiamento às exportações (3,0%) se destacam. A concessão de crédito direcionado\footnote{destinadas principalmente ao investimento de médio e longo prazos, aos setores imobiliário, rural e de infraestrutura.} atingiu R$ 34,4 bilhões em outubro, com retração de 44,4% e retração interanual de 27,2%. 
- 
 Para as pessoas físicas, a concessão de crédito livre foi de R$ 193,8 bilhões em outubro, queda de 0,2% em relação ao mês anterior. Em se tratando do crédito direcionado
 o valor foi de R$ 34,4 bilhões, queda de 9,3%, em relação ao mês anterior e alta de 42,4% na comparação interanual.\footnote{resultados sem ajuste sazonal.}
+
+ \newpage
+
+O valor das novas conscessões de crédito livre às empresas foi de 189,8 bilhões, com queda de 2,2% em relação ao mês anterior e aumento de 13,5% no acumulado em doze meses. As altas nas modalidades de antecipação de faturas de cartão de crédito (5,5%), capital de giro com prazo superior a 365 dias (0,9%) e financiamento às exportações (3,0%) se destacam. A concessão de crédito direcionado\footnote{destinadas principalmente ao investimento de médio e longo prazos, aos setores imobiliário, rural e de infraestrutura.} atingiu R$ 34,4 bilhões em outubro, com retração de 44,4% e retração interanual de 27,2%. 
+
+
+```{r credito br}
+
+# plotando grafico
+
+series$creditolivrepf |>
+  inner_join(series$creditolivrepj, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+      aes(
+          x = date,
+          y = value,
+          color = name)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Pessoa Física", "Pessoa Jurídica"),
+    values = c("#004b8d", "#56af31")) +
+  scale_x_date(
+    date_labels = "%b/%Y",
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-10-01"))) +
+      scale_y_continuous(
+    labels = scales::number_format(scale = 1 / 1000)) +
+  labs(
+    y = "R$ (bilhões)",
+    x = "",
+    title = "Conscessões de crédito livre",
+    caption = "Fonte: Bacen") +
+  tema
+```
+
 
 \newpage
 \section{Endividamento das Famílias - Brasil} 
@@ -216,7 +240,7 @@ series$InadBR |>
           color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
-    labels = c("Pessoa Jurídica", "Geral", "Pessoa Fisíca"),
+    labels = c("Pessoa Jurídica", "Geral", "Pessoa Física"),
     values = c("#004b8d", "#56af31", "#e7d8ac")) +
   scale_x_date(
     date_labels = "%b/%Y",
@@ -253,7 +277,7 @@ series$SaldoES |>
           color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
-    labels = c("Pessoa Fisíca", "Total", "Pessoa Juridíca"),
+    labels = c("Pessoa Física", "Total", "Pessoa Juridíca"),
     values = c("#004b8d", "#56af31", "#e7d8ac")) +
   scale_x_date(
     date_labels = "%m/%y",
@@ -289,7 +313,7 @@ series$InadESPF |>
           color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
-    labels = c("Geral", "Pessoa Fisíca", "Pessoa Juridíca"),
+    labels = c("Geral", "Pessoa Física", "Pessoa Juridíca"),
     values = c("#e7d8ac", "#56af31", "#004b8d")) +
   scale_x_date(
     date_labels = "%m/%y",

@@ -88,10 +88,9 @@ geom_line(
     labels = c(""),
     values = c("#56af31")) +
   scale_x_date(
-    date_labels = "%b/%y",
+    date_labels = "%b/%Y",
     date_breaks = "2 month",
-    limits = as.Date(c("2020-01-01", "2021-11-01"))) +
-   coord_cartesian(ylim = c(11, 15)) +
+    limits = as.Date(c("2020-01-01", "2021-07-01"))) +
 labs(
 y = "variação %",
 x = "",
@@ -128,10 +127,10 @@ geom_line(
     labels = c(""),
     values = c("#56af31")) +
   scale_x_date(
-    date_labels = "%m/%y",
+    date_labels = "%b/%Y",
     date_breaks = "1 month",
     limits = as.Date(c("2021-01-01", "2021-08-01"))) +
-  coord_cartesian(ylim = c(900, 8000)) +
+  coord_cartesian(ylim = c(0, 8000)) +
 labs(
 y = "unidades",
 x = "",
@@ -166,7 +165,7 @@ geom_line(
     date_labels = "%b/%y",
     date_breaks = "month",
     limits = as.Date(c("2021-01-01", "2021-12-01"))) +
-   coord_cartesian(ylim = c(2, 10)) +
+   coord_cartesian(ylim = c(1, 10)) +
 labs(
 y = "variação %",
 x = "",
@@ -211,9 +210,9 @@ geom_line(
     values = c("#56af31")) +
   scale_x_date(
     date_labels = "%m/%y",
-    date_breaks = "2 month",
-    limits = as.Date(c("2020-01-01", "2021-12-01"))) +
-   coord_cartesian(ylim = c(4, 5.9)) +
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-11-01"))) +
+   coord_cartesian(ylim = c(4.7, 6)) +
 labs(
 y = "R$/US$",
 x = "",
