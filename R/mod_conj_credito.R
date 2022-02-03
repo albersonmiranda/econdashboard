@@ -28,9 +28,9 @@ mod_conj_credito_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$credito,1))
           )
         ),
-        
+
         #Relatorios
-        box( 
+        box(
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
@@ -42,7 +42,8 @@ mod_conj_credito_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+               tags$a("Outubro", href = "www/relatorios/credito/2021/10/credito.pdf", target = "_blank"))
             )
           )
         ),
@@ -57,13 +58,13 @@ mod_conj_credito_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Pesquisa de Condições de Crédito", class = "box-subtit"),
           tags$div("aprovações observadas, em pontos, trimestral", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: BCB-Depep", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
-              is.na(tail(legenda_conjuntura$consumo,1)),
+              is.na(tail(legenda_conjuntura$consumo, 1)),
               "",
-              tail(legenda_conjuntura$consumo,1)
+              tail(legenda_conjuntura$consumo, 1)
             )
           ),
           class = "box-body"),
@@ -151,7 +152,7 @@ mod_conj_credito_ui <- function(id) {
                   icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$PTCC_habitacao$value, 1)," (", tail(months(series$PTCC_habitacao$date), 1), ")"),
-                text = "MPME",
+                text = "HABITAÇÃO",
                 rightBorder = FALSE,
                 marginBottom = FALSE
               )
@@ -169,7 +170,7 @@ mod_conj_credito_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Nível de endividamento das famílias", class = "box-subtit"),
           tags$div("Percentual da renda familiar, mensal", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(
@@ -238,7 +239,7 @@ mod_conj_credito_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índice de Inadimplência - BR", class = "box-subtit"),
           tags$div("Percentual sobre saldo de créditos, mensal", class = "box-body"),
-          plotlyOutput(ns("plot3")),
+          withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(
@@ -331,7 +332,7 @@ mod_conj_credito_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índice de Inadimplência - ES", class = "box-subtit"),
           tags$div("Percentual sobre saldo de créditos, mensal", class = "box-body"),
-          plotlyOutput(ns("plot4")),
+          withSpinner(plotlyOutput(ns("plot4")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(
@@ -424,7 +425,7 @@ mod_conj_credito_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Saldo das operações de crédito do SFN - ES", class = "box-subtit"),
           tags$div("Mensal, R$ milhões", class = "box-body"),
-          plotlyOutput(ns("plot5")),
+          withSpinner(plotlyOutput(ns("plot5")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(

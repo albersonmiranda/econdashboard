@@ -31,8 +31,6 @@ include-before:
 
 # packages
 library(dplyr)
-library(knitr)
-library(xtable)
 library(ggplot2)
 library(kableExtra)
 library(here)
@@ -48,13 +46,15 @@ knitr::opts_chunk$set(
 )
 
 # tema gráficos
-tema = theme(
-  plot.title = element_text(hjust = 0.5, size = 15),
-  plot.subtitle = element_text(hjust = 0.5, size = 13),
-  axis.ticks.x = element_blank(),
-  legend.position = "bottom",
-  legend.title = element_blank(),
-  legend.text = element_text(size = 12))
+tema = theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 15),
+    plot.subtitle = element_text(hjust = 0.5, size = 13),
+    axis.ticks.x = element_blank(),
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    legend.text = element_text(size = 12)
+  )
 
 ```
 
@@ -65,61 +65,47 @@ tema = theme(
 \section{Operações de crédito do Sistema Financeiro Nacional (SFN)} 
  \vspace{0.5cm}
 
-De acordo com o Banco Central, o saldo total de crédito cresceu 18,8% no acumulado dos últimos doze meses. Apesar do aumento, o índice de inadimplência se mantém estável em 2,3% desde maio deste ano.
+O saldo total de crédito cresceu 18,8% no acumulado dos últimos doze meses, atingindo R$ 4,5 trilhões em outubro de 2021, aumento de 1,5% em relação ao mês anterior. Esse montante representa cerca de 53,2% do Produto Interno Bruto (PIB) do país. 
 
-Nesse sentido, é preciso ter cautela na avalição destes dados, uma vez que o Comitê de Política Monetária (COPOM), na tentativa de conter o avanço da inflação, mantém uma trajetória de alta da taxa básica de juros (SELIC), atualmente em 9,25%.
+```{r Saldo credito}
 
-É fundamental observar os dados macroeconômicos, uma vez que, a Selic impacta diretamente a taxa de juros das novas operações de crédito do Sistema Financeiro Nacional, a taxa de juros das operações de crédito atingiu 23,2% a.a. em outubro, com elevação de 1,5% em relação ao mês anterior e de 4,6% no acumulado em doze meses. 
-
-O spread bancário, diferença entre as taxas de aplicação e captação, atingiu 15,3% com alta mensal de 0,7% e de 0,8% no acumulado em doze meses.
-
-Nas operações de crédito com recursos livres (com taxas de juros livremente pactuadas entre mutuários e instituições financeiras) a taxa média de juros situou-se 32,8% a.a. em outubro, com variação de 2,2% no mês e de 6,3% em comparação ao mesmo período do ano anterior.
-
- No crédito livre destinado às pessoas jurídicas, a taxa média de juros atingiu 19,1% a.a. e para pessoas físicas atingiu 43,8% a.a., com aumentos de 2,1 p.p. no mês e de 4,8 p.p. em 12 meses.
-
-
-
- \newpage
-
-\section{Saldo das operações} 
- \vspace{0,25cm}
-
-O saldo total de empréstimos no Sistema Financeiro Nacional (SFN) atingiu R$4,5 trilhões em outubro de 2021, aumento de 1,5% em relação ao mês anterior. Esse montante representa cerca de 53,2% do Produto Interno Bruto (PIB) do país. 
-
-```{r credido e pib, fig.height = 4, fig.width = 6,  fig.align = "center"}
-
-# Filtrando dados
-CreditoPIB_filtro = subset(
-  CreditoPIB,
-  date >= "2020-01-01"
-)
-# Plotando grafico
-CreditoPIB_filtro |>
-ggplot(aes(
-x = date,
+# plotando grafico
+series$saldocredito|>
+ggplot(aes
+(x = date,
 y = value,
-group = 1)) +
-geom_line(size = 1.1, color = "#004b8d") +
-scale_x_date(date_labels = "%m/%Y", date_breaks = "6 month") +
-coord_cartesian(ylim = c(130, 165)) +
+color = "name")) +
+geom_line(
+  size = 1.1) +
+  scale_color_manual(
+    labels = c("IPCA"),
+    values = c("#56af31")) +
+  scale_x_date(
+    date_labels = "%b/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-11-01"))) +
+    scale_y_continuous(labels = scales::number_format(scale = 1 / 1000000)) +
+   coord_cartesian(ylim = c(4000000, 4600000)) +
 labs(
-y = "índice (série encadeada)",
+y = "(R$ trilhões)",
 x = "",
-title = "PIB trimestral",
-subtitle = "Espírito Santo",
-caption = "Fonte: Instituto Jones Santos Neves") +
-theme_minimal() +
-tema
+title = "Saldo Total de Crédito",
+caption = "Fonte: Bacen") +
+tema +
+theme(legend.position = "none")
 ```
 
-Esse resultado gerou altas de 0,9% no saldo em carteira de pessoas jurídicas (R$1,9 trilhão) e 1,9% na de pessoas físicas (R$2,6 trilhões).  O saldo de crédito aumentou 16% em relação a outubro do ano anterior, o crédito destinado as empresas caiu 0,3 p.p. passando de 11,7% para 11,4%, enquanto o destinado as famílias continuou em expansão, de 19,5% para 19,7%.
- \newpage
+Em relação ao total das operações de crédito com recursos livres\footnote{taxas de juros livremente pactuadas entre mutuários e instituições financeiras} a taxa média de juros situou-se 32,8% a.a. em outubro, com variação de 2,2% no mês e 6,3% em comparação ao mesmo período do ano anterior.
+No crédito livre às pessoas jurídicas, a taxa média de juros atingiu 19,1% a.a., e para pessoas físicas atingiu 43,8% a.a., com aumentos de 2,1 pontos percertuais (p.p.) no mês e de 4,8 p.p. em 12 meses.
 
-\section{Novas contratações} 
- \vspace{0,20cm}
-Em relação ao total de novas contratações, ocorreu retração de 3,8% em outubro, com diminuição de 6,1% nas contratações com pessoas jurídicas, 
-e queda de 1,7% nas contratações de pessoas físicas, resultado sem ajuste sazonal.
-```{r novas concessoes, fig.height = 2.9, fig.width = 4.6,  fig.align = "center"}
+ \newpage
+\section{Concessões de Credito} 
+ \vspace{0,15cm}
+
+Em relação ao total de novas contratações, houve retração de 3,8% em outubro, com diminuição de 6,1% nas contratações com pessoas jurídicas, 
+e queda de 1,7% nas contratações de pessoas físicas.
+
+```{r  conscessoes}
 
 # plotando grafico
 series$novasconcessoespj |>
@@ -132,37 +118,115 @@ series$novasconcessoespj |>
           color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
-    labels = c("Pessoa Jurídica", "Pessoa Fisíca"),
+    labels = c("Pessoa Jurídica", "Pessoa Física"),
+    values = c("#004b8d", "#56af31")) +
+  scale_x_date(
+    date_labels = "%b/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-10-01"))
+  ) +
+  scale_y_continuous(
+    labels = scales::number_format(scale = 1 / 1000)
+) +
+  labs(
+    y = "R$ (bilhões)",
+    x = "",
+    title = "Conscessões de Crédito",
+    caption = "Fonte: Bacen") +
+  tema
+```
+
+Para as pessoas físicas, a concessão de crédito livre foi de R$ 193,8 bilhões em outubro, queda de 0,2% em relação ao mês anterior. Em se tratando do crédito direcionado
+o valor foi de R$ 34,4 bilhões, queda de 9,3%, em relação ao mês anterior e alta de 42,4% na comparação interanual.\footnote{resultados sem ajuste sazonal.}
+
+ \newpage
+
+O valor das novas conscessões de crédito livre às empresas foi de 189,8 bilhões, com queda de 2,2% em relação ao mês anterior e aumento de 13,5% no acumulado em doze meses. As altas nas modalidades de antecipação de faturas de cartão de crédito (5,5%), capital de giro com prazo superior a 365 dias (0,9%) e financiamento às exportações (3,0%) se destacam. A concessão de crédito direcionado\footnote{destinadas principalmente ao investimento de médio e longo prazos, aos setores imobiliário, rural e de infraestrutura.} atingiu R$ 34,4 bilhões em outubro, com retração de 44,4% e retração interanual de 27,2%. 
+
+
+```{r credito br}
+
+# plotando grafico
+
+series$creditolivrepf |>
+  inner_join(series$creditolivrepj, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+      aes(
+          x = date,
+          y = value,
+          color = name)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Pessoa Física", "Pessoa Jurídica"),
     values = c("#004b8d", "#56af31")) +
   scale_x_date(
     date_labels = "%b/%Y",
     date_breaks = "month",
-    limits = as.Date(c("2021-01-01", "2021-09-01"))
-  ) +
-   coord_cartesian(ylim = c(0, 100)) +
+    limits = as.Date(c("2021-01-01", "2021-10-01"))) +
+      scale_y_continuous(
+    labels = scales::number_format(scale = 1 / 1000)) +
   labs(
-    y = "R$ (milhões)",
+    y = "R$ (bilhões)",
     x = "",
-    title = "Novas conscessões de crédito",
+    title = "Conscessões de crédito livre",
     caption = "Fonte: Bacen") +
-  theme_minimal() +
   tema
 ```
 
-A concessão de crédito livre às empresas foi de 189,8 bilhões, com queda de 2,2% em relação ao mês anterior, sem ajuste sazonal e aumento de 13,5% no acumulado em doze meses. As modalidades de antecipação de faturas de cartão de crédito (5,5%), capital de giro com prazo superior a 365 dias (0,9%) e financiamento às exportações (3,0%) se destacam. 
-Em relação a concessão de crédito direcionado, destinadas principalmente ao investimento de médio e longo prazos aos setores imobiliário, rural e de infraestrutura, atingiu R$ 34,4 bilhões em outubro, com retração de 44,4% sem ajuste sazonal e retração interanual de 27,2%.
 
-Para as pessoas físicas, a concessão de crédito livre foi de R$193,8 no mês de outubro, com queda de 0,2% em relação ao mês anterior, sem ajuste sazonal. Em se tratando do crédito direcionado o valor foi de R$ 34,4 bilhões em outubro, queda de 9,3% sem ajuste sazonal, em relação ao mês anterior e alta de 42,4% na comparação interanual.
- \newpage
+\newpage
+\section{Endividamento das Famílias - Brasil} 
+ \vspace{0,15cm}
 
-\section{O Indicador de Custo do Crédito (ICC) e Inadimplência} 
- \vspace{0,20cm}
-O Indicador de Custo do Crédito (ICC), atingiu 18,0% a.a., elevando-se 0,3 p.p. no mês e 0,8 p.p. na comparação com outubro de 2020. No crédito livre não rotativo, o ICC situou-se em 23,7% a.a., variações de 0,4 p.p. em outubro (0,8 p.p. na comparação interanual). O spread geral do ICC situou-se em 12,3 p.p. (+0,1 p.p. no mês e +0,2p.p. na comparação interanual).
+O endividamento das famílias em relação à renda acumulada dos últimos doze meses bateu recorde de alta em junho e 
+atingiu 59,55%, maior valor em toda serie histórica. Em julho essa porcentagem caiu para 59,24% 
 
-A inadimplência total permaneceu estável em outubro, no patamar de 2,3%, essa taxa se mantem por seis meses consecutivos. Por segmento, o crédito livre registrou estabilidade neste indicador em 3,0% do total da carteira, enquanto nas operações direcionadas a inadimplência apresentou redução de 0,1 p.p. ao atingir 1,2%.
+```{r endividamento das familias br}
+# plotando grafico
+series$Endi |>
+ggplot(aes
+(x = date,
+y = value,
+color = "name")) +
+geom_line(
+  size = 1.1) +
+  scale_color_manual(
+    labels = c("IPCA"),
+    values = c("#56af31")) +
+  scale_x_date(
+    date_labels = "%m/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2020-04-01", "2021-07-01"))) +
+  ## coord_cartesian(ylim = c(48, 59)) +
+   scale_y_continuous(limits = c(49, 60),
+breaks = c(49,
+51,
+53,
+55,
+57,
+59,
+61)) +
+labs(
+y = "variação %",
+x = "",
+title = "Endividamento das famílias",
+caption = "Fonte: Bacen") +
+tema +
+theme(legend.position = "none")
+```
+
+Esse resultado ocorre principalmente devido ao cenário macroeconômico brasileiro. A aceleração da taxa de inflação que atingiu 9,26% no acumulado do ano, diminui o poder de compra das famílias, além disso, apesar da recente queda na taxa desemprego, ela ainda permanece em um patamar muito elevado (12,6%), contribuindo para o endividamento das famílias.
+\newpage
+\section{ICC e Inadimplência} 
+\vspace{0,20cm}
+
+O Indicador de Custo do Crédito (ICC), atingiu 18,0% a.a., elevando-se 0,3 pontos percentuais (p.p.) no mês e 0,8 p.p. na comparação com outubro de 2020. No crédito livre não rotativo, o ICC situou-se em 23,7% a.a., com variações de 0,4 p.p. em outubro e 0,8 p.p. na comparação interanual. Já o spread geral situou-se em 12,3% (+0,1 p.p. no mês e +0,2 p.p. na comparação interanual).
+
+A inadimplência total permaneceu estável em outubro, no patamar de 2,3%, se mantendo por seis meses consecutivos. Por segmento, o crédito livre registrou estabilidade neste indicador em 3,0% do total da carteira, enquanto nas operações direcionadas a inadimplência apresentou redução de 0,1 p.p. ao atingir 1,2%.
 
 
-```{r inadiplencia}
+```{r inadimplencia br}
 
 # plotando grafico
 series$InadBR |>
@@ -176,19 +240,97 @@ series$InadBR |>
           color = name)) +
   geom_line(size = 1.1) +
   scale_color_manual(
-    labels = c("Pessoa Jurídica", "Geral", "Pessoa Fisíca"),
+    labels = c("Pessoa Jurídica", "Geral", "Pessoa Física"),
     values = c("#004b8d", "#56af31", "#e7d8ac")) +
   scale_x_date(
     date_labels = "%b/%Y",
     date_breaks = "month",
-    limits = as.Date(c("2021-01-01", "2021-09-01"))
-  ) +
+    limits = as.Date(c("2021-01-01", "2021-09-01"))) +
   coord_cartesian(ylim = c(1,4.5)) +
   labs(
     y = "Variação %",
     x = "",
-    title = "Índice de inadiplência no Brasil",
+    title = "Índice de inadiplência em crédito livre",
     caption = "Fonte: Bacen") +
-  theme_minimal() +
   tema
 ```
+
+
+\newpage
+\section{Espírito Santo}
+\subsection {Saldo nas operações de crédito }
+\vspace{0,20cm}
+
+O saldo total de crédito no Espírito Santo em outubro foi de R$ 68.737 milhões de reais, sendo o crédito destinado às famílias em R$ 38.131 milhões, e o destinado às pessoas jurídicas em R$ 30.605 milhões. A trajetória do saldo de pessoas físicas durante o ano se manteve estável, enquanto o de pessoas jurídicas teve maior variação.
+
+```{r credito es}
+
+# plotando grafico
+series$SaldoES |>
+  inner_join(series$SaldoESPJ, by = "date") |>
+  inner_join(series$SaldoESPF, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+      aes(
+          x = date,
+          y = value,
+          color = name)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Pessoa Física", "Total", "Pessoa Juridíca"),
+    values = c("#004b8d", "#56af31", "#e7d8ac")) +
+  scale_x_date(
+    date_labels = "%m/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-09-01"))
+  ) +
+   coord_cartesian(ylim = c(23800,69000)) +
+  labs(
+    y = "R$ (milhões)",
+    x = "",
+    title = "Saldo nas operações de crédito",
+    caption = "Fonte: Bacen") +
+  tema
+```
+
+\newpage
+\subsection {Inadimplência}
+
+
+A taxa média de inadimplência no Estado se mantém no patamar de 2% durante todo ano, com mínima de 1,95% em janeiro e máxima de 2,23% em julho. A partir desse mês a taxa cai influenciada pela queda ascendente na inadimplência de pessoas jurídicas. 
+
+```{r inadimplencia es}
+
+# plotando grafico
+series$InadESPF |>
+  inner_join(series$InadESPJ, by = "date") |>
+  inner_join(series$InadES, by = "date") |>
+  tidyr::pivot_longer(-date) |>
+  ggplot(
+      aes(
+          x = date,
+          y = value,
+          color = name)) +
+  geom_line(size = 1.1) +
+  scale_color_manual(
+    labels = c("Geral", "Pessoa Física", "Pessoa Juridíca"),
+    values = c("#e7d8ac", "#56af31", "#004b8d")) +
+  scale_x_date(
+    date_labels = "%m/%y",
+    date_breaks = "month",
+    limits = as.Date(c("2021-01-01", "2021-09-01"))
+  ) +
+  coord_cartesian(ylim = c(1,2.8)) +
+  labs(
+    y = "Variação %",
+    x = "",
+    title = "Índice de inadimplência - Espiríto Santo",
+    caption = "Fonte: Bacen") +
+  tema
+```
+
+
+
+
+
+

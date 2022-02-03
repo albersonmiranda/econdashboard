@@ -27,9 +27,9 @@ mod_conj_atividade_economica_es_ui <- function(id) {
            HTML(tail(resenhas_conjuntura$atividade.eco.es, 1))
           )
         ),
-        
+
         #Relatorios
-        box( 
+        box(
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
@@ -43,8 +43,8 @@ mod_conj_atividade_economica_es_ui <- function(id) {
             tabsetPanel(
               tabPanel("2021",
                tags$a("2° Trimestre",
-                href="www/relatorios/atividade-economica-es/2021/012/atividade-economica-es.pdf",
-                 target="_blank"))
+                href = "www/relatorios/atividade-economica-es/2021/012/atividade-economica-es.pdf",
+                 target = "_blank"))
             )
           )
         ),
@@ -61,15 +61,15 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Crescimento do PIB ES", class = "box-subtit"),
           tags$div("Variação % anual real", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
-              is.na(tail(legenda_conjuntura$pib.var.es,1)),
+              is.na(tail(legenda_conjuntura$pib.var.es, 1)),
               "",
-              tail(legenda_conjuntura$pib.var.es,1)
+              tail(legenda_conjuntura$pib.var.es, 1)
               )
-            ), 
+            ),
             class = "box-body"),
           footer = fluidRow(
             column(
@@ -107,14 +107,14 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Crescimento do PIB ES", class = "box-subtit"),
           tags$div("Valores observados a preço de mercado em R$", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
-              is.na(tail(legenda_conjuntura$pib.es, 1)), 
+              is.na(tail(legenda_conjuntura$pib.es, 1)),
               "",
               tail(legenda_conjuntura$pib.es, 1)
-              ) 
+              )
             ),
             class = "box-body"),
           footer = fluidRow(
@@ -153,12 +153,12 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índice de Atividade Econômica Regional", class = "box-subtit"),
           tags$div("Índice mensal observado e dessazonalizado", class = "box-body"),
-          plotlyOutput(ns("plot3")),
+          withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
             is.na(tail(legenda_conjuntura$ibcr.es, 1)),
-            "", 
+            "",
             tail(legenda_conjuntura$ibcr.es, 1)
               )
             ),
@@ -221,7 +221,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índice mensal de varejo e serviços", class = "box-subtit"),
           tags$div("Volume de vendas no varejo e receita nominal de serviços", class = "box-body"),
-          plotlyOutput(ns("plot4")),
+          withSpinner(plotlyOutput(ns("plot4")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
@@ -279,6 +279,56 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           )
         ),
 
+        # Indústria
+        box(
+          title = tags$div("Indústria ES", class = "box-tit"),
+          closable = FALSE,
+          width = 4,
+          height = 760,
+          status = "warning",
+          solidHeader = TRUE,
+          collapsible = FALSE,
+          enable_dropdown = FALSE,
+          tags$div("Pesquisa Industrial Mensal", class = "box-subtit"),
+          tags$div("Indústria geral", class = "box-body"),
+          plotlyOutput(ns("plot6")),
+          tags$div("Fonte: IBGE", class = "box-legenda"),
+          tags$div(
+            HTML(
+              ifelse(
+                is.na(tail(legenda_conjuntura$industria.es, 1)),
+                "",
+                tail(legenda_conjuntura$industria.es, 1)
+                )
+              ),
+            class = "box-body"
+          ),
+          footer = fluidRow(
+            column(
+              width = 12,
+              descriptionBlock(
+                number = paste(round(
+                  tail(series$PIM.ES$value, 1) - head(tail(series$PIM.ES$value, 2), 1), 2
+                ), "pts"),
+                numberColor = if (tail(series$PIM.ES$value, 1) - head(tail(series$PIM.ES$value, 2), 1) >= 0) {
+                  "success"
+                } else {
+                  "danger"
+                },
+                numberIcon = if (tail(series$PIM.ES$value, 1) - head(tail(series$PIM.ES$value, 2), 1) >= 0) {
+                  icon("fas fa-caret-up")
+                } else {
+                  icon(icon(icon("fas fa-caret-down")))
+                },
+                header = paste0(tail(series$IndustriaBR$value, 1), " pts", " (", tail(months(series$IndustriaBR$date), 1), ")"),
+                text = "produção industrial",
+                rightBorder = FALSE,
+                marginBottom = FALSE
+              )
+            )
+          )
+        ),
+
         # Exportações
         box(
           title = tags$div("Exportações ES", class = "box-tit"),
@@ -289,7 +339,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Exportações de bens ES", class = "box-subtit"),
           tags$div("US$ milhões, mensal", class = "box-body"),
-          plotlyOutput(ns("plot5")),
+          withSpinner(plotlyOutput(ns("plot5")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: MDIC", class = "box-legenda"),
           tags$div(HTML(
             ifelse(
@@ -394,7 +444,23 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
     ) %>%
       add_trace(y = series$ServicosES$value, name = "Serviços", line = list(color = "#56af31")) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
+        legend = list(
+          orientation = "h",
+          x = 0.5,
+          xanchor = "center"
+        )
+      )
+  })
+
+  # Indústria
+  output$plot6 <- renderPlotly({
+    plot_ly(
+      data = series$PIM.ES, x = ~date, y = ~value,
+      type = "scatter", mode = "lines", name = "produção industrial", line = list(color = "#004B8D")
+    ) %>%
+      layout(
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,
@@ -407,7 +473,7 @@ mod_conj_atividade_economica_es_server <- function(input, output, session) {
   output$plot5 <- renderPlotly({
     plot_ly(
       data = series$ExpES,
-      x = ~date, y = ~ value * 1000,
+      x = ~date, y = ~ value / 1000,
       type = "scatter", mode = "lines", name = "Exportações", line = list(color = "#004B8D")
     ) %>%
       layout(

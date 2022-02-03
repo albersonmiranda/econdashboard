@@ -11,7 +11,7 @@ mod_fundo_previdenciario_ui <- function(id){
   ns <- NS(id)
   tagList(fluidPage(
     fluidRow(
-      
+
       # resenha
       box(
         title = tags$div("BANESTES PREVIDENCIÁRIO FI ", class = "res-tit"),
@@ -28,23 +28,23 @@ mod_fundo_previdenciario_ui <- function(id){
           HTML(resenhas_fundos$previdenciario)
         ),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/lamina_Previdenciario.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/lamina_Previdenciario.pdf", target = "_blank",
           "Lâmina",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_previdenciario.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/regulamento_previdenciario.pdf", target = "_blank",
           "Regulamento",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_PREVIDENCIARIO.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/publicitario_PREVIDENCIARIO.pdf", target = "_blank",
           "Relatório",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/adesao_previdenciario.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/adesao_previdenciario.pdf", target = "_blank",
           "Termo de adesão",
           class = "link"),
       ),
-      
+
       #fundo previdenciario
       box(
           title = tags$div("Desempenho do Fundo", class = "box-graf"),
@@ -56,7 +56,7 @@ mod_fundo_previdenciario_ui <- function(id){
           solidHeader = TRUE,
         tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
         tags$div("Variação % mensal", class = "box-body"),
-        plotlyOutput(ns("plot2")),
+        withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
         tags$div("fonte: Banestes DTVM", style = "box-legenda"),
         footer = fluidRow(
           column(
@@ -93,7 +93,7 @@ mod_fundo_previdenciario_ui <- function(id){
 mod_fundo_previdenciario_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
-    
+
     # plot fundo
     output$plot2 <- renderPlotly({
       plot_ly(
@@ -114,7 +114,7 @@ mod_fundo_previdenciario_server <- function(id){
           legend = list(orientation = 'h')
         )
     })
- 
+
   })
 }
     

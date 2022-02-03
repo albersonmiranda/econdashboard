@@ -42,7 +42,7 @@ mod_conj_inflacao_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021", tags$a("Novembro", href="www/relatorios/inflacao/2021/11/inflacao.pdf", target="_blank"))
             )
           )
         ),
@@ -59,7 +59,7 @@ mod_conj_inflacao_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Utilização da Capacidade Instalada", class = "box-subtit"),
           tags$div("%, trimestral", class = "box-body"),
-          plotlyOutput(ns("plot3")),
+          withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: FGV", class = "box-legenda"),
           tags$div(HTML(
             ifelse( 
@@ -107,7 +107,7 @@ mod_conj_inflacao_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Custo da Cesta Básica", class = "box-subtit"),
           tags$div("Vitória-ES, índice, mensal", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: DIEESE", class = "box-legenda"),
           tags$div(
             HTML(
@@ -116,7 +116,7 @@ mod_conj_inflacao_ui <- function(id) {
                 "",
                 tail(legenda_conjuntura$cestabasica, 1)
                 )
-              ), 
+              ),
             class = "box-body"
           ),
           footer = fluidRow(
@@ -155,16 +155,16 @@ mod_conj_inflacao_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Índices de preços", class = "box-subtit"),
           tags$div("Variação percentual, mensal", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE, FGV e DIEESE", class = "box-legenda"),
-          tags$div( 
+          tags$div(
             HTML(
               ifelse(
                 is.na(tail(legenda_conjuntura$inflacao, 1)), 
-                "", 
+                "",
                 tail(legenda_conjuntura$inflacao, 1)
               )
-            ), 
+            ),
             class = "box-body"),
           footer = fluidRow(
             column(
@@ -292,7 +292,7 @@ mod_conj_inflacao_server <- function(input, output, session) {
       type = "scatter", mode = "lines", name = "Cesta Básica Vitória", line = list(color = "#004B8D")
     ) %>%
       layout(
-        title = "", xaxis = list(title = ""), yaxis = list(title = "Indice"),
+        title = "", xaxis = list(title = ""), yaxis = list(title = "Índice"),
         legend = list(
           orientation = "h",
           x = 0.5,
