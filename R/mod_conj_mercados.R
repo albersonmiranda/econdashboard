@@ -57,7 +57,7 @@ mod_conj_mercados_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Taxa de desemprego", class = "box-subtit"),
           tags$div("Percentual da população economicamente ativa, mensal", class = "box-body"),
-          plotlyOutput(ns("plot3")),
+          withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
@@ -66,7 +66,7 @@ mod_conj_mercados_ui <- function(id) {
                 "",
                 tail(legenda_conjuntura$merc.trab, 1)
               )
-            ), 
+            ),
             class = "box-body"
           ),
           footer = fluidRow(
@@ -116,7 +116,7 @@ mod_conj_mercados_ui <- function(id) {
             ), 
             class = "box-body"
           ),
-          plotlyOutput(ns("plot4")),
+          withSpinner(plotlyOutput(ns("plot4")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: MTE", class = "box-legenda"),
           footer = fluidRow(
             column(
@@ -153,7 +153,7 @@ mod_conj_mercados_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Taxa básica Selic", class = "box-subtit"),
           tags$div("Taxa ao ano, diária, anualizada, base 252", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(
@@ -199,7 +199,7 @@ mod_conj_mercados_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Dólar", class = "box-subtit"),
           tags$div("Preço de compra, cotação diária", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
          tags$div(
            HTML(

@@ -54,7 +54,6 @@ tema = theme_minimal() +
     legend.title = element_blank(),
     legend.text = element_text(size = 12)
   )
-
 ```
 
 \maketitle
@@ -70,69 +69,72 @@ O Índice Nacional de Preços ao Consumidor Amplo registrou alta de 0,95% em nov
 
 # plotando grafico
 series$IPCA12mes |>
-ggplot(aes
-(x = date,
-y = value,
-color = "name")) +
-geom_line(
-  size = 1.1) +
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1.1
+  ) +
   scale_color_manual(
     labels = c("IPCA"),
-    values = c("#56af31")) +
+    values = c("#56af31")
+  ) +
   scale_x_date(
     date_labels = "%b/%y",
     date_breaks = "month",
-    limits = as.Date(c("2020-11-01", "2021-11-01"))) +
-     coord_cartesian(ylim = c(4,11)) +
+    limits = as.Date(c("2020-11-01", "2021-11-01"))
+  ) +
+  coord_cartesian(ylim = c(4, 11)) +
   labs(
     y = "variação %",
     x = "",
     title = "Inflação acumulada nos últimos doze meses",
-    caption = "Fonte: Bacen") +
+    caption = "Fonte: Bacen"
+  ) +
   tema
 ```
 
-O destaque se dá para o setor de transportes, que teve o maior aumento do índice por três meses consecutivos. 
-Essa variação foi influenciada principalmente pelo preço dos combustíveis, que no acumulado do ano sofreu aumento de 50,43%,
-como a economia de modo geral depende dos transportes esse aumento impacta diretamente todos os outros setores.
+O destaque se dá para o setor de transportes, que teve o maior aumento do índice por três meses consecutivos. Essa variação foi influenciada principalmente pelo preço dos combustíveis, que no acumulado do ano sofreu aumento de 50,43%. Como a economia de modo geral depende do setor, esse aumento impacta diretamente todos os demais.
 \newpage
 
 
 \subsection{Combustíveis} 
  \vspace{0,5cm}
  
-  A variação no preço dos combustíveis é causada por vários fatores, um deles foi o avanço da vacinação contra a covid-19 a nível mundial
-  que proporcionou a retomada global da economia, gerando uma grande demanda por petróleo que não foi acompanhado da oferta, 
-  uma vez que no ano passado a Organização dos Países Produtores de Petróleo 
-(Opep) decidiu diminuir a produção para evitar uma queda mais acentuada no nível do preço. 
-Com a recuperação da economia, a oferta de petróleo
-vem se normalizando gradativamente enquanto a demanda cresce de forma mais acelerada, pressionando o preço do barril. 
-
-
+A variação no preço dos combustíveis é causada por vários fatores, um deles foi o avanço da vacinação contra a covid-19 a nível mundial que proporcionou a retomada global da economia, gerando uma grande demanda por petróleo que não foi acompanhado da oferta, pressionando o preço do barril. Isso ocorreu porque em 2020 a Organização dos Países Produtores de Petróleo (Opep) decidiu diminuir a produção para evitar uma queda mais acentuada no nível do preço.
 
 ```{r Consumo Petroleo}
 
 # plotando grafico
 series$ConsumoPetro |>
-ggplot(aes
-(x = date,
-y = value,
-color = "name")) +
-geom_line(
-  size = 1.1) +
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1.1
+  ) +
   scale_color_manual(
     labels = c("IPCA"),
-    values = c("#56af31")) +
+    values = c("#56af31")
+  ) +
   scale_x_date(
     date_labels = "%b/%y",
     date_breaks = "2 month",
-    limits = as.Date(c("2020-01-01", "2021-09-01"))) +
-     coord_cartesian(ylim = c(1490,2080)) +
+    limits = as.Date(c("2020-01-01", "2021-09-01"))
+  ) +
+  coord_cartesian(ylim = c(1490, 2080)) +
   labs(
     y = "barris/dia (mil)",
     x = "",
     title = "Consumo diário de petróleo",
-    caption = "Fonte: Agência Nacional do Petróleo") +
+    caption = "Fonte: Agência Nacional do Petróleo"
+  ) +
   tema +
   theme(legend.position = "none")
 ```
@@ -141,32 +143,37 @@ geom_line(
 \subsection{Desvalorização Cambial} 
  \vspace{0,5cm}
 
-O impacto do cenário internacional é ainda maior no Brasil devido à desvalorização cambial, que ocorre principalmente em razão dos riscos
- fiscais domésticos: especificamente a Dívida Bruta do Governo Geral (DBGG), que compreende o governo federal, o INSS e os governos estaduais 
- e municipais. A DBGG atingiu 82,9% do PIB (R$ 7 trilhões) em outubro. A confiança dos investidores internacionais se reduz em meio a esse cenário, 
- e a incerteza fiscal afasta o investimento estrangeiro.
+O impacto do cenário internacional é ainda maior no Brasil devido à desvalorização cambial, que ocorre principalmente em razão dos riscos fiscais domésticos, especificamente a Dívida Bruta do Governo Geral (DBGG)\footnote{Que compreende o governo federal, o INSS e os governos estaduais e municipais.}. A DBGG atingiu 82,9% do PIB (R$ 7 trilhões) em outubro, fazendo com que a confiança dos investidores internacionais se reduza e a incerteza fiscal afaste o investimento estrangeiro.
 
 ```{r Divida Bruta/PIB}
-#filtrando dados
+# filtrando dados
 DivBru.pib = subset(series$DividaBrutaBR.PIB, date >= as.Date("2018-01-01"))
 
 # Plotando grafico
 DivBru.pib |>
-ggplot(aes
-(x = date,
-y = value,
-color = "name")) +
-geom_line(
-  size = 1.1) +
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1.1
+  ) +
+  scale_y_continuous(
+    limits = c(0, 100)
+  ) +
   scale_color_manual(
     labels = c("Dívida Bruta/PIB"),
-    values = c("#56af31")) +
+    values = c("#56af31")
+  ) +
   scale_x_date(date_labels = "%m/%y", date_breaks = "4 month") +
   labs(
     y = "% PIB",
     x = "",
     title = "Dívida Bruta/PIB",
-    caption = "Fonte: Bacen") +
+    caption = "Fonte: Bacen"
+  ) +
   tema
 ```
  \newpage
@@ -174,14 +181,9 @@ geom_line(
 \section{Grande Vitória} 
 \vspace{0,25cm}
 
-A Grande Vitória ocupa o segundo lugar no ranking das capitais com maior índice de inflação, com alta de 9,58% no acumulado do ano, 
-ficando atrás apenas de Curitiba que teve variação de 10,97%. Em relação à variação mensal, a capital atingiu 1,53% em outubro, 
-ocupando o primeiro lugar do ranking entre as capitais.
+A Grande Vitória ocupa o segundo lugar no ranking das capitais com maior índice de inflação, com alta de 9,58% no acumulado do ano, ficando atrás apenas de Curitiba que teve variação de 10,97%. Em relação à variação mensal, a capital atingiu 1,53% em outubro, ocupando o primeiro lugar do ranking entre as capitais.
 
-Um dos principais fatores que explicam essa alta inflação na região é a habitação\footnote{O grupo habitação é composto por combustíveis domésticos
- (gás de cozinha), artigos de limpeza, energia elétrica residencial, reparos, aluguel e taxas}, que no acumulado do ano obteve a segunda maior alta do Brasil (+15%). 
- Apenas em outubro, teve variação de +3,04%, sendo o item com maior alta da Grande Vitória, impulsionado principalmente pelo gás de botija, 
- que subiu 5,41% em relação ao mês anterior.
+Um dos principais fatores que explicam essa alta inflação na região é a habitação\footnote{O grupo habitação é composto por combustíveis domésticos (gás de cozinha), artigos de limpeza, energia elétrica residencial, reparos, aluguel e taxas.}, que no acumulado do ano obteve a segunda maior alta do Brasil (+15%). Apenas em outubro, teve variação de +3,04%, sendo o item com maior alta da Grande Vitória, impulsionado principalmente pelo gás de botija, que subiu 5,41% em relação ao mês anterior.
 
 Em relação aos alimentos e bebidas, a Grande Vitória obteve a maior alta do país, com aumento de 2,48% em relação ao mês anterior e variação de 7,43%
  no acumulado do ano. De acordo com Departamento Intersindical de Estatística e Estudos Socioeconômico (DIEESE), o custo da cesta básica em Vitória
@@ -192,15 +194,21 @@ Em relação aos alimentos e bebidas, a Grande Vitória obteve a maior alta do p
 #filtrando dados
 Cesbasica = subset(series$CestaES, date >= as.Date("2020-01-01"))
 
-
 # Plotando grafico
-Cesbasica |>
-ggplot(aes
-(x = date,
-y = value,
-color = "name")) +
-geom_line(
-  size = 1) +
+series$CestaES |>
+  filter(date >= as.Date("2018-01-01")) |>
+  ggplot(aes
+  (
+    x = date,
+    y = value,
+    color = "name"
+  )) +
+  geom_line(
+    size = 1
+  ) +
+  scale_y_continuous(
+    limits = c(0, 700)
+  ) +
   scale_color_manual(
     labels = c(""),
     values = c("#56af31")) +
@@ -210,9 +218,9 @@ geom_line(
     y = "valor em real",
     x = "",
     title = "Preço da Cesta Básica em Vitória",
-    caption = "Fonte: Dieese") +
+    caption = "Fonte: Dieese"
+  ) +
   theme_minimal() +
   tema +
   theme(legend.position = "none")
-
 ```

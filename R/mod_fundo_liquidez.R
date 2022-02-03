@@ -11,7 +11,7 @@ mod_fundo_liquidez_ui <- function(id){
   ns <- NS(id)
   tagList(fluidPage(
     fluidRow(
-      
+
       # resenha
       box(
         title = tags$div("BANESTES LIQUIDEZ FI", class = "res-tit"),
@@ -28,19 +28,19 @@ mod_fundo_liquidez_ui <- function(id){
           HTML(resenhas_fundos$liquidez)
         ),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/lamina_Liquidez.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/lamina_Liquidez.pdf", target = "_blank",
           "Lâmina",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/regulamento_liquidez_referenciado.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/regulamento_liquidez_referenciado.pdf", target = "_blank",
           "Regulamento",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/publicitario_liquidez_referenciado.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/publicitario_liquidez_referenciado.pdf", target = "_blank",
           "Relatório",
           class = "link"),
         tags$a(
-          href="https://www.banestes.com.br/investimentos/pdf/adesao_liquidez_referenciado.pdf", target="_blank",
+          href = "https://www.banestes.com.br/investimentos/pdf/adesao_liquidez_referenciado.pdf", target = "_blank",
           "Termo de adesão",
           class = "link"),
       ),
@@ -55,7 +55,7 @@ mod_fundo_liquidez_ui <- function(id){
           solidHeader = TRUE,
         tags$div("Fundo de Investimento Renda Fixa", class = "box-subtit"),
         tags$div("Variação % mensal", class = "box-body"),
-        plotlyOutput(ns("plot3")),
+        withSpinner(plotlyOutput(ns("plot3")), type = 1, color = "#004b8d", size = 1.5),
         tags$div("fonte: Banestes DTVM", style = "box-legenda"),
         footer = fluidRow(
           column(
@@ -87,11 +87,11 @@ mod_fundo_liquidez_ui <- function(id){
     
 #' fundo_liquidez Server Functions
 #'
-#' @noRd 
+#' @noRd
 mod_fundo_liquidez_server <- function(id){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
- 
+
     # plot fundo
     output$plot3 <- renderPlotly({
       plot_ly(

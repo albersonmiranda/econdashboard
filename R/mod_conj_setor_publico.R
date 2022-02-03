@@ -40,7 +40,10 @@ mod_conj_setor_publico_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href="www/relatorios/relatorio.pdf", target="_blank"))
+              tabPanel("2021",
+              tags$a("2° Trimestre",
+              href = "www/relatorios/politica-fiscal-es/2021/012/politica-fiscal-es.pdf",
+              target = "_blank"))
             )
           )
         ),
@@ -55,13 +58,13 @@ mod_conj_setor_publico_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Necessidade de financiamento do Estado do ES e municípios", class = "box-subtit"),
           tags$div("Fluxo acumulado no ano, trimestral", class = "box-body"),
-          plotlyOutput(ns("plot1")),
+          withSpinner(plotlyOutput(ns("plot1")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(
               ifelse(
                 is.na(tail(legenda_conjuntura$primario.es, 1)),
-                "", 
+                "",
                 tail(legenda_conjuntura$primario.es, 1)
               )
             ),
@@ -74,9 +77,9 @@ mod_conj_setor_publico_ui <- function(id) {
                   (tail(series$ResultadoES$value, 1) - head(tail(series$ResultadoES$value, 2), 1)), 1
                 ), "mi"),
                 numberColor = if (tail(series$ResultadoES$value, 1) - head(tail(series$ResultadoES$value, 2), 1) >= 0) {
-                  "success"
-                } else {
                   "danger"
+                } else {
+                  "success"
                 },
                 numberIcon = if (tail(series$ResultadoES$value, 1) - head(tail(series$ResultadoES$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
@@ -102,7 +105,7 @@ mod_conj_setor_publico_ui <- function(id) {
           solidHeader = TRUE,
           tags$div("Dívida líquida consolidada do Estado do ES e municípios", class = "box-subtit"),
           tags$div("Trimestral", class = "box-body"),
-          plotlyOutput(ns("plot2")),
+          withSpinner(plotlyOutput(ns("plot2")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: Banco Central do Brasil", class = "box-legenda"),
           tags$div(
             HTML(
@@ -112,7 +115,7 @@ mod_conj_setor_publico_ui <- function(id) {
               tail(legenda_conjuntura$div.liq.es, 1)
               )
             ),
-            class = "box-body" ),
+            class = "box-body"),
           footer = fluidRow(
             column(
               width = 12,
