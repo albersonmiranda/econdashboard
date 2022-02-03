@@ -42,7 +42,7 @@ mod_conj_inflacao_ui <- function(id) {
           enable_dropdown = FALSE,
           mainPanel(
             tabsetPanel(
-              tabPanel("2021", tags$a("Relatório de Conjuntura", href = "www/relatorios/relatorio.pdf", target = "_blank"))
+              tabPanel("2021", tags$a("Novembro", href="www/relatorios/inflacao/2021/11/inflacao.pdf", target="_blank"))
             )
           )
         ),
