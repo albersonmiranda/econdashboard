@@ -291,7 +291,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
           enable_dropdown = FALSE,
           tags$div("Pesquisa Industrial Mensal", class = "box-subtit"),
           tags$div("Indústria geral", class = "box-body"),
-          plotlyOutput(ns("plot6")),
+          withSpinner(plotlyOutput(ns("plot6")), type = 1, color = "#004b8d", size = 1.5),
           tags$div("Fonte: IBGE", class = "box-legenda"),
           tags$div(
             HTML(
