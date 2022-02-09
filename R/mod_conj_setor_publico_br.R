@@ -192,7 +192,7 @@ mod_conj_setor_publico_br_ui <- function(id){
                     box(
                       title = tags$div("Dívida Bruta", class = "box-tit"),
                       closable = FALSE,
-                      width = 4,
+                      width = 6,
                       height = 760,
                       status = "warning",
                       solidHeader = TRUE,
@@ -236,11 +236,11 @@ mod_conj_setor_publico_br_ui <- function(id){
                       )
                     ),
 
-                    #Dívida Liquida BR %PIB
+                    #Dívida Bruta BR %PIB
                     box(
                       title = tags$div("Dívida Bruta (%PIB)", class = "box-tit"),
                       closable = FALSE,
-                      width = 4,
+                      width = 6,
                       height = 760,
                       status = "warning",
                       solidHeader = TRUE,

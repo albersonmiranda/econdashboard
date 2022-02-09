@@ -51,7 +51,7 @@ mod_conj_inflacao_ui <- function(id) {
         box(
           title = tags$div("Capacidade Instalada", class = "box-tit"),
           closable = FALSE,
-          width = 4,
+          width = 6,
           height = 855,
           status = "warning",
           solidHeader = TRUE,
@@ -99,7 +99,7 @@ mod_conj_inflacao_ui <- function(id) {
         box(
           title = tags$div("Cesta Básica", class = "box-tit"),
           closable = FALSE,
-          width = 4,
+          width = 6,
           height = 855,
           status = "warning",
           solidHeader = TRUE,

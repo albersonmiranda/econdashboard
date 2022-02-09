@@ -50,7 +50,7 @@ mod_conj_consumo_ui <- function(id) {
         box(
           title = tags$div("Consumo das Famílias e Governo", class = "box-tit"),
           closable = FALSE,
-          width = 4,
+          width = 6,
           height = 855,
           status = "warning",
           solidHeader = TRUE,
@@ -119,7 +119,7 @@ mod_conj_consumo_ui <- function(id) {
         box(
           title = tags$div("Expectativas do Consumidor", class = "box-tit"),
           closable = FALSE,
-          width = 4,
+          width = 6,
           height = 855,
           status = "warning",
           solidHeader = TRUE,
