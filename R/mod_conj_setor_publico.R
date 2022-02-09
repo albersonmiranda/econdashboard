@@ -52,7 +52,7 @@ mod_conj_setor_publico_ui <- function(id) {
         box(
           title = tags$div("Resultado Primário", class = "box-tit"),
           closable = FALSE,
-          width = 4,
+          width = 6,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
@@ -99,7 +99,7 @@ mod_conj_setor_publico_ui <- function(id) {
         box(
           title = tags$div("Dívida líquida", class = "box-tit"),
           closable = FALSE,
-          width = 4,
+          width = 6,
           height = 760,
           status = "warning",
           solidHeader = TRUE,
