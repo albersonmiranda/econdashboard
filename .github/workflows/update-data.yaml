@@ -35,10 +35,6 @@ jobs:
           source("data-raw/dados-relatorios.R")
         shell: Rscript {0}
 
-      - name: Atualizando Dados de Fundos
-        run: source("data-raw/fundos.R")
-        shell: Rscript {0}
-
       - name: Atualizando Resenhas
         run: |
           source("data-raw/resenhas.R")
