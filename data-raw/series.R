@@ -145,8 +145,37 @@ creditodirecionapj = BETSget(20686, data.frame = TRUE) # saldo de credito livre 
 creditodirecionadopf = BETSget(20698, data.frame = TRUE) # saldo de credito livre a pf
 novasconcessoespj = BETSget(20632, data.frame = TRUE) # novas contratações de crédito por pj
 novasconcessoespf = BETSget(20633, data.frame = TRUE) # novas contratações de crédito por pf
-# 3. ARQUIVO -----------------------------------------------------------------
 
 
+# 3. INTEGRIDADE -----------------------------------------------------------------
+
+
+# agrupar séries
 series = mget(ls())
+
+# realizar teste de integridade em todas as séries
+teste = lapply(series, function(x) {
+    any(is.na(x))
+})
+
+# escolher as séries que devem ser refeitas
+series_redo = names(which(teste == TRUE))
+
+# obter o script para executar as séries
+script = readLines("data-raw/series.R")
+
+# loop para refazer as séries
+for (i in series_redo) {
+    eval(
+        parse(
+            text = script[grepl(i, script)]
+        )
+    )
+}
+
+# remover objeto series e remontar
+remove(series)
+series = mget(ls())
+
+# gravar data
 usethis::use_data(series, overwrite = TRUE)

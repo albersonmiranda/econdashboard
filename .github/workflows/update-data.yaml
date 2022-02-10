@@ -45,21 +45,12 @@ jobs:
         run: source("data-raw/series.R")
         shell: Rscript {0}
 
-      - name: Testar Integridade das Séries 1st pass
-        run: source("data-raw/integridade.R")
-        shell: Rscript {0}
-
-      - name: Testar Integridade das Séries 2nd pass
-        run: source("data-raw/integridade.R")
-        shell: Rscript {0}
-
       - name: Commit dos dados
         run: |
           git config --local user.email ${{ secrets.ADMIN_EMAIL }}
           git config --local user.name ${{ secrets.ADMIN_NAME }}
           git add data/series.rda
           git add data/resenhas_conjuntura.rda
-          git add data/resenhas_fundos.rda
           git add data/legenda_conjuntura.rda
           git commit -m 'Update data' || echo "Update data"
           git push origin || echo "Update data"
