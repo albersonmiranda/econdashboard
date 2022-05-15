@@ -10,3 +10,6 @@ $run_dev.*
 ^app\.R$
 ^rsconnect$
 ^\.github$
+^econdashboard\.Rcheck$
+^econdashboard.*\.tar\.gz$
+^econdashboard.*\.tgz$

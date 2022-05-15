@@ -21,3 +21,6 @@ politica-fiscal-es.aux
 credito_files/
 mercado-de-trabalho_files/
 mercados_files
+econdashboard.Rcheck/
+econdashboard*.tar.gz
+econdashboard*.tgz

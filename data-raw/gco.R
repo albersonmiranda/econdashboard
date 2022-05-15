@@ -16,7 +16,7 @@ pf = data.frame(
         0L:365L,
         10000,
         replace = TRUE,
-        prob = c(99, seq(from = 1, to = 0, length.out = 365))
+        prob = c(.95, rep(.05/365, 365)) # 95% pay on time
     )
 )
 
@@ -32,7 +32,7 @@ pj = data.frame(
     saldo_contabil = sample(100L:10000000L, 1000, replace = TRUE),
     dias_atraso = sample(0L:365L, 1000,
         replace = TRUE,
-        prob = c(99, seq(from = 1, to = 0, length.out = 365))
+        prob = c(.95, rep(.05/365, 365))
     )
 )
 
@@ -88,6 +88,13 @@ pj$impacto_pdd = pj$pdd_estimado - pj$pdd
 
 # consolidando
 gco = rbind(pf, pj)
+
+# adding superintendence
+gco = within(gco, {
+  superint = ifelse(agencia <= 15, "Surec")
+  superint = ifelse(agencia > 15 & agencia <= 30, "Sures")
+  superint = ifelse(agencia > 15, "Suren")
+})
 
 # status atraso
 gco = within(gco, {
