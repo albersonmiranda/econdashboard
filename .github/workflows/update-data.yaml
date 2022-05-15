@@ -7,7 +7,7 @@ on:
 name: update-data
 
 jobs:
-  update-data:
+  update-data-centralbank:
     runs-on: macos-latest
     strategy:
       matrix:
@@ -54,3 +54,50 @@ jobs:
           git add data/legenda_conjuntura.rda
           git commit -m 'Update data' || echo "Update data"
           git push origin || echo "Update data"
+
+  update-data-funds:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        r-version: ['4.1.0']
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ADMIN_TOKEN }}
+
+      - name: Instalar R ${{ matrix.r-version }}
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: ${{ matrix.r-version }}
+
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          cache-version: 4
+          extra-packages: |
+            rsconnect
+
+      - name: Install Miniconda
+        run: |
+          reticulate::install_miniconda()
+        shell: Rscript {0}
+
+      - name: Install Python Packages
+        run: |
+          reticulate::py_install("tabula-py")
+        shell: Rscript {0}
+
+      - name: Atualizando Dados de Fundos
+        run: source("data-raw/fundos.R")
+        shell: Rscript {0}
+
+      - name: Commit dos dados
+        run: |
+          git config --local user.email ${{ secrets.ADMIN_EMAIL }}
+          git config --local user.name ${{ secrets.ADMIN_NAME }}
+          git add data/fundos.rda
+          git add data/resenhas_fundos.rda
+          git commit -m 'Update data' || echo "Update data"
+          git push origin || echo "Update data"
+
