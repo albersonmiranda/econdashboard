@@ -15,7 +15,7 @@ mod_cob_overview_ui = function(id) {
 
       # botões de seleção de agência, modalidade e tipo cliente
       fluidRow(
-        selectInput(ns("but_superint"), "Superintendência", c("Todas", sort(unique(gco$superint))), selected = "diger", multiple = TRUE),
+        selectInput(ns("but_superint"), "Superintendência", c("Todas", sort(unique(gco$superint))), selected = "Todas", multiple = TRUE),
         selectInput(ns("but_agencia"), "Agência", c("Todas", sort(unique(gco$agencia))), selected = "Todas", multiple = TRUE),
         selectInput(ns("but_modalidade"), "Produto", c("Todos", sort(unique(gco$modalidade))), selected = "Todos", multiple = TRUE),
         selectInput(ns("but_tipo_cli"), "Tipo Cliente", c("Todos", sort(unique(gco$tipo_cli))), selected = "Todos", multiple = TRUE)

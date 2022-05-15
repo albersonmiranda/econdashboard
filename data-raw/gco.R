@@ -91,9 +91,10 @@ gco = rbind(pf, pj)
 
 # adding superintendence
 gco = within(gco, {
-  superint = ifelse(agencia <= 15, "Surec")
-  superint = ifelse(agencia > 15 & agencia <= 30, "Sures")
-  superint = ifelse(agencia > 15, "Suren")
+  superint = NA
+  superint[agencia <= 15] = "Surec"
+  superint[agencia > 15 & agencia <= 30] = "Sures"
+  superint[agencia > 15] = "Suren"
 })
 
 # status atraso
