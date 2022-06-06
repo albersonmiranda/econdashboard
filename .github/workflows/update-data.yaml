@@ -74,7 +74,7 @@ jobs:
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          cache-version: 4
+          cache-version: 5
           extra-packages: |
             rsconnect
 
