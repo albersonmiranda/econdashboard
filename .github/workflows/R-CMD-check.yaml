@@ -22,9 +22,9 @@ jobs:
           r-version: ${{ matrix.r-version }}
 
       - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v1
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 2
+          cache-version: 1
           extra-packages: |
             rcmdcheck
         

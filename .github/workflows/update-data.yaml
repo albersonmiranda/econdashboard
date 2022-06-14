@@ -24,9 +24,9 @@ jobs:
           r-version: ${{ matrix.r-version }}
 
       - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v1
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 4
+          cache-version: 1
           extra-packages: |
             rsconnect
 
@@ -72,9 +72,9 @@ jobs:
           r-version: ${{ matrix.r-version }}
 
       - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v1
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 5
+          cache-version: 1
           extra-packages: |
             rsconnect
 
