@@ -58,7 +58,7 @@ del [i, names, tabela, tabela_temp, tabela_pre_rename, url, x]
 # %% corrigindo formatos e calculando rentabilidade acumulada
 cols = ['rentabilidade', 'variacao_indice', 'desempenho_indice']
 for i in fundos:
-    fundos[i][cols] = fundos[i][cols].replace({',': '.', '%': ''}, regex = True).astype('float') / 100
+    fundos[i][cols] = fundos[i][cols].replace({',': '.', '%': '', '-': '0'}, regex = True).astype('float') / 100
     fundos[i]['rentabilidade_acum'] = fundos[i]['rentabilidade'].add(1).cumprod().add(-1)
     fundos[i]['indice_acum'] = fundos[i]['variacao_indice'].add(1).cumprod().add(-1)
 
