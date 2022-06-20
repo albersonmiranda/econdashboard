@@ -30,6 +30,7 @@ jobs:
             RcppArmadillo
             cpp11
             progress
+            plogr
 
       - name: Conectando ao ShinyApps
         env:
