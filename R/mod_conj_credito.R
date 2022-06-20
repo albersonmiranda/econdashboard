@@ -528,11 +528,11 @@ mod_conj_credito_server <- function(input, output, session) {
   output$plot2 <- renderPlotly({
     plot_ly(
       data = series$End, x = ~date, y = ~value,
-      type = "scatter", mode = "lines", name = "End. Famílias SFN", line = list(color = "#004B8D")
+      type = "scatter", mode = "lines", name = "Exceto imobiliário", line = list(color = "#004B8D")
     ) %>%
       add_trace(
         y = series$Endi$value,
-        name = "Exceto Imobiliário", mode = "lines", line = list(color = "#56af31")
+        name = "End. Famílias SFN", mode = "lines", line = list(color = "#56af31")
       ) %>%
       layout(
         title = "",
