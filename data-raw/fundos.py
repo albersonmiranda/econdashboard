@@ -22,7 +22,7 @@ url = [
     ]
 
 # %% scrap das tabelas
-from tabula.io import read_pdf
+from tabula import read_pdf
 tabela_temp = []
 
 for i, x in enumerate(url):
