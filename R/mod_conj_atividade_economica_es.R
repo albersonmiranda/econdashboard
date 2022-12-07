@@ -318,7 +318,7 @@ mod_conj_atividade_economica_es_ui <- function(id) {
                 numberIcon = if (tail(series$PIM.ES$value, 1) - head(tail(series$PIM.ES$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$IndustriaBR$value, 1), " pts", " (", tail(months(series$IndustriaBR$date), 1), ")"),
                 text = "produção industrial",
