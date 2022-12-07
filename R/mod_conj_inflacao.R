@@ -84,7 +84,7 @@ mod_conj_inflacao_ui <- function(id) {
                 numberIcon = if (tail(series$CapInst$value, 1) - head(tail(series$CapInst$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$CapInst$value, 1), "%", " (", tail(months(series$CapInst$date), 1), ")"),
                 text = "Capacidade Instalada",
@@ -134,7 +134,7 @@ mod_conj_inflacao_ui <- function(id) {
                 numberIcon = if (tail(series$CestaES$value, 1) - head(tail(series$CestaES$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$CestaES$value, 1), " pts", " (", tail(months(series$CestaES$date), 1), ")"),
                 text = "Cesta Básica",
@@ -181,7 +181,7 @@ mod_conj_inflacao_ui <- function(id) {
                 numberIcon = if (tail(series$IPCA$value, 1) - head(tail(series$IPCA$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$IPCA$value, 1), " (", tail(months(series$IPCA$date), 1), ")"),
                 text = "IPCA",
@@ -202,7 +202,7 @@ mod_conj_inflacao_ui <- function(id) {
                 numberIcon = if (tail(series$IGPM$value, 1) - head(tail(series$IGPM$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$IGPM$value, 1), " (", tail(months(series$IGPM$date), 1), ")"),
                 text = "IGPM",
@@ -223,7 +223,7 @@ mod_conj_inflacao_ui <- function(id) {
                 numberIcon = if (tail(series$IPCBr$value, 1) - head(tail(series$IPCBr$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$IPCBr$value, 1), " (", tail(months(series$IPCBr$date), 1), ")"),
                 text = "IPCBr",
@@ -244,7 +244,7 @@ mod_conj_inflacao_ui <- function(id) {
                 numberIcon = if (tail(series$ICV$value, 1) - head(tail(series$ICV$value, 2), 1) >= 0) {
                   icon("fas fa-caret-up")
                 } else {
-                  icon(icon(icon("fas fa-caret-down")))
+                  icon("fas fa-caret-down")
                 },
                 header = paste0(tail(series$ICV$value, 1), " (", tail(months(series$ICV$date), 1), ")"),
                 text = "ICV",
