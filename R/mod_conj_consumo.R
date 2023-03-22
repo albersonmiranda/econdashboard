@@ -404,9 +404,9 @@ mod_conj_consumo_server <- function(input, output, session) {
 
   })
 }
-    
+
 ## To be copied in the UI
 # mod_consumo_ui("consumo_ui_1")
-    
+
 ## To be copied in the server
 # callModule(mod_consumo_server, "consumo_ui_1")
