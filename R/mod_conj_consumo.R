@@ -386,7 +386,7 @@ mod_conj_consumo_server <- function(input, output, session) {
         series$RendaC$value,
         series$RendaSC$value
       ) %>%
-        rename(date = 1, Público = 2, Privado = 3, Formal = 4, Informal = 5) %>%
+        rename(date = 1, Publico = 2, Privado = 3, Formal = 4, Informal = 5) %>%
           pivot_longer(!date) %>%
           ggplot(aes(x = date, y = value)) +
           geom_line(color = "#004b8d") +
