@@ -8,7 +8,7 @@ name: Deploy to ShinyApps.io
 
 jobs:
   Deploy:
-    runs-on: macos-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         r-version: ['4.2.2']
