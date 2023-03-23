@@ -27,6 +27,11 @@ jobs:
           cache-version: 1
           extra-packages: |
             any::rsconnect
+            any::RcppArmadillo
+            any::cpp11
+            any::plogr
+            any::prettyunits
+            any::progress
 
       - name: Conectando ao ShinyApps
         env:
