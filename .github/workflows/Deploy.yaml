@@ -32,6 +32,7 @@ jobs:
             any::plogr
             any::prettyunits
             any::progress
+            any::pkgload
 
       - name: Conectando ao ShinyApps
         env:
@@ -46,5 +47,5 @@ jobs:
 
       - name: Deploy to ShinyApps
         run: |
-          rsconnect::deployApp(forceUpdate = getOption("rsconnect.force.update.apps", TRUE))
+          rsconnect::deployApp()
         shell: Rscript {0}
