@@ -9,7 +9,6 @@
 #' @importFrom bs4Dash descriptionBlock
 #' @import plotly
 #' @import ggplot2
-#' @import pkgload
 #' @importFrom magrittr %>%
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr rename
