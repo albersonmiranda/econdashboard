@@ -28,13 +28,13 @@ mod_conj_inflacao_ui <- function(id) {
             HTML(tail(resenhas_conjuntura$inflacao, 1))
           )
         ),
-        
+
         #Relatorios
-        box( 
+        box(
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
-          collapsed = TRUE,
+          collapsed = FALSE,
           width = 12,
           status = "warning",
           background = "yellow",
