@@ -32,7 +32,7 @@ mod_conj_setor_publico_ui <- function(id) {
           title = tags$div("Relatórios", class = "box-tit"),
           closable = FALSE,
           collapsible = TRUE,
-          collapsed = TRUE,
+          collapsed = FALSE,
           width = 12,
           status = "warning",
           background = "yellow",

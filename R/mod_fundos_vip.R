@@ -51,7 +51,7 @@ mod_fundos_vip_ui <- function(id){
           title = tags$div("Desempenho do Fundo", class = "box-graf"),
           closable = FALSE,
           collapsible = TRUE,
-          collapsed = TRUE,
+          collapsed = FALSE,
           width = 12,
           status = "warning",
           solidHeader = TRUE,
