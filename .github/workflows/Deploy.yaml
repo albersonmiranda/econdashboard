@@ -8,7 +8,7 @@ name: Deploy to ShinyApps.io
 
 jobs:
   Deploy:
-    runs-on: windows-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         r-version: ['4.3.1']
@@ -36,5 +36,6 @@ jobs:
 
       - name: Deploy to ShinyApps
         run: |
+          options(rsconnect.packrat = TRUE)
           rsconnect::deployApp()
         shell: Rscript {0}
