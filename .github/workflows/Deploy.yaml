@@ -24,6 +24,7 @@ jobs:
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          cache-version: 2
           extra-packages: |
             any::rsconnect
             any::RcppArmadillo
@@ -41,7 +42,7 @@ jobs:
           shiny_token = Sys.getenv("SHINY_TOKEN")
           shiny_secret = Sys.getenv("SHINY_SECRET")
           rsconnect::setAccountInfo('albersonmiranda', token = shiny_token, secret = shiny_secret)
-          options(rsconnect.locale.cache = FALSE,  rsconnect.locale = "pt_BR.UTF-8", rsconnect.packrat = TRUE)
+          options(rsconnect.locale.cache = FALSE, rsconnect.locale = "pt_BR.UTF-8")
         shell: Rscript {0}
 
       - name: Deploy to ShinyApps
