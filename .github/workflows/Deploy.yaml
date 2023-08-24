@@ -8,7 +8,7 @@ name: Deploy to ShinyApps.io
 
 jobs:
   Deploy:
-    runs-on: macos-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         r-version: ['4.3.1']
@@ -21,7 +21,18 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
-      - uses: r-lib/actions/setup-renv@v2
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 2
+          extra-packages: |
+            any::rsconnect
+            any::RcppArmadillo
+            any::cpp11
+            any::plogr
+            any::prettyunits
+            any::progress
+            any::pkgload
 
       - name: Conectando ao ShinyApps
         env:
