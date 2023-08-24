@@ -48,5 +48,5 @@ jobs:
       - name: Deploy to ShinyApps
         run: |
           options(rsconnect.packrat = TRUE)
-          rsconnect::deployApp()
+          rsconnect::deployApp(forceUpdate = TRUE)
         shell: Rscript {0}
