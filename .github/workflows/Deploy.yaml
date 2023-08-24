@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        r-version: ['4.2.2']
+        r-version: ['4.3.1']
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -24,7 +24,6 @@ jobs:
       - name: Install dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache-version: 1
           extra-packages: |
             any::rsconnect
             any::RcppArmadillo
@@ -42,7 +41,7 @@ jobs:
           shiny_token = Sys.getenv("SHINY_TOKEN")
           shiny_secret = Sys.getenv("SHINY_SECRET")
           rsconnect::setAccountInfo('albersonmiranda', token = shiny_token, secret = shiny_secret)
-          options(rsconnect.locale.cache = FALSE, rsconnect.locale = "pt_BR.UTF-8")
+          options(rsconnect.locale.cache = FALSE,  rsconnect.locale = "pt_BR.UTF-8", rsconnect.packrat = TRUE)
         shell: Rscript {0}
 
       - name: Deploy to ShinyApps
