@@ -5,7 +5,5 @@ account: albersonmiranda
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3094159
-bundleId: 4537082
+bundleId: 7604838
 url: https://albersonmiranda.shinyapps.io/econdashboard/
-when: 1619732913.97077
-lastSyncTime: 1619732913.97077

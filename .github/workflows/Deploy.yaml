@@ -21,18 +21,7 @@ jobs:
         with:
           r-version: ${{ matrix.r-version }}
 
-      - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          cache-version: 2
-          extra-packages: |
-            any::rsconnect
-            any::RcppArmadillo
-            any::cpp11
-            any::plogr
-            any::prettyunits
-            any::progress
-            any::pkgload
+      - uses: r-lib/actions/setup-renv@v2
 
       - name: Conectando ao ShinyApps
         env:
