@@ -94,8 +94,8 @@ jobs:
 
       - name: Commit dos dados
         run: |
-          git config --local user.email ${{ secrets.ADMIN_EMAIL }}
-          git config --local user.name ${{ secrets.ADMIN_NAME }}
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
           git add data/fundos.rda
           git add data/resenhas_fundos.rda
           git commit -m 'Update data' || echo "Update data"
