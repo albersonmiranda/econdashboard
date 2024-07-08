@@ -47,8 +47,8 @@ jobs:
 
       - name: Commit dos dados
         run: |
-          git config --local user.email ${{ secrets.ADMIN_EMAIL }}
-          git config --local user.name ${{ secrets.ADMIN_NAME }}
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
           git add data/series.rda
           git add data/resenhas_conjuntura.rda
           git add data/legenda_conjuntura.rda
