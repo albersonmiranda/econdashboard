@@ -5,7 +5,7 @@ Authors@R: person('Alberson', 'Miranda', email = 'albersonmiranda@hotmail.com', 
 Description: Shiny App for Economy Overview.
 License: file LICENSE
 Imports: 
-    BETS,
+    rbcb,
     bs4Dash,
     config,
     dplyr,
