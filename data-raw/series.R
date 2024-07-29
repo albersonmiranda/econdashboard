@@ -1,37 +1,6 @@
 ### Dados para o Econ Dashboard ###
 
 
-# 1. FUNÇÕES
-# Function to get series with retries
-get_series_with_retries <- function(series_id, max_retries = 5, wait_time = 5, start_date = NULL, end_date = NULL) {
-  retry_count <- 0
-  success <- FALSE
-
-  while (!success && retry_count < max_retries) {
-    try(
-      {
-        serie <- rbcb::get_series(series_id, start_date = start_date, end_date = end_date)
-        success <- TRUE
-      },
-      silent = TRUE
-    )
-
-    if (!success) {
-      retry_count <- retry_count + 1
-      message(paste("Attempt", retry_count, "failed. Retrying in", wait_time, "seconds..."))
-      Sys.sleep(wait_time)
-    }
-  }
-
-  if (!success) {
-    stop("Failed to retrieve serie", series_id, "after", max_retries, "attempts.")
-  }
-
-  names(serie) <- c("date", "value")
-
-  return(serie)
-}
-
 # 2. SERIES ------------------------------------------------------------------
 
 
@@ -94,22 +63,22 @@ RendaPub = get_series_with_retries(24386, max_retries = 10, wait_time = 20) # re
 RendaCP = get_series_with_retries(24387, max_retries = 10, wait_time = 20) # rendimento médio real habitual das pessoas ocupadas - conta própia
 
 # Preços ----
-IPCA = get_series_with_retries(433, max_retries = 10, wait_time = 20, end_date = "1995-01-01") # Indice nacional de Preços ao consumidor-Amplo IBGE
-IGPM = get_series_with_retries(189, max_retries = 10, wait_time = 20, end_date = "1995-01-01") # Indice Geral de Preços do Mercado FGV
-IPCBr = get_series_with_retries(191, max_retries = 10, wait_time = 20, end_date = "1995-01-01") # Indice de Precos ao Consumidor-Brasil FGV
-ICV = get_series_with_retries(194, max_retries = 10, wait_time = 20, end_date = "1995-01-01") # Indice Custo de Vida Dieese variação % mensal
+IPCA = get_series_with_retries(433, max_retries = 10, wait_time = 20, start_date = "1995-01-01") # Indice nacional de Preços ao consumidor-Amplo IBGE
+IGPM = get_series_with_retries(189, max_retries = 10, wait_time = 20, start_date = "1995-01-01") # Indice Geral de Preços do Mercado FGV
+IPCBr = get_series_with_retries(191, max_retries = 10, wait_time = 20, start_date = "1995-01-01") # Indice de Precos ao Consumidor-Brasil FGV
+ICV = get_series_with_retries(194, max_retries = 10, wait_time = 20, start_date = "1995-01-01") # Indice Custo de Vida Dieese variação % mensal
 CapInst = get_series_with_retries(1344, max_retries = 10, wait_time = 20) # Utilização da capacidade instalada % (FGV)
-IPCAtransportes = get_series_with_retries(1398, max_retries = 10, wait_time = 20, end_date = "1999-08-31") # Subitem transportes de IPCA
+IPCAtransportes = get_series_with_retries(1398, max_retries = 10, wait_time = 20, start_date = "1999-08-31") # Subitem transportes de IPCA
 IPCA12mes = get_series_with_retries(13522, max_retries = 10, wait_time = 20) # Indice nacional de Preços ao consumidor-Amplo dos ultimos 12 meses IBGE
 
 # Setor público ----
 ResultadoBR = get_series_with_retries(4792, max_retries = 10, wait_time = 20) # NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário
-ResultadoBR.PIB = get_series_with_retries(5507, max_retries = 10, wait_time = 20, end_date = "2001-12-01") # NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário (%PIB)
+ResultadoBR.PIB = get_series_with_retries(5507, max_retries = 10, wait_time = 20, start_date = "2001-12-01") # NFSP sem desvalorização cambial - Fluxo acumulado no ano - Resultado primário (%PIB)
 PrimarioBR = get_series_with_retries(4782, max_retries = 10, wait_time = 20) # NFSP sem desvalorização cambial - Governo federal e Banco central - Fluxo acumulado no ano
 DividaLiqBR = get_series_with_retries(4478, max_retries = 10, wait_time = 20) # Dívida Líquida do Setor Público - Saldos em R$ milhões
 DividaLiqBR.PIB = get_series_with_retries(4513, max_retries = 10, wait_time = 20) # Dívida Líquida do Setor pÚBLICO - % do PIB
 DividaBrutaBR = get_series_with_retries(13761, max_retries = 10, wait_time = 20) # Divida bruta do Governo Geral - Saldo em R$ mi
-DividaBrutaBR.PIB = get_series_with_retries(13762, max_retries = 10, wait_time = 20, end_date = "2006-12-01") # Dívida bruta do Governo Geral - % do PIB
+DividaBrutaBR.PIB = get_series_with_retries(13762, max_retries = 10, wait_time = 20, start_date = "2006-12-01") # Dívida bruta do Governo Geral - % do PIB
 
 # Mercado financeiro ----
 Selic = get_series_with_retries(432, max_retries = 10, wait_time = 20) # 	Meta definida pelo Copom
