@@ -32,7 +32,6 @@ jobs:
 
       - name: Atualizando Dados de Relatórios
         run: |
-          devtools::load_all()
           source("data-raw/dados-relatorios.R")
         shell: Rscript {0}
 
@@ -43,7 +42,9 @@ jobs:
         shell: Rscript {0}
       
       - name: Atualizando Dados de Conjuntura
-        run: source("data-raw/series.R")
+        run: |
+          devtools::load_all()
+          source("data-raw/series.R")
         shell: Rscript {0}
 
       - name: Commit dos dados
